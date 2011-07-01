@@ -295,7 +295,7 @@ This package contains the QtNetwork library
 
 %package qtnetwork-devel
 Summary:    Development files for QtNetwork
-Group:      Developer/Libraries
+Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtnetwork
 
