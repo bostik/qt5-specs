@@ -557,13 +557,13 @@ install -D -p -m 0644 /tmp/qt5.txt \
 
 # "naked" Qt5 package acts as a metafile
 %files
-%defattr(-,root,root-)
+%defattr(-,root,root,-)
 %{_datadir}/doc/%{name}/
 
 
 
 %files tools
-%defattr(-,root,root-)
+%defattr(-,root,root,-)
 %{_bindir}/moc
 %{_bindir}/rcc
 %{_bindir}/syncqt
@@ -571,12 +571,12 @@ install -D -p -m 0644 /tmp/qt5.txt \
 
 
 %files qtcore
-%defattr(-,root,root-)
+%defattr(-,root,root,-)
 %{_libdir}/libQtCore.so.5
 %{_libdir}/libQtCore.so.5.*
 
 %files qtcore-devel
-%defattr(-,root,root-)
+%defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtCore
 %{_includedir}/qt5/QtCore/
 %{_includedir}/qt5/Qt/qatomic_*.h
