@@ -93,7 +93,7 @@ Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qmake
 Requires:   %{name}-tools
-Requires:   %{name}-qtcore
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description qtcore-devel
 This package contains the files necessary to develop applications
@@ -253,7 +253,7 @@ This package contains the QtDBus library
 Summary:    Development files for QtDBus
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qtdbus
+Requires:   %{name}-qtdbus = %{version}-%{release}
 
 %description qtdbus-devel
 This package contains the files necessary to develop
@@ -275,7 +275,7 @@ This package contains the QtGui library
 Summary:    Development files for QtGui
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qtgui
+Requires:   %{name}-qtgui = %{version}-%{release}
 
 %description qtgui-devel
 This package contains the files necessary to develop
@@ -297,7 +297,7 @@ This package contains the QtNetwork library
 Summary:    Development files for QtNetwork
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qtnetwork
+Requires:   %{name}-qtnetwork = %{version}-%{release}
 
 %description qtnetwork-devel
 This package contains the files necessary to develop
@@ -320,7 +320,7 @@ This package contains the QtOpenGL library
 Summary:    Development files for QtOpenGL
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qtopengl
+Requires:   %{name}-qtopengl = %{version}-%{release}
 
 %description qtopengl-devel
 This package contains the files necessary to develop
@@ -342,7 +342,7 @@ This package contains the QtSql library
 Summary:    Development files for QtSql
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qtsql
+Requires:   %{name}-qtsql = %{version}-%{release}
 
 %description qtsql-devel
 This package contains the files necessary to develop
@@ -364,7 +364,7 @@ This package contains the QtTest library
 Summary:    Development files for QtTest
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qttest
+Requires:   %{name}-qttest = %{version}-%{release}
 
 %description qttest-devel
 This package contains the files necessary to develop
@@ -385,7 +385,7 @@ This package contains the QtXml library
 Summary:    Development files for QtXml
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-qtxml
+Requires:   %{name}-qtxml = %{version}-%{release}
 
 %description qtxml-devel
 This package contains the files necessary to develop
