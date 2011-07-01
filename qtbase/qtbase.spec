@@ -93,6 +93,7 @@ Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qmake
 Requires:   %{name}-tools
+Requires:   %{name}-qtcore
 
 %description qtcore-devel
 This package contains the files necessary to develop applications
@@ -252,6 +253,7 @@ This package contains the QtDBus library
 Summary:    Development files for QtDBus
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-qtdbus
 
 %description qtdbus-devel
 This package contains the files necessary to develop
@@ -273,6 +275,7 @@ This package contains the QtGui library
 Summary:    Development files for QtGui
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-qtgui
 
 %description qtgui-devel
 This package contains the files necessary to develop
@@ -294,6 +297,7 @@ This package contains the QtNetwork library
 Summary:    Development files for QtNetwork
 Group:      Developer/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-qtnetwork
 
 %description qtnetwork-devel
 This package contains the files necessary to develop
@@ -316,6 +320,7 @@ This package contains the QtOpenGL library
 Summary:    Development files for QtOpenGL
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-qtopengl
 
 %description qtopengl-devel
 This package contains the files necessary to develop
@@ -337,6 +342,7 @@ This package contains the QtSql library
 Summary:    Development files for QtSql
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-qtsql
 
 %description qtsql-devel
 This package contains the files necessary to develop
@@ -358,8 +364,7 @@ This package contains the QtTest library
 Summary:    Development files for QtTest
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires(post):     /sbin/ldconfig
-Requires(postun):   /sbin/ldconfig
+Requires:   %{name}-qttest
 
 %description qttest-devel
 This package contains the files necessary to develop
@@ -380,8 +385,7 @@ This package contains the QtXml library
 Summary:    Development files for QtXml
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires(post):     /sbin/ldconfig
-Requires(postun):   /sbin/ldconfig
+Requires:   %{name}-qtxml
 
 %description qtxml-devel
 This package contains the files necessary to develop
@@ -518,6 +522,29 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %post qtcore -p /sbin/ldconfig
 %postun qtcore -p /sbin/ldconfig
+
+%post qtdbus -p /sbin/ldconfig
+%postun qtdbus -p /sbin/ldconfig
+
+%post qtsql -p /sbin/ldconfig
+%postun qtsql -p /sbin/ldconfig
+
+%post qtnetwork -p /sbin/ldconfig
+%postun qtnetwork -p /sbin/ldconfig
+
+%post qtgui -p /sbin/ldconfig
+%postun qtgui -p /sbin/ldconfig
+
+%post qttest -p /sbin/ldconfig
+%postun qttest -p /sbin/ldconfig
+
+%post qtopengl -p /sbin/ldconfig
+%postun qtopengl -p /sbin/ldconfig
+
+%post qtxml -p /sbin/ldconfig
+%postun qtxml -p /sbin/ldconfig
+
+
 
 
 
