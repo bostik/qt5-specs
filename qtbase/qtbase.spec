@@ -1273,7 +1273,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #### Changelog section
 
 %changelog
-* Thu Jun 30 2011 Mika Boström <mika.bostrom@nomovok.com>
+* Thu Jun 30 2011 Mika Boström <mika.bostrom@nomovok.com> - 20110630
 - Add more packages to further split the build into reasonable
   components. Use the includes in qt5/Qt/Qt* files as guide.
 * Wed Jun 29 2011 Mika Boström <mika.bostrom@nomovok.com> - 20110627
