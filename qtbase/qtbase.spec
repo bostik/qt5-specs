@@ -513,6 +513,11 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{buildroot}/%{_sysconfdir}/rpm/macros.qmake
 #
+# Install a dummy file for "naked" qt5 package
+echo "Qt5 package does not contain anything by itself" > /tmp/qt5.txt
+install -D -p -m 0644 /tmp/qt5.txt \
+%{buildroot}/%{_datadir}/doc/%{name}/qt5.txt
+#
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 %fdupes %{buildroot}/%{_datadir}
@@ -550,9 +555,11 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 #### File section
 
-# "naked" qt5 package does not exist
+# "naked" Qt5 package acts as a metafile
 %files
 %defattr(-,root,root-)
+%{_datadir}/doc/%{name}/
+
 
 
 %files tools
@@ -1273,10 +1280,10 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #### Changelog section
 
 %changelog
-* Thu Jun 30 2011 Mika Boström <mika.bostrom@nomovok.com> - 20110630
+* Thu Jun 30 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110630
 - Add more packages to further split the build into reasonable
   components. Use the includes in qt5/Qt/Qt* files as guide.
-* Wed Jun 29 2011 Mika Boström <mika.bostrom@nomovok.com> - 20110627
+* Wed Jun 29 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110627
 - Start working on completely modular build, splitting everything in new
   Qt5 tree to smaller components.
 - Removed "-demosdir" from configure line entirely. It is no longer
