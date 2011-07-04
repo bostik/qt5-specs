@@ -76,7 +76,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/libQtXmlPatterns.so.5
 %{_libdir}/libQtXmlPatterns.so.5.*
-%{_bindir}/
+%{_bindir}/*
 
 # FIXME: the provided .pc file is empty!
 # Find out what gives and find a clean resolution
@@ -84,7 +84,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/libQtXmlPatterns.so
 #%{_libdir}/libQtXmlPatterns.la
-%{_libdir}/pkgconfig/
+%{_libdir}/pkgconfig/*
 %{_includedir}/qt5/
 %{_datadir}/qt5/mkspecs/
 
