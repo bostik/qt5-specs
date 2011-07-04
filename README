@@ -1,0 +1,9 @@
+These directories contain OBS build files for modular Qt 5. This is a
+work in progress, and will evolve as the modularisation and development
+of Qt 5.0 progresses.
+
+The build order for packages is:
+    - qtbase
+    - qtxmlpatterns
+    ....
+
