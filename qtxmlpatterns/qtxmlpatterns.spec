@@ -12,6 +12,7 @@ BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qmake
+BuildRequires:  fontconfig-devel
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -46,8 +47,8 @@ This package contains the XMLPatterns library development files
 # to know where the mkspecs may be found. Hence the environment variable
 # name is a little misleading.
 #
-# XXX: FOR THE LOVE OF ALL THAT MAY BE HOLY - DO NOT USE RPMBUILD's
-# INTERNAL '%qmake' MACRO. IT BREAKS THE BUILD!
+# XXX: FOR THE LOVE OF ALL THAT MAY BE HOLY - DO NOT USE RPMBUILD AND
+# ITS INTERNAL %qmake MACRO. IT BREAKS THE BUILD!
 %build
 export QTDIR=/usr/share/qt5
 qmake
