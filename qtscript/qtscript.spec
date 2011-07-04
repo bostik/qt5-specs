@@ -61,8 +61,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtscript.so.5
-%{_libdir}/libQtscript.so.5.*
+%{_libdir}/libQtScript.so.5
+%{_libdir}/libQtScript.so.5.*
 %{_bindir}/*
 
 # FIXME: the provided .pc file is empty!
