@@ -48,7 +48,7 @@ This package contains the XMLPatterns library development files
 # name is a little misleading.
 #
 # XXX: FOR THE LOVE OF ALL THAT MAY BE HOLY - DO NOT USE RPMBUILD AND
-# ITS INTERNAL %qmake MACRO. IT BREAKS THE BUILD!
+# ITS INTERNAL qmake MACRO. IT BREAKS THE BUILD!
 %build
 export QTDIR=/usr/share/qt5
 qmake
