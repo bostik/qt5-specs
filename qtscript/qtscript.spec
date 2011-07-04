@@ -1,5 +1,5 @@
 Name:       qt5-script
-Summary:    Qt scripting library
+Summary:    Qt scripting module
 Version:    20110701+g9fef9f3
 Release:    1%{?dist}
 Group:      System/Libraries
@@ -27,7 +27,7 @@ Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
-This package contains the scripting library development files
+This package contains the scripting module development files
 
 
 #### Build section
