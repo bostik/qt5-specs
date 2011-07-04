@@ -18,10 +18,6 @@ mobile and embedded systems without rewriting the source code.
 .
 This package contains the XMLPatterns library
 
-%package
-Summary:    Qt XML Patterns
-Group:      System/Libraries
-
 
 %package devel
 Summary:    Qt XML Patterns - development files
