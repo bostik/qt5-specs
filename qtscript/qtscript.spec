@@ -65,15 +65,15 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/libQtScript.so.5
 %{_libdir}/libQtScript.so.5.*
-%{_bindir}/*
+%{_libdir}/libQtScriptTools.so.5
+%{_libdir}/libQtScriptTools.so.5.*
 
-# FIXME: the provided .pc file is empty!
-# Find out what gives and find a clean resolution
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtScript.so
+%{_libdir}/libQtScriptTools.so
 %{_libdir}/pkgconfig/*
-%{_includedir}/qt5/
+%{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 
 
