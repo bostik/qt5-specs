@@ -321,6 +321,7 @@ Summary:    Development files for QtOpenGL
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtopengl = %{version}-%{release}
+Requires:   mesa-libGLESv2-devel
 
 %description qtopengl-devel
 This package contains the files necessary to develop
