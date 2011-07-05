@@ -13,6 +13,7 @@ BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-script-devel
 BuildRequires:  qt5-qmake
+BuildRequires:  fontconfig-devel
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
