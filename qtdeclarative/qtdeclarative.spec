@@ -15,6 +15,7 @@ BuildRequires:  qt5-qttest-devel
 BuildRequires:  qt5-script-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fontconfig-devel
+BuildRequires:  fdupes
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -50,6 +51,7 @@ This package contains the QtQuickTest library for QtDeclarative module
 Summary:    Qt Declarative QtQuickTest - development files
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-declarative-qtquicktest = %{version}-%{release}
 
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
@@ -132,14 +134,26 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %make_install
+%fdupes %{_buildroot}/%{_libdir}
+%fdupes %{_buildroot}/%{_includedir}
 
 
 
 
 #### Pre/Post section
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%postun
+/sbin/ldconfig
+
+%post qtquicktest
+/sbin/ldconfig
+%postun qtquicktest
+/sbin/ldconfig
+
+
+
 
 
 
