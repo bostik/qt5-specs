@@ -115,6 +115,31 @@ Requires:   %{name} = %{version}-%{release}
 %description import-qttest
 This package provides the QtDeclarative QtTest plugin
 
+%package qmlviewer
+Summary:    QML viewer
+Group:      Development/Tools
+Requires:   %{name} = %{version}-%{release}
+
+%description qmlviewer
+This package contains the QML viewer for QtQuick 1.0 files.
+
+%package qmlscene
+Summary:    QML viewer
+Group:      Development/Tools
+Requires:   %{name} = %{version}-%{release}
+
+%description qmlscene
+This package contains the QML viewer for QtQuick 2.0 files.
+
+%package devel-tools
+Summary:    QML development tools
+Group:      Development/Tools
+Requires:   %{name} = %{version}-%{release}
+
+%description devel-tools
+This package contains QML debugging and development tools
+
+
 
 
 
@@ -165,7 +190,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/libQtDeclarative.so.5
 %{_libdir}/libQtDeclarative.so.5.*
-%{_bindir}/*
 
 # FIXME: the provided .pc file is empty!
 # Find out what gives and find a clean resolution
@@ -175,6 +199,20 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/
 %{_datadir}/qt5/mkspecs/
+
+%files qmlviewer
+%defattr(-,root,root,-)
+%{_bindir}/qmlviewer
+
+%files qmlscene
+%defattr(-,root,root,-)
+%{_bindir}/qmlscene
+
+%files devel-tools
+%defattr(-,root,root,-)
+%{_bindir}/qmlplugindump
+%{_bindir}/qmltestrunner
+
 
 
 %files import-etcprovider
