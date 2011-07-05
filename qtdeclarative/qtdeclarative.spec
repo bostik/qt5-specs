@@ -1,12 +1,11 @@
 Name:       qt5-declarative
 Summary:    Qt Declarative library
-Version:    20110701+g5b84efd
+Version:    4.9.90.20110701+g5b84efd6
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
-Patch0:     disable-xmlpattern-examples-install.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
