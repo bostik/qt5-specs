@@ -199,6 +199,7 @@ rm -rf %{buildroot}
 %{_libdir}/libQtDeclarative.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/Qt/qdecl*.h
+%{_includedir}/qt5/Qt/qtdecl*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
