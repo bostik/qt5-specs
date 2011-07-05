@@ -260,7 +260,7 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/Qt/QtQuickTest
 %{_includedir}/qt5/QtQuickTest/
 %{_libdir}/libQtQuickTest.so
-%{_libdir}/qt5/mkspecs/modules/qt_qmltest.pri
+%{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
 
 
 
