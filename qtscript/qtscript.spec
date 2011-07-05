@@ -1,6 +1,6 @@
 Name:       qt5-script
 Summary:    Qt scripting module
-Version:    20110701+g9fef9f3
+Version:    4.9.90.20110701+g9fef9f3
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
