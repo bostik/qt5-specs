@@ -51,6 +51,7 @@ This package contains the QtQuickTest library for QtDeclarative module
 Summary:    Qt Declarative QtQuickTest - development files
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-devel = %{version}-%{release}
 Requires:   qt5-declarative-qtquicktest = %{version}-%{release}
 
 %description qtquicktest-devel
