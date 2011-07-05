@@ -10,6 +10,7 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtopengl-devel
+BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-script-devel
 BuildRequires:  qt5-qmake
 
