@@ -14,7 +14,7 @@
 
 Name:       qt5
 Summary:    Cross-platform application and UI framework
-Version:    20110628+g6fa15d7
+Version:    4.9.90.20110628+g6fa15d7
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
@@ -321,7 +321,8 @@ Summary:    Development files for QtOpenGL
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtopengl = %{version}-%{release}
-Requires:   mesa-libGLESv2-devel
+Requires:   libGLESv2-devel
+Requires:   libEGL-devel
 
 %description qtopengl-devel
 This package contains the files necessary to develop
