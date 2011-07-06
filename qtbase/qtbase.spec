@@ -481,11 +481,6 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{buildroot}/%{_sysconfdir}/rpm/macros.qmake
 #
-# Install a dummy file for "naked" qt5 package
-echo "Qt5 package does not contain anything by itself" > /tmp/qt5.txt
-install -D -p -m 0644 /tmp/qt5.txt \
-%{buildroot}/%{_datadir}/doc/%{name}/qt5.txt
-#
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 %fdupes %{buildroot}/%{_datadir}
@@ -998,7 +993,6 @@ install -D -p -m 0644 /tmp/qt5.txt \
 %{_includedir}/qt5/Qt/qaccessibleplugin.h
 %{_includedir}/qt5/Qt/qaccessiblewidget.h
 %{_includedir}/qt5/Qt/qkeyeventtransition.h
-%{_includedir}/qt5/Qt/qmouseeventtransition.h
 %{_includedir}/qt5/Qt/qcopchannel_qws.h
 %{_includedir}/qt5/Qt/qtransport*.h
 %{_includedir}/qt5/Qt/qplatform*.h
@@ -1007,7 +1001,6 @@ install -D -p -m 0644 /tmp/qt5.txt \
 %{_includedir}/qt5/Qt/qgenericplugin*.h
 %{_includedir}/qt5/Qt/qguifunctions_*.h
 %{_includedir}/qt5/Qt/qkbd*.h
-%{_includedir}/qt5/Qt/qmaccocoa*
 %{_includedir}/qt5/Qt/qmac*_mac.h
 %{_includedir}/qt5/Qt/qmouse*.h
 %{_includedir}/qt5/Qt/qscreen*.h
