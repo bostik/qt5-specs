@@ -72,7 +72,6 @@ mobile and embedded systems without rewriting the source code.
 %package tools
 Summary:    Development tools for qtbase
 Group:      Development/Tools
-Requires:   %{name} = %{version}-%{release}
 
 %description tools
 This package contains useful tools for Qt development
@@ -80,7 +79,6 @@ This package contains useful tools for Qt development
 %package qtcore
 Summary:    The QtCore library
 Group:      Development/library
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -90,7 +88,6 @@ This packagea contains the QtCore library
 %package qtcore-devel
 Summary:    Development files for QtCore
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qmake
 Requires:   %{name}-tools
 Requires:   %{name}-qtcore = %{version}-%{release}
@@ -103,7 +100,6 @@ that use the QtCore
 %package qmake
 Summary:    QMake
 Group:      Development/Tools
-Requires:   %{name} = %{version}-%{release}
 
 %description qmake
 This package contains qmake
@@ -112,7 +108,6 @@ This package contains qmake
 %package plugin-accessible-libqtaccessiblewidgets
 Summary:    Accessible widgets
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-accessible-libqtaccessiblewidgets
 This package contains libqtaccessiblewidgets
@@ -121,7 +116,6 @@ This package contains libqtaccessiblewidgets
 %package plugin-bearer-connman
 Summary:    Connman bearer plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-bearer-connman
 This package contains the connman bearer plugin
@@ -130,7 +124,6 @@ This package contains the connman bearer plugin
 %package plugin-bearer-generic
 Summary:    Connman generic plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-bearer-generic
 This package contains the connman generic bearer plugin
@@ -139,7 +132,6 @@ This package contains the connman generic bearer plugin
 %package plugin-bearer-nm
 Summary:    Connman generic plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-bearer-nm
 This package contains the connman NetworkManager bearer plugin
@@ -148,7 +140,6 @@ This package contains the connman NetworkManager bearer plugin
 %package plugin-imageformat-gif
 Summary:    Gif image format plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-imageformat-gif
 This package contains the gif imageformat plugin
@@ -157,7 +148,6 @@ This package contains the gif imageformat plugin
 %package plugin-imageformat-ico
 Summary:    Ico image format plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-imageformat-ico
 This package contains the ico imageformat plugin
@@ -166,7 +156,6 @@ This package contains the ico imageformat plugin
 %package plugin-imageformat-jpeg
 Summary:    JPEG image format plugin
 Group:      Development/libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-imageformat-jpeg
 This package contains the JPEG imageformat plugin
@@ -175,7 +164,6 @@ This package contains the JPEG imageformat plugin
 %package plugin-imageformat-mng
 Summary:    MNG image format plugin
 Group:      Development/libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-imageformat-mng
 This package contains the MNG imageformat plugin
@@ -184,7 +172,6 @@ This package contains the MNG imageformat plugin
 %package plugin-imageformat-tiff
 Summary:    TIFF image format plugin
 Group:      Development/libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-imageformat-tiff
 This package contains the TIFF imageformat plugin
@@ -193,7 +180,6 @@ This package contains the TIFF imageformat plugin
 %package plugin-platform-minimal
 Summary:    Minimal platform plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-platform-minimal
 This package contains the minimal platform plugin
@@ -202,7 +188,6 @@ This package contains the minimal platform plugin
 %package plugin-platform-wayland
 Summary:    Wayland platform plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-platform-wayland
 This package contains the wayland platform plugin
@@ -211,7 +196,6 @@ This package contains the wayland platform plugin
 %package plugin-platform-eglfs
 Summary:    Eglfs platform plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-platform-eglfs
 This package contains the eglfs platform plugin
@@ -220,7 +204,6 @@ This package contains the eglfs platform plugin
 %package plugin-sqldriver-sqlite
 Summary:    Sqlite sql driver plugin
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-sqldriver-sqlite
 This package contains the sqlite sql driver plugin
@@ -229,7 +212,6 @@ This package contains the sqlite sql driver plugin
 %package plugin-inputmethod-imsw-multi
 Summary:    imsw-multi input method
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 
 %description plugin-inputmethod-imsw-multi
 This package contains the imsw-multi input method plugin
@@ -241,7 +223,6 @@ This package contains the imsw-multi input method plugin
 %package qtdbus
 Summary:    The QtDBus library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -252,7 +233,6 @@ This package contains the QtDBus library
 %package qtdbus-devel
 Summary:    Development files for QtDBus
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtdbus = %{version}-%{release}
 
 %description qtdbus-devel
@@ -263,7 +243,6 @@ applications that use QtDBus
 %package qtgui
 Summary:    The QtGuji Library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -274,7 +253,6 @@ This package contains the QtGui library
 %package qtgui-devel
 Summary:    Development files for QtGui
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtgui = %{version}-%{release}
 
 %description qtgui-devel
@@ -285,7 +263,6 @@ applications that use QtGui
 %package qtnetwork
 Summary:    The QtNetwork library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -296,7 +273,6 @@ This package contains the QtNetwork library
 %package qtnetwork-devel
 Summary:    Development files for QtNetwork
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtnetwork = %{version}-%{release}
 
 %description qtnetwork-devel
@@ -308,7 +284,6 @@ applications that use QtNetwork
 %package qtopengl
 Summary:    The QtOpenGL library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -319,7 +294,6 @@ This package contains the QtOpenGL library
 %package qtopengl-devel
 Summary:    Development files for QtOpenGL
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtopengl = %{version}-%{release}
 Requires:   libGLESv2-devel
 Requires:   libEGL-devel
@@ -332,7 +306,6 @@ applications that use QtOpenGL
 %package qtsql
 Summary:    The QtSql library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -343,7 +316,6 @@ This package contains the QtSql library
 %package qtsql-devel
 Summary:    Development files for QtSql
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtsql = %{version}-%{release}
 
 %description qtsql-devel
@@ -354,7 +326,6 @@ applications that use QtSql
 %package qttest
 Summary:    The QtTest library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -365,7 +336,6 @@ This package contains the QtTest library
 %package qttest-devel
 Summary:    Development files for QtTest
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qttest = %{version}-%{release}
 
 %description qttest-devel
@@ -376,7 +346,6 @@ applications that use QtTest
 %package qtxml
 Summary:    The QtXml library
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -386,7 +355,6 @@ This package contains the QtXml library
 %package qtxml-devel
 Summary:    Development files for QtXml
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-qtxml = %{version}-%{release}
 
 %description qtxml-devel
@@ -408,7 +376,6 @@ applications that use QtXml
 %package qtuitools-devel
 Summary:    Development files for QtUiTools
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -419,7 +386,6 @@ applications that use QtUiTools
 %package qtdesigner-devel
 Summary:    Development files for QtDesigner
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
@@ -557,10 +523,8 @@ install -D -p -m 0644 /tmp/qt5.txt \
 
 #### File section
 
-# "naked" Qt5 package acts as a metafile
-%files
-%defattr(-,root,root,-)
-%{_datadir}/doc/%{name}/
+# There is no naked qt5 package
+#%files
 
 
 
