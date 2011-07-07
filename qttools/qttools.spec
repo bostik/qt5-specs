@@ -7,7 +7,10 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source:     %{name}.tar.gz
 Patch0:     add_qtclucene_dir.patch
-Patch0:     add_qthelp_search_patch.patch
+Patch1:     add_qthelp_search_patch.patch
+Patch2:     link_qcollectiongenerator_with_qthelp.patch
+Patch3:     link_qhelpconverter_with_qthelp.patch
+Patch4:     link_qhelpgenerator_with_qthelp.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -29,6 +32,9 @@ This package contains additional tools for building Qt applications.
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 export QTDIR=/usr/share/qt5
