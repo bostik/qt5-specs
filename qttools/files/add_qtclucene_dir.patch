@@ -1,0 +1,27 @@
+diff --git a/src/assistant/lib/fulltextsearch/fulltextsearch.pro b/src/assistant/lib/fulltextsearch/fulltextsearch.pro
+index b212154..3394bd4 100644
+--- a/src/assistant/lib/fulltextsearch/fulltextsearch.pro
++++ b/src/assistant/lib/fulltextsearch/fulltextsearch.pro
+@@ -5,7 +5,7 @@ load(qt_module)
+ QMAKE_TARGET_PRODUCT = QtCLucene
+ QMAKE_TARGET_DESCRIPTION = QtCLucene full text search library wrapper.
+ #if qt is built with frameworks in debug, we must build QtCLucene in debug and release 
+-#that's a similar logic as in qbase.pri 
++#that''s a similar logic as in qbase.pri 
+ mac:!static:contains(QT_CONFIG, qt_framework) { 
+    CONFIG(debug, debug|release) { 
+       !build_pass:CONFIG += build_all 
+diff --git a/src/assistant/lib/lib.pro b/src/assistant/lib/lib.pro
+index 1387820..7d63775 100644
+--- a/src/assistant/lib/lib.pro
++++ b/src/assistant/lib/lib.pro
+@@ -35,7 +35,8 @@ linux-lsb-g++:LIBS_PRIVATE += --lsb-shared-libs=$$qclucene
+ unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES += QtNetwork \
+     QtSql \
+     QtXml
+-LIBS_PRIVATE += -l$$qclucene
++FTS_LUCENE_LIB_DIR = fulltextsearch
++LIBS_PRIVATE += -L$$FTS_LUCENE_LIB_DIR -l$$qclucene
+ RESOURCES += helpsystem.qrc
+ SOURCES += qhelpenginecore.cpp \
+     qhelpengine.cpp \
