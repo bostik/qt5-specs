@@ -11,6 +11,8 @@ Patch1:     add_qthelp_search_patch.patch
 Patch2:     link_qcollectiongenerator_with_qthelp.patch
 Patch3:     link_qhelpconverter_with_qthelp.patch
 Patch4:     link_qhelpgenerator_with_qthelp.patch
+Patch5:     fix_qtdesigner_include_paths.patch
+Patch6:     copy_widgets_table_from_base.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -18,6 +20,7 @@ BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtdesigner-devel
 BuildRequires:  qt5-qmake
+BuildRequires:  qt5-tools
 BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
 #Requires:       qt5-qmake = %{version}
@@ -36,6 +39,8 @@ This package contains additional tools for building Qt applications.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 export QTDIR=/usr/share/qt5

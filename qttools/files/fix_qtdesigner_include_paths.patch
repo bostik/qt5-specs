@@ -1,0 +1,41 @@
+diff --git a/src/designer/src/lib/shared/qdesigner_command.cpp b/src/designer/src/lib/shared/qdesigner_command.cpp
+index 637bb1d..cba6213 100644
+--- a/src/designer/src/lib/shared/qdesigner_command.cpp
++++ b/src/designer/src/lib/shared/qdesigner_command.cpp
+@@ -49,7 +49,7 @@
+ #include "shared_enums_p.h"
+ #include "metadatabase_p.h"
+ #include "formwindowbase_p.h"
+-#include <abstractformbuilder.h>
++#include <QtDesigner/abstractformbuilder.h>
+ 
+ #include <QtDesigner/QDesignerFormWindowInterface>
+ #include <QtDesigner/QDesignerFormEditorInterface>
+diff --git a/src/designer/src/lib/shared/qdesigner_utils.cpp b/src/designer/src/lib/shared/qdesigner_utils.cpp
+index f40959c..c14e36d 100644
+--- a/src/designer/src/lib/shared/qdesigner_utils.cpp
++++ b/src/designer/src/lib/shared/qdesigner_utils.cpp
+@@ -41,9 +41,9 @@
+ 
+ #include "qdesigner_utils_p.h"
+ #include "qdesigner_propertycommand_p.h"
+-#include "abstractformbuilder.h"
+ #include "formwindowbase_p.h"
+ 
++#include <QtDesigner/abstractformbuilder.h>
+ #include <QtDesigner/QDesignerFormEditorInterface>
+ #include <QtDesigner/QDesignerFormWindowInterface>
+ #include <QtDesigner/QDesignerResourceBrowserInterface>
+diff --git a/src/designer/src/lib/shared/qsimpleresource_p.h b/src/designer/src/lib/shared/qsimpleresource_p.h
+index bdc63ce..61b4a89 100644
+--- a/src/designer/src/lib/shared/qsimpleresource_p.h
++++ b/src/designer/src/lib/shared/qsimpleresource_p.h
+@@ -54,7 +54,7 @@
+ #define QSIMPLERESOURCE_H
+ 
+ #include "shared_global_p.h"
+-#include "abstractformbuilder.h"
++#include <QtDesigner/abstractformbuilder.h>
+ #include <QtCore/QStringList>
+ 
+ QT_BEGIN_NAMESPACE
