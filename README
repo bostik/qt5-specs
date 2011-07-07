@@ -5,5 +5,9 @@ of Qt 5.0 progresses.
 The build order for packages is:
     - qtbase
     - qtxmlpatterns
+    - qtscript
+    ...
+    - qtdesigner
     ....
+    - qttools
 
