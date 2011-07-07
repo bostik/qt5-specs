@@ -6,6 +6,9 @@ The build order for packages is:
     - qtbase
     - qtxmlpatterns
     - qtscript
-    ...
+    - qtdeclarative
     - qttools
+    - qtsystems
+    ...
+
 
