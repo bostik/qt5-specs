@@ -7,6 +7,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source:     %{name}.tar.gz
 Patch0:     add_qtclucene_dir.patch
+Patch0:     add_qthelp_search_patch.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -15,8 +16,7 @@ BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
-#
-Requires:       qt5-qmake = %{version}
+#Requires:       qt5-qmake = %{version}
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -28,6 +28,7 @@ This package contains additional tools for building Qt applications.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %build
 export QTDIR=/usr/share/qt5
