@@ -7,7 +7,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source:     %{name}.tar.gz
 Patch0:     add_qtclucene_dir.patch
-Patch1:     add_qthelp_search_patch.patch
+Patch1:     add_qthelp_search_path.patch
 Patch2:     link_qcollectiongenerator_with_qthelp.patch
 Patch3:     link_qhelpconverter_with_qthelp.patch
 Patch4:     link_qhelpgenerator_with_qthelp.patch
