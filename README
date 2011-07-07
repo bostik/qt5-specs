@@ -7,7 +7,5 @@ The build order for packages is:
     - qtxmlpatterns
     - qtscript
     ...
-    - qtdesigner
-    ....
     - qttools
 
