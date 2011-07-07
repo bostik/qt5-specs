@@ -6,6 +6,7 @@ Group:      Development/Tools
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source:     %{name}.tar.gz
+Patch0:     add_qtclucene_dir.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -26,6 +27,7 @@ This package contains additional tools for building Qt applications.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 export QTDIR=/usr/share/qt5
