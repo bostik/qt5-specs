@@ -29,6 +29,7 @@ This package contains the Declarative library
 Summary:    Qt Declarative - development files
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-script-devel
 
 %description devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
