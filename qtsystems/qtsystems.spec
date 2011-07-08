@@ -42,7 +42,6 @@ This package contains the Qt SystemInfo module
 %package -n qt5-systeminfo-devel
 Summary:    Qt system info - development files
 Group:      Development/Libraries
-Requires:   qt5-systeminfo = %{version}-%{release}
 
 %description -n qt5-systeminfo-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -60,6 +59,39 @@ Requires:   qt5-declarative
 %description -n qt5-declarative-systeminfo
 This package contains the system info import for QtDeclarative
 
+
+%package -n qt5-serviceframework
+Summary:    Qt Service Framework
+Group:      System/Libraries
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description -n qt5-serviceframework
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt Service Framework module
+
+%package -n qt5-serviceframework-devel
+Summary:    Qt Service Framework - development files
+Group:      Development/Libraries
+
+%description -n qt5-serviceframework-devel
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt Service Framework development files
+
+
+%package -n qt5-declarative-serviceframework
+Summary:    Qt Service Framework import for QtDeclarative
+Group:      System/Libraries
+Requires:   qt5-declarative
+
+%description -n qt5-declarative-serviceframework
+This package contains the Service Framework import for QtDeclarative
 
 #### Build section
 
@@ -87,6 +119,11 @@ rm -rf %{buildroot}
 %postun -n qt5-systeminfo
 /sbin/ldconfig
 
+%post -n qt5-serviceframework
+/sbin/ldconfig
+%postun -n qt5-serviceframework
+/sbin/ldconfig
+
 
 
 
@@ -107,7 +144,6 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/Qt/q*info.h
 %{_includedir}/qt5/Qt/qdeviceprofile.h
 %{_includedir}/qt5/Qt/qscreensaver.h
-
 %{_includedir}/qt5/QtSystemInfo/
 %{_datadir}/qt5/mkspecs/modules/qt_systeminfo.pri
 
@@ -115,6 +151,25 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/systeminfo/
 
+%files -n qt5-serviceframework
+%defattr(-,root,root,-)
+%{_libdir}/libQtServiceFramework.so.5
+%{_libdir}/libQtServiceFramework.so.5.*
+
+%files -n qt5-serviceframework-devel
+%defattr(-,root,root,-)
+%{_libdir}/libQtServiceFramework.so
+%{_libdir}/pkgconfig/QtServiceFramework.pc
+%{_includedir}/qt5/Qt/QtServiceFramework
+%{_includedir}/qt5/Qt/qabstractsecuritysession.h
+%{_includedir}/qt5/Qt/qremoteserviceregister.h
+%{_includedir}/qt5/Qt/qremoteservice*.h
+%{_includedir}/qt5/QtServiceFramework/
+%{_datadir}/qt5/mkspecs/modules/qt_serviceframework.pri
+
+%files -n qt5-declarative-serviceframework
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/Qt/serviceframework/
 
 
 #### Changelog section
