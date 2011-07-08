@@ -11,6 +11,7 @@ BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fontconfig-devel
+BuildRequires:  fdupes
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -32,6 +33,15 @@ mobile and embedded systems without rewriting the source code.
 .
 This package contains the SVG module development files
 
+%package plugin-imageformat-svg
+Summary:    Qt SVG image format plugin
+Group:      Development/Libraries
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-imageformat-svg
+This package contains the SVG image format plugin
+
+
 
 #### Build section
 
@@ -47,14 +57,17 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %make_install
+%fdupes %{buildroot}/%{_includedir}
 
 
 
 
 #### Pre/Post section
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 
 
@@ -74,11 +87,18 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 
+%files plugin-imageformat-svg
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/lib*svg.so
+
 
 
 #### Changelog section
 
 %changelog
+* Fri Jul  8 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701-2
+- Fix build
+- Add image format plugin package
 * Thu Jul  7 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
 - Initial packaging
 - Builds against packages from qtbase build
