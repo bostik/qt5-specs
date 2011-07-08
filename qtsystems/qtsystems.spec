@@ -93,6 +93,36 @@ Requires:   qt5-declarative
 %description -n qt5-declarative-serviceframework
 This package contains the Service Framework import for QtDeclarative
 
+
+
+%package -n qt5-publishsubscribe
+Summary:    Qt PublishSubscribe module
+Group:      System/Libraries
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description -n qt5-publishsubscribe
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt PublishSubscribe module
+
+%package -n qt-publishsubscribe-devel
+Summary:    Qt PublishSubscribe - development files
+Group:      Development/Libraries
+
+%package -n qt5-declarative-publishsubscribe
+Summary:    Qt PublishSubscribe import for QtDeclarative
+Group:      System/Libraries
+Requires:   qt5-declarative
+
+%description -n qt5-declarative-publishsubscribe
+This package contains the PublishSuvbscribe import for QtDeclarative
+
+
+
+
 #### Build section
 
 %prep
@@ -124,6 +154,10 @@ rm -rf %{buildroot}
 %postun -n qt5-serviceframework
 /sbin/ldconfig
 
+%post -n qt5-publishsubscribe
+/sbin/ldconfig
+%postun -n qt5-publishsubscribe
+/sbin/ldconfig
 
 
 
@@ -164,12 +198,35 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/Qt/qabstractsecuritysession.h
 %{_includedir}/qt5/Qt/qremoteserviceregister.h
 %{_includedir}/qt5/Qt/qremoteservice*.h
+%{_includedir}/qt5/Qt/qservice*.h
 %{_includedir}/qt5/QtServiceFramework/
 %{_datadir}/qt5/mkspecs/modules/qt_serviceframework.pri
 
 %files -n qt5-declarative-serviceframework
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/serviceframework/
+
+
+
+
+%files -n qt5-publishsubscribe
+%defattr(-,root,root,-)
+%{_libdir}/libQtPublishSubscribe.so.5
+%{_libdir}/libQtPublishSubscribe.so.5.*
+
+%files -n qt5-publishsubscribe-devel
+%defattr(-,root,root,-)
+%{_libdir}/libQtPublishSubscribe.so
+%{_libdir}/pkgconfig/QtPublishSubscribe.pc
+%{_includedir}/qt5/Qt/QtPublishSubscribe
+%{_includedir}/qt5/Qt/qtpublishsubscribeversion*.h
+%{_includedir}/qt5/Qt/qvalue*.h
+%{_includedir}/qt5/QtPublishSubscribe/
+%{_datadir}/qt5/mkspecs/modules/qt_publishsubscribe.pri
+
+%files -n qt5-declarative-publishsubscribe
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/Qt/publishsubscribe/
 
 
 #### Changelog section
