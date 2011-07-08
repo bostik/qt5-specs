@@ -160,8 +160,8 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %make_install
-%fdupes %{_buildroot}/%{_libdir}
-%fdupes %{_buildroot}/%{_includedir}
+%fdupes %{buildroot}/%{_libdir}
+%fdupes %{buildroot}/%{_includedir}
 
 
 
