@@ -108,9 +108,17 @@ mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt PublishSubscribe module
 
-%package -n qt-publishsubscribe-devel
+%package -n qt5-publishsubscribe-devel
 Summary:    Qt PublishSubscribe - development files
 Group:      Development/Libraries
+
+%description -n qt5-publishsubscribe-devel
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt PublishSubscribe development files
+
 
 %package -n qt5-declarative-publishsubscribe
 Summary:    Qt PublishSubscribe import for QtDeclarative
@@ -187,6 +195,7 @@ rm -rf %{buildroot}
 
 %files -n qt5-serviceframework
 %defattr(-,root,root,-)
+%{_bindir}/servicefw
 %{_libdir}/libQtServiceFramework.so.5
 %{_libdir}/libQtServiceFramework.so.5.*
 
@@ -195,8 +204,8 @@ rm -rf %{buildroot}
 %{_libdir}/libQtServiceFramework.so
 %{_libdir}/pkgconfig/QtServiceFramework.pc
 %{_includedir}/qt5/Qt/QtServiceFramework
+%{_includedir}/qt5/Qt/qtserviceframeworkversion.h
 %{_includedir}/qt5/Qt/qabstractsecuritysession.h
-%{_includedir}/qt5/Qt/qremoteserviceregister.h
 %{_includedir}/qt5/Qt/qremoteservice*.h
 %{_includedir}/qt5/Qt/qservice*.h
 %{_includedir}/qt5/QtServiceFramework/
