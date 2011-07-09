@@ -1,5 +1,5 @@
 diff --git a/qtmultimedia.pro b/qtmultimedia.pro
-index 00cd6bd..56fa9c4 100644
+index 00cd6bd..26f5480 100644
 --- a/qtmultimedia.pro
 +++ b/qtmultimedia.pro
 @@ -6,17 +6,13 @@ module_qtmultimedia_src.target = module-qtmultimedia-src
@@ -22,3 +22,10 @@ index 00cd6bd..56fa9c4 100644
  
  
  module_qtmultimedia_tests.subdir = tests
+@@ -26,6 +22,4 @@ module_qtmultimedia_tests.CONFIG = no_default_install
+ !contains(QT_BUILD_PARTS,tests):module_qtmultimedia_tests.CONFIG += no_default_target
+ 
+ SUBDIRS += module_qtmultimedia_src \
+-           module_qtmultimedia_demos \
+-           module_qtmultimedia_examples \
+            module_qtmultimedia_tests \
