@@ -76,9 +76,9 @@ rm -rf %{buildroot}
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtMultimedia.so
-#%{_libdir}/pkgconfig/*
-#%{_includedir}/qt5/*
-#%{_datadir}/qt5/mkspecs/
+%{_libdir}/pkgconfig/*
+%{_includedir}/qt5/*
+%{_datadir}/qt5/mkspecs/
 
 
 
