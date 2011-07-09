@@ -7,8 +7,12 @@ The build order for packages is:
     - qtxmlpatterns
     - qtscript
     - qtdeclarative
-    - qttools
     - qtsystems
+    - qtsvg
+    - qtmultimedia
+    ...
+
+    - qttools (BROKEN - DOES NOT BUILD YET)
     ...
 
 
