@@ -13,7 +13,6 @@ BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-declarative-devel
 BuildRequires:  qt5-qmake
-BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
 
 %description

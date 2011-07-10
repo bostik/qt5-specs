@@ -21,7 +21,6 @@ BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtdesigner-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  qt5-tools
-BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
 #Requires:       qt5-qmake = %{version}
 

@@ -14,7 +14,6 @@ BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-qttest-devel
 BuildRequires:  qt5-script-devel
 BuildRequires:  qt5-qmake
-BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
 
 %description

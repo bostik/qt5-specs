@@ -10,7 +10,6 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qmake
-BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
 
 %description

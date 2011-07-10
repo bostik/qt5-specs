@@ -14,7 +14,6 @@ BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-declarative-devel
 BuildRequires:  qt5-qmake
-BuildRequires:  fontconfig-devel
 BuildRequires:  fdupes
 
 %description

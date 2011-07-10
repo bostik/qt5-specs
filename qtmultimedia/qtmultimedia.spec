@@ -11,7 +11,6 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qmake
-BuildRequires:  fontconfig-devel
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  fdupes
 

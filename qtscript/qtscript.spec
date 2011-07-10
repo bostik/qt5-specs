@@ -9,7 +9,6 @@ Source0:    %{name}.tar.gz
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qmake
-BuildRequires:  fontconfig-devel
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
