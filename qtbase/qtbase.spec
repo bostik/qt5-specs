@@ -91,6 +91,7 @@ Group:      Development/Libraries
 Requires:   %{name}-qmake
 Requires:   %{name}-tools
 Requires:   %{name}-qtcore = %{version}-%{release}
+Requires:   fontconfig-devel
 
 %description qtcore-devel
 This package contains the files necessary to develop applications
