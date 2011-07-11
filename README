@@ -2,7 +2,7 @@ These directories contain OBS build files for modular Qt 5. This is a
 work in progress, and will evolve as the modularisation and development
 of Qt 5.0 progresses.
 
-The build order for packages is:
+A working build order for packages is:
     - qtbase
     - qtxmlpatterns
     - qtscript
@@ -10,9 +10,12 @@ The build order for packages is:
     - qtsystems
     - qtsvg
     - qtmultimedia
-    ...
+    - qtsensors
+    - qtlocation
+    - qtphonon
+(although OBS should take care of correct order)
 
+This package can not be built yet against split QtBase
     - qttools (BROKEN - DOES NOT BUILD YET)
-    ...
 
 
