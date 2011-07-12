@@ -1,6 +1,6 @@
 Name:       qt5-sensors
 Summary:    Qt Sensors module
-Version:    4.9.90.20110701+g23439f9
+Version:    4.9.90.20110711+g1b1a653
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
@@ -119,6 +119,8 @@ rm -rf %{buildroot}
 #### Changelog section
 
 %changelog
+* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
+- Update and rebuild against latest qtbase snapshot
 * Sat Jul 10 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
 - Initial packaging
 - Builds against packages from qtbase build

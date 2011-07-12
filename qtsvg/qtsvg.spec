@@ -1,6 +1,6 @@
 Name:       qt5-svg
 Summary:    Qt scripting module
-Version:    4.9.90.20110701+gf9d233b7
+Version:    4.9.90.20110711+g73fff1f
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
@@ -95,6 +95,8 @@ rm -rf %{buildroot}
 #### Changelog section
 
 %changelog
+* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
+- Update and rebuild against latest qtbase snapshot
 * Fri Jul  8 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701-2
 - Fix build
 - Add image format plugin package

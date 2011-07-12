@@ -1,6 +1,6 @@
 Name:       qt5-multimedia
 Summary:    Qt Multimedia module
-Version:    4.9.90.20110701+g9d24cb54
+Version:    4.9.90.20110711+gd5e75a3
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
@@ -87,6 +87,8 @@ rm -rf %{buildroot}
 #### Changelog section
 
 %changelog
+* Tue Jul 12 2011 Mika Bostrom <mika.bostrom@nomovok.com> - 4.9.90.20110711
+- Update and rebuild against latest qtbase snapshot
 * Sat Jul  9 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
 - Initial packaging
 - Builds against packages from qtbase build

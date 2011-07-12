@@ -14,7 +14,7 @@
 
 Name:       qt5
 Summary:    Cross-platform application and UI framework
-Version:    4.9.90.20110628+g6fa15d7
+Version:    4.9.90.20110711+gfe9cb4a
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
@@ -1240,6 +1240,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #### Changelog section
 
 %changelog
+* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
+- Use latest snapshot
 * Thu Jun 30 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110630
 - Add more packages to further split the build into reasonable
   components. Use the includes in qt5/Qt/Qt* files as guide.
