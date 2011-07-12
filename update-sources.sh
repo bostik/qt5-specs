@@ -41,7 +41,3 @@ done
 # And finally commit all the modules at once
 (cd ${OBSDIR}; osc commit -m 'Updated to latest sources' ${QT5_MODULES})
 
-
-
-
-
