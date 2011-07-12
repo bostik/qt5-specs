@@ -683,6 +683,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qstate.h
 %{_includedir}/qt5/Qt/qstatemachine.h
 %{_includedir}/qt5/Qt/qt_windows.h
+%{_includedir}/qt5/Qt/qrefcount.h
 %{_libdir}/libQtCore.prl
 %{_libdir}/libQtCore.so
 %{_libdir}/pkgconfig/QtCore.pc
