@@ -260,7 +260,7 @@ rm -rf %{buildroot}
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtDeclarative.so
-%{_libdir}/pkgconfig/*
+%{_libdir}/pkgconfig/QtDeclarative.pc
 %{_includedir}/qt5/Qt/qdecl*.h
 %{_includedir}/qt5/Qt/qtdecl*.h
 %{_includedir}/qt5/Qt/qsg*.h
@@ -354,6 +354,7 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/Qt/QtQuickTest
 %{_includedir}/qt5/QtQuickTest/
 %{_libdir}/libQtQuickTest.so
+%{_libdir}/pkgconfig/QtQuickTest.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
 
 
