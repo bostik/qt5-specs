@@ -65,6 +65,27 @@ Requires:   qt5-declarative-qtquicktest = %{version}-%{release}
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
 
+%package qtquick1
+Summary:    Qt Declarative - legacy QtQuick1 library
+Group:      Development/Libraries
+Requires:   %{name} = %{version}-%{release}
+
+%description qtquick1
+This package contains the legacy QtQuick 1 (non-scenegraph)
+QML support library
+
+%package qtquick1-devel
+Summary:    Qt Declarative - legazy QtQuick 1 development files
+Group:      Development/Libraries
+Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-declarative-qtquick1 = %{version}-%{release}
+
+%description qtquick1-devel
+This package contains the development headers for legacy QtQuick 1
+QML support library
+
+
+
 
 #### Small plugin and import packages
 
@@ -224,6 +245,25 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
+
+%files qtquick1
+%defattr(-,root,root,-)
+%{_libdir}/libQtQuick.so.5
+%{_libdir}/libQtQuick.so.5.*
+
+%files qtquick1-devel
+%defattr(-,root,root,-)
+%{_libdir}/libQtQuick.so
+# Check the .pc file, split from devel
+%{_includedir}/qt5/Qt/qtquick1version.h
+%{_includedir}/qt5/Qt/QtQuick1
+%{_includedir}/qt5/QtQuick1/
+%{_datadir}/qt5/mkspecs/modules/qt_qtquick1.pri
+
+
+
+
+
 
 %files qmlviewer
 %defattr(-,root,root,-)
