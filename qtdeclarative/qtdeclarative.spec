@@ -236,6 +236,11 @@ rm -rf %{buildroot}
 %postun qtquicktest
 /sbin/ldconfig
 
+%post qtquick1
+/sbin/ldconfig
+%postun qtquick1
+/sbin/ldconfig
+
 
 
 
@@ -265,12 +270,12 @@ rm -rf %{buildroot}
 
 %files qtquick1
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick.so.5
-%{_libdir}/libQtQuick.so.5.*
+%{_libdir}/libQtQuick1.so.5
+%{_libdir}/libQtQuick1.so.5.*
 
 %files qtquick1-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick.so
+%{_libdir}/libQtQuick1.so
 # Check the .pc file, split from devel
 %{_includedir}/qt5/Qt/qtquick1version.h
 %{_includedir}/qt5/Qt/QtQuick1
