@@ -1,3 +1,9 @@
+# This package requires an extra source tarball for V8 sources.
+# These extra sources are "manually" extracted in the preparation step
+# and placed directly in src/3rdparty/v8 ; we need the full source tree,
+# not just v8/src since v8base.pri uses other files from the v8 tree
+# besides just the engine itself.
+
 Name:       qt5-declarative
 Summary:    Qt Declarative library
 Version:    4.9.90.20110711+gb119220
@@ -6,6 +12,7 @@ Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
+Source1:    v8-sources-from-commit-2eaa4b29.tar.gz
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -15,6 +22,7 @@ BuildRequires:  qt5-qttest-devel
 BuildRequires:  qt5-script-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
+BuildRequires:  python
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -145,11 +153,23 @@ This package contains QML debugging and development tools
 
 
 
+# The manual tar invocation below extracts V8 source tree directly into
+# src/3rdparty/v8 ; the snapshot is tarballed with "v8/" prefix directly
+# from V8 git tree at git://github.com/v8/v8.git
+#
+# Also, the patches included in src/v8 are not applied automatically to
+# found V8 tree. The working directory is the root of the unpacked
+# tarball.
 
 #### Build section
 
 %prep
 %setup -q -n %{name}
+tar -C src/3rdparty -zxf %{SOURCE1}
+for p in src/v8/*.patch; do
+    patch -p1 -d src/3rdparty/v8 < $p
+done
+
 
 
 %build
@@ -273,6 +293,10 @@ rm -rf %{buildroot}
 #### Changelog section
 
 %changelog
+* Wed Jul 13 2011 Mika Boström <mika.bostrom@nomovok.com> - * 4.9.90.20110711-2
+- Include v8 sources
+- Apply patches in src/v8 to this tree - doesn't happen automatically
+- Include python as build dependency; V8 tree has python-based tools
 * Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
 - Update and rebuild against latest qtbase snapshot
 * Tue Jul  5 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
