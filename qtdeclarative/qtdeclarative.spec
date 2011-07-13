@@ -137,6 +137,23 @@ Requires:   %{name} = %{version}-%{release}
 %description plugin-qmlinspector
 This package provides the QML inspector plugin
 
+%package import-qt47plugin
+Summary:    Qt Declarative Qt 4.7 legacy support plugin
+Group:      System/Libraries
+Requires:   %{name} = %{version}-%{release}
+
+%description import-qt47plugin
+This package provides the legacy Qt 4.7 support plugin
+
+%package import-qtquick1plugin
+Summary:    Qt Declarative legacy QtQuick 1 support plugin
+Group:      System/Libraries
+Requires:   %{name} = %{version}-%{release}
+
+%description import-qtquick1plugin
+This package provides the legacy QtQuick 1 support plugin
+
+
 %package import-qttest
 Summary:    Qt Declarative QtTest plugin
 Group:      System/Libraries
@@ -305,8 +322,19 @@ rm -rf %{buildroot}
 %{_libdir}/qt5/plugins/qmltooling/*
 
 %files import-qttest
-%{_libdir}/qt5/imports/QtTest/
 %defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtTest/
+
+%files import-qt47plugin
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/Qt/
+
+%files import-qtquick1plugin
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtQuick/
+
+
+
 
 
 %files qtquicktest
@@ -333,10 +361,11 @@ rm -rf %{buildroot}
 #### Changelog section
 
 %changelog
-* Wed Jul 13 2011 Mika Boström <mika.bostrom@nomovok.com> - * 4.9.90.20110711-2
+* Wed Jul 13 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711-2
 - Include v8 sources
 - Apply patches in src/v8 to this tree - doesn't happen automatically
 - Include python as build dependency; V8 tree has python-based tools
+- Add new packages for recently imported QtQuick 1 support modules
 * Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
 - Update and rebuild against latest qtbase snapshot
 * Tue Jul  5 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
