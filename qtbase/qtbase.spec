@@ -21,6 +21,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-base.tar.gz
 Source1:    macros.qmake
+Source100:  qtbase-rmplintrc
 Patch0:     eglfs-must-dep-on-egl.patch
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
