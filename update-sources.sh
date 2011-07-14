@@ -36,6 +36,7 @@ for m in ${QT5_MODULES}; do
     
     # Spec, rpmlintrc, patches, extra files,
     # all from this directory
+    cp ${m}/*.spec ${OBSDIR}/${m}/
     if [ -d ${m}/files ]; then
         cp ${m}/files/* ${OBSDIR}/${m}/
     fi
