@@ -9,6 +9,7 @@ Source0:    %{name}.tar.gz
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qmake
+BuildRequires:  fdupes
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -45,6 +46,7 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %make_install
+%fdupes %{buildroot}/%{_includedir}
 
 
 
