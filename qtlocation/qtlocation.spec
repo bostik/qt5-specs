@@ -2,7 +2,7 @@ Name:       qt5-location
 Summary:    Qt Location module
 Version:    4.9.90.20110711+g47db4be
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -27,7 +27,7 @@ This package contains the Qt location module
 
 %package devel
 Summary:    Qt location - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -40,7 +40,7 @@ This package contains the Qt location module development files
 
 %package -n qt5-declarative-import-location
 Summary:    QtDeclarative location import
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   qt5-declarative
 
@@ -49,7 +49,7 @@ This package contains the Location import for QtDeclarative
 
 %package plugin-geoservices-nokia
 Summary:    Qt Geoservices plugin for Nokia devices
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description plugin-geoservices-nokia

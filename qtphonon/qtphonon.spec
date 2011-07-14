@@ -2,7 +2,7 @@ Name:       qt5-phonon
 Summary:    Qt phonon module
 Version:    4.9.90.20110711+ge2fcd99
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -26,7 +26,7 @@ This package contains the Qt phonon module
 
 %package devel
 Summary:    Qt phonon - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -38,7 +38,7 @@ This package contains the Qt phonon module development files
 
 %package plugin-gstreamer
 Summary:    Qt phonon GStreamer plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description plugin-gstreamer

@@ -2,7 +2,7 @@ Name:       qt5-multimedia
 Summary:    Qt Multimedia module
 Version:    4.9.90.20110711+gd5e75a3
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -24,7 +24,7 @@ This package contains the QtMultimedia module
 
 %package devel
 Summary:    Qt Multimedia - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel

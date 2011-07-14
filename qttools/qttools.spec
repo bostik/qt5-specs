@@ -2,7 +2,7 @@ Name:       qt5-qttools
 Summary:    Development tools for Qt
 Version:    20110701+g41bacb22
 Release:    1%{?dist}
-Group:      Development/Tools
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source:     %{name}.tar.gz

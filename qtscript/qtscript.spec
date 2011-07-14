@@ -2,7 +2,7 @@ Name:       qt5-script
 Summary:    Qt scripting module
 Version:    4.9.90.20110711+g9a85b92
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -20,7 +20,7 @@ This package contains the scripting module
 
 %package devel
 Summary:    Qt scripting - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel

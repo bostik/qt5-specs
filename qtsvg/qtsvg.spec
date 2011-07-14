@@ -2,7 +2,7 @@ Name:       qt5-svg
 Summary:    Qt scripting module
 Version:    4.9.90.20110711+g73fff1f
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -22,7 +22,7 @@ This package contains the SVG module
 
 %package devel
 Summary:    Qt SVG - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -34,7 +34,7 @@ This package contains the SVG module development files
 
 %package plugin-imageformat-svg
 Summary:    Qt SVG image format plugin
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description plugin-imageformat-svg

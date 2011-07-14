@@ -2,7 +2,7 @@ Name:       qt5-xmlpatterns
 Summary:    Qt XML Patterns library
 Version:    4.9.90.20110711+g3acaf70
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -23,7 +23,7 @@ This package contains the XMLPatterns library
 
 %package devel
 Summary:    Qt XML Patterns - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel

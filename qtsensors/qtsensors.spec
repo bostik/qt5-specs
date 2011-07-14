@@ -2,7 +2,7 @@ Name:       qt5-sensors
 Summary:    Qt Sensors module
 Version:    4.9.90.20110711+g1b1a653
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -24,7 +24,7 @@ This package contains the Qt sensors module
 
 %package devel
 Summary:    Qt sensors - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -37,7 +37,7 @@ This package contains the Qt sensors module development files
 
 %package -n qt5-declarative-import-sensors
 Summary:    QtDeclarative sensors import
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   qt5-declarative
 
@@ -46,7 +46,7 @@ This package contains the Sensors import for QtDeclarative
 
 %package plugin-dummy
 Summary:    Dummy sensors plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description plugin-dummy
@@ -54,7 +54,7 @@ This package contains the dummy plugin for sensors
 
 %package plugin-generic
 Summary:    Generic sensors plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description plugin-generic

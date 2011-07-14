@@ -8,7 +8,7 @@ Name:       qt5-declarative
 Summary:    Qt Declarative library
 Version:    4.9.90.20110711+gb119220
 Release:    1%{?dist}
-Group:      System/Libraries
+Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
@@ -34,7 +34,7 @@ This package contains the Declarative library
 
 %package devel
 Summary:    Qt Declarative - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   qt5-script-devel
 
@@ -47,7 +47,7 @@ This package contains the Declarative library development files
 
 %package qtquicktest
 Summary:    Qt Declarative QtQuickTest library
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
@@ -57,7 +57,7 @@ This package contains the QtQuickTest library for QtDeclarative module
 
 %package qtquicktest-devel
 Summary:    Qt Declarative QtQuickTest - development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-devel = %{version}-%{release}
 Requires:   qt5-declarative-qtquicktest = %{version}-%{release}
@@ -67,7 +67,7 @@ This package contains the development headers for QtQuickTest library
 
 %package qtquick1
 Summary:    Qt Declarative - legacy QtQuick1 library
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description qtquick1
@@ -76,7 +76,7 @@ QML support library
 
 %package qtquick1-devel
 Summary:    Qt Declarative - legazy QtQuick 1 development files
-Group:      Development/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   qt5-declarative-qtquick1 = %{version}-%{release}
 
@@ -91,7 +91,7 @@ QML support library
 
 %package import-etcprovider
 Summary:    Qt Declarative etcprovider plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-etcprovider
@@ -99,7 +99,7 @@ This package provides the QtDeclarative etcprovider plugin
 
 %package import-folderlistmodel
 Summary:    Qt Declarative folderlistmodel plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-folderlistmodel
@@ -107,7 +107,7 @@ This package provides the QtDeclarative folderlistmodel plugin
 
 %package import-gestures
 Summary:    Qt Declarative gestures plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-gestures
@@ -115,7 +115,7 @@ This package provides the QtDeclarative gestures plugin
 
 %package import-inputcontext
 Summary:    Qt Declarative input context plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-inputcontext
@@ -123,7 +123,7 @@ This package provides the QtDeclarative input context plugin
 
 %package import-particles
 Summary:    Qt Declarative particles plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-particles
@@ -131,7 +131,7 @@ This package provides the QtDeclarative particles plugin
 
 %package plugin-qmlinspector
 Summary:    Qt Declarative QML inspector plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description plugin-qmlinspector
@@ -139,7 +139,7 @@ This package provides the QML inspector plugin
 
 %package import-qt47plugin
 Summary:    Qt Declarative Qt 4.7 legacy support plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-qt47plugin
@@ -147,7 +147,7 @@ This package provides the legacy Qt 4.7 support plugin
 
 %package import-qtquick1plugin
 Summary:    Qt Declarative legacy QtQuick 1 support plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-qtquick1plugin
@@ -156,7 +156,7 @@ This package provides the legacy QtQuick 1 support plugin
 
 %package import-qttest
 Summary:    Qt Declarative QtTest plugin
-Group:      System/Libraries
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-qttest
@@ -164,7 +164,7 @@ This package provides the QtDeclarative QtTest plugin
 
 %package qmlviewer
 Summary:    QML viewer
-Group:      Development/Tools
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description qmlviewer
@@ -172,7 +172,7 @@ This package contains the QML viewer for QtQuick 1.0 files.
 
 %package qmlscene
 Summary:    QML viewer
-Group:      Development/Tools
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description qmlscene
@@ -180,7 +180,7 @@ This package contains the QML viewer for QtQuick 2.0 files.
 
 %package devel-tools
 Summary:    QML development tools
-Group:      Development/Tools
+Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description devel-tools
