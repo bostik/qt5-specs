@@ -277,7 +277,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/libQtQuick1.so
 %{_libdir}/pkgconfig/QtQuick1.pc
-# Check the .pc file, split from devel
 %{_includedir}/qt5/Qt/qtquick1version.h
 %{_includedir}/qt5/Qt/QtQuick1
 %{_includedir}/qt5/QtQuick1/
