@@ -20,9 +20,12 @@ if [ ! -d ${OBSDIR} ]; then
     done
 fi
 
+# Update OBS project
+(cd ${OBSDIR}; osc update)
 
 # Update Qt sources
-(cd ${QT5_DIR}; ./qtrepotools/bin/qt5_tool -p)
+(cd ${QT5_DIR}; git pull; ./qtrepotools/bin/qt5_tool -p)
+
 
 # Update source tarballs, patches, specs
 # FIXME: tarballs only if latest source has changed
