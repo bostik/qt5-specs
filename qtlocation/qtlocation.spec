@@ -7,11 +7,13 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
 Patch0:     disable_demos_and_examples.patch
+Patch1:     qdeclarativeitem_path_to_qtquick1_dir.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-declarative-devel
+BuildRequires:  qt5-declarative-qtquick1-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -58,6 +60,7 @@ This package contains the geoservices plugin for Nokia devices
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 
 %build
