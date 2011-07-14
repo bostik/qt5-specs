@@ -41,7 +41,7 @@ This package contains the Qt SystemInfo module
 %package -n qt5-systeminfo-devel
 Summary:    Qt system info - development files
 Group:      Development/Libraries
-Requires:   qt5-systeminfo
+Requires:   qt5-systeminfo = %{version}-%{release}
 
 %description -n qt5-systeminfo-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -76,7 +76,7 @@ This package contains the Qt Service Framework module
 %package -n qt5-serviceframework-devel
 Summary:    Qt Service Framework - development files
 Group:      Development/Libraries
-Requires:   qt5-serviceframework
+Requires:   qt5-serviceframework = %{version}-%{release}
 
 %description -n qt5-serviceframework-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -112,7 +112,7 @@ This package contains the Qt PublishSubscribe module
 %package -n qt5-publishsubscribe-devel
 Summary:    Qt PublishSubscribe - development files
 Group:      Development/Libraries
-Requires:   qt5-publishsubscribe
+Requires:   qt5-publishsubscribe = %{version}-%{release}
 
 %description -n qt5-publishsubscribe-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
