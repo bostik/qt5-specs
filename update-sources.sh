@@ -20,6 +20,31 @@ if [ ! -d ${OBSDIR} ]; then
     done
 fi
 
+# Helper routines to manage archive tarballs
+function get_last() {
+    local _mod=$1
+
+    if [ -d ${HOME}/.modular-qt5-revs ]; then
+        if [ -e ${HOME}/.modular-qt5-revs/${_mod} ]; then
+            cat ${HOME}/.modular-qt5-revs/${_mod}
+        else
+            echo "none"
+        fi
+    else
+        echo "none"
+    fi
+}
+
+function put_last() {
+    local _mod=$1 _rev=$2
+
+    if [ ! -d ${HOME}/.modular-qt5-revs ]; then
+        mkdir ${HOME}/.modular-qt5-revs
+    fi
+    echo ${_rev} > ${HOME}/.modular-qt5-revs/${_mod}
+}
+
+
 # Update OBS project
 (cd ${OBSDIR}; osc update)
 
@@ -32,7 +57,14 @@ fi
 for m in ${QT5_MODULES}; do
     # XXX: bashism
     bn="qt5-${m:2}"
-    GIT_DIR=${QT5_DIR}/${m}/.git git archive master --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
+    last=$(get_last ${m})
+    head=$(GIT_DIR=${QT5_DIR}/${m}/.git git show | head -n 1 | sed s'/^commit //')
+    echo "DEBUG: last/head : ${last}/${head}"
+    if [ "${head}" != "${last}" ]; then
+        GIT_DIR=${QT5_DIR}/${m}/.git git archive master --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
+        # Store the revision used
+        put_last ${m} ${head}
+    fi
     
     # Spec, rpmlintrc, patches, extra files,
     # all from this directory
