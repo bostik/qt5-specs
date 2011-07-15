@@ -2,10 +2,14 @@
 
 # QT5_DIR is the directory where qt5 and all the submodules have been
 # checked into
-QT5_DIR=${HOME}/kala/qt5
+if [ x${QT5_DIR} = x ]; then
+    QT5_DIR=${HOME}/kala/qt5
+fi
 
 # OBSDIR is the directory holding your OBS qt5 project
-OBSDIR=${HOME}/steelrat/OBS/qt5/
+if [ x${OBSDIR} = x ]; then
+    OBSDIR=${HOME}/steelrat/OBS/qt5/
+fi
 
 # Modules to build, in order
 QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qtsystems qtsvg qtmultimedia qtsensors qtlocation qtphonon"
