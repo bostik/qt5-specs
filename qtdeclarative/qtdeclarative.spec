@@ -13,6 +13,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
 Source1:    v8-sources-from-commit-2eaa4b29.tar.gz
+Patch0:     cast_qmin_argument_to_qreal.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -207,6 +208,9 @@ tar -C src/3rdparty -zxf %{SOURCE1}
 for p in src/v8/*.patch; do
     patch -p1 -d src/3rdparty/v8 < $p
 done
+%ifarch %{arm}
+%patch0 -p1
+%endif
 
 
 
