@@ -77,8 +77,8 @@ for m in ${QT5_MODULES}; do
     last=$(get_last ${m})
     head=$(git show HEAD | head -n 1 | sed s'/^commit //')
     if [ "${head}" != "${last}" ]; then
-        ver=$(get_version)
-        git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~${ver}.tar.gz
+        ##ver=$(get_version)
+        git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
         # QtDeclarative needs v8 sources
