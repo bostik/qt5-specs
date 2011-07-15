@@ -70,6 +70,7 @@ for m in ${QT5_MODULES}; do
     cp ${m}/*.spec ${OBSDIR}/${m}/
     if [ -d ${m}/files ]; then
         cp ${m}/files/* ${OBSDIR}/${m}/
+        osc add ${OBSDIR}/${m}/* 2>/dev/null
     fi
 done
 
