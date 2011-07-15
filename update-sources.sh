@@ -65,7 +65,9 @@ function get_version() {
 (cd ${OBSDIR}; osc update)
 
 # Update Qt sources
-(cd ${QT5_DIR}; git pull; ./qtrepotools/bin/qt5_tool -p)
+if [ x${NO_PULL} = x ]; then
+    (cd ${QT5_DIR}; git pull; ./qtrepotools/bin/qt5_tool -p)
+fi
 
 
 # Update source tarballs, patches, specs
