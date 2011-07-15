@@ -82,7 +82,7 @@ for m in ${QT5_MODULES}; do
         # Store the revision used
         put_last ${m} ${head}
         # QtDeclarative needs v8 sources
-        if [ ${m} = "qtdeclarative"]; then
+        if [ ${m} = "qtdeclarative" ]; then
             # Redefine for get_version
             export GIT_DIR=${QT5_DIR}/${m}/src/3rdparty/v8/.git
             v8id=$(git describe --always)
