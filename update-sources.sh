@@ -61,10 +61,11 @@ function put_last() {
 for m in ${QT5_MODULES}; do
     # XXX: bashism
     bn="qt5-${m:2}"
+    export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
-    head=$(GIT_DIR=${QT5_DIR}/${m}/.git git show | head -n 1 | sed s'/^commit //')
+    head=$(git show | head -n 1 | sed s'/^commit //')
     if [ "${head}" != "${last}" ]; then
-        GIT_DIR=${QT5_DIR}/${m}/.git git archive master --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
+        git archive master --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
     fi
