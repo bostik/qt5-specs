@@ -1,6 +1,7 @@
+%define _qtmodule_snapshot_version %nil
 Name:       qt5-systems
 Summary:    Qt System modules
-Version:    4.9.90.20110711+g2555a87
+Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3

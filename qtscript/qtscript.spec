@@ -1,6 +1,7 @@
+%define _qtmodule_snapshot_version %nil
 Name:       qt5-script
 Summary:    Qt scripting module
-Version:    4.9.90.20110711+g9a85b92
+Version:    %{version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3

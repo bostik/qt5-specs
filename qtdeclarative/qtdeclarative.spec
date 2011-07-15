@@ -1,3 +1,6 @@
+%define _qtmodule_snapshot_version %nil
+%define _v8_snapshot_version %nil
+
 # This package requires an extra source tarball for V8 sources.
 # These extra sources are "manually" extracted in the preparation step
 # and placed directly in src/3rdparty/v8 ; we need the full source tree,
@@ -6,13 +9,13 @@
 
 Name:       qt5-declarative
 Summary:    Qt Declarative library
-Version:    4.9.90.20110711+gb119220
+Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}.tar.gz
-Source1:    v8-sources-from-commit-2eaa4b29.tar.gz
+Source1:    v8-${_v8_snapshot_version}.tar.gz
 Patch0:     cast_qmin_argument_to_qreal.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
@@ -205,9 +208,6 @@ This package contains QML debugging and development tools
 %prep
 %setup -q -n %{name}
 tar -C src/3rdparty -zxf %{SOURCE1}
-for p in src/v8/*.patch; do
-    patch -p1 -d src/3rdparty/v8 < $p
-done
 %ifarch %{arm}
 %patch0 -p1
 %endif

@@ -1,3 +1,4 @@
+%define _qtmodule_snapshot_version %nil
 %ifarch arvm7l armv7el armv7hl amv7nhl armv7thl armv7tnhl
 %define arch_arg armv6
 %endif
@@ -14,7 +15,7 @@
 
 Name:       qt5
 Summary:    Cross-platform application and UI framework
-Version:    4.9.90.20110711+gfe9cb4a
+Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
