@@ -12,7 +12,10 @@ BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtxml-devel
+BuildRequires:  qt5-qttest-devel
+BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-declarative-devel
+BuildRequires:  qt5-declarative-qtquick1-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
