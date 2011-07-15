@@ -76,8 +76,8 @@ for m in ${QT5_MODULES}; do
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
     head=$(git show HEAD | head -n 1 | sed s'/^commit //')
+    ver=$(get_version)
     if [ "${head}" != "${last}" ]; then
-        ##ver=$(get_version)
         git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
@@ -104,6 +104,7 @@ for m in ${QT5_MODULES}; do
         osc add ${OBSDIR}/${m}/* 2>/dev/null
     fi
 
+    # Uses retrieved source version from beginning of loop
     sed -i "s/define _qtmodule_snapshot_version %nil/define _qtmodule_snapshot_version 5~git${ver}/g" ${OBSDIR}/${m}/*.spec
     if [ ${m} = "qtdeclarative" ]; then
         sed -i "s/define _v8_snapshot_version %nil/define _v8_snapshot_version ${v8id}/g" ${OBSDIR}/${m}/*.spec
