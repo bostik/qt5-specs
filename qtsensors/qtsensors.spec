@@ -6,7 +6,7 @@ Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    %{name}.tar.gz
+Source0:    %{name}-%{version}.tar.gz
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtopengl-devel

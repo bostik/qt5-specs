@@ -80,19 +80,20 @@ for m in ${QT5_MODULES}; do
     head=$(git show HEAD | head -n 1 | sed s'/^commit //')
     ver=$(get_version)
     if [ "${head}" != "${last}" ]; then
-        git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}.tar.gz
+        # New revision. Remove old sources before recreating new.
+        rm -f ${OBSDIR}/${m}/qt*.tar.gz
+        git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
         # QtDeclarative needs v8 sources
         if [ ${m} = "qtdeclarative" ]; then
-            # Redefine for get_version
             export GIT_DIR=${QT5_DIR}/${m}/src/3rdparty/v8/.git
             v8id=$(git describe --always)
             v8old=$(get_last v8)
             if [ "${v8id}" != ${v8old} ]; then
-                if [ ! -e ${OBSDIR}/${m}/v8-git${v8id}.tar.gz ]; then
-                    git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
-                fi
+                # Treat v8 the same way
+                rm -f ${OBSDIR}/${m}/v8*.tar.gz
+                git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
                 put_last v8 ${v8id}
             fi
         fi
@@ -103,7 +104,6 @@ for m in ${QT5_MODULES}; do
     cp -v ${m}/*.spec ${OBSDIR}/${m}/
     if [ -d ${m}/files ]; then
         cp -v ${m}/files/* ${OBSDIR}/${m}/
-        osc add ${OBSDIR}/${m}/* 2>/dev/null
     fi
 
     # Uses retrieved source version from beginning of loop
@@ -112,6 +112,7 @@ for m in ${QT5_MODULES}; do
         sed -i "s/define _v8_snapshot_version %nil/define _v8_snapshot_version ${v8id}/g" ${OBSDIR}/${m}/*.spec
     fi
 
+    # Deals with OBS package dir bookkeeping in one go
     (cd ${OBSDIR}/${m}/ && osc addremove)
 done
 
