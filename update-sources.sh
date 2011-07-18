@@ -81,7 +81,7 @@ for m in ${QT5_MODULES}; do
     ver=$(get_version)
     if [ "${head}" != "${last}" ]; then
         # New revision. Remove old sources before recreating new.
-        rm -f ${OBSDIR}/${m}/qt*.tar.gz
+        rm -fv ${OBSDIR}/${m}/${bn}*.tar.gz
         git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
@@ -92,7 +92,7 @@ for m in ${QT5_MODULES}; do
             v8old=$(get_last v8)
             if [ "${v8id}" != ${v8old} ]; then
                 # Treat v8 the same way
-                rm -f ${OBSDIR}/${m}/v8*.tar.gz
+                rm -fv ${OBSDIR}/${m}/v8-git*.tar.gz
                 git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
                 put_last v8 ${v8id}
             fi
