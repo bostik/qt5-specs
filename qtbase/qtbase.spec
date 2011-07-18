@@ -20,7 +20,7 @@ Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    %{name}-base-%{version}.base.tar.gz
+Source0:    %{name}-base-%{version}.tar.gz
 Source1:    macros.qmake
 Source100:  qtbase-rpmlintrc
 Patch0:     eglfs-must-dep-on-egl.patch
