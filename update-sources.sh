@@ -109,7 +109,7 @@ for m in ${QT5_MODULES}; do
     # Uses retrieved source version from beginning of loop
     sed -i "s/define _qtmodule_snapshot_version %nil/define _qtmodule_snapshot_version 5~git${ver}/g" ${OBSDIR}/${m}/*.spec
     if [ ${m} = "qtdeclarative" ]; then
-        sed -i "s/define _v8_snapshot_version %nil/define _v8_snapshot_version $git${v8id}/g" ${OBSDIR}/${m}/*.spec
+        sed -i "s/define _v8_snapshot_version %nil/define _v8_snapshot_version git${v8id}/g" ${OBSDIR}/${m}/*.spec
     fi
 
     # Deals with OBS package dir bookkeeping in one go

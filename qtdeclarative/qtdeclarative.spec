@@ -15,7 +15,7 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Source1:    v8-git%{_v8_snapshot_version}.tar.gz
+Source1:    v8-%{_v8_snapshot_version}.tar.gz
 Patch0:     cast_qmin_argument_to_qreal.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
