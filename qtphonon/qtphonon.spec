@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-phonon
+Name:       qt5-qtphonon
 Summary:    Qt phonon module
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}

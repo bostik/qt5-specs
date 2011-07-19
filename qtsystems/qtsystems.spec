@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-systems
+Name:       qt5-qtsystems
 Summary:    Qt System modules
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
@@ -16,8 +16,8 @@ BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qttest-devel
 BuildRequires:  qt5-qtopengl-devel
-BuildRequires:  qt5-declarative-devel
-BuildRequires:  qt5-declarative-qtquick1-devel
+BuildRequires:  qt5-qtdeclarative-devel
+BuildRequires:  qt5-qtdeclarative-qtquick1-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -29,13 +29,13 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt system modules
 
 
-%package -n qt5-systeminfo
+%package -n qt5-qtsysteminfo
 Summary:    Qt system info
 Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
-%description -n qt5-systeminfo
+%description -n qt5-qtsysteminfo
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
@@ -43,12 +43,12 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt SystemInfo module
 
 
-%package -n qt5-systeminfo-devel
+%package -n qt5-qtsysteminfo-devel
 Summary:    Qt system info - development files
 Group:      Development/Libraries
-Requires:   qt5-systeminfo = %{version}-%{release}
+Requires:   qt5-qtsysteminfo = %{version}-%{release}
 
-%description -n qt5-systeminfo-devel
+%description -n qt5-qtsysteminfo-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
@@ -56,34 +56,34 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt SystemInfo development files
 
 
-%package -n qt5-declarative-systeminfo
+%package -n qt5-qtdeclarative-systeminfo
 Summary:    Qt system info import for QtDeclarative
 Group:      System/Libraries
-Requires:   qt5-declarative
+Requires:   qt5-qtqtdeclarative
 
-%description -n qt5-declarative-systeminfo
+%description -n qt5-qtdeclarative-systeminfo
 This package contains the system info import for QtDeclarative
 
 
-%package -n qt5-serviceframework
+%package -n qt5-qtserviceframework
 Summary:    Qt Service Framework
 Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
-%description -n qt5-serviceframework
+%description -n qt5-qtserviceframework
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt Service Framework module
 
-%package -n qt5-serviceframework-devel
+%package -n qt5-qtserviceframework-devel
 Summary:    Qt Service Framework - development files
 Group:      Development/Libraries
-Requires:   qt5-serviceframework = %{version}-%{release}
+Requires:   qt5-qtserviceframework = %{version}-%{release}
 
-%description -n qt5-serviceframework-devel
+%description -n qt5-qtserviceframework-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
@@ -91,35 +91,35 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt Service Framework development files
 
 
-%package -n qt5-declarative-serviceframework
+%package -n qt5-qtdeclarative-serviceframework
 Summary:    Qt Service Framework import for QtDeclarative
 Group:      System/Libraries
-Requires:   qt5-declarative
+Requires:   qt5-qtdeclarative
 
-%description -n qt5-declarative-serviceframework
+%description -n qt5-qtdeclarative-serviceframework
 This package contains the Service Framework import for QtDeclarative
 
 
 
-%package -n qt5-publishsubscribe
+%package -n qt5-qtpublishsubscribe
 Summary:    Qt PublishSubscribe module
 Group:      System/Libraries
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
-%description -n qt5-publishsubscribe
+%description -n qt5-qtpublishsubscribe
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt PublishSubscribe module
 
-%package -n qt5-publishsubscribe-devel
+%package -n qt5-qtpublishsubscribe-devel
 Summary:    Qt PublishSubscribe - development files
 Group:      Development/Libraries
-Requires:   qt5-publishsubscribe = %{version}-%{release}
+Requires:   qt5-qtpublishsubscribe = %{version}-%{release}
 
-%description -n qt5-publishsubscribe-devel
+%description -n qt5-qtpublishsubscribe-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
@@ -127,12 +127,12 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt PublishSubscribe development files
 
 
-%package -n qt5-declarative-publishsubscribe
+%package -n qt5-qtdeclarative-publishsubscribe
 Summary:    Qt PublishSubscribe import for QtDeclarative
 Group:      System/Libraries
-Requires:   qt5-declarative
+Requires:   qt5-qtdeclarative
 
-%description -n qt5-declarative-publishsubscribe
+%description -n qt5-qtdeclarative-publishsubscribe
 This package contains the PublishSuvbscribe import for QtDeclarative
 
 
@@ -160,19 +160,19 @@ rm -rf %{buildroot}
 
 #### Pre/Post section
 
-%post -n qt5-systeminfo
+%post -n qt5-qtsysteminfo
 /sbin/ldconfig
-%postun -n qt5-systeminfo
-/sbin/ldconfig
-
-%post -n qt5-serviceframework
-/sbin/ldconfig
-%postun -n qt5-serviceframework
+%postun -n qt5-qtsysteminfo
 /sbin/ldconfig
 
-%post -n qt5-publishsubscribe
+%post -n qt5-qtserviceframework
 /sbin/ldconfig
-%postun -n qt5-publishsubscribe
+%postun -n qt5-qtserviceframework
+/sbin/ldconfig
+
+%post -n qt5-qtpublishsubscribe
+/sbin/ldconfig
+%postun -n qt5-qtpublishsubscribe
 /sbin/ldconfig
 
 
@@ -180,12 +180,12 @@ rm -rf %{buildroot}
 #### File section
 
 
-%files -n qt5-systeminfo
+%files -n qt5-qtsysteminfo
 %defattr(-,root,root,-)
 %{_libdir}/libQtSystemInfo.so.5
 %{_libdir}/libQtSystemInfo.so.5.*
 
-%files -n qt5-systeminfo-devel
+%files -n qt5-qtsysteminfo-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtSystemInfo.so
 %{_libdir}/pkgconfig/QtSystemInfo.pc
@@ -197,17 +197,17 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/QtSystemInfo/
 %{_datadir}/qt5/mkspecs/modules/qt_systeminfo.pri
 
-%files -n qt5-declarative-systeminfo
+%files -n qt5-qtdeclarative-systeminfo
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/systeminfo/
 
-%files -n qt5-serviceframework
+%files -n qt5-qtserviceframework
 %defattr(-,root,root,-)
 %{_bindir}/servicefw
 %{_libdir}/libQtServiceFramework.so.5
 %{_libdir}/libQtServiceFramework.so.5.*
 
-%files -n qt5-serviceframework-devel
+%files -n qt5-qtserviceframework-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtServiceFramework.so
 %{_libdir}/pkgconfig/QtServiceFramework.pc
@@ -219,19 +219,19 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/QtServiceFramework/
 %{_datadir}/qt5/mkspecs/modules/qt_serviceframework.pri
 
-%files -n qt5-declarative-serviceframework
+%files -n qt5-qtdeclarative-serviceframework
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/serviceframework/
 
 
 
 
-%files -n qt5-publishsubscribe
+%files -n qt5-qtpublishsubscribe
 %defattr(-,root,root,-)
 %{_libdir}/libQtPublishSubscribe.so.5
 %{_libdir}/libQtPublishSubscribe.so.5.*
 
-%files -n qt5-publishsubscribe-devel
+%files -n qt5-qtpublishsubscribe-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtPublishSubscribe.so
 %{_libdir}/pkgconfig/QtPublishSubscribe.pc
@@ -241,7 +241,7 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/QtPublishSubscribe/
 %{_datadir}/qt5/mkspecs/modules/qt_publishsubscribe.pri
 
-%files -n qt5-declarative-publishsubscribe
+%files -n qt5-qtdeclarative-publishsubscribe
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/publishsubscribe/
 

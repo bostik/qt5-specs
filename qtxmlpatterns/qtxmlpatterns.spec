@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-xmlpatterns
+Name:       qt5-qtxmlpatterns
 Summary:    Qt XML Patterns library
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}

@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-sensors
+Name:       qt5-qtsensors
 Summary:    Qt Sensors module
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
@@ -11,7 +11,7 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
-BuildRequires:  qt5-declarative-devel
+BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -36,13 +36,13 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt sensors module development files
 
 
-%package -n qt5-declarative-import-sensors
+%package -n qt5-qtdeclarative-import-sensors
 Summary:    QtDeclarative sensors import
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-declarative
+Requires:   qt5-qtdeclarative
 
-%description -n qt5-declarative-import-sensors
+%description -n qt5-qtdeclarative-import-sensors
 This package contains the Sensors import for QtDeclarative
 
 %package plugin-dummy
@@ -105,7 +105,7 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 
-%files -n qt5-declarative-import-sensors
+%files -n qt5-qtdeclarative-import-sensors
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/sensors/
 

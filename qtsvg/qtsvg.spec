@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-svg
+Name:       qt5-qtsvg
 Summary:    Qt scripting module
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}

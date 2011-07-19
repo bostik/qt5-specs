@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-script
+Name:       qt5-qtscript
 Summary:    Qt scripting module
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}

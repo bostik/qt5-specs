@@ -7,7 +7,7 @@
 # not just v8/src since v8base.pri uses other files from the v8 tree
 # besides just the engine itself.
 
-Name:       qt5-declarative
+Name:       qt5-qtdeclarative
 Summary:    Qt Declarative library
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
@@ -23,7 +23,7 @@ BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-qttest-devel
-BuildRequires:  qt5-script-devel
+BuildRequires:  qt5-qtscript-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 BuildRequires:  python
@@ -40,7 +40,7 @@ This package contains the Declarative library
 Summary:    Qt Declarative - development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-script-devel
+Requires:   qt5-qtscript-devel
 
 %description devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -64,7 +64,7 @@ Summary:    Qt Declarative QtQuickTest - development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-devel = %{version}-%{release}
-Requires:   qt5-declarative-qtquicktest = %{version}-%{release}
+Requires:   qt5-qtdeclarative-qtquicktest = %{version}-%{release}
 
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
@@ -82,7 +82,7 @@ QML support library
 Summary:    Qt Declarative - legazy QtQuick 1 development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-declarative-qtquick1 = %{version}-%{release}
+Requires:   qt5-qtdeclarative-qtquick1 = %{version}-%{release}
 
 %description qtquick1-devel
 This package contains the development headers for legacy QtQuick 1

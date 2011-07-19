@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-Name:       qt5-multimedia
+Name:       qt5-qtmultimedia
 Summary:    Qt Multimedia module
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
