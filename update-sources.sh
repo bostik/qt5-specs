@@ -84,17 +84,19 @@ for m in ${QT5_MODULES}; do
         git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
-        # QtDeclarative needs v8 sources
-        if [ ${m} = "qtdeclarative" ]; then
-            export GIT_DIR=${QT5_DIR}/${m}/src/3rdparty/v8/.git
-            v8id=$(git describe --always)
-            v8old=$(get_last v8)
-            if [ "${v8id}" != ${v8old} ]; then
-                # Treat v8 the same way
-                rm -fv ${OBSDIR}/${m}/v8-git*.tar.gz
-                git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
-                put_last v8 ${v8id}
-            fi
+    fi
+    # QtDeclarative needs v8 sources.
+    # Treat v8 source tarball individually; this way we will always have
+    # v8id to use in spec-file mangling.
+    if [ ${m} = "qtdeclarative" ]; then
+        export GIT_DIR=${QT5_DIR}/${m}/src/3rdparty/v8/.git
+        v8id=$(git describe --always)
+        v8old=$(get_last v8)
+        if [ "${v8id}" != ${v8old} ]; then
+            # Treat v8 the same way
+            rm -fv ${OBSDIR}/${m}/v8-git*.tar.gz
+            git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
+            put_last v8 ${v8id}
         fi
     fi
     
