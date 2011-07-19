@@ -73,8 +73,7 @@ fi
 # Update source tarballs, patches, specs
 # FIXME: tarballs only if latest source has changed
 for m in ${QT5_MODULES}; do
-    # XXX: bashism
-    bn="qt5-${m:2}"
+    bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
     head=$(git show HEAD | head -n 1 | sed s'/^commit //')

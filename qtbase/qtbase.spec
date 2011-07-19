@@ -402,7 +402,7 @@ applications that use QtDesigner
 ##### Build section
 
 %prep
-%setup -q -n %{name}-base
+%setup -q -n %{name}-qtbase
 %patch0 -p2
 
 
