@@ -1,0 +1,11 @@
+diff --git a/qtmultimediakit.pro b/qtmultimediakit.pro
+index 54eb405..71410f7 100644
+--- a/qtmultimediakit.pro
++++ b/qtmultimediakit.pro
+@@ -16,6 +16,5 @@ module_qtmultimediakit_tests.depends = module_qtmultimediakit_src
+ module_qtmultimediakit_tests.CONFIG = no_default_target no_default_install
+ 
+ SUBDIRS += module_qtmultimediakit_src \
+-           module_qtmultimediakit_examples \
+            module_qtmultimediakit_tests \
+ 

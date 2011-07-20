@@ -13,6 +13,7 @@ A working build order for packages is:
     - qtsensors
     - qtlocation
     - qtphonon
+    - qtmultimediakit
 (although OBS should take care of correct order)
 
 This package can not be built yet against split QtBase

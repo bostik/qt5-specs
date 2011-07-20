@@ -12,7 +12,7 @@ if [ x${OBSDIR} = x ]; then
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qtsystems qtsvg qtmultimedia qtsensors qtlocation qtphonon"
+QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qtsystems qtsvg qtmultimedia qtsensors qtlocation qtphonon qtmultimediakit"
 
 # Do we have a valid OBS project defined?
 if [ ! -d ${OBSDIR} ]; then
