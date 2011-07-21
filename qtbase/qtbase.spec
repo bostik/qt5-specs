@@ -824,7 +824,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qiconengineplugin.h
 %{_includedir}/qt5/Qt/qidentityproxymodel.h
 %{_includedir}/qt5/Qt/qimage*.h
-%{_includedir}/qt5/Qt/qinputcontext.h
 %{_includedir}/qt5/Qt/qinput*.h
 %{_includedir}/qt5/Qt/qitem*.h
 %{_includedir}/qt5/Qt/qkbd*.h
