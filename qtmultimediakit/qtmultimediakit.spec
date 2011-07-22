@@ -49,6 +49,32 @@ Requires:   qt5-declarative
 %description -n qt5-qtdeclarative-import-multimedia
 This package contains the Multimedia import for QtDeclarative
 
+%package plugin-mediaservice-audioengine
+Summary:    Qt MultimediaKit - audio engine media-service
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-mediaservice-audioengine
+This package contains the audio engine plugin for media-service
+
+%package plugin-mediaservice-v4lengine
+Summary:    Qt MultimediaKit - V4L engine for media-service
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-mediaservice-v4lengine
+This package contains the V4L engine plugin for media-service
+
+%package plugin-playlistformats-m3u
+Summary:    Qt MultimediaKit - M3U playlist support
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-playlistformats-m3u
+This package contains the M3U playlist support
+
+
+
 
 
 #### Build section
@@ -100,7 +126,17 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/multimediakit/
 
+%files plugin-mediaservice-audioengine
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/mediaservice/libqtmedia_audioengine.so
 
+%files plugin-mediaservice-v4lengine
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/mediaservice/libqtmedia_v4lengine.so
+
+%files plugin-playlistformats-m3u
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/playlistformats/libqtmultimediakit_m3u.so
 
 
 
