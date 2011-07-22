@@ -76,6 +76,10 @@ if [ x${NO_PULL} = x ]; then
     # Instead, use mirror repos at gitorious.org
     for m in ${QT5_MODULES}; do
         (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
+        # In case of declarative module, sync v8 submodule
+        if [ ${m} = "qtdeclarative" ]; then
+            (cd ${QT5_DIR}/${m}; git submodule update)
+        fi
     done
 fi
 
