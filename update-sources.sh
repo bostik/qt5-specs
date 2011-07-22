@@ -66,12 +66,21 @@ function get_version() {
 
 # Update Qt sources
 if [ x${NO_PULL} = x ]; then
-    (cd ${QT5_DIR}; git pull; ./qtrepotools/bin/qt5_tool -p)
+
+    # Starting from week 29, qt5_tool will try to pull from
+    # codereview.qt.nokia.com; however, that host is not yet public and
+    # all pulls fail.
+    # XXX: comment use of qt5_tool for now
+    #(cd ${QT5_DIR}; git pull; ./qtrepotools/bin/qt5_tool -p)
+
+    # Instead, use mirror repos at gitorious.org
+    for m in ${QT5_MODULES}; do
+        (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
+    done
 fi
 
 
 # Update source tarballs, patches, specs
-# FIXME: tarballs only if latest source has changed
 for m in ${QT5_MODULES}; do
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
