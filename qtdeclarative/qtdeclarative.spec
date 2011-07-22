@@ -17,6 +17,7 @@ URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Source1:    v8-%{_v8_snapshot_version}.tar.gz
 Patch0:     cast_qmin_argument_to_qreal.patch
+Patch1:     link_v8_library_with_pthread_again.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -211,6 +212,7 @@ tar -C src/3rdparty -zxf %{SOURCE1}
 %ifarch %{arm}
 %patch0 -p1
 %endif
+%patch1 -p1
 
 
 
