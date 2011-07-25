@@ -24,6 +24,7 @@ Source0:    %{name}-qtbase-%{version}.tar.gz
 Source1:    macros.qmake
 Source100:  qtbase-rpmlintrc
 Patch0:     eglfs-must-dep-on-egl.patch
+Patch1:     install-qtmodule-configtests.patch
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(egl)
@@ -404,6 +405,7 @@ applications that use QtDesigner
 %prep
 %setup -q -n %{name}-qtbase
 %patch0 -p2
+%patch1 -p1
 
 
 %build
@@ -531,6 +533,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_bindir}/moc
 %{_bindir}/rcc
 %{_bindir}/syncqt
+%{_bindir}/qtmodule-configtests
 %{_bindir}/uic
 
 
