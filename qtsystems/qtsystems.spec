@@ -246,12 +246,4 @@ rm -rf %{buildroot}
 %{_libdir}/qt5/imports/Qt/publishsubscribe/
 
 
-#### Changelog section
-
-%changelog
-* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
-- Update and rebuild against latest qtbase snapshot
-* Fri Jul  8 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
-- Initial packaging
-- Builds against packages from qtbase build
-
+#### No changelog section, separate $pkg.changes contains the history
