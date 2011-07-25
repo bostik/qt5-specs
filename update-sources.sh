@@ -70,7 +70,7 @@ function update_changelog() {
     cp -v ${tmpfile} ${_mod}/${_mod}.changes
 
     # Clean up...
-    #rm -f ${tmpfile}
+    rm -f ${tmpfile}
 }
 
 
