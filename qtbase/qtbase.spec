@@ -1167,17 +1167,4 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 
 
-#### Changelog section
-
-%changelog
-* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
-- Use latest snapshot
-* Thu Jun 30 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110630
-- Add more packages to further split the build into reasonable
-  components. Use the includes in qt5/Qt/Qt* files as guide.
-* Wed Jun 29 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110627
-- Start working on completely modular build, splitting everything in new
-  Qt5 tree to smaller components.
-- Removed "-demosdir" from configure line entirely. It is no longer
-  available.
-
+#### No changelog section, separate $pkg.changes contains the history
