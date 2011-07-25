@@ -109,9 +109,8 @@ rm -rf %{buildroot}
 %{_libdir}/qt5/plugins/geoservices/
 
 
-#### Changelog section
+#### No changelog section, separate $pkg.changelog contains the history
 
-%changelog
 * Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
 - Update and rebuild against latest qtbase snapshot
 * Sat Jul  9 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
