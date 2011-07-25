@@ -48,6 +48,33 @@ function put_last() {
     echo ${_rev} > ${HOME}/.modular-qt5-revs/${_mod}
 }
 
+function update_changelog() {
+    local _mod=$1 _rev=$2
+
+    pkg_version="5~git${_rev}"
+    tmpfile=$(mktemp --tmpdir ${m}.changes.XXXXXX)
+    datestr=$(LC_TIME=C date '+%a %b %e %Y')
+
+    # generate header line
+    echo "* ${datestr} ${GIT_AUTHOR_NAME} <${GIT_AUTHOR_EMAIL}> - ${pkg_version}" > ${tmpfile}
+
+    # Add automatic entry
+    echo "- Automated source update" >> ${tmpfile}
+    echo "" >> ${tmpfile}
+
+    # Add the rest of the changelog
+    # XXX: we're in QT5_DIR, not in module
+    cat ${_mod}/${_mod}.changes >> ${tmpfile}
+
+    # And copy over
+    cp -v ${tmpfile} ${_mod}/${_mod}.changes
+
+    # Clean up...
+    #rm -f ${tmpfile}
+}
+
+
+
 # GIT_DIR has been set when this function is called
 function get_version() {
     if ! git describe >/dev/null 2>&1; then
@@ -97,6 +124,8 @@ for m in ${QT5_MODULES}; do
         git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
+        # Add this version to changelog
+        update_changelog ${m} ${ver}
     fi
     # QtDeclarative needs v8 sources.
     # Treat v8 source tarball individually; this way we will always have
@@ -113,9 +142,9 @@ for m in ${QT5_MODULES}; do
         fi
     fi
     
-    # Spec, rpmlintrc, patches, extra files,
+    # Spec, changelog, rpmlintrc, patches, extra files,
     # all from this directory
-    cp -v ${m}/*.spec ${OBSDIR}/${m}/
+    cp -v ${m}/*.spec ${m}/*.changes ${OBSDIR}/${m}/
     if [ -d ${m}/files ]; then
         cp -v ${m}/files/* ${OBSDIR}/${m}/
     fi
