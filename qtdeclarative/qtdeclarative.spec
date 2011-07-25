@@ -370,20 +370,4 @@ rm -rf %{buildroot}
 
 
 
-#### Changelog section
-
-%changelog
-* Wed Jul 13 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711-2
-- Include v8 sources
-- Apply patches in src/v8 to this tree - doesn't happen automatically
-- Include python as build dependency; V8 tree has python-based tools
-- Add new packages for recently imported QtQuick 1 support modules
-* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
-- Update and rebuild against latest qtbase snapshot
-* Tue Jul  5 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
-- Split into more packages
-- Create packages for all imports and plugins
-* Mon Jul  4 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
-- Initial packaging
-- Builds against packages from qtbase build
-
+#### No changelog section, separate $pkg.changelog contains the history
