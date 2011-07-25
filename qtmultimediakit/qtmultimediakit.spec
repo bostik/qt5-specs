@@ -139,10 +139,4 @@ rm -rf %{buildroot}
 %{_libdir}/qt5/plugins/playlistformats/libqtmultimediakit_m3u.so
 
 
-
-#### Changelog section
-
-%changelog
-* Wed Jul 20 2011 Mika Bostrom <mika.bostrom@nomovok.com> - 4.9.90.20110720
-- Initial packaging
-
+#### No changelog section, separate $pkg.changes contains the history
