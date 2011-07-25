@@ -96,12 +96,4 @@ rm -rf %{buildroot}
 
 
 
-#### Changelog section
-
-%changelog
-* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
-- Update and rebuild against latest qtbase snapshot
-* Mon Jul 11 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
-- Initial packaging
-- Builds against packages from qtbase build
-
+#### No changelog section, separate $pkg.changes contains the history
