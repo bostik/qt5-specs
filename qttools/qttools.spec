@@ -67,10 +67,5 @@ rm -rf %{buildroot}
 
 
 
-#### Changelog section
-
-%changelog
-* Wed Jul  6 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
-- Initial build against separate QtBase
-
+#### No changelog section, separate $pkg.changes contains the history
 
