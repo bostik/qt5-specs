@@ -117,12 +117,4 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/sensors/libqtsensors_generic.so
 
-#### Changelog section
-
-%changelog
-* Tue Jul 12 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110711
-- Update and rebuild against latest qtbase snapshot
-* Sat Jul 10 2011 Mika Boström <mika.bostrom@nomovok.com> - 4.9.90.20110701
-- Initial packaging
-- Builds against packages from qtbase build
-
+#### No changelog section, separate $pkg.changes contains the history
