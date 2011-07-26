@@ -162,3 +162,9 @@ done
 # And finally commit all the modules at once
 (cd ${OBSDIR}; osc commit -m 'Updated to latest sources' ${QT5_MODULES})
 
+# Show local changes, allow to clean if needed
+echo ""
+echo "Running git-status..."
+unset GIT_DIR; git status
+
+echo "Execute 'git reset --hard HEAD' to clear any changes"
