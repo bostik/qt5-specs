@@ -196,12 +196,8 @@ This package contains QML debugging and development tools
 
 
 # The manual tar invocation below extracts V8 source tree directly into
-# src/3rdparty/v8 ; the snapshot is tarballed with "v8/" prefix directly
-# from V8 git tree at git://github.com/v8/v8.git
-#
-# Also, the patches included in src/v8 are not applied automatically to
-# found V8 tree. The working directory is the root of the unpacked
-# tarball.
+# src/3rdparty/v8 ; the tarball is from embedded V8 submodule in
+# qtdeclarative/src/3rdparty/v8/
 
 #### Build section
 
