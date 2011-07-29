@@ -40,6 +40,7 @@ BuildRequires:  pkgconfig(sm)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  pkgconfig(xcb-keysyms)
 BuildRequires:  pkgconfig(xcomposite)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xft)
@@ -203,6 +204,23 @@ Group:      Qt/Qt
 
 %description plugin-platform-eglfs
 This package contains the eglfs platform plugin
+
+
+%package plugin-platform-xcb
+Summary:    XCB platform plugin
+Group:      Qt/Qt
+
+%description plugin-platform-xcb
+This package contains the XCB platform plugin
+
+
+%package plugin-platform-xlib
+Summary:    Xlib platform plugin
+Group:      Qt/Qt
+
+%description plugin-platform-xlib
+This package contains the Xlib platform plugin
+
 
 
 %package plugin-sqldriver-sqlite
@@ -411,6 +429,7 @@ applications that use QtDesigner
 %build
 export QT_WAYLAND_GL_CONFIG=wayland_egl
 echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
+echo "SUBDIRS += xlib" >> src/plugins/platforms/platforms.pro
 #
 ./configure --disable-static \
     -confirm-license \
@@ -466,6 +485,7 @@ echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
     -nomake tests \
     -nomake examples \
     -nomake demos \
+    -xcb \
     -qpa
 #
 make %{?_smp_mflags}
@@ -1158,6 +1178,14 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %files plugin-platform-eglfs
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libqeglfs.so
+
+%files plugin-platform-xcb
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libxcb.so
+
+%files plugin-platform-xlib
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libqxlib.so
 
 %files plugin-sqldriver-sqlite
 %defattr(-,root,root,-)
