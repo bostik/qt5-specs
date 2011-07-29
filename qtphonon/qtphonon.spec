@@ -86,6 +86,7 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
+%{_libdir}/libphonon.la
 %{_libdir}/libphonon.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/phonon/

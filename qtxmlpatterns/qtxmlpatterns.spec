@@ -85,7 +85,7 @@ rm -rf %{buildroot}
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtXmlPatterns.so
-#%{_libdir}/libQtXmlPatterns.la
+%{_libdir}/libQtXmlPatterns.la
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/
 %{_datadir}/qt5/mkspecs/

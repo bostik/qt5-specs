@@ -72,7 +72,9 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
+%{_libdir}/libQtScript.la
 %{_libdir}/libQtScript.so
+%{_libdir}/libQtScriptTools.la
 %{_libdir}/libQtScriptTools.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*

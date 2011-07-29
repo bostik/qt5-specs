@@ -95,6 +95,7 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
+%{_libdir}/libQtLocation.la
 %{_libdir}/libQtLocation.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*

@@ -100,6 +100,7 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
+%{_libdir}/libQtSensors.la
 %{_libdir}/libQtSensors.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*

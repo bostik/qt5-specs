@@ -82,6 +82,7 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
+%{_libdir}/libQtSvg.la
 %{_libdir}/libQtSvg.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*

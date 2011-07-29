@@ -117,6 +117,7 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
+%{_libdir}/libQtMultimediaKit.la
 %{_libdir}/libQtMultimediaKit.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
