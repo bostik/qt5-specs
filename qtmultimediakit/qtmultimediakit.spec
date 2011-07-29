@@ -91,7 +91,7 @@ make %{?_smp_flags}
 
 %install
 rm -rf %{buildroot}
-%make_install
+%qmake_install
 %fdupes %{buildroot}/%{_includedir}
 
 
