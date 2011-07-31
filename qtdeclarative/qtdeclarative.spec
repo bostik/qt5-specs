@@ -265,6 +265,7 @@ rm -rf %{buildroot}
 %{_includedir}/qt5/Qt/qdecl*.h
 %{_includedir}/qt5/Qt/qtdecl*.h
 %{_includedir}/qt5/Qt/qsg*.h
+%{_includedir}/qt5/Qt/qjs*.h
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
