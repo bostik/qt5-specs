@@ -19,6 +19,7 @@ BuildRequires:  qt5-qtdeclarative-qtquick1-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  fdupes
+BuildRequires:  gdb
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can

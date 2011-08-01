@@ -26,6 +26,7 @@ BuildRequires:  qt5-qtscript-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 BuildRequires:  python
+BuildRequires:  gdb
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
