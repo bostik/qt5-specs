@@ -216,7 +216,6 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/QtServiceFramework.pc
 %{_includedir}/qt5/Qt/QtServiceFramework
 %{_includedir}/qt5/Qt/qtserviceframeworkversion.h
-%{_includedir}/qt5/Qt/qabstractsecuritysession.h
 %{_includedir}/qt5/Qt/qremoteservice*.h
 %{_includedir}/qt5/Qt/qservice*.h
 %{_includedir}/qt5/QtServiceFramework/
