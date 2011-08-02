@@ -16,6 +16,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Source1:    v8-%{_v8_snapshot_version}.tar.gz
+Patch0:     include_v8_headers.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -203,6 +204,7 @@ This package contains QML debugging and development tools
 %prep
 %setup -q -n %{name}
 tar -C src/3rdparty -zxf %{SOURCE1}
+%patch0 -p1
 
 
 %build
@@ -213,6 +215,9 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %qmake_install
+# Install v8 headers manually
+mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
+install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 
