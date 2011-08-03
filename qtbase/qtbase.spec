@@ -106,6 +106,7 @@ that use the QtCore
 %package qmake
 Summary:    QMake
 Group:      Qt/Qt
+Requires:   gdb
 
 %description qmake
 This package contains qmake
