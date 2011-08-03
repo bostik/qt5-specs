@@ -65,6 +65,7 @@ BuildRequires:  libtiff-devel
 BuildRequires:  pam-devel
 BuildRequires:  readline-devel
 BuildRequires:  sharutils
+BuildRequires:  gdb
 
 
 %description
