@@ -78,7 +78,7 @@ function update_changelog() {
 # GIT_DIR has been set when this function is called
 function get_version() {
     if ! git describe >/dev/null 2>&1; then
-        count=$(git rev-list HEAD | wc -l)
+        count=$(git rev-list origin/HEAD | wc -l)
         realcommitid=$(git describe --always)
         commitid=$count.g$realcommitid
     else
@@ -116,12 +116,12 @@ for m in ${QT5_MODULES}; do
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
-    head=$(git show HEAD | head -n 1 | sed s'/^commit //')
+    head=$(git show origin/HEAD | head -n 1 | sed s'/^commit //')
     ver=$(get_version)
     if [ "${head}" != "${last}" ]; then
         # New revision. Remove old sources before recreating new.
         rm -fv ${OBSDIR}/${m}/${bn}*.tar.gz
-        git archive HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
+        git archive origin/HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
         # Add this version to changelog
@@ -137,7 +137,7 @@ for m in ${QT5_MODULES}; do
         if [ "${v8id}" != ${v8old} ]; then
             # Treat v8 the same way
             rm -fv ${OBSDIR}/${m}/v8-git*.tar.gz
-            git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
+            git archive origin/HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
             put_last v8 ${v8id}
         fi
     fi
