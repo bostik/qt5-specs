@@ -16,7 +16,6 @@ BuildRequires:  qt5-qmake
 BuildRequires:  gstreamer-devel
 BuildRequires:  gst-plugins-base-devel
 BuildRequires:  fdupes
-BuildRequires:  gdb
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can

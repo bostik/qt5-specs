@@ -24,7 +24,6 @@ BuildRequires:  qt5-qmake
 BuildRequires:  qt5-tools
 BuildRequires:  fdupes
 #Requires:       qt5-qmake = %{version}
-BuildRequires:  gdb
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
