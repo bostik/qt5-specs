@@ -8,6 +8,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Patch0:     disable-xmlpattern-examples-install.patch
+Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtgui-devel
@@ -41,6 +42,7 @@ This package contains the XMLPatterns library development files
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 
 # The original source assumes build happens within a monolithic tree.
@@ -60,6 +62,10 @@ rm -rf %{buildroot}
 %qmake_install
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
+# Fix wrong path in prl files
+find %{buildroot}%{_libdir} -type f -name '*.prl' \
+-exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
+#
 %fdupes %{buildroot}/%{_includedir}
 
 
@@ -82,11 +88,10 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQtXmlPatterns.so.5.*
 %{_bindir}/*
 
-# FIXME: the provided .pc file is empty!
-# Find out what gives and find a clean resolution
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtXmlPatterns.so
+%{_libdir}/libQtXmlPatterns.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/
 %{_datadir}/qt5/mkspecs/
