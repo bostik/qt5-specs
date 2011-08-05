@@ -7,6 +7,7 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
+Patch0:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtxml-devel
@@ -51,6 +52,7 @@ This package contains the GStreamer plugin for phonon
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 
 %build
@@ -61,8 +63,12 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %qmake_install
+# Fix wrong path in prl files
+find %{buildroot}%{_libdir} -type f -name '*.prl' \
+-exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/"{} \;
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
+#
 %fdupes %{buildroot}/%{_includedir}
 
 
@@ -89,6 +95,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libphonon.so
+%{_libdir}/libphonon.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/phonon/
 
