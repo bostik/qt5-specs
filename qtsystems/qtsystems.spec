@@ -153,6 +153,8 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %qmake_install
+# Remove unneeded .la files
+rm -f %{buildroot}/%{_libdir}/*.la
 %fdupes %{buildroot}/%{_includedir}
 
 
@@ -187,7 +189,6 @@ rm -rf %{buildroot}
 
 %files -n qt5-qtsysteminfo-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtSystemInfo.la
 %{_libdir}/libQtSystemInfo.so
 %{_libdir}/pkgconfig/QtSystemInfo.pc
 %{_includedir}/qt5/Qt/QtSystemInfo
@@ -210,7 +211,6 @@ rm -rf %{buildroot}
 
 %files -n qt5-qtserviceframework-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtServiceFramework.la
 %{_libdir}/libQtServiceFramework.so
 %{_libdir}/pkgconfig/QtServiceFramework.pc
 %{_includedir}/qt5/Qt/QtServiceFramework
@@ -234,7 +234,6 @@ rm -rf %{buildroot}
 
 %files -n qt5-qtpublishsubscribe-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtPublishSubscribe.la
 %{_libdir}/libQtPublishSubscribe.so
 %{_libdir}/pkgconfig/QtPublishSubscribe.pc
 %{_includedir}/qt5/Qt/QtPublishSubscribe

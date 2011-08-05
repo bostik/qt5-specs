@@ -52,6 +52,8 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %qmake_install
+# Remove unneeded .la files
+rm -f %{buildroot}/%{_libdir}/*.la
 %fdupes %{buildroot}/%{_includedir}
 
 
@@ -77,7 +79,6 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtMultimedia.la
 %{_libdir}/libQtMultimedia.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*

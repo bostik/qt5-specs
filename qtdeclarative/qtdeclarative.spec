@@ -218,6 +218,8 @@ rm -rf %{buildroot}
 # Install v8 headers manually
 mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
 install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
+# Remove unneeded .la files
+rm -f %{buildroot}/%{_libdir}/*.la
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 
@@ -259,7 +261,6 @@ install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_bu
 # Find out what gives and find a clean resolution
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtDeclarative.la
 %{_libdir}/libQtDeclarative.so
 %{_libdir}/pkgconfig/QtDeclarative.pc
 %{_includedir}/qt5/Qt/qdecl*.h
@@ -277,7 +278,6 @@ install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_bu
 
 %files qtquick1-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick1.la
 %{_libdir}/libQtQuick1.so
 %{_libdir}/pkgconfig/QtQuick1.pc
 %{_includedir}/qt5/Qt/qtquick1version.h
@@ -356,7 +356,6 @@ install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_bu
 %{_includedir}/qt5/Qt/quicktest*.h
 %{_includedir}/qt5/Qt/QtQuickTest
 %{_includedir}/qt5/QtQuickTest/
-%{_libdir}/libQtQuickTest.la
 %{_libdir}/libQtQuickTest.so
 %{_libdir}/pkgconfig/QtQuickTest.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
