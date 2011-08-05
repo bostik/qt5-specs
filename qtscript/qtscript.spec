@@ -7,6 +7,7 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
+Patch0:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qmake
@@ -37,6 +38,7 @@ This package contains the scripting module development files
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 
 %build
@@ -49,6 +51,13 @@ rm -rf %{buildroot}
 %qmake_install
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
+# Fix wrong path in pkgconfig files
+find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
+-exec perl -pi -e "s, -L%{_builddir}/?\S+,,g" {} \;
+# Fix wrong path in prl files
+find %{buildroot}%{_libdir} -type f -name '*.prl' \
+-exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
+#
 %fdupes %{buildroot}/%{_includedir}
 
 
@@ -75,7 +84,9 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtScript.so
+%{_libdir}/libQtScript.prl
 %{_libdir}/libQtScriptTools.so
+%{_libdir}/libQtScriptTools.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
