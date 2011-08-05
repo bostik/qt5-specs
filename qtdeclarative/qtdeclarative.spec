@@ -17,6 +17,7 @@ URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Source1:    v8-%{_v8_snapshot_version}.tar.gz
 Patch0:     include_v8_headers.patch
+Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -205,6 +206,7 @@ This package contains QML debugging and development tools
 %setup -q -n %{name}
 tar -C src/3rdparty -zxf %{SOURCE1}
 %patch0 -p1
+%patch1 -p1
 
 
 %build
@@ -218,6 +220,9 @@ rm -rf %{buildroot}
 # Install v8 headers manually
 mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
 install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
+# Fix wrong path in prl files
+find %{buildroot}%{_libdir} -type f -name '*.prl' \
+-exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
 %fdupes %{buildroot}/%{_libdir}
@@ -262,6 +267,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtDeclarative.so
+%{_libdir}/libQtDeclarative.prl
 %{_libdir}/pkgconfig/QtDeclarative.pc
 %{_includedir}/qt5/Qt/qdecl*.h
 %{_includedir}/qt5/Qt/qtdecl*.h
