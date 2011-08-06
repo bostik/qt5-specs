@@ -14,6 +14,14 @@ fi
 # Modules to build, in order
 QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qtsystems qtsvg qtmultimedia qtsensors qtlocation qtphonon qtmultimediakit"
 
+
+# WARNING! WARNING! WARNING!
+# Force upload of all sources
+# XXX: Use only if you want to force regeneration of ALL tarballs
+if [ "x${FORCE_UPLOAD}" = "x1" ]; then
+    rm -f ${HOME}/.modular-qt5-revs/* >/dev/null 2>&1
+fi
+
 # Do we have a valid OBS project defined?
 if [ ! -d ${OBSDIR} ]; then
     for dir in ${QT5_MODULES}; do
