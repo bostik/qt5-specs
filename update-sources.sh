@@ -145,7 +145,7 @@ for m in ${QT5_MODULES}; do
         if [ "${v8id}" != ${v8old} ]; then
             # Treat v8 the same way
             rm -fv ${OBSDIR}/${m}/v8-git*.tar.gz
-            git archive origin/HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
+            git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
             put_last v8 ${v8id}
         fi
     fi
