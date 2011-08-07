@@ -14,6 +14,7 @@ Patch3:     link_qhelpconverter_with_qthelp.patch
 Patch4:     link_qhelpgenerator_with_qthelp.patch
 Patch5:     fix_qtdesigner_include_paths.patch
 Patch6:     copy_widgets_table_from_base.patch
+Patch7:     embed_rcc.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -41,6 +42,7 @@ This package contains additional tools for building Qt applications.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 export QTDIR=/usr/share/qt5
