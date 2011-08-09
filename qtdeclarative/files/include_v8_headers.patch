@@ -1,5 +1,5 @@
 diff --git a/src/declarative/declarative.pro b/src/declarative/declarative.pro
-index aa638e4..a816686 100644
+index 2d9248e..159147d 100644
 --- a/src/declarative/declarative.pro
 +++ b/src/declarative/declarative.pro
 @@ -52,4 +52,8 @@ linux-g++-maemo:DEFINES += QDECLARATIVEVIEW_NOBACKGROUND
@@ -12,14 +12,17 @@ index aa638e4..a816686 100644
 +
  
 diff --git a/src/declarative/qml/v8/qv8_p.h b/src/declarative/qml/v8/qv8_p.h
-index 6aeb6f6..6acf47d 100644
+index 8df007e..8191af1 100644
 --- a/src/declarative/qml/v8/qv8_p.h
 +++ b/src/declarative/qml/v8/qv8_p.h
-@@ -1 +1 @@
+@@ -39,4 +39,4 @@
+ **
+ ****************************************************************************/
+ 
 -#include "../../../3rdparty/v8/include/v8.h"
 +#include <v8/include/v8.h>
 diff --git a/src/imports/gestures/gestures.pro b/src/imports/gestures/gestures.pro
-index 5c009dd..a3e23b4 100644
+index d94b402..6b1308e 100644
 --- a/src/imports/gestures/gestures.pro
 +++ b/src/imports/gestures/gestures.pro
 @@ -24,3 +24,6 @@ symbian:{
@@ -52,7 +55,7 @@ index 1c7e324..6370066 100644
 +# V8 headers
 +INCLUDEPATH += ../../../src/3rdparty
 diff --git a/src/imports/testlib/testlib.pro b/src/imports/testlib/testlib.pro
-index 9980a75..bf0e3e9 100644
+index 5adde2a..3821dc7 100644
 --- a/src/imports/testlib/testlib.pro
 +++ b/src/imports/testlib/testlib.pro
 @@ -44,3 +44,6 @@ copy2build.output = $$QT.declarative.imports/$$TARGETPATH/${QMAKE_FILE_BASE}${QM
@@ -85,7 +88,7 @@ index c5f8f90..8c854c1 100644
 +# V8 headers
 +INCLUDEPATH += ../../../../src/3rdparty
 diff --git a/src/qtquick1/qtquick1.pro b/src/qtquick1/qtquick1.pro
-index e3dd029..f0ec3eb 100644
+index 7fc670f..9c76e07 100644
 --- a/src/qtquick1/qtquick1.pro
 +++ b/src/qtquick1/qtquick1.pro
 @@ -40,3 +40,7 @@ SOURCES += qtquick1.cpp
@@ -108,7 +111,7 @@ index 0ac3a70..a421567 100644
 +# V8 headers
 +INCLUDEPATH += ../../src/3rdparty
 diff --git a/tools/qmlscene/qmlscene.pro b/tools/qmlscene/qmlscene.pro
-index 8e252e5..0874669 100644
+index 7a72263..8a1ec20 100644
 --- a/tools/qmlscene/qmlscene.pro
 +++ b/tools/qmlscene/qmlscene.pro
 @@ -18,3 +18,6 @@ symbian {
@@ -119,18 +122,21 @@ index 8e252e5..0874669 100644
 +# V8 headers
 +INCLUDEPATH += ../../src/3rdparty
 diff --git a/tools/qmltestrunner/qmltestrunner.pro b/tools/qmltestrunner/qmltestrunner.pro
-index c431aaf..8177992 100644
+index e0dd3d5..89c8c70 100644
 --- a/tools/qmltestrunner/qmltestrunner.pro
 +++ b/tools/qmltestrunner/qmltestrunner.pro
-@@ -10,3 +10,6 @@ DEFINES += QUICK_TEST_SOURCE_DIR=\"\\\"$$OUT_PWD\\\"\"
+@@ -11,4 +11,7 @@ macx: CONFIG -= app_bundle
+ #DEFINES += QUICK_TEST_SOURCE_DIR=\"\\\"$$OUT_PWD\\\"\"
  
  target.path = $$[QT_INSTALL_BINS]
- INSTALLS += target
+-INSTALLS += target
+\ No newline at end of file
++INSTALLS += target
 +
 +# V8 headers
 +INCLUDEPATH += ../../src/3rdparty
 diff --git a/tools/qmlviewer/qmlviewer.pro b/tools/qmlviewer/qmlviewer.pro
-index 16579bb..a5ab713 100644
+index 991d07c..0ba7d95 100644
 --- a/tools/qmlviewer/qmlviewer.pro
 +++ b/tools/qmlviewer/qmlviewer.pro
 @@ -11,6 +11,9 @@ INCLUDEPATH += ../../include/QtDeclarative
