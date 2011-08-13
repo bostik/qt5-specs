@@ -1,14 +1,16 @@
 diff --git a/src/svg/svg.pro b/src/svg/svg.pro
-index 6a81ffd..5fd3c93 100644
+index 6a81ffd..44fbbf6 100644
 --- a/src/svg/svg.pro
 +++ b/src/svg/svg.pro
-@@ -14,6 +14,9 @@ solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
+@@ -12,7 +12,10 @@ DEFINES   += QT_NO_USING_NAMESPACE
+ win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
+ solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
  
- unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
+-unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
++unix|win32-g++* {
++    QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
++    CONFIG += create_prl create_pc
++}
  
-+# pkgconfig
-+CONFIG += create_prl create_pc
-+
  load(qt_module_config)
  
- HEADERS += qtsvgversion.h
