@@ -16,7 +16,7 @@ Patch5:     fix_qtdesigner_include_paths.patch
 Patch6:     copy_widgets_table_from_base.patch
 Patch7:     embed_rcc.patch
 Patch8:     fix_libqtdesigner_destdir.patch
-Patch8:     fix_libqtdesignercomponents_destdir.patch
+Patch9:     fix_libqtdesignercomponents_destdir.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -26,7 +26,6 @@ BuildRequires:  qt5-qtdesigner-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  qt5-tools
 BuildRequires:  fdupes
-#Requires:       qt5-qmake = %{version}
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
