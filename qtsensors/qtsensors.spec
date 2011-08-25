@@ -45,6 +45,15 @@ Requires:   qt5-qtdeclarative
 %description -n qt5-qtdeclarative-import-sensors
 This package contains the Sensors import for QtDeclarative
 
+%package -n qt5-qtdeclarative-import-mobility-sensors
+Summary:    QtDeclarative mobility sensors import
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-qtdeclarative
+
+%description -n qt5-qtdeclarative-import-mobility-sensors
+This package contains the mobility sensors import for QtDeclarative
+
 %package plugin-dummy
 Summary:    Dummy sensors plugin
 Group:      Qt/Qt
@@ -99,10 +108,13 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/libQtSensors.so.5
 %{_libdir}/libQtSensors.so.5.*
+%{_libdir}/libQtmSensors.so.5
+%{_libdir}/libQtmSensors.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtSensors.so
+%{_libdir}/libQtmSensors.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
@@ -110,6 +122,11 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files -n qt5-qtdeclarative-import-sensors
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/sensors/
+
+%files -n qt5-qtdeclarative-import-mobility-sensors
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtMobility/sensors/
+
 
 %files plugin-dummy
 %defattr(-,root,root,-)
