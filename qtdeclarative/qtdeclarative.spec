@@ -15,8 +15,7 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Source1:    v8-%{_v8_snapshot_version}.tar.gz
-Patch0:     include_v8_headers.patch
+#Patch0:     include_v8_headers.patch
 Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
@@ -204,8 +203,7 @@ This package contains QML debugging and development tools
 
 %prep
 %setup -q -n %{name}
-tar -C src/3rdparty -zxf %{SOURCE1}
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 
 
@@ -216,10 +214,7 @@ make %{?_smp_flags}
 
 %install
 rm -rf %{buildroot}
-%qmake_install
-# Install v8 headers manually
-mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
-install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
+%make_install
 # Fix wrong path in prl files
 find %{buildroot}%{_libdir} -type f -name '*.prl' \
 -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;

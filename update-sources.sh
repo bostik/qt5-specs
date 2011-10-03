@@ -112,7 +112,7 @@ if [ x${NO_PULL} = x ]; then
     for m in ${QT5_MODULES}; do
         (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
         # In case of declarative module, sync v8 submodule
-        if [ ${m} = "qtdeclarative" ]; then
+        if [ ${m} = "qtbase" ]; then
             (cd ${QT5_DIR}/${m}; git submodule update)
         fi
     done
@@ -135,10 +135,10 @@ for m in ${QT5_MODULES}; do
         # Add this version to changelog
         update_changelog ${m} ${ver}
     fi
-    # QtDeclarative needs v8 sources.
+    # QtBase needs v8 sources.
     # Treat v8 source tarball individually; this way we will always have
     # v8id to use in spec-file mangling.
-    if [ ${m} = "qtdeclarative" ]; then
+    if [ ${m} = "qtbase" ]; then
         export GIT_DIR=${QT5_DIR}/${m}/src/3rdparty/v8/.git
         v8id=$(git describe --always)
         v8old=$(get_last v8)
@@ -159,7 +159,7 @@ for m in ${QT5_MODULES}; do
 
     # Uses retrieved source version from beginning of loop
     sed -i "s/define _qtmodule_snapshot_version %nil/define _qtmodule_snapshot_version 5~git${ver}/g" ${OBSDIR}/${m}/*.spec
-    if [ ${m} = "qtdeclarative" ]; then
+    if [ ${m} = "qtbase" ]; then
         sed -i "s/define _v8_snapshot_version %nil/define _v8_snapshot_version git${v8id}/g" ${OBSDIR}/${m}/*.spec
     fi
 

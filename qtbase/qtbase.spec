@@ -1,4 +1,5 @@
 %define _qtmodule_snapshot_version %nil
+%define _v8_snapshot_version %nil
 %ifarch arvm7l armv7el armv7hl amv7nhl armv7thl armv7tnhl
 %define arch_arg armv6
 %endif
@@ -22,6 +23,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-qtbase-%{version}.tar.gz
 Source1:    macros.qmake
+Source2:    v8-%{_v8_snapshot_version}.tar.gz
 Source100:  qtbase-rpmlintrc
 Patch0:     eglfs-must-dep-on-egl.patch
 Patch1:     install-qtmodule-configtests.patch
@@ -424,6 +426,7 @@ applications that use QtDesigner
 
 %prep
 %setup -q -n %{name}-qtbase
+tar -C src/3rdparty -zxf %{SOURCE2}
 %patch0 -p2
 %patch1 -p1
 
@@ -496,6 +499,10 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 %make_install
+# Install v8 headers manually
+mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
+install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
+
 #
 # Fix wrong path in pkgconfig files
 find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
