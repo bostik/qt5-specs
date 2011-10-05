@@ -13,6 +13,7 @@ BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtopengl-devel
+BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  gstreamer-devel
 BuildRequires:  gst-plugins-base-devel
