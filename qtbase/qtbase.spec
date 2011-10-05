@@ -218,12 +218,12 @@ Group:      Qt/Qt
 This package contains the XCB platform plugin
 
 
-%package plugin-platform-xlib
-Summary:    Xlib platform plugin
-Group:      Qt/Qt
-
-%description plugin-platform-xlib
-This package contains the Xlib platform plugin
+# %package plugin-platform-xlib
+# Summary:    Xlib platform plugin
+# Group:      Qt/Qt
+# 
+# %description plugin-platform-xlib
+# This package contains the Xlib platform plugin
 
 
 
@@ -235,12 +235,12 @@ Group:      Qt/Qt
 This package contains the sqlite sql driver plugin
 
 
-%package plugin-inputmethod-imsw-multi
-Summary:    imsw-multi input method
+%package plugin-platforminputcontext-ibus
+Summary:    ibus platform import context plugin
 Group:      Qt/Qt
 
-%description plugin-inputmethod-imsw-multi
-This package contains the imsw-multi input method plugin
+%description plugin-platforminputcontext-ibus
+This package contains the ibus platform input context plugin
 
 
 
@@ -267,7 +267,7 @@ applications that use QtDBus
 
 
 %package qtgui
-Summary:    The QtGuji Library
+Summary:    The QtGui Library
 Group:      Qt/Qt
 Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
@@ -280,6 +280,7 @@ This package contains the QtGui library
 Summary:    Development files for QtGui
 Group:      Qt/Qt
 Requires:   %{name}-qtgui = %{version}-%{release}
+Requires:   %{name}-qtopengl-devel
 
 %description qtgui-devel
 This package contains the files necessary to develop
@@ -388,6 +389,72 @@ This package contains the files necessary to develop
 applications that use QtXml
 
 
+%package qtwidgets
+Summary:    The QtWidgets library
+Group:      Qt/Qt
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description qtwidgets
+This package contains the QtWidgets library
+
+%package qtwidgets-devel
+Summary:    Development files for QtWidgets
+Group:      Qt/Qt
+Requires:   %{name}-qtwidgets = %{version}-%{release}
+
+%description qtwidgets-devel
+This package contains the files necessary to develop
+applications that use QtWidgets
+
+%package qtplatformsupport-devel
+Summary:    The QtWidgets library
+Group:      Qt/Qt
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description qtplatformsupport-devel
+This package contains the files necessary to develop
+applications that use QtPlatformSupport
+
+%package qtprintsupport
+Summary:    The QtPrintSupport
+Group:      Qt/Qt
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description qtprintsupport
+This package contains the QtPrintSupport library
+
+%package qtprintsupport-devel
+Summary:    Development files for QtPrintSupport
+Group:      Qt/Qt
+Requires:   %{name}-qtprintsupport = %{version}-%{release}
+
+%description qtprintsupport-devel
+This package contains the files necessary to develop
+applications that use QtPrintSupport
+
+%package qtv8
+Summary:    The QtV8 library
+Group:      Qt/Qt
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description qtv8
+This package contains the QtV8 library
+
+%package qtv8-devel
+Summary:    Development files for QtV8
+Group:      Qt/Qt
+Requires:   %{name}-qtv8 = %{version}-%{release}
+
+%description qtv8-devel
+This package contains the files necessary to develop
+applications that use QtV8
+
+
+
 
 #%package qtuitools
 #Summary:    The QtUiTools library
@@ -399,25 +466,25 @@ applications that use QtXml
 #%description qtuitools
 #This package contains the QtUiTools library
 
-%package qtuitools-devel
-Summary:    Development files for QtUiTools
-Group:      Qt/Qt
-Requires(post):     /sbin/ldconfig
-Requires(postun):   /sbin/ldconfig
-
-%description qtuitools-devel
-This package contains the files necessary to develop
-applications that use QtUiTools
-
-%package qtdesigner-devel
-Summary:    Development files for QtDesigner
-Group:      Qt/Qt
-Requires(post):     /sbin/ldconfig
-Requires(postun):   /sbin/ldconfig
-
-%description qtdesigner-devel
-This package contains the files necessary to develop
-applications that use QtDesigner
+# %package qtuitools-devel
+# Summary:    Development files for QtUiTools
+# Group:      Qt/Qt
+# Requires(post):     /sbin/ldconfig
+# Requires(postun):   /sbin/ldconfig
+# 
+# %description qtuitools-devel
+# This package contains the files necessary to develop
+# applications that use QtUiTools
+# 
+# %package qtdesigner-devel
+# Summary:    Development files for QtDesigner
+# Group:      Qt/Qt
+# Requires(post):     /sbin/ldconfig
+# Requires(postun):   /sbin/ldconfig
+# 
+# %description qtdesigner-devel
+# This package contains the files necessary to develop
+# applications that use QtDesigner
 
 
 
@@ -434,7 +501,6 @@ tar -C src/3rdparty -zxf %{SOURCE2}
 %build
 export QT_WAYLAND_GL_CONFIG=wayland_egl
 echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
-echo "SUBDIRS += xlib" >> src/plugins/platforms/platforms.pro
 #
 ./configure --disable-static \
     -confirm-license \
@@ -499,9 +565,9 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 %make_install
-# Install v8 headers manually
-mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
-install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
+### Install v8 headers manually
+##mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
+##install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
 
 #
 # Fix wrong path in pkgconfig files
@@ -546,7 +612,14 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %post qtxml -p /sbin/ldconfig
 %postun qtxml -p /sbin/ldconfig
 
+%post qtprintsupport -p /sbin/ldconfig
+%postun qtprintsupport -p /sbin/ldconfig
 
+%post qtwidgets -p /sbin/ldconfig
+%postun qtwidgets -p /sbin/ldconfig
+
+%post qtv8 -p /sbin/ldconfig
+%postun qtv8 -p /sbin/ldconfig
 
 
 
@@ -726,7 +799,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/openbsd-*/
 %{_datadir}/qt5/mkspecs/qconfig.pri
 %{_datadir}/qt5/mkspecs/qmodule.pri
-%{_datadir}/qt5/mkspecs/qws/
+#%{_datadir}/qt5/mkspecs/qws/
 %{_datadir}/qt5/mkspecs/sco-*/
 %{_datadir}/qt5/mkspecs/solaris-*/
 %{_datadir}/qt5/mkspecs/symbian-*/
@@ -767,103 +840,44 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %files qtgui-devel
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtGui
-%{_includedir}/qt5/Qt/qabstractbutton.h
-%{_includedir}/qt5/Qt/qabstractfontengine_qws.h
-%{_includedir}/qt5/Qt/qabstractitemdelegate.h
-%{_includedir}/qt5/Qt/qabstractitemview.h
+%{_includedir}/qt5/QtGui/
 %{_includedir}/qt5/Qt/qabstractpagesetupdialog.h
 %{_includedir}/qt5/Qt/qabstractprintdialog.h
-%{_includedir}/qt5/Qt/qabstractproxymodel.h
-%{_includedir}/qt5/Qt/qabstractscrollarea.h
-%{_includedir}/qt5/Qt/qabstractslider.h
 %{_includedir}/qt5/Qt/qabstractspinbox.h
 %{_includedir}/qt5/Qt/qabstracttextdocumentlayout.h
-%{_includedir}/qt5/Qt/qaccessible*.h
-%{_includedir}/qt5/Qt/qaction.h
-%{_includedir}/qt5/Qt/qactiongroup.h
-%{_includedir}/qt5/Qt/qapplication.h
+%{_includedir}/qt5/Qt/qbackingstore.h
 %{_includedir}/qt5/Qt/qbitmap.h
-%{_includedir}/qt5/Qt/qboxlayout.h
 %{_includedir}/qt5/Qt/qbrush.h
-%{_includedir}/qt5/Qt/qbuttongroup.h
-%{_includedir}/qt5/Qt/qcalendarwidget.h
-%{_includedir}/qt5/Qt/qcdestyle.h
-%{_includedir}/qt5/Qt/qcheckbox.h
-%{_includedir}/qt5/Qt/qcleanlooksstyle.h
 %{_includedir}/qt5/Qt/qclipboard.h
 %{_includedir}/qt5/Qt/qcolor.h
-%{_includedir}/qt5/Qt/qcolordialog.h
 %{_includedir}/qt5/Qt/qcolormap.h
-%{_includedir}/qt5/Qt/qcolumnview.h
-%{_includedir}/qt5/Qt/qcombobox.h
-%{_includedir}/qt5/Qt/qcommandlinkbutton.h
-%{_includedir}/qt5/Qt/qcommonstyle.h
-%{_includedir}/qt5/Qt/qcompleter.h
-%{_includedir}/qt5/Qt/qcopchannel_qws.h
 %{_includedir}/qt5/Qt/qcursor.h
-%{_includedir}/qt5/Qt/qdatawidgetmapper.h
-%{_includedir}/qt5/Qt/qdatetimeedit.h
-%{_includedir}/qt5/Qt/qdecoration*.h
 %{_includedir}/qt5/Qt/qdesktopservices.h
-%{_includedir}/qt5/Qt/qdesktopwidget.h
-%{_includedir}/qt5/Qt/qdial.h
-%{_includedir}/qt5/Qt/qdialog.h
-%{_includedir}/qt5/Qt/qdialogbuttonbox.h
-%{_includedir}/qt5/Qt/qdirectpainter_qws.h
-%{_includedir}/qt5/Qt/qdirmodel.h
-%{_includedir}/qt5/Qt/qdockwidget.h
 %{_includedir}/qt5/Qt/qdrag.h
-%{_includedir}/qt5/Qt/qdrawutil.h
-%{_includedir}/qt5/Qt/qerrormessage.h
 %{_includedir}/qt5/Qt/qevent.h
-%{_includedir}/qt5/Qt/qfiledialog.h
-%{_includedir}/qt5/Qt/qfileiconprovider.h
-%{_includedir}/qt5/Qt/qfilesystemmodel.h
-%{_includedir}/qt5/Qt/qfocusframe.h
-%{_includedir}/qt5/Qt/qfont*.h
+%{_includedir}/qt5/Qt/qfont.h
+%{_includedir}/qt5/Qt/qfontdatabase.h
+%{_includedir}/qt5/Qt/qfontinfo.h
+%{_includedir}/qt5/Qt/qfontmetrics.h
 %{_includedir}/qt5/Qt/qformlayout.h
-%{_includedir}/qt5/Qt/qframe.h
 %{_includedir}/qt5/Qt/qgenericmatrix.h
 %{_includedir}/qt5/Qt/qgenericplugin*.h
-%{_includedir}/qt5/Qt/qgesture.h
-%{_includedir}/qt5/Qt/qgesturerecognizer.h
 %{_includedir}/qt5/Qt/qglyphrun.h
-%{_includedir}/qt5/Qt/qgraphic*.h
-%{_includedir}/qt5/Qt/qgridlayout.h
-%{_includedir}/qt5/Qt/qgroupbox.h
-%{_includedir}/qt5/Qt/qgtkstyle.h
 %{_includedir}/qt5/Qt/qguifunctions_*.h
-%{_includedir}/qt5/Qt/qheaderview.h
-%{_includedir}/qt5/Qt/qicon.h
-%{_includedir}/qt5/Qt/qiconengine.h
-%{_includedir}/qt5/Qt/qiconengineplugin.h
-%{_includedir}/qt5/Qt/qidentityproxymodel.h
+%{_includedir}/qt5/Qt/qguiapplication.h
+%{_includedir}/qt5/Qt/qinputpanel.h
 %{_includedir}/qt5/Qt/qimage*.h
-%{_includedir}/qt5/Qt/qinput*.h
-%{_includedir}/qt5/Qt/qitem*.h
-%{_includedir}/qt5/Qt/qkbd*.h
-%{_includedir}/qt5/Qt/qkey*.h
-%{_includedir}/qt5/Qt/qlabel.h
-%{_includedir}/qt5/Qt/qlayout.h
-%{_includedir}/qt5/Qt/qlayoutitem.h
-%{_includedir}/qt5/Qt/qlcdnumber.h
-%{_includedir}/qt5/Qt/qlineedit.h
-%{_includedir}/qt5/Qt/qlistview.h
-%{_includedir}/qt5/Qt/qlistwidget.h
+%{_includedir}/qt5/Qt/qkeysequence.h
 %{_includedir}/qt5/Qt/qmac*_mac.h
-%{_includedir}/qt5/Qt/qmainwindow.h
 %{_includedir}/qt5/Qt/qmatrix.h
 %{_includedir}/qt5/Qt/qmatrix4x4.h
-%{_includedir}/qt5/Qt/qmdiarea.h
-%{_includedir}/qt5/Qt/qmdisubwindow.h
-%{_includedir}/qt5/Qt/qmenu*.h
-%{_includedir}/qt5/Qt/qmessagebox.h
-%{_includedir}/qt5/Qt/qmime.h
 %{_includedir}/qt5/Qt/qmotifstyle.h
 %{_includedir}/qt5/Qt/qmouse*.h
 %{_includedir}/qt5/Qt/qmovie.h
 %{_includedir}/qt5/Qt/qpagesetupdialog.h
+%{_includedir}/qt5/Qt/qpagedpaintdevice.h
 %{_includedir}/qt5/Qt/qpaint*.h
+%{_includedir}/qt5/Qt/qpdfwriter*.h
 %{_includedir}/qt5/Qt/qpalette.h
 %{_includedir}/qt5/Qt/qpen.h
 %{_includedir}/qt5/Qt/qpicture.h
@@ -872,13 +886,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qpixmapcache.h
 %{_includedir}/qt5/Qt/qplaintextedit.h
 %{_includedir}/qt5/Qt/qplastiquestyle.h
-%{_includedir}/qt5/Qt/qplatform*.h
+%{_includedir}/qt5/Qt/qplatform*_qpa.h
 %{_includedir}/qt5/Qt/qpolygon.h
 %{_includedir}/qt5/Qt/qprint*.h
-%{_includedir}/qt5/Qt/qprogressbar.h
-%{_includedir}/qt5/Qt/qprogressdialog.h
-%{_includedir}/qt5/Qt/qproxymodel.h
-%{_includedir}/qt5/Qt/qproxystyle.h
 %{_includedir}/qt5/Qt/qpushbutton.h
 %{_includedir}/qt5/Qt/qquaternion.h
 %{_includedir}/qt5/Qt/qradiobutton.h
@@ -886,39 +896,28 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qregion.h
 %{_includedir}/qt5/Qt/qrgb.h
 %{_includedir}/qt5/Qt/qrubberband.h
-%{_includedir}/qt5/Qt/qs60*.h
 %{_includedir}/qt5/Qt/qscreen*.h
-%{_includedir}/qt5/Qt/qscroll*.h
 %{_includedir}/qt5/Qt/qsessionmanager.h
 %{_includedir}/qt5/Qt/qshortcut.h
 %{_includedir}/qt5/Qt/qsizegrip.h
 %{_includedir}/qt5/Qt/qsizepolicy.h
 %{_includedir}/qt5/Qt/qslider.h
-%{_includedir}/qt5/Qt/qsortfilterproxymodel.h
 %{_includedir}/qt5/Qt/qsound*.h
 %{_includedir}/qt5/Qt/qspinbox.h
 %{_includedir}/qt5/Qt/qsplashscreen.h
 %{_includedir}/qt5/Qt/qsplitter.h
 %{_includedir}/qt5/Qt/qstackedlayout.h
 %{_includedir}/qt5/Qt/qstackedwidget.h
-%{_includedir}/qt5/Qt/qstandarditemmodel.h
 %{_includedir}/qt5/Qt/qstatictext.h
 %{_includedir}/qt5/Qt/qstatusbar.h
 %{_includedir}/qt5/Qt/qstringlistmodel.h
-%{_includedir}/qt5/Qt/qstyle*.h
 %{_includedir}/qt5/Qt/qsymbianevent.h
 %{_includedir}/qt5/Qt/qsyntaxhighlighter.h
-%{_includedir}/qt5/Qt/qsystemtrayicon.h
-%{_includedir}/qt5/Qt/qtabbar.h
-%{_includedir}/qt5/Qt/qtableview.h
-%{_includedir}/qt5/Qt/qtablewidget.h
-%{_includedir}/qt5/Qt/qtabwidget.h
-%{_includedir}/qt5/Qt/qtextbrowser.h
+%{_includedir}/qt5/Qt/qsurface*.h
 %{_includedir}/qt5/Qt/qtextcursor.h
 %{_includedir}/qt5/Qt/qtextdocument.h
 %{_includedir}/qt5/Qt/qtextdocumentfragment.h
 %{_includedir}/qt5/Qt/qtextdocumentwriter.h
-%{_includedir}/qt5/Qt/qtextedit.h
 %{_includedir}/qt5/Qt/qtextformat.h
 %{_includedir}/qt5/Qt/qtextlayout.h
 %{_includedir}/qt5/Qt/qtextlist.h
@@ -926,31 +925,15 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qtextoption.h
 %{_includedir}/qt5/Qt/qtexttable.h
 %{_includedir}/qt5/Qt/qtguiversion.h
-%{_includedir}/qt5/Qt/qtoolbar.h
-%{_includedir}/qt5/Qt/qtoolbox.h
-%{_includedir}/qt5/Qt/qtoolbutton.h
-%{_includedir}/qt5/Qt/qtooltip.h
 %{_includedir}/qt5/Qt/qtransform.h
-%{_includedir}/qt5/Qt/qtransport*.h
-%{_includedir}/qt5/Qt/qtreeview.h
-%{_includedir}/qt5/Qt/qtreewidget.h
-%{_includedir}/qt5/Qt/qtreewidgetitemiterator.h
-%{_includedir}/qt5/Qt/qundo*.h
 %{_includedir}/qt5/Qt/qvalidator.h
 %{_includedir}/qt5/Qt/qvector2d.h
 %{_includedir}/qt5/Qt/qvector3d.h
 %{_includedir}/qt5/Qt/qvector4d.h
-%{_includedir}/qt5/Qt/qvfbhdr.h
-%{_includedir}/qt5/Qt/qwhatsthis.h
-%{_includedir}/qt5/Qt/qwidget.h
-%{_includedir}/qt5/Qt/qwidgetaction.h
-%{_includedir}/qt5/Qt/qwindow*.h
-%{_includedir}/qt5/Qt/qwizard.h
-%{_includedir}/qt5/Qt/qwmatrix.h
-%{_includedir}/qt5/Qt/qworkspace.h
-%{_includedir}/qt5/Qt/qws*.h
-%{_includedir}/qt5/Qt/qx11*.h
-%{_includedir}/qt5/QtGui/
+%{_includedir}/qt5/Qt/qwindow.h
+%{_includedir}/qt5/Qt/qwindowdefs.h
+%{_includedir}/qt5/Qt/qwindowdefs_win.h
+%{_includedir}/qt5/Qt/qwindowsysteminterface_qpa.h
 %{_libdir}/fonts/
 %{_libdir}/libQtGui.prl
 %{_libdir}/libQtGui.so
@@ -1025,7 +1008,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qglpixelbuffer.h
 %{_includedir}/qt5/Qt/qglshaderprogram.h
 %{_includedir}/qt5/Qt/qtopenglversion.h
-%{_includedir}/qt5/Qt/qglscreen_qws.h
+%{_includedir}/qt5/Qt/qopengl*.h
+#%{_includedir}/qt5/Qt/qglscreen_qws.h
 %{_libdir}/libQtOpenGL.prl
 %{_libdir}/libQtOpenGL.so
 %{_libdir}/pkgconfig/QtOpenGL.pc
@@ -1101,23 +1085,216 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/pkgconfig/QtXml.pc
 %{_datadir}/qt5/mkspecs/modules/qt_xml.pri
 
+%files qtwidgets
+%defattr(-,root,root,-)
+%{_libdir}/libQtWidgets.so.5
+%{_libdir}/libQtWidgets.so.5.*
+
+%files qtwidgets-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtWidgets
+%{_includedir}/qt5/QtWidgets/
+%{_includedir}/qt5/Qt/qaccessible*.h
+%{_includedir}/qt5/Qt/qabstractbutton.h
+%{_includedir}/qt5/Qt/qabstractitemdelegate.h
+%{_includedir}/qt5/Qt/qabstractitemview.h
+%{_includedir}/qt5/Qt/qabstractproxymodel.h
+%{_includedir}/qt5/Qt/qabstractscrollarea.h
+%{_includedir}/qt5/Qt/qabstractslider.h
+%{_includedir}/qt5/Qt/qabstractspinbox.h
+%{_includedir}/qt5/Qt/qaccessiblewidget.h
+%{_includedir}/qt5/Qt/qaction.h
+%{_includedir}/qt5/Qt/qactiongroup.h
+%{_includedir}/qt5/Qt/qapplication.h
+%{_includedir}/qt5/Qt/qboxlayout.h
+%{_includedir}/qt5/Qt/qbuttongroup.h
+%{_includedir}/qt5/Qt/qcalendarwidget.h
+%{_includedir}/qt5/Qt/qcdestyle.h
+%{_includedir}/qt5/Qt/qcheckbox.h
+%{_includedir}/qt5/Qt/qcleanlooksstyle.h
+%{_includedir}/qt5/Qt/qcolordialog.h
+%{_includedir}/qt5/Qt/qcolormap.h
+%{_includedir}/qt5/Qt/qcolumnview.h
+%{_includedir}/qt5/Qt/qcombobox.h
+%{_includedir}/qt5/Qt/qcommandlinkbutton.h
+%{_includedir}/qt5/Qt/qcommonstyle.h
+%{_includedir}/qt5/Qt/qcompleter.h
+%{_includedir}/qt5/Qt/qdatawidgetmapper.h
+%{_includedir}/qt5/Qt/qdatetimeedit.h
+%{_includedir}/qt5/Qt/qdesktopwidget.h
+%{_includedir}/qt5/Qt/qdial.h
+%{_includedir}/qt5/Qt/qdialog.h
+%{_includedir}/qt5/Qt/qdialogbuttonbox.h
+%{_includedir}/qt5/Qt/qdirmodel.h
+%{_includedir}/qt5/Qt/qdockwidget.h
+%{_includedir}/qt5/Qt/qdrawutil.h
+%{_includedir}/qt5/Qt/qerrormessage.h
+%{_includedir}/qt5/Qt/qfiledialog.h
+%{_includedir}/qt5/Qt/qfileiconprovider.h
+%{_includedir}/qt5/Qt/qfilesystemmodel.h
+%{_includedir}/qt5/Qt/qfocusframe.h
+%{_includedir}/qt5/Qt/qfontcombobox.h
+%{_includedir}/qt5/Qt/qfontdialog.h
+%{_includedir}/qt5/Qt/qformlayout.h
+%{_includedir}/qt5/Qt/qframe.h
+%{_includedir}/qt5/Qt/qgesture.h
+%{_includedir}/qt5/Qt/qgesturerecognizer.h
+%{_includedir}/qt5/Qt/qgraphics*.h
+%{_includedir}/qt5/Qt/qgridlayout.h
+%{_includedir}/qt5/Qt/qgroupbox.h
+%{_includedir}/qt5/Qt/qgtkstyle.h
+%{_includedir}/qt5/Qt/qguifunctions_wince.h
+%{_includedir}/qt5/Qt/qheaderview.h
+%{_includedir}/qt5/Qt/qicon.h
+%{_includedir}/qt5/Qt/qiconengine.h
+%{_includedir}/qt5/Qt/qiconengineplugin.h
+%{_includedir}/qt5/Qt/qidentityproxymodel.h
+%{_includedir}/qt5/Qt/qinputcontext.h
+%{_includedir}/qt5/Qt/qinputdialog.h
+%{_includedir}/qt5/Qt/qitemdelegate.h
+%{_includedir}/qt5/Qt/qitemeditorfactory.h
+%{_includedir}/qt5/Qt/qitemselectionmodel.h
+%{_includedir}/qt5/Qt/qkeyeventtransition.h
+%{_includedir}/qt5/Qt/qlabel.h
+%{_includedir}/qt5/Qt/qlayout.h
+%{_includedir}/qt5/Qt/qlayoutitem.h
+%{_includedir}/qt5/Qt/qlcdnumber.h
+%{_includedir}/qt5/Qt/qlineedit.h
+%{_includedir}/qt5/Qt/qlistview.h
+%{_includedir}/qt5/Qt/qlistwidget.h
+%{_includedir}/qt5/Qt/qmaccocoaviewcontainer_mac.h
+%{_includedir}/qt5/Qt/qmacdefines_mac.h
+%{_includedir}/qt5/Qt/qmacnativewidget_mac.h
+%{_includedir}/qt5/Qt/qmacstyle_mac.h
+%{_includedir}/qt5/Qt/qmainwindow.h
+%{_includedir}/qt5/Qt/qmdiarea.h
+%{_includedir}/qt5/Qt/qmdisubwindow.h
+%{_includedir}/qt5/Qt/qmenu.h
+%{_includedir}/qt5/Qt/qmenubar.h
+%{_includedir}/qt5/Qt/qmessagebox.h
+%{_includedir}/qt5/Qt/qmotifstyle.h
+%{_includedir}/qt5/Qt/qmouseeventtransition.h
+%{_includedir}/qt5/Qt/qplaintextedit.h
+%{_includedir}/qt5/Qt/qplastiquestyle.h
+%{_includedir}/qt5/Qt/qplatformmenu_qpa.h
+%{_includedir}/qt5/Qt/qprogressbar.h
+%{_includedir}/qt5/Qt/qprogressdialog.h
+%{_includedir}/qt5/Qt/qproxymodel.h
+%{_includedir}/qt5/Qt/qproxystyle.h
+%{_includedir}/qt5/Qt/qpushbutton.h
+%{_includedir}/qt5/Qt/qradiobutton.h
+%{_includedir}/qt5/Qt/qrubberband.h
+%{_includedir}/qt5/Qt/qs60*.h
+%{_includedir}/qt5/Qt/qscrollarea.h
+%{_includedir}/qt5/Qt/qscrollbar.h
+%{_includedir}/qt5/Qt/qscroller.h
+%{_includedir}/qt5/Qt/qscrollerproperties.h
+%{_includedir}/qt5/Qt/qshortcut.h
+%{_includedir}/qt5/Qt/qsizegrip.h
+%{_includedir}/qt5/Qt/qsizepolicy.h
+%{_includedir}/qt5/Qt/qslider.h
+%{_includedir}/qt5/Qt/qsortfilterproxymodel.h
+%{_includedir}/qt5/Qt/qsound.h
+%{_includedir}/qt5/Qt/qspinbox.h
+%{_includedir}/qt5/Qt/qsplashscreen.h
+%{_includedir}/qt5/Qt/qsplitter.h
+%{_includedir}/qt5/Qt/qstacked*.h
+%{_includedir}/qt5/Qt/qstandarditemmodel.h
+%{_includedir}/qt5/Qt/qstatusbar.h
+%{_includedir}/qt5/Qt/qstringlistmodel.h
+%{_includedir}/qt5/Qt/qstyle*.h
+%{_includedir}/qt5/Qt/qsymbianevent.h
+%{_includedir}/qt5/Qt/qsystemtrayicon.h
+%{_includedir}/qt5/Qt/qtabbar.h
+%{_includedir}/qt5/Qt/qtableview.h
+%{_includedir}/qt5/Qt/qtablewidget.h
+%{_includedir}/qt5/Qt/qtabwidget.h
+%{_includedir}/qt5/Qt/qtextbrowser.h
+%{_includedir}/qt5/Qt/qtextedit.h
+%{_includedir}/qt5/Qt/qtoolbar.h
+%{_includedir}/qt5/Qt/qtoolbox.h
+%{_includedir}/qt5/Qt/qtoolbutton.h
+%{_includedir}/qt5/Qt/qtooltip.h
+%{_includedir}/qt5/Qt/qtreeview.h
+%{_includedir}/qt5/Qt/qtreewidget.h
+%{_includedir}/qt5/Qt/qtreewidgetitemiterator.h
+%{_includedir}/qt5/Qt/qundo*.h
+%{_includedir}/qt5/Qt/qwhatsthis.h
+%{_includedir}/qt5/Qt/qwidget.h
+%{_includedir}/qt5/Qt/qwidgetaction.h
+%{_includedir}/qt5/Qt/qwindowscestyle.h
+%{_includedir}/qt5/Qt/qwindowsmobilestyle.h
+%{_includedir}/qt5/Qt/qwindowsstyle.h
+%{_includedir}/qt5/Qt/qwindowsvistastyle.h
+%{_includedir}/qt5/Qt/qwindowsxpstyle.h
+%{_includedir}/qt5/Qt/qwizard.h
+%{_includedir}/qt5/Qt/qworkspace.h
+%{_includedir}/qt5/Qt/qx11embed_x11.h
+%{_includedir}/qt5/Qt/qx11info_x11.h
+%{_includedir}/qt5/Qt/qtwidgetsversion.h
+%{_libdir}/libQtWidgets.prl
+%{_libdir}/libQtWidgets.so
+%{_libdir}/pkgconfig/QtWidgets.pc
+%{_datadir}/qt5/mkspecs/modules/qt_widgets.pri
+
+%files qtplatformsupport-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtPlatformSupport
+%{_includedir}/qt5/QtPlatformSupport/
+%{_includedir}/qt5/Qt/qtplatformsupportversion.h
+%{_libdir}/libQtPlatformSupport.prl
+%{_libdir}/pkgconfig/QtPlatformSupport.pc
+%{_datadir}/qt5/mkspecs/modules/qt_platformsupport.pri
+
+%files qtprintsupport
+%defattr(-,root,root,-)
+%{_libdir}/libQtPrintSupport.so.5
+%{_libdir}/libQtPrintSupport.so.5.*
+
+%files qtprintsupport-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtPrintSupport
+%{_includedir}/qt5/QtPrintSupport/
+%{_includedir}/qt5/Qt/qtprintsupportversion.h
+%{_libdir}/libQtPrintSupport.prl
+%{_libdir}/libQtPrintSupport.so
+%{_libdir}/pkgconfig/QtPrintSupport.pc
+%{_datadir}/qt5/mkspecs/modules/qt_printsupport.pri
+
+%files qtv8
+%defattr(-,root,root,-)
+%{_libdir}/libQtV8.so.5
+%{_libdir}/libQtV8.so.5.*
+
+%files qtv8-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtV8
+%{_includedir}/qt5/QtV8/
+#%{_includedir}/qt5/Qt/qtv8version.h
+%{_libdir}/libQtV8.prl
+%{_libdir}/libQtV8.so
+%{_libdir}/pkgconfig/QtV8.pc
+%{_datadir}/qt5/mkspecs/modules/qt_v8.pri
+
+
+
 #%files qtuitools
 #%defattr(-,root,root,-)
 #%{_libdir}/libQtUiTools.so.5
 #%{_libdir}/libQtUiTools.so.5.*
 
-%files qtuitools-devel
-%defattr(-,root,root,-)
-%{_includedir}/qt5/QtUiTools/
-%{_libdir}/libQtUiTools.prl
-#%{_libdir}/libQtUiTools.so
-%{_libdir}/pkgconfig/QtUiTools.pc
-%{_datadir}/qt5/mkspecs/modules/qt_uitools.pri
-
-%files qtdesigner-devel
-%defattr(-,root,root,-)
-%{_includedir}/qt5/QtDesigner/
-%{_datadir}/qt5/mkspecs/modules/qt_uilib.pri
+# %files qtuitools-devel
+# %defattr(-,root,root,-)
+# %{_includedir}/qt5/QtUiTools/
+# %{_libdir}/libQtUiTools.prl
+# #%{_libdir}/libQtUiTools.so
+# %{_libdir}/pkgconfig/QtUiTools.pc
+# %{_datadir}/qt5/mkspecs/modules/qt_uitools.pri
+# 
+# %files qtdesigner-devel
+# %defattr(-,root,root,-)
+# %{_includedir}/qt5/QtDesigner/
+# %{_datadir}/qt5/mkspecs/modules/qt_uilib.pri
 
 
 
@@ -1175,17 +1352,17 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libxcb.so
 
-%files plugin-platform-xlib
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/platforms/libqxlib.so
+# %files plugin-platform-xlib
+# %defattr(-,root,root,-)
+# %{_libdir}/qt5/plugins/platforms/libqxlib.so
 
 %files plugin-sqldriver-sqlite
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/sqldrivers/libqsqlite.so
 
-%files plugin-inputmethod-imsw-multi
+%files plugin-platforminputcontext-ibus
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/inputmethods/libqimsw-multi.so
+%{_libdir}/qt5/plugins/platforminputcontexts/libibusplatforminputcontextplugin.so
 
 
 
