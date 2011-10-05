@@ -54,8 +54,8 @@ BuildRequires:  pkgconfig(xt)
 BuildRequires:  pkgconfig(xtst)
 BuildRequires:  pkgconfig(xv)
 BuildRequires:  pkgconfig(zlib)
-BuildRequires:  pkgconfig(wayland-client)
-BuildRequires:  pkgconfig(wayland-egl)
+#BuildRequires:  pkgconfig(wayland-client)
+#BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  cups-devel
 BuildRequires:  fdupes
 BuildRequires:  flex
@@ -194,12 +194,12 @@ Group:      Qt/Qt
 This package contains the minimal platform plugin
 
 
-%package plugin-platform-wayland
-Summary:    Wayland platform plugin
-Group:      Qt/Qt
-
-%description plugin-platform-wayland
-This package contains the wayland platform plugin
+#%package plugin-platform-wayland
+#Summary:    Wayland platform plugin
+#Group:      Qt/Qt
+#
+#%description plugin-platform-wayland
+#This package contains the wayland platform plugin
 
 
 %package plugin-platform-eglfs
@@ -565,10 +565,6 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 %make_install
-### Install v8 headers manually
-##mkdir -p %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include
-##install -m 644 -t %{buildroot}/%{_includedir}/qt5/QtDeclarative/v8/include %{_builddir}/%{name}/src/3rdparty/v8/include/*.h
-
 #
 # Fix wrong path in pkgconfig files
 find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
@@ -1340,9 +1336,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libqminimal.so
 
-%files plugin-platform-wayland
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/platforms/libqwayland.so
+#%files plugin-platform-wayland
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/plugins/platforms/libqwayland.so
 
 %files plugin-platform-eglfs
 %defattr(-,root,root,-)
