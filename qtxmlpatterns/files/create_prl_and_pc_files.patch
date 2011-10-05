@@ -1,13 +1,12 @@
 diff --git a/src/xmlpatterns/xmlpatterns.pro b/src/xmlpatterns/xmlpatterns.pro
-index 1422a0e..8fe8228 100644
+index c1960c7..8584cb1 100644
 --- a/src/xmlpatterns/xmlpatterns.pro
 +++ b/src/xmlpatterns/xmlpatterns.pro
-@@ -11,8 +11,10 @@ MODULE_PRI = ../../modules/qt_xmlpatterns.pri
- DEFINES += QT_BUILD_XMLPATTERNS_LIB \
-     QT_NO_USING_NAMESPACE
+@@ -10,7 +10,10 @@ QT = core-private network
+ 
+ DEFINES += QT_BUILD_XMLPATTERNS_LIB QT_NO_USING_NAMESPACE
  win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x61000000
--unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES = QtCore \
--    QtNetwork
+-unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES = QtCore QtNetwork
 +unix|win32-g++* {
 +    QMAKE_PKGCONFIG_REQUIRES = QtCore QtNetwork
 +    CONFIG += create_prl create_pc
