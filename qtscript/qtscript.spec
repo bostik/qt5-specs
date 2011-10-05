@@ -10,6 +10,7 @@ Source0:    %{name}-%{version}.tar.gz
 Patch0:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
+BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
