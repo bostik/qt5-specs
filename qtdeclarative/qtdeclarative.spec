@@ -1,11 +1,4 @@
 %define _qtmodule_snapshot_version %nil
-%define _v8_snapshot_version %nil
-
-# This package requires an extra source tarball for V8 sources.
-# These extra sources are "manually" extracted in the preparation step
-# and placed directly in src/3rdparty/v8 ; we need the full source tree,
-# not just v8/src since v8base.pri uses other files from the v8 tree
-# besides just the engine itself.
 
 Name:       qt5-qtdeclarative
 Summary:    Qt Declarative library
@@ -15,15 +8,15 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-#Patch0:     include_v8_headers.patch
-Patch1:     create_prl_and_pc_files.patch
+Patch0:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-qttest-devel
-#BuildRequires:  qt5-qtscript-devel
+BuildRequires:  qt5-qtv8-devel
+BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 BuildRequires:  python
@@ -195,16 +188,11 @@ This package contains QML debugging and development tools
 
 
 
-# The manual tar invocation below extracts V8 source tree directly into
-# src/3rdparty/v8 ; the tarball is from embedded V8 submodule in
-# qtdeclarative/src/3rdparty/v8/
-
 #### Build section
 
 %prep
 %setup -q -n %{name}
-#%patch0 -p1
-%patch1 -p1
+%patch0 -p1
 
 
 %build
@@ -268,6 +256,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt/qtdecl*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/qjs*.h
+%{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
@@ -303,6 +292,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_bindir}/qmlplugindump
 %{_bindir}/qmltestrunner
+%{_bindir}/qmlmin
 
 
 
