@@ -193,6 +193,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/pkgconfig/QtSystemInfo.pc
 %{_includedir}/qt5/Qt/QtSystemInfo
 %{_includedir}/qt5/Qt/qtsysteminfoversion.h
+%{_includedir}/qt5/Qt/qsysteminfoglobal.h
 %{_includedir}/qt5/Qt/q*info.h
 %{_includedir}/qt5/Qt/qdeviceprofile.h
 %{_includedir}/qt5/Qt/qscreensaver.h
@@ -237,7 +238,8 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQtPublishSubscribe.so
 %{_libdir}/pkgconfig/QtPublishSubscribe.pc
 %{_includedir}/qt5/Qt/QtPublishSubscribe
-%{_includedir}/qt5/Qt/qtpublishsubscribeversion*.h
+%{_includedir}/qt5/Qt/qtpublishsubscribe*.h
+%{_includedir}/qt5/Qt/qpublishsubscribe*.h
 %{_includedir}/qt5/Qt/qvalue*.h
 %{_includedir}/qt5/QtPublishSubscribe/
 %{_datadir}/qt5/mkspecs/modules/qt_publishsubscribe.pri
