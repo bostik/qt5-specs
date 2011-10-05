@@ -108,20 +108,17 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/libQtSensors.so.5
 %{_libdir}/libQtSensors.so.5.*
-%{_libdir}/libQtmSensors.so.5
-%{_libdir}/libQtmSensors.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtSensors.so
-%{_libdir}/libQtmSensors.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 
 %files -n qt5-qtdeclarative-import-sensors
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/sensors/
+%{_libdir}/qt5/imports/QtSensors/
 
 %files -n qt5-qtdeclarative-import-mobility-sensors
 %defattr(-,root,root,-)
