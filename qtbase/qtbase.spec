@@ -1,6 +1,6 @@
 %define _qtmodule_snapshot_version %nil
 %define _v8_snapshot_version %nil
-%ifarch arvm7l armv7el armv7hl amv7nhl armv7thl armv7tnhl
+%ifarch armv7l armv7el armv7hl amv7nhl armv7thl armv7tnhl
 %define arch_arg armv6
 %endif
 %ifarch i586
