@@ -67,7 +67,8 @@ BuildRequires:  libtiff-devel
 BuildRequires:  pam-devel
 BuildRequires:  readline-devel
 BuildRequires:  sharutils
-BuildRequires:  gdb
+#BuildRequires:  gdb
+BuildRequires:  python
 
 
 %description
@@ -108,7 +109,7 @@ that use the QtCore
 %package qmake
 Summary:    QMake
 Group:      Qt/Qt
-Requires:   gdb
+#Requires:   gdb
 
 %description qmake
 This package contains qmake
@@ -501,6 +502,7 @@ tar -C src/3rdparty -zxf %{SOURCE2}
 %build
 export QT_WAYLAND_GL_CONFIG=wayland_egl
 echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
+#echo "SUBDIRS += xlib" >> src/plugins/platforms/platforms.pro
 #
 ./configure --disable-static \
     -confirm-license \
