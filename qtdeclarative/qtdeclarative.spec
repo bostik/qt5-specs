@@ -9,6 +9,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Patch0:     create_prl_and_pc_files.patch
+Patch10:    particles-shader-fix.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -203,6 +204,7 @@ This package contains QML debugging and development tools
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch10 -p1
 
 
 %build
