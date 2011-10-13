@@ -95,7 +95,7 @@ This package contains the M3U playlist support
 
 %build
 export QTDIR=/usr/share/qt5
-qmake
+qmake qtmultimediakit.pro
 make %{?_smp_flags}
 
 %install
