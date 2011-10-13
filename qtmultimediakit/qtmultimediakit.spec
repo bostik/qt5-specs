@@ -123,22 +123,22 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtMultimediaKit.so.5
-%{_libdir}/libQtMultimediaKit.so.5.*
-%{_libdir}/libQtMultimediaKitWidgets.so.5
-%{_libdir}/libQtMultimediaKitWidgets.so.5.*
+%{_libdir}/libQtMultimedia.so.5
+%{_libdir}/libQtMultimedia.so.5.*
+%{_libdir}/libQtMultimediaWidgets.so.5
+%{_libdir}/libQtMultimediaWidgets.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtMultimediaKit.so
-%{_libdir}/libQtMultimediaKitWidgets.so
+%{_libdir}/libQtMultimedia.so
+%{_libdir}/libQtMultimediaWidgets.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 
 %files -n qt5-qtdeclarative-import-multimedia
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/multimediakit/
+%{_libdir}/qt5/imports/QtMultimedia/
 
 %files plugin-mediaservice-audioengine
 %defattr(-,root,root,-)
@@ -154,7 +154,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files plugin-playlistformats-m3u
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/playlistformats/libqtmultimediakit_m3u.so
+%{_libdir}/qt5/plugins/playlistformats/libqtmultimedia_m3u.so
 
 
 #### No changelog section, separate $pkg.changes contains the history
