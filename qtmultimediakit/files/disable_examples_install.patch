@@ -1,11 +1,11 @@
-diff --git a/qtmultimediakit.pro b/qtmultimediakit.pro
-index 54eb405..71410f7 100644
---- a/qtmultimediakit.pro
-+++ b/qtmultimediakit.pro
-@@ -16,6 +16,5 @@ module_qtmultimediakit_tests.depends = module_qtmultimediakit_src
- module_qtmultimediakit_tests.CONFIG = no_default_target no_default_install
+diff --git a/qtmultimedia.pro b/qtmultimedia.pro
+index 580a98a..8d754e8 100644
+--- a/qtmultimedia.pro
++++ b/qtmultimedia.pro
+@@ -17,6 +17,5 @@ module_qtmultimedia_tests.CONFIG = no_default_install
+ !contains(QT_BUILD_PARTS,tests):module_qtmultimedia_tests.CONFIG += no_default_target
  
- SUBDIRS += module_qtmultimediakit_src \
--           module_qtmultimediakit_examples \
-            module_qtmultimediakit_tests \
+ SUBDIRS += module_qtmultimedia_src \
+-           module_qtmultimedia_examples \
+            module_qtmultimedia_tests \
  
