@@ -82,6 +82,16 @@ This package contains the development headers for legacy QtQuick 1
 QML support library
 
 
+%package qtqmltools-devel
+Summary:    Qt Declarative QtQmlDevTools - development files
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-devel = %{version}-%{release}
+Requires:   qt5-qtdeclarative-devel = %{version}-%{release}
+
+%description qtqmltools-devel
+This package contains the development headers for QtQmlDevTools
+
 
 
 #### Small plugin and import packages
@@ -350,6 +360,14 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQtQuickTest.so
 %{_libdir}/pkgconfig/QtQuickTest.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
+
+%files qtqmltools-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtQmlDevTools
+%{_includedir}/qt5/QtQmlDevTools/
+%{_libdir}/pkgconfig/QtQmlDevTools.pc
+%{_datadir}/qt5/mkspecs/modules/qt_qmldevtools.pri
+
 
 
 
