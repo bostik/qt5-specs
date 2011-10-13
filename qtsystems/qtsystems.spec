@@ -223,7 +223,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtdeclarative-serviceframework
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/serviceframework/
+%{_libdir}/qt5/imports/QtServiceFramework/
 
 
 
