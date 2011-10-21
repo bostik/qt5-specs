@@ -909,7 +909,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qstatictext.h
 %{_includedir}/qt5/Qt/qstatusbar.h
 %{_includedir}/qt5/Qt/qstringlistmodel.h
-%{_includedir}/qt5/Qt/qsymbianevent.h
 %{_includedir}/qt5/Qt/qsyntaxhighlighter.h
 %{_includedir}/qt5/Qt/qsurface*.h
 %{_includedir}/qt5/Qt/qtextcursor.h
@@ -1100,7 +1099,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qabstractscrollarea.h
 %{_includedir}/qt5/Qt/qabstractslider.h
 %{_includedir}/qt5/Qt/qabstractspinbox.h
-%{_includedir}/qt5/Qt/qaccessiblewidget.h
 %{_includedir}/qt5/Qt/qaction.h
 %{_includedir}/qt5/Qt/qactiongroup.h
 %{_includedir}/qt5/Qt/qapplication.h
@@ -1182,7 +1180,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qpushbutton.h
 %{_includedir}/qt5/Qt/qradiobutton.h
 %{_includedir}/qt5/Qt/qrubberband.h
-%{_includedir}/qt5/Qt/qs60*.h
 %{_includedir}/qt5/Qt/qscrollarea.h
 %{_includedir}/qt5/Qt/qscrollbar.h
 %{_includedir}/qt5/Qt/qscroller.h
@@ -1201,7 +1198,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qstatusbar.h
 %{_includedir}/qt5/Qt/qstringlistmodel.h
 %{_includedir}/qt5/Qt/qstyle*.h
-%{_includedir}/qt5/Qt/qsymbianevent.h
 %{_includedir}/qt5/Qt/qsystemtrayicon.h
 %{_includedir}/qt5/Qt/qtabbar.h
 %{_includedir}/qt5/Qt/qtableview.h
