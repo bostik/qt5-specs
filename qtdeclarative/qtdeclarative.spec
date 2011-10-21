@@ -121,13 +121,13 @@ Requires:   %{name} = %{version}-%{release}
 %description import-gestures
 This package provides the QtDeclarative gestures plugin
 
-%package import-inputcontext
-Summary:    Qt Declarative input context plugin
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description import-inputcontext
-This package provides the QtDeclarative input context plugin
+#%package import-inputcontext
+#Summary:    Qt Declarative input context plugin
+#Group:      Qt/Qt
+#Requires:   %{name} = %{version}-%{release}
+#
+#%description import-inputcontext
+#This package provides the QtDeclarative input context plugin
 
 %package import-particles
 Summary:    Qt Declarative particles plugin
@@ -320,9 +320,9 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/labs/gestures/*
 
-%files import-inputcontext
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/labs/inputcontext/*
+#%files import-inputcontext
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/imports/Qt/labs/inputcontext/*
 
 %files import-particles
 %defattr(-,root,root,-)
