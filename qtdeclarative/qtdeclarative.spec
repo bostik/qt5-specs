@@ -268,6 +268,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt/qtdecl*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/qjs*.h
+%{_includedir}/qt5/Qt/qquick*.h
 %{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
