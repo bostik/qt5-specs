@@ -8,10 +8,10 @@ Date:   Thu Oct 13 12:06:56 2011 +0300
     particle shader by explicitly using only float arguments where any
     floats are calculated.
 
-diff --git a/src/declarative/particles/qsgimageparticle.cpp b/src/declarative/particles/qsgimageparticle.cpp
+diff --git a/src/declarative/particles/qquickimageparticle.cpp b/src/declarative/particles/qquickimageparticle.cpp
 index d219fc3..9ef0d2f 100644
---- a/src/declarative/particles/qsgimageparticle.cpp
-+++ b/src/declarative/particles/qsgimageparticle.cpp
+--- a/src/declarative/particles/qquickimageparticle.cpp
++++ b/src/declarative/particles/qquickimageparticle.cpp
 @@ -150,10 +150,10 @@ static const char vertexShaderCode[] =
      "    else if (entry == 2.)\n"
      "        currentSize = currentSize * fadeIn * fadeOut;\n"
