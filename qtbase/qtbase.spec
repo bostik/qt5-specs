@@ -740,6 +740,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qsignaltransition.h
 %{_includedir}/qt5/Qt/qsize.h
 %{_includedir}/qt5/Qt/qsocketnotifier.h
+%{_includedir}/qt5/Qt/qstandardpaths.h
 %{_includedir}/qt5/Qt/qstack.h
 %{_includedir}/qt5/Qt/qstate.h
 %{_includedir}/qt5/Qt/qstatemachine.h
