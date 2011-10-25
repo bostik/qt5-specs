@@ -58,13 +58,13 @@ Requires:   %{name} = %{version}-%{release}
 %description plugin-mediaservice-audioengine
 This package contains the audio engine plugin for media-service
 
-%package plugin-mediaservice-fakeradio
-Summary:    Qt MultimediaKit - fake radio service
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description plugin-mediaservice-fakeradio
-This package contains a fake audio engine plugin for radio service
+#%package plugin-mediaservice-fakeradio
+#Summary:    Qt MultimediaKit - fake radio service
+#Group:      Qt/Qt
+#Requires:   %{name} = %{version}-%{release}
+#
+#%description plugin-mediaservice-fakeradio
+#This package contains a fake audio engine plugin for radio service
 
 # %package plugin-mediaservice-v4lengine
 # Summary:    Qt MultimediaKit - V4L engine for media-service
@@ -144,9 +144,9 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/mediaservice/libqtmedia_audioengine.so
 
-%files plugin-mediaservice-fakeradio
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/mediaservice/libqtmedia_fakeradio.so
+#%files plugin-mediaservice-fakeradio
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/plugins/mediaservice/libqtmedia_fakeradio.so
 
 # %files plugin-mediaservice-v4lengine
 # %defattr(-,root,root,-)
