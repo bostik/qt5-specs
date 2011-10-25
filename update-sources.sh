@@ -12,7 +12,7 @@ if [ x${OBSDIR} = x ]; then
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimediakit"
+QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimediakit qtwayland"
 
 
 # WARNING! WARNING! WARNING!
@@ -121,6 +121,11 @@ fi
 
 # Update source tarballs, patches, specs
 for m in ${QT5_MODULES}; do
+    # Ensure the target OBS directory exists
+    if [ ! -d ${OBSDIR}/${m} ]; then
+        mkdir ${OBSDIR}/${m}
+        osc add ${OBSDIR}/${m}
+    fi
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
