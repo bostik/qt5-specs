@@ -246,7 +246,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtdeclarative-publishsubscribe
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/publishsubscribe/
+%{_libdir}/qt5/imports/QtPublishSubscribe/
 
 
 #### No changelog section, separate $pkg.changes contains the history
