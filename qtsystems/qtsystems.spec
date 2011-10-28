@@ -202,7 +202,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtdeclarative-systeminfo
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/systeminfo/
+%{_libdir}/qt5/imports/QtSystemInfo/
 
 %files -n qt5-qtserviceframework
 %defattr(-,root,root,-)
