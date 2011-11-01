@@ -1,33 +1,8 @@
-commit 4263f9794844216fd9a4219cfe6fc3956ad309ad
-Author: Mika Boström <mika.bostrom@nomovok.com>
-Date:   Thu Oct 13 12:06:56 2011 +0300
-
-    Use floats instead of ints in GLSL
-    
-    Some GLSL implementations treat implicit casts as errors. Fix the
-    particle shader by explicitly using only float arguments where any
-    floats are calculated.
-
 diff --git a/src/declarative/particles/qquickimageparticle.cpp b/src/declarative/particles/qquickimageparticle.cpp
-index d219fc3..9ef0d2f 100644
+index 49bdcb2..f5a5f31 100644
 --- a/src/declarative/particles/qquickimageparticle.cpp
 +++ b/src/declarative/particles/qquickimageparticle.cpp
-@@ -150,10 +150,10 @@ static const char vertexShaderCode[] =
-     "    else if (entry == 2.)\n"
-     "        currentSize = currentSize * fadeIn * fadeOut;\n"
-     "\n"
--    "    if (currentSize <= 0)//Sizes too small look jittery as they move\n"
--    "        currentSize = 0;\n"
--    "    else if (currentSize < 3)\n"
--    "        currentSize = 3;\n"
-+    "    if (currentSize <= 0.)//Sizes too small look jittery as they move\n"
-+    "        currentSize = 0.;\n"
-+    "    else if (currentSize < 3.)\n"
-+    "        currentSize = 3.;\n"
-     "\n"
-     "    highp vec2 pos;\n"
-     "#ifdef DEFORM\n"
-@@ -187,7 +187,7 @@ static const char vertexShaderCode[] =
+@@ -193,7 +193,7 @@ static const char vertexShaderCode[] =
      "          + 0.5 * vVec.zw * pow(t * vData.y, 2.);\n"
      "    gl_PointSize = currentSize;\n"
      "#endif\n"
