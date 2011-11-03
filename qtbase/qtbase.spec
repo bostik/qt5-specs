@@ -203,12 +203,12 @@ This package contains the minimal platform plugin
 #This package contains the wayland platform plugin
 
 
-%package plugin-platform-eglfs
-Summary:    Eglfs platform plugin
-Group:      Qt/Qt
-
-%description plugin-platform-eglfs
-This package contains the eglfs platform plugin
+#%package plugin-platform-eglfs
+#Summary:    Eglfs platform plugin
+#Group:      Qt/Qt
+#
+#%description plugin-platform-eglfs
+#This package contains the eglfs platform plugin
 
 
 %package plugin-platform-xcb
@@ -501,7 +501,7 @@ tar -C src/3rdparty -zxf %{SOURCE2}
 
 %build
 export QT_WAYLAND_GL_CONFIG=wayland_egl
-echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
+#echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
 #echo "SUBDIRS += xlib" >> src/plugins/platforms/platforms.pro
 #
 ./configure --disable-static \
@@ -801,7 +801,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #%{_datadir}/qt5/mkspecs/qws/
 %{_datadir}/qt5/mkspecs/sco-*/
 %{_datadir}/qt5/mkspecs/solaris-*/
-%{_datadir}/qt5/mkspecs/symbian-*/
 %{_datadir}/qt5/mkspecs/tru64-*/
 %{_datadir}/qt5/mkspecs/unixware-*/
 %{_datadir}/qt5/mkspecs/unsupported/
@@ -932,7 +931,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwindowdefs.h
 %{_includedir}/qt5/Qt/qwindowdefs_win.h
 %{_includedir}/qt5/Qt/qwindowsysteminterface_qpa.h
-%{_libdir}/fonts/
 %{_libdir}/libQtGui.prl
 %{_libdir}/libQtGui.so
 %{_libdir}/pkgconfig/QtGui.pc
@@ -1339,9 +1337,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #%defattr(-,root,root,-)
 #%{_libdir}/qt5/plugins/platforms/libqwayland.so
 
-%files plugin-platform-eglfs
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/platforms/libqeglfs.so
+#%files plugin-platform-eglfs
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/plugins/platforms/libqeglfs.so
 
 %files plugin-platform-xcb
 %defattr(-,root,root,-)
