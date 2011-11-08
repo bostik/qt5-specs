@@ -798,7 +798,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/openbsd-*/
 %{_datadir}/qt5/mkspecs/qconfig.pri
 %{_datadir}/qt5/mkspecs/qmodule.pri
-#%{_datadir}/qt5/mkspecs/qws/
 %{_datadir}/qt5/mkspecs/sco-*/
 %{_datadir}/qt5/mkspecs/solaris-*/
 %{_datadir}/qt5/mkspecs/tru64-*/
@@ -861,7 +860,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qgenericmatrix.h
 %{_includedir}/qt5/Qt/qgenericplugin*.h
 %{_includedir}/qt5/Qt/qglyphrun.h
-%{_includedir}/qt5/Qt/qguifunctions_*.h
 %{_includedir}/qt5/Qt/qguiapplication.h
 %{_includedir}/qt5/Qt/qinputpanel.h
 %{_includedir}/qt5/Qt/qimage*.h
@@ -954,13 +952,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qtcpserver.h
 %{_includedir}/qt5/Qt/qtcpsocket.h
 %{_includedir}/qt5/Qt/qudpsocket.h
-%{_includedir}/qt5/Qt/qssl.h
-%{_includedir}/qt5/Qt/qsslcertificate.h
-%{_includedir}/qt5/Qt/qsslcipher.h
-%{_includedir}/qt5/Qt/qsslconfiguration.h
-%{_includedir}/qt5/Qt/qsslerror.h
-%{_includedir}/qt5/Qt/qsslkey.h
-%{_includedir}/qt5/Qt/qsslsocket.h
+%{_includedir}/qt5/Qt/qssl*.h
 %{_includedir}/qt5/Qt/qnetworkconfigmanager.h
 %{_includedir}/qt5/Qt/qnetworkconfiguration.h
 %{_includedir}/qt5/Qt/qnetworksession.h
@@ -1005,7 +997,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qglshaderprogram.h
 %{_includedir}/qt5/Qt/qtopenglversion.h
 %{_includedir}/qt5/Qt/qopengl*.h
-#%{_includedir}/qt5/Qt/qglscreen_qws.h
 %{_libdir}/libQtOpenGL.prl
 %{_libdir}/libQtOpenGL.so
 %{_libdir}/pkgconfig/QtOpenGL.pc
@@ -1138,7 +1129,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qgridlayout.h
 %{_includedir}/qt5/Qt/qgroupbox.h
 %{_includedir}/qt5/Qt/qgtkstyle.h
-%{_includedir}/qt5/Qt/qguifunctions_wince.h
 %{_includedir}/qt5/Qt/qheaderview.h
 %{_includedir}/qt5/Qt/qicon.h
 %{_includedir}/qt5/Qt/qiconengine.h
@@ -1222,8 +1212,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwindowsxpstyle.h
 %{_includedir}/qt5/Qt/qwizard.h
 %{_includedir}/qt5/Qt/qworkspace.h
-%{_includedir}/qt5/Qt/qx11embed_x11.h
-%{_includedir}/qt5/Qt/qx11info_x11.h
 %{_includedir}/qt5/Qt/qtwidgetsversion.h
 %{_libdir}/libQtWidgets.prl
 %{_libdir}/libQtWidgets.so
@@ -1263,7 +1251,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtV8
 %{_includedir}/qt5/QtV8/
-#%{_includedir}/qt5/Qt/qtv8version.h
 %{_libdir}/libQtV8.prl
 %{_libdir}/libQtV8.so
 %{_libdir}/pkgconfig/QtV8.pc
