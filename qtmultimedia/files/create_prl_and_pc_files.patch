@@ -1,16 +1,16 @@
 diff --git a/src/multimedia/multimedia.pro b/src/multimedia/multimedia.pro
-index 3d5fd77..513ce40 100644
+index e8ea8e4..49a977e 100644
 --- a/src/multimedia/multimedia.pro
 +++ b/src/multimedia/multimedia.pro
-@@ -9,7 +9,10 @@ MODULE_PRI = ../../modules/qt_multimedia.pri
+@@ -15,6 +15,11 @@ contains(QT_CONFIG, opengl) | contains(QT_CONFIG, opengles2) {
+ !static:DEFINES += QT_MAKEDLL
+ DEFINES += QT_BUILD_MULTIMEDIA_LIB
  
- DEFINES += QT_BUILD_MULTIMEDIA_LIB QT_NO_USING_NAMESPACE
- 
--unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
 +unix|win32-g++* {
-+    QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
++    QMAKE_PKGCONFIG_REQUIRES = QtCore QtNetwork QtGui QtWidgets
 +    CONFIG += create_prl create_pc
 +}
- 
++
  load(qt_module_config)
  
+ HEADERS += qtmultimediaversion.h

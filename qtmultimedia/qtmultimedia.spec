@@ -11,7 +11,10 @@ Patch0:     disable_demos_and_examples.patch
 Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
+BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
+BuildRequires:  qt5-qtnetwork-devel
+BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  fdupes
@@ -35,6 +38,31 @@ write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
 This package contains the QtMultimedia module development files
+
+%package -n qt5-qtdeclarative-import-multimedia
+Summary:    QtDeclarative multimedia import
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-declarative
+
+%description -n qt5-qtdeclarative-import-multimedia
+This package contains the Multimedia import for QtDeclarative
+
+%package plugin-mediaservice-audioengine
+Summary:    Qt Multimedia - audio engine media-service
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-mediaservice-audioengine
+This package contains the audio engine plugin for media-service
+
+%package plugin-playlistformats-m3u
+Summary:    Qt Multimedia - M3U playlist support
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-playlistformats-m3u
+This package contains the M3U playlist support
 
 
 
@@ -82,16 +110,30 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %defattr(-,root,root,-)
 %{_libdir}/libQtMultimedia.so.5
 %{_libdir}/libQtMultimedia.so.5.*
+%{_libdir}/libQtMultimediaWidgets.so.5
+%{_libdir}/libQtMultimediaWidgets.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtMultimedia.so
+%{_libdir}/libQtMultimediaWidgets.so
 %{_libdir}/libQtMultimedia.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 
 
+%files -n qt5-qtdeclarative-import-multimedia
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtMultimedia/
+
+%files plugin-mediaservice-audioengine
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/mediaservice/libqtmedia_audioengine.so
+
+%files plugin-playlistformats-m3u
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/playlistformats/libqtmultimedia_m3u.so
 
 
 #### No changelog section, separate $pkg.changelog contains the history
