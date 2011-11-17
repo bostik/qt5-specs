@@ -1,18 +1,10 @@
 diff --git a/qtsystems.pro b/qtsystems.pro
-index 7a94ebc..1dd173b 100644
+index b3a101d..5d3f75d 100644
 --- a/qtsystems.pro
 +++ b/qtsystems.pro
-@@ -7,6 +7,7 @@ module_qtsystems_src.target = module-qtsystems-src
- module_qtsystems_tests.subdir = tests
- module_qtsystems_tests.target = module-qtsystems-tests
- module_qtsystems_tests.depends = module_qtsystems_src
-+module_qtsystems_tests.CONFIG = no_default_install
- !contains(QT_BUILD_PARTS,tests):!with-tests {
-     module_qtsystems_tests.CONFIG = no_default_target no_default_install
- }
-@@ -14,6 +15,7 @@ module_qtsystems_tests.depends = module_qtsystems_src
+@@ -15,6 +15,7 @@ module_qtsystems_tests.CONFIG = no_default_install
  module_qtsystems_examples.subdir = examples
- module_qtsystems_examples.target = module-qtsystems-exampels
+ module_qtsystems_examples.target = module-qtsystems-examples
  module_qtsystems_examples.depends = module_qtsystems_src
 +module_qtsystems_examples.CONFIG = no_default_install
  !contains(QT_BUILD_PARTS,examples):!with-examples {
