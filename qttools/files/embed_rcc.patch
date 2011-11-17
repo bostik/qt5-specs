@@ -1160,13 +1160,13 @@ index 0000000..534f2ac
 +HEADERS += $$PWD/rcc.h
 +SOURCES += $$PWD/rcc.cpp
 diff --git a/src/designer/src/lib/shared/shared.pri b/src/designer/src/lib/shared/shared.pri
-index 63ba687..ecee6cc 100644
+index 49029ad..6a79b81 100644
 --- a/src/designer/src/lib/shared/shared.pri
 +++ b/src/designer/src/lib/shared/shared.pri
-@@ -7,7 +7,8 @@ contains(QT_CONFIG, script): QT += script
- include(../../../../shared/qtpropertybrowser/qtpropertybrowserutils.pri)
- include(../../../../shared/deviceskin/deviceskin.pri)
+@@ -14,7 +14,8 @@ contains(CONFIG, static) {
+ }
  
+ include(../../../../shared/deviceskin/deviceskin.pri)
 -include($$QT.core.sources/../tools/rcc/rcc.pri)
 +# Use embedded copy
 +include(rcc/rcc.pri)
