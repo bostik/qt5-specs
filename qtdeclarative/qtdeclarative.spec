@@ -220,6 +220,8 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
+# Manually copy qmldevtools static library
+cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 
@@ -368,6 +370,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtQmlDevTools
 %{_includedir}/qt5/QtQmlDevTools/
+%{_libdir}/libQtQmlDevTools.a
 %{_libdir}/pkgconfig/QtQmlDevTools.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmldevtools.pri
 
