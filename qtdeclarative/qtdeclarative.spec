@@ -345,7 +345,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files import-qtquick1plugin
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick/
+%{_libdir}/qt5/imports/QtQuick.1/
 
 
 
