@@ -709,6 +709,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qnamespace.h
 %{_includedir}/qt5/Qt/qnumeric.h
 %{_includedir}/qt5/Qt/qobject.h
+%{_includedir}/qt5/Qt/qobject_impl.h
 %{_includedir}/qt5/Qt/qobjectcleanuphandler.h
 %{_includedir}/qt5/Qt/qobjectdefs.h
 %{_includedir}/qt5/Qt/qpair.h
