@@ -804,7 +804,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/tru64-*/
 %{_datadir}/qt5/mkspecs/unixware-*/
 %{_datadir}/qt5/mkspecs/unsupported/
-%{_datadir}/qt5/mkspecs/win32-borland/
 %{_datadir}/qt5/mkspecs/win32-g++/
 %{_datadir}/qt5/mkspecs/win32-icc/
 %{_datadir}/qt5/mkspecs/win32-msvc20*/
