@@ -121,6 +121,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
+%{_libdir}/cmake/
 
 
 %files -n qt5-qtdeclarative-import-multimedia

@@ -199,6 +199,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt/qscreensaver.h
 %{_includedir}/qt5/QtSystemInfo/
 %{_datadir}/qt5/mkspecs/modules/qt_systeminfo.pri
+%{_libdir}/cmake/Qt5SystemInfo/
 
 %files -n qt5-qtdeclarative-systeminfo
 %defattr(-,root,root,-)
@@ -220,6 +221,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt/qservice*.h
 %{_includedir}/qt5/QtServiceFramework/
 %{_datadir}/qt5/mkspecs/modules/qt_serviceframework.pri
+%{_libdir}/cmake/Qt5ServiceFramework/
 
 %files -n qt5-qtdeclarative-serviceframework
 %defattr(-,root,root,-)
@@ -243,6 +245,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt/qvalue*.h
 %{_includedir}/qt5/QtPublishSubscribe/
 %{_datadir}/qt5/mkspecs/modules/qt_publishsubscribe.pri
+%{_libdir}/cmake/Qt5PublishSubscribe/
 
 %files -n qt5-qtdeclarative-publishsubscribe
 %defattr(-,root,root,-)

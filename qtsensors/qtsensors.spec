@@ -123,6 +123,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
+%{_libdir}/cmake/
 
 %files -n qt5-qtdeclarative-import-sensors
 %defattr(-,root,root,-)

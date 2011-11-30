@@ -777,6 +777,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtCore.so
 %{_libdir}/pkgconfig/QtCore.pc
 %{_datadir}/qt5/mkspecs/modules/qt_core.pri
+%{_libdir}/cmake/
+%{_datadir}/qt5/mkspecs/cmake/
 
 %files qmake
 %defattr(-,root,root,-)

@@ -275,6 +275,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
+%{_libdir}/cmake/
 
 %files qtquick1
 %defattr(-,root,root,-)

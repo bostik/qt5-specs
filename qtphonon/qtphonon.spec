@@ -99,6 +99,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libphonon.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/phonon/
+%{_libdir}/cmake/
 
 %files plugin-gstreamer
 %defattr(-,root,root,-)

@@ -96,6 +96,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/
 %{_datadir}/qt5/mkspecs/
+%{_libdir}/cmake/
 
 
 #### No changelog section, separate $pkg.changes contains the history
