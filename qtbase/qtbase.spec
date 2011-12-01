@@ -775,6 +775,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qvarlengtharray.h
 %{_includedir}/qt5/Qt/qvector.h
 %{_includedir}/qt5/Qt/qwaitcondition.h
+%{_includedir}/qt5/Qt/qwineventnotifier.h
 %{_includedir}/qt5/Qt/qxmlstream.h
 %{_includedir}/qt5/QtCore/
 %{_libdir}/libQtCore.prl
