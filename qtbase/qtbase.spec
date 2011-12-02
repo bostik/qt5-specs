@@ -27,6 +27,7 @@ Source2:    v8-%{_v8_snapshot_version}.tar.gz
 Source100:  qtbase-rpmlintrc
 Patch0:     eglfs-must-dep-on-egl.patch
 Patch1:     install-qtmodule-configtests.patch
+Patch2:     do-not-assume-hard-float-for-v8.patch
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(egl)
@@ -497,6 +498,7 @@ applications that use QtV8
 tar -C src/3rdparty -zxf %{SOURCE2}
 %patch0 -p2
 %patch1 -p1
+%patch2 -p1
 
 
 %build
