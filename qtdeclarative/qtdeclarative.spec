@@ -63,6 +63,24 @@ Requires:   qt5-qtdeclarative-qtquicktest = %{version}-%{release}
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
 
+%package qtquick
+Summary:    Qt Declarative - QtQuick library
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description qtquick
+This package contains the QtQuick QML support library
+
+%package qtquick-devel
+Summary:    Qt Declarative - QtQuick development files
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-qtdeclarative-qtquick = %{version}-%{release}
+
+%description qtquick-devel
+This package contains the development headers for legacy QtQuick 1
+QML support library
+
 %package qtquick1
 Summary:    Qt Declarative - legacy QtQuick1 library
 Group:      Qt/Qt
@@ -161,6 +179,13 @@ Requires:   %{name} = %{version}-%{release}
 %description import-qtquick1plugin
 This package provides the legacy QtQuick 1 support plugin
 
+%package import-qtquick2plugin
+Summary:    Qt Declarative QtQuick 2 support plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description import-qtquick2plugin
+This package provides the QtQuick 2 support plugin
 
 %package import-qttest
 Summary:    Qt Declarative QtTest plugin
@@ -246,6 +271,10 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 /sbin/ldconfig
 
 
+%post qtquick
+/sbin/ldconfig
+%postun qtquick
+/sbin/ldconfig
 
 
 
@@ -270,12 +299,31 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/qtdecl*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/qjs*.h
-%{_includedir}/qt5/Qt/qquick*.h
 %{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtDeclarative
+%{_includedir}/qt5/Qt/QSG*
 %{_includedir}/qt5/QtDeclarative/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
 %{_libdir}/cmake/
+
+
+%files qtquick
+%defattr(-,root,root,-)
+%{_libdir}/libQtQuick.so.5
+%{_libdir}/libQtQuick.so.5.*
+
+%files qtquick-devel
+%defattr(-,root,root,-)
+%{_libdir}/libQtQuick.so
+%{_libdir}/pkgconfig/QtQuick.pc
+%{_includedir}/qt5/Qt/qtquickversion.h
+%{_includedir}/qt5/Qt/qtquickglobal.h
+%{_includedir}/qt5/Qt/qquick*.h
+%{_includedir}/qt5/Qt/QQuick*
+%{_includedir}/qt5/Qt/QtQuick
+%{_includedir}/qt5/QtQuick/
+%{_datadir}/qt5/mkspecs/modules/qt_quick.pri
+
 
 %files qtquick1
 %defattr(-,root,root,-)
@@ -347,6 +395,10 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %files import-qtquick1plugin
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtQuick.1/
+
+%files import-qtquick2plugin
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtQuick.2/
 
 
 

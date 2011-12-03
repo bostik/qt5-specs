@@ -15,6 +15,7 @@ BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtdeclarative-devel
+BuildRequires:  qt5-qtdeclarative-qtquick-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  fdupes

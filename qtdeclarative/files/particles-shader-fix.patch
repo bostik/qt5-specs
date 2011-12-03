@@ -1,8 +1,8 @@
-diff --git a/src/declarative/particles/qquickimageparticle.cpp b/src/declarative/particles/qquickimageparticle.cpp
-index 49bdcb2..f5a5f31 100644
---- a/src/declarative/particles/qquickimageparticle.cpp
-+++ b/src/declarative/particles/qquickimageparticle.cpp
-@@ -193,7 +193,7 @@ static const char vertexShaderCode[] =
+diff --git a/src/quick/particles/qquickimageparticle.cpp b/src/quick/particles/qquickimageparticle.cpp
+index 3453dd6..69dcc90 100644
+--- a/src/quick/particles/qquickimageparticle.cpp
++++ b/src/quick/particles/qquickimageparticle.cpp
+@@ -194,7 +194,7 @@ static const char vertexShaderCode[] =
      "          + 0.5 * vVec.zw * pow(t * vData.y, 2.);\n"
      "    gl_PointSize = currentSize;\n"
      "#endif\n"
