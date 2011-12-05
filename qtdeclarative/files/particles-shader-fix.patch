@@ -1,13 +1,13 @@
 diff --git a/src/quick/particles/qquickimageparticle.cpp b/src/quick/particles/qquickimageparticle.cpp
-index 3453dd6..69dcc90 100644
+index e45f2ed..99b4d0f 100644
 --- a/src/quick/particles/qquickimageparticle.cpp
 +++ b/src/quick/particles/qquickimageparticle.cpp
-@@ -194,7 +194,7 @@ static const char vertexShaderCode[] =
-     "          + 0.5 * vVec.zw * pow(t * vData.y, 2.);\n"
-     "    gl_PointSize = currentSize;\n"
+@@ -188,7 +188,7 @@ static const char vertexShaderCode[] =
+     "                  + 0.5 * vVec.zw * pow(t * vData.y, 2.);\n"
+     "            gl_PointSize = currentSize;\n"
      "#endif\n"
--    "    gl_Position = qt_Matrix * vec4(pos.x, pos.y, 0, 1);\n"
-+    "    gl_Position = qt_Matrix * vec4(pos.x, pos.y, 0., 1.);\n"
+-    "            gl_Position = qt_Matrix * vec4(pos.x, pos.y, 0, 1);\n"
++    "            gl_Position = qt_Matrix * vec4(pos.x, pos.y, 0., 1.);\n"
      "\n"
-     "#ifdef COLOR\n"
-     "    fColor = vColor * fade;\n"
+     "#if defined(COLOR)\n"
+     "            fColor = vColor * fade;\n"
