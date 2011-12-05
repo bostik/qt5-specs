@@ -676,6 +676,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qdebug.h
 %{_includedir}/qt5/Qt/qdir.h
 %{_includedir}/qt5/Qt/qdiriterator.h
+%{_includedir}/qt5/Qt/qtemporarydir.h
 %{_includedir}/qt5/Qt/qeasingcurve.h
 %{_includedir}/qt5/Qt/qelapsedtimer.h
 %{_includedir}/qt5/Qt/qendian.h
