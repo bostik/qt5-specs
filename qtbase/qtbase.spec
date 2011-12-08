@@ -903,7 +903,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qsizegrip.h
 %{_includedir}/qt5/Qt/qsizepolicy.h
 %{_includedir}/qt5/Qt/qslider.h
-%{_includedir}/qt5/Qt/qsound*.h
 %{_includedir}/qt5/Qt/qspinbox.h
 %{_includedir}/qt5/Qt/qsplashscreen.h
 %{_includedir}/qt5/Qt/qsplitter.h
@@ -1183,7 +1182,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qsizepolicy.h
 %{_includedir}/qt5/Qt/qslider.h
 %{_includedir}/qt5/Qt/qsortfilterproxymodel.h
-%{_includedir}/qt5/Qt/qsound.h
 %{_includedir}/qt5/Qt/qspinbox.h
 %{_includedir}/qt5/Qt/qsplashscreen.h
 %{_includedir}/qt5/Qt/qsplitter.h
