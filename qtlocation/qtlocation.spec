@@ -9,12 +9,14 @@ URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Patch0:     disable_demos_and_examples.patch
 Patch1:     create_prl_and_pc_files.patch
+Patch2:     mapsgl-define-gl-depth.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtdeclarative-devel
+BuildRequires:  qt5-qtdeclarative-qtquick-devel
 BuildRequires:  qt5-qtdeclarative-qtquick1-devel
 BuildRequires:  qt5-qtquick3d-devel
 BuildRequires:  qt5-qmake
@@ -64,6 +66,7 @@ This package contains the geoservices plugin for Nokia devices
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 
 %build
@@ -113,10 +116,11 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
+%{_libdir}/cmake/Qt5Location/
 
 %files -n qt5-qtdeclarative-import-location
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/location/
+%{_libdir}/qt5/imports/QtLocation/
 
 %files plugin-geoservices-nokia
 %defattr(-,root,root,-)
