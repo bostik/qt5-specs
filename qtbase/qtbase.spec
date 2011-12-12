@@ -694,6 +694,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qglobal.h
 %{_includedir}/qt5/Qt/qhash.h
 %{_includedir}/qt5/Qt/qhistorystate.h
+%{_includedir}/qt5/Qt/qtouchdevice.h
 %{_includedir}/qt5/Qt/qiodevice.h
 %{_includedir}/qt5/Qt/qiterator.h
 %{_includedir}/qt5/Qt/qlibrary.h
