@@ -1,0 +1,25 @@
+From 9ee87d8fde0efe5eac5984351ca836b55df7db91 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Mon, 12 Dec 2011 09:35:18 +0200
+Subject: [PATCH 08/13] Use header includes for bezier plugin
+
+---
+ src/plugins/sceneformats/bezier/bezier.pro |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/src/plugins/sceneformats/bezier/bezier.pro b/src/plugins/sceneformats/bezier/bezier.pro
+index 50acdb3..dc617e8 100644
+--- a/src/plugins/sceneformats/bezier/bezier.pro
++++ b/src/plugins/sceneformats/bezier/bezier.pro
+@@ -9,6 +9,7 @@ SOURCES += main.cpp \
+ 
+ QT += qt3d
+ 
+-DESTDIR = $$QT.qt3d.plugins/sceneformats
++include(../../../threed/includes.pri)
++
+ target.path = $$[QT_INSTALL_PLUGINS]/sceneformats
+ INSTALLS += target
+-- 
+1.7.7.3
+

@@ -1,0 +1,24 @@
+From f9646c1fae306ab957c12adb78c82b5bf74aa9f8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Mon, 12 Dec 2011 11:00:06 +0200
+Subject: [PATCH 10/13] Use header includes for tga plugin
+
+---
+ src/plugins/imageformats/tga/tga.pro |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/plugins/imageformats/tga/tga.pro b/src/plugins/imageformats/tga/tga.pro
+index d3dfc0b..9dc836a 100644
+--- a/src/plugins/imageformats/tga/tga.pro
++++ b/src/plugins/imageformats/tga/tga.pro
+@@ -6,6 +6,6 @@ SOURCES += main.cpp \
+     qtgahandler.cpp \
+     qtgafile.cpp
+ 
+-DESTDIR = $$QT.qt3d.plugins/imageformats
++include(../../../threed/includes.pri)
+ target.path = $$[QT_INSTALL_PLUGINS]/imageformats
+ INSTALLS += target
+-- 
+1.7.7.3
+

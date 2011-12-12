@@ -1,0 +1,26 @@
+From 74e1acbc0c3a6dc7ba46dfb4ddcbb98df18de03f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Mon, 12 Dec 2011 10:40:10 +0200
+Subject: [PATCH 09/13] Use header includes for assimp plugin
+
+---
+ src/plugins/sceneformats/assimp/assimp.pro |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/src/plugins/sceneformats/assimp/assimp.pro b/src/plugins/sceneformats/assimp/assimp.pro
+index 2f6dcc1..a1326e2 100644
+--- a/src/plugins/sceneformats/assimp/assimp.pro
++++ b/src/plugins/sceneformats/assimp/assimp.pro
+@@ -16,7 +16,8 @@ SOURCES += main.cpp \
+ 
+ QT += qt3d
+ 
+-DESTDIR = $$QT.qt3d.plugins/sceneformats
++include(../../../threed/includes.pri)
++
+ target.path = $$[QT_INSTALL_PLUGINS]/sceneformats
+ INSTALLS += target
+ 
+-- 
+1.7.7.3
+

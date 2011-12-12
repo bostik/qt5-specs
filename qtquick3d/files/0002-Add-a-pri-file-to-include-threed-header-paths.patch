@@ -1,0 +1,35 @@
+From 6033018b1aaf155279387e488825c74b49d34712 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Mon, 12 Dec 2011 09:02:57 +0200
+Subject: [PATCH 02/13] Add a pri-file to include threed header paths
+
+Including threed/includes.pri will now provide all required paths.
+---
+ src/threed/includes.pri |   15 +++++++++++++++
+ 1 files changed, 15 insertions(+), 0 deletions(-)
+ create mode 100644 src/threed/includes.pri
+
+diff --git a/src/threed/includes.pri b/src/threed/includes.pri
+new file mode 100644
+index 0000000..a7893e5
+--- /dev/null
++++ b/src/threed/includes.pri
+@@ -0,0 +1,15 @@
++# Add everything in threed/* to include paths
++INCLUDEPATH += $$PWD/../quick3d
++INCLUDEPATH += $$PWD/scene
++INCLUDEPATH += $$PWD/effects
++INCLUDEPATH += $$PWD/geometry
++INCLUDEPATH += $$PWD/arrays
++INCLUDEPATH += $$PWD/global
++INCLUDEPATH += $$PWD/math3d
++INCLUDEPATH += $$PWD/materials
++INCLUDEPATH += $$PWD/textures
++INCLUDEPATH += $$PWD/painting
++INCLUDEPATH += $$PWD/surfaces
++INCLUDEPATH += $$PWD/viewing
++INCLUDEPATH += $$PWD/graphicsview
++
+-- 
+1.7.7.3
+

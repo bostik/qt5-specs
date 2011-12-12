@@ -1,0 +1,29 @@
+From 6bb68a36e5d2ca0b0862bd540d52596b463ebad6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Mon, 12 Dec 2011 09:18:11 +0200
+Subject: [PATCH 04/13] Fix quick3d include path
+
+In-tree builds require that we provide include and library paths as
+relative items. We must not assume that components are available
+somewhere in the system.
+---
+ src/quick3d/quick3d.pro |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+diff --git a/src/quick3d/quick3d.pro b/src/quick3d/quick3d.pro
+index e84f5a4..1dd3409 100644
+--- a/src/quick3d/quick3d.pro
++++ b/src/quick3d/quick3d.pro
+@@ -19,6 +19,9 @@ gcov {
+ 
+ include(quick3d.pri)
+ 
++INCLUDEPATH += ../../include/Qt3D
++LIBS += -L../threed -lQt3D
++
+ PUBLIC_HEADERS = $$HEADERS
+ HEADERS += $$PRIVATE_HEADERS
+ DEFINES += QT_BUILD_QT3D_QUICK_LIB
+-- 
+1.7.7.3
+

@@ -1,0 +1,25 @@
+From ed93046ca0459fdd59c087233510760d065a4021 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Mon, 12 Dec 2011 14:00:45 +0200
+Subject: [PATCH 13/13] Install QtQuick3D public headers
+
+---
+ src/quick3d/quick3d.pro |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+diff --git a/src/quick3d/quick3d.pro b/src/quick3d/quick3d.pro
+index 1dd3409..1bc812e 100644
+--- a/src/quick3d/quick3d.pro
++++ b/src/quick3d/quick3d.pro
+@@ -27,3 +27,8 @@ HEADERS += $$PRIVATE_HEADERS
+ DEFINES += QT_BUILD_QT3D_QUICK_LIB
+ 
+ !contains(QT_CONFIG, egl):DEFINES += QT_NO_EGL
++
++devel.files = $$PUBLIC_HEADERS
++devel.path = $${QT_INSTALL_HEADERS]/$$TARGET
++
++INSTALLS += devel
+-- 
+1.7.7.3
+
