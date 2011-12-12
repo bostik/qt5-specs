@@ -12,8 +12,7 @@ if [ x${OBSDIR} = x ]; then
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtquick3d qtwayland"
-
+QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qtquick3d"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources
@@ -85,12 +84,13 @@ function update_changelog() {
 
 # GIT_DIR has been set when this function is called
 function get_version() {
+    local _ref=$1
     if ! git describe >/dev/null 2>&1; then
-        count=$(git rev-list origin/HEAD | wc -l)
-        realcommitid=$(git describe --always)
+        count=$(git rev-list ${_ref} | wc -l)
+        realcommitid=$(git describe --always ${_ref})
         commitid=$count.g$realcommitid
     else
-        commitid=$(expr match $(git describe) '.*-\([0-9]*-g[a-z0-9]*\)$' \
+        commitid=$(expr match $(git describe ${_ref}) '.*-\([0-9]*-g[a-z0-9]*\)$' \
                 | tr - .)
     fi
     echo $commitid
@@ -126,15 +126,21 @@ for m in ${QT5_MODULES}; do
         mkdir ${OBSDIR}/${m}
         osc add ${OBSDIR}/${m}
     fi
+    # Git ref to archive. We need to use a different one for
+    # qtquick3d in order to satisfy qtlocation dependencies
+    _gitref="origin/HEAD"
+    if [ ${m} = "qtquick3d" ]; then
+        _gitref="origin/qml2"
+    fi
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
-    head=$(git show origin/HEAD | head -n 1 | sed s'/^commit //')
-    ver=$(get_version)
+    head=$(git show ${_gitref} | head -n 1 | sed s'/^commit //')
+    ver=$(get_version ${_gitref})
     if [ "${head}" != "${last}" ]; then
         # New revision. Remove old sources before recreating new.
         rm -fv ${OBSDIR}/${m}/${bn}*.tar.gz
-        git archive origin/HEAD --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
+        git archive ${_gitref} --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
         # Add this version to changelog
