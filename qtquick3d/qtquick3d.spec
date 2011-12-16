@@ -7,19 +7,9 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     0001-Update-to-match-class-renames.patch
-Patch2:     0002-Add-a-pri-file-to-include-threed-header-paths.patch
-Patch3:     0003-Add-build-fixes-to-QtQuick3D-imports.patch
-Patch4:     0004-Fix-quick3d-include-path.patch
-Patch5:     0005-Use-load-operator-for-atomic-int.patch
-Patch6:     0006-Add-missing-QWindow-include.patch
-Patch7:     0007-Use-QQuick-item-names.patch
-Patch8:     0008-Use-header-includes-for-bezier-plugin.patch
-Patch9:     0009-Use-header-includes-for-assimp-plugin.patch
-Patch10:    0010-Use-header-includes-for-tga-plugin.patch
-Patch11:    0011-Remove-extra-stuff-from-build.patch
-Patch12:    0012-Install-public-headers.patch
-Patch13:    0013-Install-QtQuick3D-public-headers.patch
+Patch1:     0001-Fix-build-in-dedicated-buildroot.patch
+Patch2:     0002-Install-development-headers.patch
+Patch3:     0003-Remove-demos-and-examples-from-install.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -41,6 +31,7 @@ This package contains the Qt Quick 3D library
 Summary:        Qt Quick 3D - development files
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}-qt3d-devel = %{version}-%{release}
 
 %description devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -48,6 +39,30 @@ write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt Quick 3D development files
+
+%package qt3d
+Summary:        Qt Quick 3D - core library
+Group:          Qt/Qt
+Requires:       %{name} = %{version}-%{release}
+
+%description qt3d
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt Quick 3D core library
+
+%package qt3d-devel
+Summary:        Qt Quick 3D - core development headers
+Group:          Qt/Qt
+Requires:       %{name} = %{version}-%{release}
+
+%description qt3d-devel
+Qt is a cross-platform application and UI framework. Using Qt, you can
+write web-enabled applications once and deploy them across desktop,
+mobile and embedded systems without rewriting the source code.
+.
+This package contains the Qt Quick 3D core development headers
 
 
 %package plugin-imageformat-tga
@@ -99,16 +114,6 @@ This package contains the Qt3D import for QtDeclarative
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
 
 
 %build
@@ -131,24 +136,40 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %postun
 /sbin/ldconfig
 
+%post qt3d
+/sbin/ldconfig
+%postun qt3d
+/sbin/ldconfig
+
+
 #### File section
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQt3D.so.5
-%{_libdir}/libQt3D.so.5.*
 %{_libdir}/libQt3DQuick.so.5
 %{_libdir}/libQt3DQuick.so.5.*
 
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt3D.so
 %{_libdir}/libQt3DQuick.so
-%{_includedir}/qt5/Qt3D/
-%{_libdir}/pkgconfig/
-%{_datadir}/qt5/mkspecs/
+%{_includedir}/qt5/Qt3DQuick/
+%{_libdir}/pkgconfig/Qt3DQuick.pc
+%{_datadir}/qt5/mkspecs/features/qt3d.prf
+%{_datadir}/qt5/mkspecs/modules/qt_qt3d.pri
 
+%files qt3d
+%defattr(-,root,root,-)
+%{_libdir}/libQt3D.so.5
+%{_libdir}/libQt3D.so.5.*
+
+%files qt3d-devel
+%defattr(-,root,root,-)
+%{_libdir}/libQt3D.so
+%{_includedir}/qt5/Qt3D/
+%{_libdir}/pkgconfig/Qt3D.pc
+%{_datadir}/qt5/mkspecs/features/qt3dquick.prf
+%{_datadir}/qt5/mkspecs/modules/qt_qt3dquick.pri
 
 %files plugin-imageformat-tga
 %defattr(-,root,root,-)
@@ -168,6 +189,9 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtdeclarative-import-qt3d
 %defattr(-,root,root,-)
+%{_libdir}/qt5/imports/Qt3D/qmldir
+%{_libdir}/qt5/imports/Qt3D/plugins.qmltypes
+%{_libdir}/qt5/imports/Qt3D/library.xml
 %{_libdir}/qt5/imports/Qt3D/libqthreedqmlplugin.so
 
 #### No changelog section, separate $pkg.changes contains the history
