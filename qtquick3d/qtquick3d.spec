@@ -124,6 +124,12 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %qmake_install
+# Fix wrong path in pkgconfig files
+find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
+-exec perl -pi -e "s, -L%{_builddir}/?\S+,,g" {} \;
+# Fix wrong path in prl files
+find %{buildroot}%{_libdir} -type f -name '*.prl' \
+-exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
 %fdupes %{buildroot}/%{_includedir}
@@ -153,6 +159,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQt3DQuick.so
+%{_libdir}/libQt3DQuick.prl
 %{_includedir}/qt5/Qt3DQuick/
 %{_libdir}/pkgconfig/Qt3DQuick.pc
 %{_datadir}/qt5/mkspecs/features/qt3d.prf
@@ -166,6 +173,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files qt3d-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQt3D.so
+%{_libdir}/libQt3D.prl
 %{_includedir}/qt5/Qt3D/
 %{_libdir}/pkgconfig/Qt3D.pc
 %{_datadir}/qt5/mkspecs/features/qt3dquick.prf

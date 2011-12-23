@@ -190,6 +190,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files -n qt5-qtsysteminfo-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtSystemInfo.so
+%{_libdir}/libQtSystemInfo.prl
 %{_libdir}/pkgconfig/QtSystemInfo.pc
 %{_includedir}/qt5/Qt/QtSystemInfo
 %{_includedir}/qt5/Qt/qtsysteminfoversion.h
@@ -214,6 +215,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files -n qt5-qtserviceframework-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtServiceFramework.so
+%{_libdir}/libQtServiceFramework.prl
 %{_libdir}/pkgconfig/QtServiceFramework.pc
 %{_includedir}/qt5/Qt/QtServiceFramework
 %{_includedir}/qt5/Qt/qtserviceframeworkversion.h
@@ -238,6 +240,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files -n qt5-qtpublishsubscribe-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtPublishSubscribe.so
+%{_libdir}/libQtPublishSubscribe.prl
 %{_libdir}/pkgconfig/QtPublishSubscribe.pc
 %{_includedir}/qt5/Qt/QtPublishSubscribe
 %{_includedir}/qt5/Qt/qtpublishsubscribe*.h

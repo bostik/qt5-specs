@@ -242,6 +242,9 @@ make %{?_smp_flags}
 %install
 rm -rf %{buildroot}
 %make_install
+# Fix wrong path in pkgconfig files
+find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
+-exec perl -pi -e "s, -L%{_builddir}/?\S+,,g" {} \;
 # Fix wrong path in prl files
 find %{buildroot}%{_libdir} -type f -name '*.prl' \
 -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
@@ -317,6 +320,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %files qtquick-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtQuick.so
+%{_libdir}/libQtQuick.prl
 %{_libdir}/pkgconfig/QtQuick.pc
 %{_includedir}/qt5/Qt/qtquickversion.h
 %{_includedir}/qt5/Qt/qtquickglobal.h
@@ -335,6 +339,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %files qtquick1-devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtQuick1.so
+%{_libdir}/libQtQuick1.prl
 %{_libdir}/pkgconfig/QtQuick1.pc
 %{_includedir}/qt5/Qt/qtquick1version.h
 %{_includedir}/qt5/Qt/QtQuick1
@@ -418,6 +423,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/QtQuickTest
 %{_includedir}/qt5/QtQuickTest/
 %{_libdir}/libQtQuickTest.so
+%{_libdir}/libQtQuickTest.prl
 %{_libdir}/pkgconfig/QtQuickTest.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
 
@@ -426,6 +432,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/QtQmlDevTools
 %{_includedir}/qt5/QtQmlDevTools/
 %{_libdir}/libQtQmlDevTools.a
+%{_libdir}/libQtQmlDevTools.prl
 %{_libdir}/pkgconfig/QtQmlDevTools.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmldevtools.pri
 
