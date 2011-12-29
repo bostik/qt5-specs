@@ -530,7 +530,6 @@ export QT_WAYLAND_GL_CONFIG=wayland_egl
     -no-sql-sqlite2 \
     -no-sql-tds \
     -system-sqlite \
-    -no-qt3support \
     -no-xmlpatterns \
     -no-multimedia \
     -audio-backend \
