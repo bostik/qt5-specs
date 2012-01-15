@@ -1,5 +1,4 @@
 %define _qtmodule_snapshot_version %nil
-%define _v8_snapshot_version %nil
 %ifarch armv7l armv7el armv7hl amv7nhl armv7thl armv7tnhl
 %define arch_arg armv6
 %endif
@@ -23,11 +22,9 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-qtbase-%{version}.tar.gz
 Source1:    macros.qmake
-Source2:    v8-%{_v8_snapshot_version}.tar.gz
 Source100:  qtbase-rpmlintrc
 Patch0:     eglfs-must-dep-on-egl.patch
 Patch1:     install-qtmodule-configtests.patch
-Patch2:     do-not-assume-hard-float-for-v8.patch
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(egl)
@@ -437,23 +434,23 @@ Requires:   %{name}-qtprintsupport = %{version}-%{release}
 This package contains the files necessary to develop
 applications that use QtPrintSupport
 
-%package qtv8
-Summary:    The QtV8 library
-Group:      Qt/Qt
-Requires(post):     /sbin/ldconfig
-Requires(postun):   /sbin/ldconfig
-
-%description qtv8
-This package contains the QtV8 library
-
-%package qtv8-devel
-Summary:    Development files for QtV8
-Group:      Qt/Qt
-Requires:   %{name}-qtv8 = %{version}-%{release}
-
-%description qtv8-devel
-This package contains the files necessary to develop
-applications that use QtV8
+#%package qtv8
+#Summary:    The QtV8 library
+#Group:      Qt/Qt
+#Requires(post):     /sbin/ldconfig
+#Requires(postun):   /sbin/ldconfig
+#
+#%description qtv8
+#This package contains the QtV8 library
+#
+#%package qtv8-devel
+#Summary:    Development files for QtV8
+#Group:      Qt/Qt
+#Requires:   %{name}-qtv8 = %{version}-%{release}
+#
+#%description qtv8-devel
+#This package contains the files necessary to develop
+#applications that use QtV8
 
 
 
@@ -495,10 +492,8 @@ applications that use QtV8
 
 %prep
 %setup -q -n %{name}-qtbase
-tar -C src/3rdparty -zxf %{SOURCE2}
 %patch0 -p2
 %patch1 -p1
-%patch2 -p1
 
 
 %build
@@ -616,10 +611,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %post qtwidgets -p /sbin/ldconfig
 %postun qtwidgets -p /sbin/ldconfig
-
-%post qtv8 -p /sbin/ldconfig
-%postun qtv8 -p /sbin/ldconfig
-
 
 
 #### File section
@@ -1246,19 +1237,19 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/pkgconfig/QtPrintSupport.pc
 %{_datadir}/qt5/mkspecs/modules/qt_printsupport.pri
 
-%files qtv8
-%defattr(-,root,root,-)
-%{_libdir}/libQtV8.so.5
-%{_libdir}/libQtV8.so.5.*
-
-%files qtv8-devel
-%defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/QtV8
-%{_includedir}/qt5/QtV8/
-%{_libdir}/libQtV8.prl
-%{_libdir}/libQtV8.so
-%{_libdir}/pkgconfig/QtV8.pc
-%{_datadir}/qt5/mkspecs/modules/qt_v8.pri
+#%files qtv8
+#%defattr(-,root,root,-)
+#%{_libdir}/libQtV8.so.5
+#%{_libdir}/libQtV8.so.5.*
+#
+#%files qtv8-devel
+#%defattr(-,root,root,-)
+#%{_includedir}/qt5/Qt/QtV8
+#%{_includedir}/qt5/QtV8/
+#%{_libdir}/libQtV8.prl
+#%{_libdir}/libQtV8.so
+#%{_libdir}/pkgconfig/QtV8.pc
+#%{_datadir}/qt5/mkspecs/modules/qt_v8.pri
 
 
 
