@@ -959,8 +959,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qnetworkproxy.h
 %{_includedir}/qt5/Qt/qurlinfo.h
 %{_includedir}/qt5/Qt/qabstractnetworkcache.h
-%{_includedir}/qt5/Qt/qftp.h
-%{_includedir}/qt5/Qt/qhttp.h
 %{_includedir}/qt5/Qt/qhttpmultipart.h
 %{_includedir}/qt5/Qt/qnetworkaccessmanager.h
 %{_includedir}/qt5/Qt/qnetworkcookie.h
