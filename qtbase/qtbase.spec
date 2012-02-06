@@ -60,7 +60,6 @@ BuildRequires:  flex
 # Package not available but installed in OBS?
 #BuildRequires:  gcc-g++
 BuildRequires:  libjpeg-devel
-BuildRequires:  libmng-devel
 BuildRequires:  libtiff-devel
 BuildRequires:  pam-devel
 BuildRequires:  readline-devel
@@ -167,14 +166,6 @@ Group:      Qt/Qt
 
 %description plugin-imageformat-jpeg
 This package contains the JPEG imageformat plugin
-
-
-%package plugin-imageformat-mng
-Summary:    MNG image format plugin
-Group:      Qt/Qt
-
-%description plugin-imageformat-mng
-This package contains the MNG imageformat plugin
 
 
 %package plugin-imageformat-tiff
@@ -525,17 +516,9 @@ export QT_WAYLAND_GL_CONFIG=wayland_egl
     -no-sql-sqlite2 \
     -no-sql-tds \
     -system-sqlite \
-    -no-xmlpatterns \
-    -no-multimedia \
     -audio-backend \
-    -phonon \
     -no-phonon-backend \
-    -no-svg \
-    -no-webkit \
-    -no-script \
-    -no-scripttools \
     -system-zlib \
-    -system-libtiff \
     -system-libpng \
     -system-libjpeg \
     -no-rpath \
@@ -645,6 +628,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qabstracttransition.h
 %{_includedir}/qt5/Qt/qalgorithms.h
 %{_includedir}/qt5/Qt/qanimationgroup.h
+%{_includedir}/qt5/Qt/qoldbasicatomic.h
 %{_includedir}/qt5/Qt/qatomic.h
 %{_includedir}/qt5/Qt/qatomic_*.h
 %{_includedir}/qt5/Qt/qbasic*.h
@@ -750,7 +734,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qtemporaryfile.h
 %{_includedir}/qt5/Qt/qtextboundaryfinder.h
 %{_includedir}/qt5/Qt/qtextcodec.h
-%{_includedir}/qt5/Qt/qtextcodecplugin.h
 %{_includedir}/qt5/Qt/qtextstream.h
 %{_includedir}/qt5/Qt/qthread.h
 %{_includedir}/qt5/Qt/qthreadpool.h
@@ -1300,10 +1283,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %files plugin-imageformat-jpeg
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/imageformats/libqjpeg.so
-
-%files plugin-imageformat-mng
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/imageformats/libqmng.so
 
 %files plugin-imageformat-tiff
 %defattr(-,root,root,-)
