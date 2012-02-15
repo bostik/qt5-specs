@@ -433,6 +433,24 @@ Requires:   %{name}-qtprintsupport = %{version}-%{release}
 This package contains the files necessary to develop
 applications that use QtPrintSupport
 
+%package qtconcurrent
+Summary:    QtConcurrent library
+Group:      Qt/Qt
+Requires(post):     /sbin/ldconfig
+Requires(postun):   /sbin/ldconfig
+
+%description qtconcurrent
+This package contains the QtConcurrent library
+
+%package qtconcurrent-devel
+Summary:    Development files for QtConcurrent
+Group:      Qt/Qt
+Requires:   %{name}-qtconcurrent = %{version}-%{release}
+
+%description qtconcurrent-devel
+This package contains the files necessary to develop
+applications that use QtConcurrent
+
 #%package qtv8
 #Summary:    The QtV8 library
 #Group:      Qt/Qt
@@ -603,6 +621,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %post qtwidgets -p /sbin/ldconfig
 %postun qtwidgets -p /sbin/ldconfig
 
+%post qtconcurrent -p /sbin/ldconfig
+%postun qtconcurrent -p /sbin/ldconfig
 
 #### File section
 
@@ -649,6 +669,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qchar.h
 %{_includedir}/qt5/Qt/qconfig-*.h
 %{_includedir}/qt5/Qt/qconfig.h
+%{_includedir}/qt5/Qt/qcompilerdetection.h
+%{_includedir}/qt5/Qt/qprocessordetection.h
+%{_includedir}/qt5/Qt/qsystemdetection.h
 %{_includedir}/qt5/Qt/qcontainerfwd.h
 %{_includedir}/qt5/Qt/qcontiguouscache.h
 %{_includedir}/qt5/Qt/qcoreapplication.h
@@ -1203,6 +1226,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwizard.h
 %{_includedir}/qt5/Qt/qworkspace.h
 %{_includedir}/qt5/Qt/qtwidgetsversion.h
+%{_includedir}/qt5/Qt/qwidgetsfunctions_wince.h
 %{_libdir}/libQtWidgets.prl
 %{_libdir}/libQtWidgets.so
 %{_libdir}/pkgconfig/QtWidgets.pc
@@ -1231,6 +1255,21 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtPrintSupport.so
 %{_libdir}/pkgconfig/QtPrintSupport.pc
 %{_datadir}/qt5/mkspecs/modules/qt_printsupport.pri
+
+%files qtconcurrent
+%defattr(-,root,root,-)
+%{_libdir}/libQtConcurrent.so.5
+%{_libdir}/libQtConcurrent.so.5.*
+
+%files qtconcurrent-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtConcurrent
+%{_includedir}/qt5/QtConcurrent/
+%{_libdir}/libQtConcurrent.prl
+%{_libdir}/libQtConcurrent.so
+%{_libdir}/pkgconfig/QtConcurrent.pc
+%{_datadir}/qt5/mkspecs/modules/qt_concurrent.pri
+
 
 #%files qtv8
 #%defattr(-,root,root,-)
