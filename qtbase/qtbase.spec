@@ -60,7 +60,7 @@ BuildRequires:  flex
 # Package not available but installed in OBS?
 #BuildRequires:  gcc-g++
 BuildRequires:  libjpeg-devel
-BuildRequires:  libtiff-devel
+#BuildRequires:  libtiff-devel
 BuildRequires:  pam-devel
 BuildRequires:  readline-devel
 BuildRequires:  sharutils
@@ -168,12 +168,12 @@ Group:      Qt/Qt
 This package contains the JPEG imageformat plugin
 
 
-%package plugin-imageformat-tiff
-Summary:    TIFF image format plugin
-Group:      Qt/Qt
-
-%description plugin-imageformat-tiff
-This package contains the TIFF imageformat plugin
+#%package plugin-imageformat-tiff
+#Summary:    TIFF image format plugin
+#Group:      Qt/Qt
+#
+#%description plugin-imageformat-tiff
+#This package contains the TIFF imageformat plugin
 
 
 %package plugin-platform-minimal
@@ -182,6 +182,14 @@ Group:      Qt/Qt
 
 %description plugin-platform-minimal
 This package contains the minimal platform plugin
+
+
+%package plugin-platform-inputcontext-maliit
+Summary:    MALIIT input context platform plugin
+Group:      Qt/Qt
+
+%description plugin-platform-inputcontext-maliit
+This package contains MALIIT platform inputcontext plugin
 
 
 #%package plugin-platform-wayland
@@ -629,6 +637,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qalgorithms.h
 %{_includedir}/qt5/Qt/qanimationgroup.h
 %{_includedir}/qt5/Qt/qoldbasicatomic.h
+%{_includedir}/qt5/Qt/qgenericatomic.h
 %{_includedir}/qt5/Qt/qatomic.h
 %{_includedir}/qt5/Qt/qatomic_*.h
 %{_includedir}/qt5/Qt/qbasic*.h
@@ -650,6 +659,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qdebug.h
 %{_includedir}/qt5/Qt/qdir.h
 %{_includedir}/qt5/Qt/qdiriterator.h
+%{_includedir}/qt5/Qt/qdnslookup.h
 %{_includedir}/qt5/Qt/qtemporarydir.h
 %{_includedir}/qt5/Qt/qeasingcurve.h
 %{_includedir}/qt5/Qt/qelapsedtimer.h
@@ -671,12 +681,17 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qtouchdevice.h
 %{_includedir}/qt5/Qt/qiodevice.h
 %{_includedir}/qt5/Qt/qiterator.h
+%{_includedir}/qt5/Qt/qjsonarray.h
+%{_includedir}/qt5/Qt/qjsondocument.h
+%{_includedir}/qt5/Qt/qjsonobject.h
+%{_includedir}/qt5/Qt/qjsonvalue.h
 %{_includedir}/qt5/Qt/qlibrary.h
 %{_includedir}/qt5/Qt/qlibraryinfo.h
 %{_includedir}/qt5/Qt/qline.h
 %{_includedir}/qt5/Qt/qlinkedlist.h
 %{_includedir}/qt5/Qt/qlist.h
 %{_includedir}/qt5/Qt/qlocale.h
+%{_includedir}/qt5/Qt/qlogging.h
 %{_includedir}/qt5/Qt/qmap.h
 %{_includedir}/qt5/Qt/qmargins.h
 %{_includedir}/qt5/Qt/qmath.h
@@ -841,6 +856,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qgenericplugin*.h
 %{_includedir}/qt5/Qt/qglyphrun.h
 %{_includedir}/qt5/Qt/qguiapplication.h
+%{_includedir}/qt5/Qt/qinputmethod.h
 %{_includedir}/qt5/Qt/qinputpanel.h
 %{_includedir}/qt5/Qt/qimage*.h
 %{_includedir}/qt5/Qt/qkeysequence.h
@@ -1111,7 +1127,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qiconengine.h
 %{_includedir}/qt5/Qt/qiconengineplugin.h
 %{_includedir}/qt5/Qt/qidentityproxymodel.h
-%{_includedir}/qt5/Qt/qinputcontext.h
 %{_includedir}/qt5/Qt/qinputdialog.h
 %{_includedir}/qt5/Qt/qitemdelegate.h
 %{_includedir}/qt5/Qt/qitemeditorfactory.h
@@ -1125,7 +1140,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qlistview.h
 %{_includedir}/qt5/Qt/qlistwidget.h
 %{_includedir}/qt5/Qt/qmaccocoaviewcontainer_mac.h
-%{_includedir}/qt5/Qt/qmacdefines_mac.h
 %{_includedir}/qt5/Qt/qmacnativewidget_mac.h
 %{_includedir}/qt5/Qt/qmacstyle_mac.h
 %{_includedir}/qt5/Qt/qmainwindow.h
@@ -1284,13 +1298,17 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/imageformats/libqjpeg.so
 
-%files plugin-imageformat-tiff
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/imageformats/libqtiff.so
+#%files plugin-imageformat-tiff
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/plugins/imageformats/libqtiff.so
 
 %files plugin-platform-minimal
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libqminimal.so
+
+%files plugin-platform-inputcontext-maliit
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforminputcontexts/libmaliitplatforminputcontextplugin.so
 
 #%files plugin-platform-wayland
 #%defattr(-,root,root,-)
