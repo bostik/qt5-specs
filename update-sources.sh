@@ -12,7 +12,7 @@ if [ x${OBSDIR} = x ]; then
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qtquick3d"
+QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qtquick3d"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources
@@ -111,10 +111,6 @@ if [ x${NO_PULL} = x ]; then
     # Instead, use mirror repos at gitorious.org
     for m in ${QT5_MODULES}; do
         (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
-        # In case of jsbackend module, sync v8 submodule
-        if [ ${m} = "qtjsbackend" ]; then
-            (cd ${QT5_DIR}/${m}; git submodule update)
-        fi
     done
 fi
 
@@ -146,20 +142,6 @@ for m in ${QT5_MODULES}; do
         # Add this version to changelog
         update_changelog ${m} ${ver}
     fi
-    # QtBase needs v8 sources.
-    # Treat v8 source tarball individually; this way we will always have
-    # v8id to use in spec-file mangling.
-    if [ ${m} = "qtjsbackend" ]; then
-        export GIT_DIR=${QT5_DIR}/${m}/src/3rdparty/v8/.git
-        v8id=$(git describe --always)
-        v8old=$(get_last v8)
-        if [ "${v8id}" != ${v8old} ]; then
-            # Treat v8 the same way
-            rm -fv ${OBSDIR}/${m}/v8-git*.tar.gz
-            git archive HEAD --prefix=v8/ | gzip > ${OBSDIR}/${m}/v8-git${v8id}.tar.gz
-            put_last v8 ${v8id}
-        fi
-    fi
     
     # Spec, changelog, rpmlintrc, patches, extra files,
     # all from this directory
@@ -170,9 +152,6 @@ for m in ${QT5_MODULES}; do
 
     # Uses retrieved source version from beginning of loop
     sed -i "s/define _qtmodule_snapshot_version %nil/define _qtmodule_snapshot_version 5~git${ver}/g" ${OBSDIR}/${m}/*.spec
-    if [ ${m} = "qtjsbackend" ]; then
-        sed -i "s/define _v8_snapshot_version %nil/define _v8_snapshot_version git${v8id}/g" ${OBSDIR}/${m}/*.spec
-    fi
 
     # Deals with OBS package dir bookkeeping in one go
     (cd ${OBSDIR}/${m}/ && osc addremove)
