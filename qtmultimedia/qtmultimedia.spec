@@ -116,13 +116,17 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/libQtMultimedia.so.5.*
 %{_libdir}/libQtMultimediaWidgets.so.5
 %{_libdir}/libQtMultimediaWidgets.so.5.*
+%{_libdir}/libQtMultimediaQuick_p.so.1
+%{_libdir}/libQtMultimediaQuick_p.so.1.*
 
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/libQtMultimedia.so
 %{_libdir}/libQtMultimediaWidgets.so
+%{_libdir}/libQtMultimediaQuick_p.so
 %{_libdir}/libQtMultimedia.prl
 %{_libdir}/libQtMultimediaWidgets.prl
+%{_libdir}/libQtMultimediaQuick_p.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
