@@ -78,6 +78,14 @@ Requires:   %{name} = %{version}-%{release}
 %description plugin-gestures-shake
 This package contains the shake gesture plugin for sensors
 
+%package plugin-gestures-sensor
+Summary:    Sensor gesture plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-gestures-sensor
+This package contains the gesture plugin for sensors
+
 #### Build section
 
 %prep
@@ -146,6 +154,10 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files plugin-gestures-shake
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/sensorgestures/libqtsensorgestures_shakeplugin.so
+
+%files plugin-gestures-sensor
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/sensorgestures/libqtsensorgestures_plugin.so
 
 
 #### No changelog section, separate $pkg.changes contains the history
