@@ -1,4 +1,4 @@
-%define _qtmodules_snapshot_version %nil
+%define _qtmodule_snapshot_version %nil
 Name:       qt5-qttools
 Summary:    Development tools for Qt
 Version:    %{_qtmodules_snapshot_version}
