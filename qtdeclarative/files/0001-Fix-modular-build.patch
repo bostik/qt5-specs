@@ -1,0 +1,142 @@
+From d84df7f1dae7b2d6ab117ec79d3d45aca491a3d0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Fri, 17 Feb 2012 07:28:14 +0200
+Subject: [PATCH] Fix modular build
+
+Remove the abuses of DESTDIR macro. System paths are not writable, all
+modules must go through install stage.
+---
+ src/imports/folderlistmodel/folderlistmodel.pro    |    1 -
+ src/imports/localstorage/localstorage.pro          |    3 +--
+ src/imports/qtquick2/qtquick2.pro                  |    1 -
+ src/imports/testlib/testlib.pro                    |    2 --
+ src/imports/xmllistmodel/xmllistmodel.pro          |    3 +--
+ src/plugins/accessible/quick/quick.pro             |    1 -
+ src/plugins/qmltooling/qmldbg_ost/qmldbg_ost.pro   |    1 -
+ .../qmltooling/qmldbg_qtquick2/qmldbg_qtquick2.pro |    2 --
+ src/plugins/qmltooling/qmldbg_tcp/qmldbg_tcp.pro   |    1 -
+ 9 files changed, 2 insertions(+), 13 deletions(-)
+
+diff --git a/src/imports/folderlistmodel/folderlistmodel.pro b/src/imports/folderlistmodel/folderlistmodel.pro
+index 26efc65..11987fe 100644
+--- a/src/imports/folderlistmodel/folderlistmodel.pro
++++ b/src/imports/folderlistmodel/folderlistmodel.pro
+@@ -7,7 +7,6 @@ QT += widgets declarative
+ SOURCES += qdeclarativefolderlistmodel.cpp plugin.cpp
+ HEADERS += qdeclarativefolderlistmodel.h
+ 
+-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
+ target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+ qmldir.files += $$PWD/qmldir
+diff --git a/src/imports/localstorage/localstorage.pro b/src/imports/localstorage/localstorage.pro
+index 51a69aa..970a884 100644
+--- a/src/imports/localstorage/localstorage.pro
++++ b/src/imports/localstorage/localstorage.pro
+@@ -6,10 +6,9 @@ QT += sql declarative declarative-private v8-private core-private
+ 
+ SOURCES += plugin.cpp
+ 
+-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
+ target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+ qmldir.files += $$PWD/qmldir
+ qmldir.path +=  $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+-INSTALLS += target qmldir
+\ No newline at end of file
++INSTALLS += target qmldir
+diff --git a/src/imports/qtquick2/qtquick2.pro b/src/imports/qtquick2/qtquick2.pro
+index 3f76abd..255305f 100644
+--- a/src/imports/qtquick2/qtquick2.pro
++++ b/src/imports/qtquick2/qtquick2.pro
+@@ -10,7 +10,6 @@ QT += quick-private declarative-private
+ OTHER_FILES += \
+     qmldir
+ 
+-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
+ target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+ qmldir.files += $$PWD/qmldir
+diff --git a/src/imports/testlib/testlib.pro b/src/imports/testlib/testlib.pro
+index 3b8a5bf..42c520f 100644
+--- a/src/imports/testlib/testlib.pro
++++ b/src/imports/testlib/testlib.pro
+@@ -9,8 +9,6 @@ QT += declarative quick qmltest qmltest-private v8-private declarative-private c
+ SOURCES += main.cpp
+ HEADERS +=
+ 
+-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
+-
+ target.path += $$[QT_INSTALL_IMPORTS]/QtTest
+ OTHER_IMPORT_FILES = \
+     qmldir \
+diff --git a/src/imports/xmllistmodel/xmllistmodel.pro b/src/imports/xmllistmodel/xmllistmodel.pro
+index d8121e8..c53838c 100644
+--- a/src/imports/xmllistmodel/xmllistmodel.pro
++++ b/src/imports/xmllistmodel/xmllistmodel.pro
+@@ -7,10 +7,9 @@ QT += network declarative xmlpatterns declarative-private v8-private core-privat
+ SOURCES += qdeclarativexmllistmodel.cpp plugin.cpp
+ HEADERS += qdeclarativexmllistmodel_p.h
+ 
+-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
+ target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+ qmldir.files += $$PWD/qmldir
+ qmldir.path +=  $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+-INSTALLS += target qmldir
+\ No newline at end of file
++INSTALLS += target qmldir
+diff --git a/src/plugins/accessible/quick/quick.pro b/src/plugins/accessible/quick/quick.pro
+index 97a1d50..7ec92b1 100644
+--- a/src/plugins/accessible/quick/quick.pro
++++ b/src/plugins/accessible/quick/quick.pro
+@@ -5,7 +5,6 @@ load(qt_plugin)
+ include ($$PWD/../shared/qaccessiblebase.pri)
+ 
+ QT += core-private gui-private v8-private declarative-private quick-private
+-DESTDIR = $$QT.gui.plugins/accessible
+ 
+ QTDIR_build:REQUIRES += "contains(QT_CONFIG, accessibility)"
+ 
+diff --git a/src/plugins/qmltooling/qmldbg_ost/qmldbg_ost.pro b/src/plugins/qmltooling/qmldbg_ost/qmldbg_ost.pro
+index c1ca2a5..80ed2bd 100644
+--- a/src/plugins/qmltooling/qmldbg_ost/qmldbg_ost.pro
++++ b/src/plugins/qmltooling/qmldbg_ost/qmldbg_ost.pro
+@@ -3,7 +3,6 @@ QT       += declarative network
+ 
+ load(qt_plugin)
+ 
+-QTDIR_build:DESTDIR  = $$QT_BUILD_TREE/plugins/qmltooling
+ QTDIR_build:REQUIRES += "contains(QT_CONFIG, declarative)"
+ 
+ SOURCES += \
+diff --git a/src/plugins/qmltooling/qmldbg_qtquick2/qmldbg_qtquick2.pro b/src/plugins/qmltooling/qmldbg_qtquick2/qmldbg_qtquick2.pro
+index b9c6584..122bd99 100644
+--- a/src/plugins/qmltooling/qmldbg_qtquick2/qmldbg_qtquick2.pro
++++ b/src/plugins/qmltooling/qmldbg_qtquick2/qmldbg_qtquick2.pro
+@@ -5,8 +5,6 @@ QT       += declarative-private quick-private core-private gui-private opengl-pr
+ 
+ load(qt_plugin)
+ 
+-DESTDIR  = $$QT.declarative.plugins/qmltooling
+-
+ INCLUDEPATH *= $$PWD $$PWD/../shared
+ 
+ SOURCES += \
+diff --git a/src/plugins/qmltooling/qmldbg_tcp/qmldbg_tcp.pro b/src/plugins/qmltooling/qmldbg_tcp/qmldbg_tcp.pro
+index 8ab507c..c5e48f0 100644
+--- a/src/plugins/qmltooling/qmldbg_tcp/qmldbg_tcp.pro
++++ b/src/plugins/qmltooling/qmldbg_tcp/qmldbg_tcp.pro
+@@ -5,7 +5,6 @@ QT       += declarative-private network
+ 
+ load(qt_plugin)
+ 
+-DESTDIR = $$QT.declarative.plugins/qmltooling
+ QTDIR_build:REQUIRES += "contains(QT_CONFIG, declarative)"
+ 
+ SOURCES += \
+-- 
+1.7.9
+

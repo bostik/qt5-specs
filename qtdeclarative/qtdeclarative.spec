@@ -11,6 +11,7 @@ Source0:    %{name}-%{version}.tar.gz
 Patch0:     create_prl_and_pc_files.patch
 Patch10:    particles-shader-fix.patch
 Patch11:    glsl-highp-ambiguity.patch
+Patch50:    0001-Fix-modular-build.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -82,25 +83,6 @@ Requires:   qt5-qtdeclarative-qtquick = %{version}-%{release}
 This package contains the development headers for legacy QtQuick 1
 QML support library
 
-%package qtquick1
-Summary:    Qt Declarative - legacy QtQuick1 library
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description qtquick1
-This package contains the legacy QtQuick 1 (non-scenegraph)
-QML support library
-
-%package qtquick1-devel
-Summary:    Qt Declarative - legazy QtQuick 1 development files
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-qtdeclarative-qtquick1 = %{version}-%{release}
-
-%description qtquick1-devel
-This package contains the development headers for legacy QtQuick 1
-QML support library
-
 
 %package qtqmltools-devel
 Summary:    Qt Declarative QtQmlDevTools - development files
@@ -116,14 +98,6 @@ This package contains the development headers for QtQmlDevTools
 
 #### Small plugin and import packages
 
-%package import-etcprovider
-Summary:    Qt Declarative etcprovider plugin
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description import-etcprovider
-This package provides the QtDeclarative etcprovider plugin
-
 %package import-folderlistmodel
 Summary:    Qt Declarative folderlistmodel plugin
 Group:      Qt/Qt
@@ -132,13 +106,12 @@ Requires:   %{name} = %{version}-%{release}
 %description import-folderlistmodel
 This package provides the QtDeclarative folderlistmodel plugin
 
-%package import-gestures
-Summary:    Qt Declarative gestures plugin
-Group:      Qt/Qt
+%package import-localstorageplugin
+Summary:    Qt LocalStorage plugin
 Requires:   %{name} = %{version}-%{release}
 
-%description import-gestures
-This package provides the QtDeclarative gestures plugin
+%description import-localstorageplugin
+This package provided the Qt LocalStorage plugin
 
 #%package import-inputcontext
 #Summary:    Qt Declarative input context plugin
@@ -148,13 +121,13 @@ This package provides the QtDeclarative gestures plugin
 #%description import-inputcontext
 #This package provides the QtDeclarative input context plugin
 
-%package import-particles
-Summary:    Qt Declarative particles plugin
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description import-particles
-This package provides the QtDeclarative particles plugin
+#%package import-particles
+#Summary:    Qt Declarative particles plugin
+#Group:      Qt/Qt
+#Requires:   %{name} = %{version}-%{release}
+#
+#%description import-particles
+#This package provides the QtDeclarative particles plugin
 
 %package plugin-qmlinspector
 Summary:    Qt Declarative QML inspector plugin
@@ -164,6 +137,15 @@ Requires:   %{name} = %{version}-%{release}
 %description plugin-qmlinspector
 This package provides the QML inspector plugin
 
+%package plugin-accessible
+Summary:    Qt Declarative accessible plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-accessible
+This package provides the QML accessible plugin
+
+
 %package import-qt47plugin
 Summary:    Qt Declarative Qt 4.7 legacy support plugin
 Group:      Qt/Qt
@@ -171,14 +153,6 @@ Requires:   %{name} = %{version}-%{release}
 
 %description import-qt47plugin
 This package provides the legacy Qt 4.7 support plugin
-
-%package import-qtquick1plugin
-Summary:    Qt Declarative legacy QtQuick 1 support plugin
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description import-qtquick1plugin
-This package provides the legacy QtQuick 1 support plugin
 
 %package import-qtquick2plugin
 Summary:    Qt Declarative QtQuick 2 support plugin
@@ -196,16 +170,8 @@ Requires:   %{name} = %{version}-%{release}
 %description import-qttest
 This package provides the QtDeclarative QtTest plugin
 
-%package qmlviewer
-Summary:    QML viewer
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description qmlviewer
-This package contains the QML viewer for QtQuick 1.0 files.
-
 %package qmlscene
-Summary:    QML viewer
+Summary:    QML scene viewer
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
@@ -232,6 +198,7 @@ This package contains QML debugging and development tools
 %patch0 -p1
 %patch10 -p1
 %patch11 -p1
+%patch50 -p1
 
 
 %build
@@ -270,12 +237,6 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %postun qtquicktest
 /sbin/ldconfig
 
-%post qtquick1
-/sbin/ldconfig
-%postun qtquick1
-/sbin/ldconfig
-
-
 %post qtquick
 /sbin/ldconfig
 %postun qtquick
@@ -306,7 +267,6 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/qjs*.h
 %{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtDeclarative
-%{_includedir}/qt5/Qt/QSG*
 %{_includedir}/qt5/QtDeclarative/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
 %{_libdir}/cmake/
@@ -325,35 +285,14 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/qtquickversion.h
 %{_includedir}/qt5/Qt/qtquickglobal.h
 %{_includedir}/qt5/Qt/qquick*.h
-%{_includedir}/qt5/Qt/QQuick*
 %{_includedir}/qt5/Qt/QtQuick
 %{_includedir}/qt5/QtQuick/
 %{_datadir}/qt5/mkspecs/modules/qt_quick.pri
 
 
-%files qtquick1
-%defattr(-,root,root,-)
-%{_libdir}/libQtQuick1.so.5
-%{_libdir}/libQtQuick1.so.5.*
-
-%files qtquick1-devel
-%defattr(-,root,root,-)
-%{_libdir}/libQtQuick1.so
-%{_libdir}/libQtQuick1.prl
-%{_libdir}/pkgconfig/QtQuick1.pc
-%{_includedir}/qt5/Qt/qtquick1version.h
-%{_includedir}/qt5/Qt/QtQuick1
-%{_includedir}/qt5/QtQuick1/
-%{_datadir}/qt5/mkspecs/modules/qt_qtquick1.pri
 
 
 
-
-
-
-%files qmlviewer
-%defattr(-,root,root,-)
-%{_bindir}/qmlviewer
 
 %files qmlscene
 %defattr(-,root,root,-)
@@ -367,29 +306,30 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 
 
-%files import-etcprovider
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/labs/etcprovider/*
-
 %files import-folderlistmodel
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/labs/folderlistmodel/*
 
-%files import-gestures
+%files import-localstorageplugin
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/labs/gestures/*
+%{_libdir}/qt5/imports/QtQuick/LocalStorage/
 
 #%files import-inputcontext
 #%defattr(-,root,root,-)
 #%{_libdir}/qt5/imports/Qt/labs/inputcontext/*
 
-%files import-particles
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/labs/particles/*
+#%files import-particles
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/imports/Qt/labs/particles/*
 
 %files plugin-qmlinspector
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/qmltooling/*
+
+%files plugin-accessible
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/accessible/*
+
 
 %files import-qttest
 %defattr(-,root,root,-)
@@ -398,10 +338,6 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %files import-qt47plugin
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt/
-
-%files import-qtquick1plugin
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick.1/
 
 %files import-qtquick2plugin
 %defattr(-,root,root,-)
