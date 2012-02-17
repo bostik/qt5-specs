@@ -1,7 +1,7 @@
 %define _qtmodule_snapshot_version %nil
 Name:       qt5-qttools
 Summary:    Development tools for Qt
-Version:    %{_qtmodules_snapshot_version}
+Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
