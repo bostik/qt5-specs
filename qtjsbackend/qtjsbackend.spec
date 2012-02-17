@@ -7,6 +7,7 @@ Group:          Qt/Qt
 License:        LGPLv2.1 with exception or GPLv3
 URL:            http://qt.nokia.com
 Source0:        %{name}-%{version}.tar.gz
+Patch50:        0001-Disable-unconditional-hardfloat-on-ARM.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  python
@@ -50,6 +51,10 @@ This package contains the V8 Javascript backend development files
 
 %prep
 %setup -q -n %{name}
+# XXX: If building for ARM without hardfp support, apply patch
+%ifarch arm7l
+%patch50 -p1
+%endif
 
 
 %build
