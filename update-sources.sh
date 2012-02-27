@@ -1,18 +1,62 @@
 #!/bin/bash
 
+# Force flags
+NO_PULL=1
+#FORCE_UPLOAD=1
+
+# update-sources.sh
+# Modular Qt Build Manager
+
+# marko.helenius@nomovok.com 2012-03-26
+
+# Original Source by Bostik, hooray!
+
+
+#   ______ _______ _______ _______ __ 
+#  |   __ \_     _|    ___|   |   |  |
+#  |      < |   | |    ___|       |__|
+#  |___|__| |___| |___|   |__|_|__|__|
+#   update-sources.sh --help
+
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        --help)  cat <<XXX
+Modulas Qt Build Manager (update-sources.sh)
+
+Usage:	update-sources.sh [<options>]
+
+     Update parameter:
+	[--no-pull	      ]	Prevent git source pull.
+	[--force-upload	      ]	Force source tar upload.
+	
+	[--module MODULE      ] List of modules.
+
+XXX
+;;
+        --no-pull) NO_PULL="1";;
+        --force-upload) FORCE_UPLOAD="1";;
+        --module) QT5_MODULES="$2"; shift;;
+
+	*) break;;
+    esac
+    shift
+done
+
+
 # QT5_DIR is the directory where qt5 and all the submodules have been
 # checked into
 if [ x${QT5_DIR} = x ]; then
-    QT5_DIR=${HOME}/kala/qt5
+    QT5_DIR=/work/qt/qt5
 fi
 
 # OBSDIR is the directory holding your OBS qt5 project
 if [ x${OBSDIR} = x ]; then
-    OBSDIR=${HOME}/steelrat/OBS/qt5/
+    OBSDIR=/work/qt/obs/qt5
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qtquick3d"
+QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qtquick3d qt3d qtquick1"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources

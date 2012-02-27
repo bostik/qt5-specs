@@ -46,7 +46,7 @@ This package contains the Qt wayland compositor development files
 %prep
 %setup -q -n %{name}
 %patch10 -p1
-%patch11 -p1
+#%patch11 -p1
 
 
 %build

@@ -650,7 +650,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/QtCore
 %{_includedir}/qt5/Qt/qabstractanimation.h
 %{_includedir}/qt5/Qt/qabstracteventdispatcher.h
-%{_includedir}/qt5/Qt/qabstractfileengine.h
+#%{_includedir}/qt5/Qt/qabstractfileengine.h
 %{_includedir}/qt5/Qt/qabstractitemmodel.h
 %{_includedir}/qt5/Qt/qabstractstate.h
 %{_includedir}/qt5/Qt/qabstracttransition.h
@@ -695,7 +695,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qfileinfo.h
 %{_includedir}/qt5/Qt/qfilesystemwatcher.h
 %{_includedir}/qt5/Qt/qfinalstate.h
-%{_includedir}/qt5/Qt/qfsfileengine.h
+#%{_includedir}/qt5/Qt/qfsfileengine.h
 %{_includedir}/qt5/Qt/qfunctions_*.h
 %{_includedir}/qt5/Qt/qfuture*.h
 %{_includedir}/qt5/Qt/qglobal.h
@@ -721,6 +721,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qmetaobject.h
 %{_includedir}/qt5/Qt/qmetatype.h
 %{_includedir}/qt5/Qt/qmimedata.h
+%{_includedir}/qt5/Qt/qmimedatabase.h
+%{_includedir}/qt5/Qt/qmimetype.h
 %{_includedir}/qt5/Qt/qmutex.h
 %{_includedir}/qt5/Qt/qnamespace.h
 %{_includedir}/qt5/Qt/qnumeric.h
@@ -766,6 +768,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qstringlist.h
 %{_includedir}/qt5/Qt/qstringmatcher.h
 %{_includedir}/qt5/Qt/qsystemsemaphore.h
+%{_includedir}/qt5/Qt/qsysinfo.h
 %{_includedir}/qt5/Qt/qt_windows.h
 %{_includedir}/qt5/Qt/qtconcurrent*.h
 %{_includedir}/qt5/Qt/qtcoreversion.h
@@ -779,6 +782,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qtimeline.h
 %{_includedir}/qt5/Qt/qtimer.h
 %{_includedir}/qt5/Qt/qtranslator.h
+%{_includedir}/qt5/Qt/qtypeinfo.h
 %{_includedir}/qt5/Qt/qurl.h
 %{_includedir}/qt5/Qt/quuid.h
 %{_includedir}/qt5/Qt/qvariant.h

@@ -1,5 +1,5 @@
 %define _qtmodule_snapshot_version %nil
-
+ 
 Name:       qt5-qtdeclarative
 Summary:    Qt Declarative library
 Version:    %{_qtmodule_snapshot_version}
@@ -301,6 +301,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %files devel-tools
 %defattr(-,root,root,-)
 %{_bindir}/qmlplugindump
+%{_bindir}/qmlprofiler
 %{_bindir}/qmltestrunner
 %{_bindir}/qmlmin
 

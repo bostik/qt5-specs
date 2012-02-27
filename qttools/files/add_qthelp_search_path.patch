@@ -1,7 +1,7 @@
-diff --git a/src/assistant/tools/assistant/assistant.pro b/src/assistant/tools/assistant/assistant.pro
+diff --git a/src/assistant/assistant/assistant.pro b/src/assistant/assistant/assistant.pro
 index eeee0ad..47a25df 100644
---- a/src/assistant/tools/assistant/assistant.pro
-+++ b/src/assistant/tools/assistant/assistant.pro
+--- a/src/assistant/assistant/assistant.pro
++++ b/src/assistant/assistant/assistant.pro
 @@ -119,3 +119,7 @@ contains(CONFIG, static): {
          DEFINES += USE_STATIC_SQLITE_PLUGIN
      }

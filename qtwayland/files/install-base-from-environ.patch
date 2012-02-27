@@ -1,10 +1,10 @@
-diff --git a/src/qt-compositor/qt-compositor.pro b/src/qt-compositor/qt-compositor.pro
+diff --git a/src/compositor/compositor.pro b/src/compositor/compositor.pro
 index 0d12277..9d1e503 100644
---- a/src/qt-compositor/qt-compositor.pro
-+++ b/src/qt-compositor/qt-compositor.pro
+--- a/src/compositor/compositor.pro
++++ b/src/compositor/compositor.pro
 @@ -2,7 +2,7 @@ TEMPLATE = lib
  
- include (qt-compositor.pri)
+ include (compositor.pri)
  
 -installPath = $$INSTALLBASE
 +installPath = $$(INSTALLBASE)

@@ -1,7 +1,7 @@
-diff --git a/src/assistant/tools/qhelpconverter/qhelpconverter.pro b/src/assistant/tools/qhelpconverter/qhelpconverter.pro
+diff --git a/src/assistant/qhelpconverter/qhelpconverter.pro b/src/assistant/qhelpconverter/qhelpconverter.pro
 index f875476..55f5b35 100644
---- a/src/assistant/tools/qhelpconverter/qhelpconverter.pro
-+++ b/src/assistant/tools/qhelpconverter/qhelpconverter.pro
+--- a/src/assistant/qhelpconverter/qhelpconverter.pro
++++ b/src/assistant/qhelpconverter/qhelpconverter.pro
 @@ -45,3 +45,7 @@ FORMS   += inputpage.ui \
             outputpage.ui
  

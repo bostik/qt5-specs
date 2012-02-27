@@ -1,7 +1,7 @@
-diff --git a/src/assistant/tools/qhelpgenerator/qhelpgenerator.pro b/src/assistant/tools/qhelpgenerator/qhelpgenerator.pro
+diff --git a/src/assistant/qhelpgenerator/qhelpgenerator.pro b/src/assistant/qhelpgenerator/qhelpgenerator.pro
 index f6db4fa..b9706d9 100644
---- a/src/assistant/tools/qhelpgenerator/qhelpgenerator.pro
-+++ b/src/assistant/tools/qhelpgenerator/qhelpgenerator.pro
+--- a/src/assistant/qhelpgenerator/qhelpgenerator.pro
++++ b/src/assistant/qhelpgenerator/qhelpgenerator.pro
 @@ -12,3 +12,7 @@ SOURCES += ../shared/helpgenerator.cpp \
             main.cpp
  
