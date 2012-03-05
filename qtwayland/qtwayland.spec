@@ -13,6 +13,7 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
+BuildRequires:  qt5-qtplatformsupport-devel
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  libX11-devel

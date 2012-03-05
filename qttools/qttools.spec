@@ -22,6 +22,8 @@ BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtsql-devel
 BuildRequires:  qt5-qtxml-devel
+BuildRequires:  qt5-qtwidgets-devel
+BuildRequires:  qt5-qtprintsupport-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  qt5-tools
 BuildRequires:  fdupes

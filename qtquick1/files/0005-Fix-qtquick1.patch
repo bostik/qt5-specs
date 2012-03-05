@@ -1,0 +1,58 @@
+diff -Naur qtquick1/src//declarative/debugger/qdeclarativeinspectorservice.cpp qtquick1b/src//declarative/debugger/qdeclarativeinspectorservice.cpp
+--- qtquick1/src//declarative/debugger/qdeclarativeinspectorservice.cpp	2012-02-15 13:58:02.333776900 +0200
++++ qtquick1b/src//declarative/debugger/qdeclarativeinspectorservice.cpp	2012-03-01 14:05:33.348176598 +0200
+@@ -47,7 +47,7 @@
+ #include <QtCore/QDir>
+ #include <QtCore/QPluginLoader>
+ 
+-#include <QtQuick1/QDeclarativeView>
++#include "qdeclarativeview.h"
+ 
+ QT_BEGIN_NAMESPACE
+ 
+diff -Naur qtquick1/src//declarative/declarative.pro qtquick1b/src//declarative/declarative.pro
+--- qtquick1/src//declarative/declarative.pro	2012-02-15 13:58:02.333776900 +0200
++++ qtquick1b/src//declarative/declarative.pro	2012-03-01 13:29:14.945374475 +0200
+@@ -14,6 +14,10 @@
+ 
+ DEFINES   += QT_BUILD_DECLARATIVE_LIB QT_NO_URL_CAST_FROM_STRING
+ 
++# Generated headers from syncqt run (source tree root)
++INCLUDEPATH += ../..
++INCLUDEPATH += util/
++
+ win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
+ solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
+ 
+diff -Naur qtquick1/src//imports/folderlistmodel/folderlistmodel.pro qtquick1b/src//imports/folderlistmodel/folderlistmodel.pro
+--- qtquick1/src//imports/folderlistmodel/folderlistmodel.pro	2012-02-15 13:58:02.373777098 +0200
++++ qtquick1b/src//imports/folderlistmodel/folderlistmodel.pro	2012-03-01 16:13:42.446304772 +0200
+@@ -1,5 +1,6 @@
+ TARGET  = qmlfolderlistmodelplugin
+-TARGETPATH = Qt/labs/folderlistmodel
++#TARGETPATH = Qt/labs/folderlistmodel
++TARGETPATH = QtQuick1/labs/folderlistmodel
+ include(../qimportbase.pri)
+ 
+ QT += widgets quick1 script
+@@ -7,7 +8,7 @@
+ SOURCES += qdeclarativefolderlistmodel.cpp plugin.cpp
+ HEADERS += qdeclarativefolderlistmodel.h
+ 
+-DESTDIR = $$QT.quick1.imports/$$TARGETPATH
++#DESTDIR = $$QT.quick1.imports/$$TARGETPATH
+ target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
+ 
+ qmldir.files += $$PWD/qmldir
+diff -Naur qtquick1/src//imports/shaders/shaders.pro qtquick1b/src//imports/shaders/shaders.pro
+--- qtquick1/src//imports/shaders/shaders.pro	2012-02-15 13:58:02.377777118 +0200
++++ qtquick1b/src//imports/shaders/shaders.pro	2012-03-01 14:24:11.261720014 +0200
+@@ -2,7 +2,7 @@
+ TARGETPATH = Qt/labs/shaders
+ include(../qimportbase.pri)
+ 
+-QT += quick1 widgets opengl
++QT += qtquick1 widgets opengl
+ 
+ SOURCES += \
+     qmlshadersplugin_plugin.cpp \

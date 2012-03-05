@@ -10,8 +10,12 @@ Source0:    %{name}-%{version}.tar.gz
 Patch1:     0001-Fix-build-in-dedicated-buildroot.patch
 Patch2:     0002-Install-development-headers.patch
 Patch3:     0003-Remove-demos-and-examples-from-install.patch
+Patch4:	    0004-Fix-generated-headers.patch
+Patch5:     0005-Fix-qtquick1.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
+BuildRequires:  qt5-qtscript-devel
+BuildRequires:  qt5-qtxmlpatterns-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtdeclarative-devel
@@ -114,7 +118,46 @@ This package contains the Qt3D import for QtDeclarative
 %patch1 -p1
 #%patch2 -p1
 #%patch3 -p1
+#%patch4 -p1
+%patch5 -p1
+# Fixing the misplaced private headers with this clustersed
+find . -type f -name '*.cpp' -exec sed -i -e 's/<private\/qdeclarative/<qdeclarative/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"private\/qdeclarative/"qdeclarative/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qdeclarative/<qdeclarative/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qdeclarative/"qdeclarative/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qbitfield_p.h/<qbitfield_p.h/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qbitfield_p.h/"qbitfield_p.h/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qpodvector_p.h/<qpodvector_p.h/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qpodvector_p.h/"qpodvector_p.h/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qperformancetimer_p.h/<qperformancetimer_p.h/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qperformancetimer_p.h/"qperformancetimer_p.h/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qjs/<qjs/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qjs/"qjs/g' {} \;
 
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qpacket/<qpacket/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qpacket/"qpacket/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/<private\/qjs/<qjs/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"private\/qjs/"qjs/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/<private\/qpacket/<qpacket/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"private\/qpacket/"qpacket/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/qli/<qli/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/qli/"qli/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/<private\/qli/<qli/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"private\/qli/"qli/g' {} \;
+
+find . -type f -name '*.h' -exec sed -i -e 's/<private\/text/<text/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"private\/text/"text/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/<private\/text/<text/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"private\/text/"text/g' {} \;
+
+find . -type f -name '*.h' -exec sed -i -e 's/<QtQuick1\/private\//</g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"QtQuick1\/private\//"/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/<QtQuick1\/private\//</g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"QtQuick1\/private\//"/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/<QtQuick1\/qdeclarative/<qdeclarative/g' {} \;
+find . -type f -name '*.h' -exec sed -i -e 's/"QtQuick1\/qdeclarative/"qdeclarative/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/<QtQuick1\/qdeclarative/<qdeclarative/g' {} \;
+find . -type f -name '*.cpp' -exec sed -i -e 's/"QtQuick1\/qdeclarative/"qdeclarative/g' {} \;
 
 %build
 export QTDIR=/usr/share/qt5

@@ -1,0 +1,13 @@
+--- qtquick1/src/declarative/declarative.pro	2012-02-15 13:58:02.333776900 +0200
++++ qtquick1b/src/declarative/declarative.pro	2012-03-01 13:29:14.945374475 +0200
+@@ -14,6 +14,10 @@
+
+ DEFINES   += QT_BUILD_DECLARATIVE_LIB QT_NO_URL_CAST_FROM_STRING
+ 
++# Generated headers from syncqt run (source tree root)
++INCLUDEPATH += ../..
++INCLUDEPATH += util/
++
+ win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
+ solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
+ 
