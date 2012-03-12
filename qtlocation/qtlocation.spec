@@ -17,8 +17,8 @@ BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  qt5-qtdeclarative-qtquick-devel
-BuildRequires:  qt5-qtdeclarative-qtquick1-devel
-BuildRequires:  qt5-qtquick3d-devel
+#BuildRequires:  qt5-qtdeclarative-qtquick1-devel
+BuildRequires:  qt5-qt3d-qt3dquick-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -66,7 +66,7 @@ This package contains the geoservices plugin for Nokia devices
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 
 
 %build

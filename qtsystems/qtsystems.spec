@@ -17,7 +17,7 @@ BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qttest-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtdeclarative-qtquick1-devel
+BuildRequires:  qt5-qtdeclarative-qtquick-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 

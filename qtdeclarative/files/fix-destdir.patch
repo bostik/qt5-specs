@@ -1,0 +1,12 @@
+diff -Naur qtdeclarative/src/plugins/accessible/quick/quick.pro qtdeclarative-/src/plugins/accessible/quick/quick.pro
+--- qtdeclarative/src/plugins/accessible/quick/quick.pro	2012-03-06 08:22:45.808359996 +0200
++++ qtdeclarative-/src/plugins/accessible/quick/quick.pro	2012-03-06 10:23:00.880137597 +0200
+@@ -5,7 +5,7 @@
+ include ($$PWD/../shared/qaccessiblebase.pri)
+ 
+ QT += core-private gui-private v8-private qml-private quick-private
+-DESTDIR = $$QT.gui.plugins/accessible
++#DESTDIR = $$QT.gui.plugins/accessible
+ 
+ QTDIR_build:REQUIRES += "contains(QT_CONFIG, accessibility)"
+ 

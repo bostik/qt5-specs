@@ -9,6 +9,7 @@ License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
 Patch0:     create_prl_and_pc_files.patch
+Patch1:     fix-destdir.patch
 Patch10:    particles-shader-fix.patch
 Patch11:    glsl-highp-ambiguity.patch
 Patch50:    0001-Fix-modular-build.patch
@@ -195,10 +196,11 @@ This package contains QML debugging and development tools
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
+#%patch0 -p1
+%patch1 -p1
 %patch10 -p1
 %patch11 -p1
-%patch50 -p1
+#%patch50 -p1
 
 
 %build
@@ -251,24 +253,33 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtDeclarative.so.5
-%{_libdir}/libQtDeclarative.so.5.*
+#%{_libdir}/libQtDeclarative.so.5
+#%{_libdir}/libQtDeclarative.so.5.*
+%{_libdir}/libQtQml.so.5
+%{_libdir}/libQtQml.so.5.*
 
 # FIXME: the provided .pc file is empty!
 # Find out what gives and find a clean resolution
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtDeclarative.so
-%{_libdir}/libQtDeclarative.prl
-%{_libdir}/pkgconfig/QtDeclarative.pc
+%{_libdir}/libQtQml.so
+%{_libdir}/libQtQml.prl
+%{_libdir}/pkgconfig/QtQml.pc
 %{_includedir}/qt5/Qt/qdecl*.h
 %{_includedir}/qt5/Qt/qtdecl*.h
+%{_includedir}/qt5/Qt/qqml*.h
+%{_includedir}/qt5/Qt/qtqml*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/qjs*.h
+%{_includedir}/qt5/Qt/QJS*
+%{_includedir}/qt5/Qt/QDeclarative*
 %{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/QtDeclarative/
+%{_includedir}/qt5/Qt/QtQml
+%{_includedir}/qt5/QtQml/
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
+%{_datadir}/qt5/mkspecs/modules/qt_qml.pri
 %{_libdir}/cmake/
 
 

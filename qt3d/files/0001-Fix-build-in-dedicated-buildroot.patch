@@ -1,20 +1,3 @@
-diff -Naur qt3d/src/imports/shapes/shapes.pro qt3db/src/imports/shapes/shapes.pro
---- qt3d/src/imports/shapes/shapes.pro	2012-02-15 13:46:42.142404015 +0200
-+++ qt3db/src/imports/shapes/shapes.pro	2012-02-26 15:54:22.414814635 +0200
-@@ -2,9 +2,11 @@
- TARGET  = qshapesqmlplugin
- CONFIG += qt plugin
- 
--QT += declarative quick 3d 3dquick
-+QT += declarative quick qt3d quick3d
- 
--DESTDIR = $$QT.3dquick.imports/Qt3D/Shapes
-+include(../../threed/includes.pri)
-+
-+#DESTDIR = $$QT.3dquick.imports/Qt3D/Shapes
- target.path = $$[QT_INSTALL_IMPORTS]/Qt3D/Shapes
- INSTALLS += target
- 
 diff -Naur qt3d/src/imports/threed/threed.pro qt3db/src/imports/threed/threed.pro
 --- qt3d/src/imports/threed/threed.pro	2012-02-15 13:46:42.142404015 +0200
 +++ qt3db/src/imports/threed/threed.pro	2012-02-26 15:43:52.603691563 +0200
