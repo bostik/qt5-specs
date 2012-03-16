@@ -509,8 +509,8 @@ applications that use QtConcurrent
 
 %prep
 %setup -q -n %{name}-qtbase
-%patch0 -p2
-%patch1 -p1
+#%patch0 -p2
+#%patch1 -p1
 
 
 %build
@@ -638,7 +638,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_bindir}/syncqt
 %{_bindir}/qtmodule-configtests
 %{_bindir}/uic
-
+%{_bindir}/qdoc
 
 %files qtcore
 %defattr(-,root,root,-)
@@ -792,6 +792,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwaitcondition.h
 %{_includedir}/qt5/Qt/qwineventnotifier.h
 %{_includedir}/qt5/Qt/qxmlstream.h
+%{_includedir}/qt5/Qt/qisenum.h
+%{_includedir}/qt5/Qt/qregularexpression.h
+%{_includedir}/qt5/Qt/qtypetraits.h
 %{_includedir}/qt5/QtCore/
 %{_libdir}/libQtCore.prl
 %{_libdir}/libQtCore.so
