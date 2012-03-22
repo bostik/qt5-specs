@@ -27,13 +27,15 @@ Modulas Qt Build Manager (update-sources.sh)
 Usage:	update-sources.sh [<options>]
 
      Update parameter:
-	[--no-pull	      ]	Prevent git source pull.
+    [--pull           ] Force git source pull.
+	[--no-pull	      ]	Prevent git source pull. (default)
 	[--force-upload	      ]	Force source tar upload.
 	
 	[--module MODULE      ] List of modules.
 
 XXX
 ;;
+        --pull) NO_PULL="0";;
         --no-pull) NO_PULL="1";;
         --force-upload) FORCE_UPLOAD="1";;
         --module) QT5_MODULES="$2"; shift;;
@@ -141,10 +143,10 @@ function get_version() {
 }
 
 # Update OBS project
-(cd ${OBSDIR}; osc update)
+(cd ${OBSDIR}; osc ${OSC_OPTS} update)
 
 # Update Qt sources
-if [ x${NO_PULL} = x ]; then
+if [ x${NO_PULL} != "x1" ]; then
 
     # Starting from week 29, qt5_tool will try to pull from
     # codereview.qt.nokia.com; however, that host is not yet public and
@@ -202,7 +204,7 @@ for m in ${QT5_MODULES}; do
 done
 
 # And finally commit all the modules at once
-(cd ${OBSDIR}; osc commit -m 'Updated to latest sources' ${QT5_MODULES})
+(cd ${OBSDIR}; osc ${OSC_OPTS} commit -m 'Updated to latest sources' ${QT5_MODULES})
 
 # Show local changes, allow to clean if needed
 echo ""
