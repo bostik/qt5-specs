@@ -200,12 +200,12 @@ This package contains MALIIT platform inputcontext plugin
 #This package contains the wayland platform plugin
 
 
-#%package plugin-platform-eglfs
-#Summary:    Eglfs platform plugin
-#Group:      Qt/Qt
-#
-#%description plugin-platform-eglfs
-#This package contains the eglfs platform plugin
+%package plugin-platform-eglfs
+Summary:    Eglfs platform plugin
+Group:      Qt/Qt
+
+%description plugin-platform-eglfs
+This package contains the eglfs platform plugin
 
 
 %package plugin-platform-xcb
@@ -1360,9 +1360,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #%defattr(-,root,root,-)
 #%{_libdir}/qt5/plugins/platforms/libqwayland.so
 
-#%files plugin-platform-eglfs
-#%defattr(-,root,root,-)
-#%{_libdir}/qt5/plugins/platforms/libqeglfs.so
+%files plugin-platform-eglfs
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libqeglfs.so
 
 %files plugin-platform-xcb
 %defattr(-,root,root,-)
