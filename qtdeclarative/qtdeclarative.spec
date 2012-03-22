@@ -1,13 +1,14 @@
 %define _qtmodule_snapshot_version %nil
+%define _qtmodule_name qt5-qtdeclarative
  
-Name:       qt5-qtdeclarative
+Name:       qt5-qtqml
 Summary:    Qt Declarative library
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    %{name}-%{version}.tar.gz
+Source0:    %{_qtmodule_name}-%{version}.tar.gz
 Patch0:     create_prl_and_pc_files.patch
 Patch10:    particles-shader-fix.patch
 Patch11:    glsl-highp-ambiguity.patch
@@ -89,7 +90,7 @@ Summary:    Qt Declarative QtQmlDevTools - development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-devel = %{version}-%{release}
-Requires:   qt5-qtdeclarative-devel = %{version}-%{release}
+Requires:   qt5-qtqml-devel = %{version}-%{release}
 
 %description qtqmltools-devel
 This package contains the development headers for QtQmlDevTools
@@ -104,7 +105,7 @@ Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-folderlistmodel
-This package provides the QtDeclarative folderlistmodel plugin
+This package provides the QtQml folderlistmodel plugin
 
 %package import-localstorageplugin
 Summary:    Qt LocalStorage plugin
@@ -168,7 +169,7 @@ Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-qttest
-This package provides the QtDeclarative QtTest plugin
+This package provides the QtQml QtTest plugin
 
 %package qmlscene
 Summary:    QML scene viewer
@@ -194,7 +195,7 @@ This package contains QML debugging and development tools
 #### Build section
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{_qtmodule_name}
 %patch0 -p1
 %patch10 -p1
 %patch11 -p1
@@ -251,24 +252,31 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtDeclarative.so.5
-%{_libdir}/libQtDeclarative.so.5.*
+%{_libdir}/libQtQml.so.5
+%{_libdir}/libQtQml.so.5.*
 
 # FIXME: the provided .pc file is empty!
 # Find out what gives and find a clean resolution
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtDeclarative.so
-%{_libdir}/libQtDeclarative.prl
-%{_libdir}/pkgconfig/QtDeclarative.pc
-%{_includedir}/qt5/Qt/qdecl*.h
-%{_includedir}/qt5/Qt/qtdecl*.h
+%{_libdir}/libQtQml.so
+%{_libdir}/libQtQml.prl
+%{_libdir}/pkgconfig/QtQml.pc
+%{_includedir}/qt5/Qt/qqml*.h
+%{_includedir}/qt5/Qt/qtqml*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/qjs*.h
 %{_includedir}/qt5/Qt/designersupport.h
-%{_includedir}/qt5/Qt/QtDeclarative
+%{_includedir}/qt5/Qt/QtQml
+%{_includedir}/qt5/QtQml/
 %{_includedir}/qt5/QtDeclarative/
+%{_includedir}/qt5/Qt/QtDeclarative
+%{_includedir}/qt5/Qt/QDeclarative*
+%{_includedir}/qt5/Qt/QJS*
+%{_includedir}/qt5/Qt/qdecl*.h
+%{_includedir}/qt5/Qt/qtdeclarativeversion.h
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
+%{_datadir}/qt5/mkspecs/modules/qt_qml.pri
 %{_libdir}/cmake/
 
 
