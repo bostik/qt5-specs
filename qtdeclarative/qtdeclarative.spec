@@ -61,7 +61,7 @@ Summary:    Qt Declarative QtQuickTest - development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-devel = %{version}-%{release}
-Requires:   qt5-qtdeclarative-qtquicktest = %{version}-%{release}
+Requires:   qt5-qtqml-qtquicktest = %{version}-%{release}
 
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
@@ -78,7 +78,7 @@ This package contains the QtQuick QML support library
 Summary:    Qt Declarative - QtQuick development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-qtdeclarative-qtquick = %{version}-%{release}
+Requires:   qt5-qtqml-qtquick = %{version}-%{release}
 
 %description qtquick-devel
 This package contains the development headers for legacy QtQuick 1
