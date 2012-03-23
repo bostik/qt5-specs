@@ -14,8 +14,8 @@ BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtdeclarative-qtquick-devel
+BuildRequires:  qt5-qtqml-devel
+BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  fdupes
 
@@ -90,21 +90,21 @@ Requires:       %{name} = %{version}-%{release}
 This package contains the bezier scene format plugin
 
 
-%package -n qt5-qtdeclarative-import-qt3d-shapes
+%package -n qt5-qtqml-import-qt3d-shapes
 Summary:        Qt Quick 3D - declarative Qt3D shapes import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description -n qt5-qtdeclarative-import-qt3d-shapes
-This package contains the Qt3D shapes import for QtDeclarative
+%description -n qt5-qtqml-import-qt3d-shapes
+This package contains the Qt3D shapes import for QtQml
 
-%package -n qt5-qtdeclarative-import-qt3d
+%package -n qt5-qtqml-import-qt3d
 Summary:        Qt Quick 3D - declarative Qt3D import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description -n qt5-qtdeclarative-import-qt3d
-This package contains the Qt3D import for QtDeclarative
+%description -n qt5-qtqml-import-qt3d
+This package contains the Qt3D import for QtQml
 
 
 #### Build section
@@ -191,11 +191,11 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/sceneformats/libqscenebezier.so
 
-%files -n qt5-qtdeclarative-import-qt3d-shapes
+%files -n qt5-qtqml-import-qt3d-shapes
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt3D/Shapes/
 
-%files -n qt5-qtdeclarative-import-qt3d
+%files -n qt5-qtqml-import-qt3d
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt3D/qmldir
 %{_libdir}/qt5/imports/Qt3D/plugins.qmltypes
