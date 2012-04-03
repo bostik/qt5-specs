@@ -23,8 +23,6 @@ URL:        http://qt.nokia.com
 Source0:    %{name}-qtbase-%{version}.tar.gz
 Source1:    macros.qmake
 Source100:  qtbase-rpmlintrc
-Patch0:     eglfs-must-dep-on-egl.patch
-Patch1:     install-qtmodule-configtests.patch
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(egl)
@@ -55,8 +53,6 @@ BuildRequires:  pkgconfig(xt)
 BuildRequires:  pkgconfig(xtst)
 BuildRequires:  pkgconfig(xv)
 BuildRequires:  pkgconfig(zlib)
-#BuildRequires:  pkgconfig(wayland-client)
-#BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  cups-devel
 BuildRequires:  fdupes
 BuildRequires:  flex
@@ -118,6 +114,7 @@ This package contains qmake
 %package plugin-accessible-libqtaccessiblewidgets
 Summary:    Accessible widgets
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-accessible-libqtaccessiblewidgets
 This package contains libqtaccessiblewidgets
@@ -126,6 +123,7 @@ This package contains libqtaccessiblewidgets
 %package plugin-bearer-connman
 Summary:    Connman bearer plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-bearer-connman
 This package contains the connman bearer plugin
@@ -134,6 +132,7 @@ This package contains the connman bearer plugin
 %package plugin-bearer-generic
 Summary:    Connman generic plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-bearer-generic
 This package contains the connman generic bearer plugin
@@ -142,6 +141,7 @@ This package contains the connman generic bearer plugin
 %package plugin-bearer-nm
 Summary:    Connman generic plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-bearer-nm
 This package contains the connman NetworkManager bearer plugin
@@ -150,6 +150,7 @@ This package contains the connman NetworkManager bearer plugin
 %package plugin-imageformat-gif
 Summary:    Gif image format plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-imageformat-gif
 This package contains the gif imageformat plugin
@@ -158,6 +159,7 @@ This package contains the gif imageformat plugin
 %package plugin-imageformat-ico
 Summary:    Ico image format plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-imageformat-ico
 This package contains the ico imageformat plugin
@@ -166,6 +168,7 @@ This package contains the ico imageformat plugin
 %package plugin-imageformat-jpeg
 Summary:    JPEG image format plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-imageformat-jpeg
 This package contains the JPEG imageformat plugin
@@ -182,6 +185,7 @@ This package contains the JPEG imageformat plugin
 %package plugin-platform-minimal
 Summary:    Minimal platform plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platform-minimal
 This package contains the minimal platform plugin
@@ -190,6 +194,7 @@ This package contains the minimal platform plugin
 %package plugin-platform-inputcontext-maliit
 Summary:    MALIIT input context platform plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platform-inputcontext-maliit
 This package contains MALIIT platform inputcontext plugin
@@ -206,6 +211,7 @@ This package contains MALIIT platform inputcontext plugin
 %package plugin-platform-eglfs
 Summary:    Eglfs platform plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platform-eglfs
 This package contains the eglfs platform plugin
@@ -214,6 +220,7 @@ This package contains the eglfs platform plugin
 %package plugin-platform-xcb
 Summary:    XCB platform plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platform-xcb
 This package contains the XCB platform plugin
@@ -231,6 +238,7 @@ This package contains the XCB platform plugin
 %package plugin-sqldriver-sqlite
 Summary:    Sqlite sql driver plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-sqldriver-sqlite
 This package contains the sqlite sql driver plugin
@@ -239,6 +247,7 @@ This package contains the sqlite sql driver plugin
 %package plugin-platforminputcontext-ibus
 Summary:    ibus platform import context plugin
 Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platforminputcontext-ibus
 This package contains the ibus platform input context plugin
@@ -261,6 +270,7 @@ This package contains the QtDBus library
 Summary:    Development files for QtDBus
 Group:      Qt/Qt
 Requires:   %{name}-qtdbus = %{version}-%{release}
+Requires:   pkgconfig(dbus-1)
 
 %description qtdbus-devel
 This package contains the files necessary to develop
@@ -411,8 +421,6 @@ applications that use QtWidgets
 %package qtplatformsupport-devel
 Summary:    The QtWidgets library
 Group:      Qt/Qt
-Requires(post):     /sbin/ldconfig
-Requires(postun):   /sbin/ldconfig
 
 %description qtplatformsupport-devel
 This package contains the files necessary to develop
@@ -454,73 +462,14 @@ Requires:   %{name}-qtconcurrent = %{version}-%{release}
 This package contains the files necessary to develop
 applications that use QtConcurrent
 
-#%package qtv8
-#Summary:    The QtV8 library
-#Group:      Qt/Qt
-#Requires(post):     /sbin/ldconfig
-#Requires(postun):   /sbin/ldconfig
-#
-#%description qtv8
-#This package contains the QtV8 library
-#
-#%package qtv8-devel
-#Summary:    Development files for QtV8
-#Group:      Qt/Qt
-#Requires:   %{name}-qtv8 = %{version}-%{release}
-#
-#%description qtv8-devel
-#This package contains the files necessary to develop
-#applications that use QtV8
-
-
-
-
-#%package qtuitools
-#Summary:    The QtUiTools library
-#Group:      Qt/Qt
-#Requires:   %{name} = %{version}-%{release}
-#Requires(post):     /sbin/ldconfig
-#Requires(postun):   /sbin/ldconfig
-#
-#%description qtuitools
-#This package contains the QtUiTools library
-
-# %package qtuitools-devel
-# Summary:    Development files for QtUiTools
-# Group:      Qt/Qt
-# Requires(post):     /sbin/ldconfig
-# Requires(postun):   /sbin/ldconfig
-# 
-# %description qtuitools-devel
-# This package contains the files necessary to develop
-# applications that use QtUiTools
-# 
-# %package qtdesigner-devel
-# Summary:    Development files for QtDesigner
-# Group:      Qt/Qt
-# Requires(post):     /sbin/ldconfig
-# Requires(postun):   /sbin/ldconfig
-# 
-# %description qtdesigner-devel
-# This package contains the files necessary to develop
-# applications that use QtDesigner
-
-
-
 
 ##### Build section
 
 %prep
 %setup -q -n %{name}-qtbase
-#%patch0 -p2
-#%patch1 -p1
 
 
 %build
-export QT_WAYLAND_GL_CONFIG=wayland_egl
-#echo "SUBDIRS += eglfs" >> src/plugins/platforms/platforms.pro
-#echo "SUBDIRS += xlib" >> src/plugins/platforms/platforms.pro
-#
 ./configure --disable-static \
     -confirm-license \
     -developer-build \
@@ -645,15 +594,13 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtcore
 %defattr(-,root,root,-)
-%{_libdir}/libQtCore.so.5
-%{_libdir}/libQtCore.so.5.*
+%{_libdir}/libQtCore.so.*
 
 %files qtcore-devel
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtCore
 %{_includedir}/qt5/Qt/qabstractanimation.h
 %{_includedir}/qt5/Qt/qabstracteventdispatcher.h
-#%{_includedir}/qt5/Qt/qabstractfileengine.h
 %{_includedir}/qt5/Qt/qabstractitemmodel.h
 %{_includedir}/qt5/Qt/qabstractstate.h
 %{_includedir}/qt5/Qt/qabstracttransition.h
@@ -698,7 +645,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qfileinfo.h
 %{_includedir}/qt5/Qt/qfilesystemwatcher.h
 %{_includedir}/qt5/Qt/qfinalstate.h
-#%{_includedir}/qt5/Qt/qfsfileengine.h
 %{_includedir}/qt5/Qt/qfunctions_*.h
 %{_includedir}/qt5/Qt/qfuture*.h
 %{_includedir}/qt5/Qt/qglobal.h
@@ -840,8 +786,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtdbus
 %defattr(-,root,root,-)
-%{_libdir}/libQtDBus.so.5
-%{_libdir}/libQtDBus.so.5.*
+%{_libdir}/libQtDBus.so.*
 
 
 %files qtdbus-devel
@@ -858,8 +803,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtgui
 %defattr(-,root,root,-)
-%{_libdir}/libQtGui.so.5
-%{_libdir}/libQtGui.so.5.*
+%{_libdir}/libQtGui.so.*
 
 
 %files qtgui-devel
@@ -965,8 +909,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtnetwork
 %defattr(-,root,root,-)
-%{_libdir}/libQtNetwork.so.5
-%{_libdir}/libQtNetwork.so.5.*
+%{_libdir}/libQtNetwork.so.*
 
 
 %files qtnetwork-devel
@@ -1006,8 +949,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtopengl
 %defattr(-,root,root,-)
-%{_libdir}/libQtOpenGL.so.5
-%{_libdir}/libQtOpenGL.so.5.*
+%{_libdir}/libQtOpenGL.so.*
 
 
 %files qtopengl-devel
@@ -1031,8 +973,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtsql
 %defattr(-,root,root,-)
-%{_libdir}/libQtSql.so.5
-%{_libdir}/libQtSql.so.5.*
+%{_libdir}/libQtSql.so.*
 
 
 %files qtsql-devel
@@ -1063,8 +1004,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qttest
 %defattr(-,root,root,-)
-%{_libdir}/libQtTest.so.5
-%{_libdir}/libQtTest.so.5.*
+%{_libdir}/libQtTest.so.*
 
 %files qttest-devel
 %defattr(-,root,root,-)
@@ -1082,8 +1022,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtxml
 %defattr(-,root,root,-)
-%{_libdir}/libQtXml.so.5
-%{_libdir}/libQtXml.so.5.*
+%{_libdir}/libQtXml.so.*
 
 %files qtxml-devel
 %defattr(-,root,root,-)
@@ -1100,8 +1039,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtwidgets
 %defattr(-,root,root,-)
-%{_libdir}/libQtWidgets.so.5
-%{_libdir}/libQtWidgets.so.5.*
+%{_libdir}/libQtWidgets.so.*
 
 %files qtwidgets-devel
 %defattr(-,root,root,-)
@@ -1253,8 +1191,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtprintsupport
 %defattr(-,root,root,-)
-%{_libdir}/libQtPrintSupport.so.5
-%{_libdir}/libQtPrintSupport.so.5.*
+%{_libdir}/libQtPrintSupport.so.*
 
 %files qtprintsupport-devel
 %defattr(-,root,root,-)
@@ -1268,8 +1205,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtconcurrent
 %defattr(-,root,root,-)
-%{_libdir}/libQtConcurrent.so.5
-%{_libdir}/libQtConcurrent.so.5.*
+%{_libdir}/libQtConcurrent.so.*
 
 %files qtconcurrent-devel
 %defattr(-,root,root,-)
@@ -1280,40 +1216,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/pkgconfig/QtConcurrent.pc
 %{_datadir}/qt5/mkspecs/modules/qt_concurrent.pri
 
-
-#%files qtv8
-#%defattr(-,root,root,-)
-#%{_libdir}/libQtV8.so.5
-#%{_libdir}/libQtV8.so.5.*
-#
-#%files qtv8-devel
-#%defattr(-,root,root,-)
-#%{_includedir}/qt5/Qt/QtV8
-#%{_includedir}/qt5/QtV8/
-#%{_libdir}/libQtV8.prl
-#%{_libdir}/libQtV8.so
-#%{_libdir}/pkgconfig/QtV8.pc
-#%{_datadir}/qt5/mkspecs/modules/qt_v8.pri
-
-
-
-#%files qtuitools
-#%defattr(-,root,root,-)
-#%{_libdir}/libQtUiTools.so.5
-#%{_libdir}/libQtUiTools.so.5.*
-
-# %files qtuitools-devel
-# %defattr(-,root,root,-)
-# %{_includedir}/qt5/QtUiTools/
-# %{_libdir}/libQtUiTools.prl
-# #%{_libdir}/libQtUiTools.so
-# %{_libdir}/pkgconfig/QtUiTools.pc
-# %{_datadir}/qt5/mkspecs/modules/qt_uitools.pri
-# 
-# %files qtdesigner-devel
-# %defattr(-,root,root,-)
-# %{_includedir}/qt5/QtDesigner/
-# %{_datadir}/qt5/mkspecs/modules/qt_uilib.pri
 
 
 
@@ -1358,10 +1260,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %files plugin-platform-inputcontext-maliit
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforminputcontexts/libmaliitplatforminputcontextplugin.so
-
-#%files plugin-platform-wayland
-#%defattr(-,root,root,-)
-#%{_libdir}/qt5/plugins/platforms/libqwayland.so
 
 %files plugin-platform-eglfs
 %defattr(-,root,root,-)
