@@ -505,7 +505,6 @@ applications that use QtConcurrent
     -no-separate-debug-info \
     -verbose \
     -no-gtkstyle \
-    -no-nas-sound \
     -opengl es2 \
     -arch %{arch_arg} \
     -no-openvg \
@@ -515,8 +514,7 @@ applications that use QtConcurrent
     -nomake tests \
     -nomake examples \
     -nomake demos \
-    -xcb \
-    -qpa
+    -xcb
 #
 make %{?_smp_mflags}
 
