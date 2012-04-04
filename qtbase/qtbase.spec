@@ -742,6 +742,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qisenum.h
 %{_includedir}/qt5/Qt/qregularexpression.h
 %{_includedir}/qt5/Qt/qtypetraits.h
+%{_includedir}/qt5/Qt/qt_mips_asm_dsp.h
 %{_includedir}/qt5/QtCore/
 %{_libdir}/libQtCore.prl
 %{_libdir}/libQtCore.so
@@ -780,6 +781,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/win32-icc/
 %{_datadir}/qt5/mkspecs/win32-msvc20*/
 %{_datadir}/qt5/mkspecs/wince*/
+%{_datadir}/qt5/mkspecs/devices/
+%{_datadir}/qt5/mkspecs/qdevice.pri
 %{_sysconfdir}/rpm/macros.qmake
 
 %files qtdbus
