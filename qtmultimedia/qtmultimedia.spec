@@ -14,8 +14,8 @@ BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtdeclarative-qtquick-devel
+BuildRequires:  qt5-qtqml-devel
+BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  fdupes
@@ -40,14 +40,14 @@ mobile and embedded systems without rewriting the source code.
 .
 This package contains the QtMultimedia module development files
 
-%package -n qt5-qtdeclarative-import-multimedia
-Summary:    QtDeclarative multimedia import
+%package -n qt5-qtqml-import-multimedia
+Summary:    QtQml multimedia import
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-declarative
+Requires:   qt5-qtqml
 
-%description -n qt5-qtdeclarative-import-multimedia
-This package contains the Multimedia import for QtDeclarative
+%description -n qt5-qtqml-import-multimedia
+This package contains the Multimedia import for QtQml
 
 %package plugin-mediaservice-audioengine
 Summary:    Qt Multimedia - audio engine media-service
@@ -133,7 +133,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/cmake/
 
 
-%files -n qt5-qtdeclarative-import-multimedia
+%files -n qt5-qtqml-import-multimedia
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtMultimedia/
 

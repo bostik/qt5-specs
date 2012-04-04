@@ -10,16 +10,12 @@ Source0:    %{name}-%{version}.tar.gz
 Patch1:     0001-Fix-build-in-dedicated-buildroot.patch
 Patch2:     0002-Install-development-headers.patch
 Patch3:     0003-Remove-demos-and-examples-from-install.patch
-Patch4:	    0004-Fix-generated-headers.patch
-Patch5:     0005-Fix-qtquick1.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
-BuildRequires:  qt5-qtscript-devel
-BuildRequires:  qt5-qtxmlpatterns-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtdeclarative-qtquick-devel
+BuildRequires:  qt5-qtqml-devel
+BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  fdupes
 
@@ -94,21 +90,37 @@ Requires:       %{name} = %{version}-%{release}
 This package contains the bezier scene format plugin
 
 
+<<<<<<< HEAD
 %package -n qt5-qtdeclarative-import-qt3d-shapes
+=======
+%package -n qt5-qtqml-import-qt3d-shapes
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 Summary:        Qt Quick 3D - declarative Qt3D shapes import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
+<<<<<<< HEAD
 %description -n qt5-qtdeclarative-import-qt3d-shapes
 This package contains the Qt3D shapes import for QtDeclarative
 
 %package -n qt5-qtdeclarative-import-qt3d
+=======
+%description -n qt5-qtqml-import-qt3d-shapes
+This package contains the Qt3D shapes import for QtQml
+
+%package -n qt5-qtqml-import-qt3d
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 Summary:        Qt Quick 3D - declarative Qt3D import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
+<<<<<<< HEAD
 %description -n qt5-qtdeclarative-import-qt3d
 This package contains the Qt3D import for QtDeclarative
+=======
+%description -n qt5-qtqml-import-qt3d
+This package contains the Qt3D import for QtQml
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 
 
 #### Build section
@@ -118,6 +130,7 @@ This package contains the Qt3D import for QtDeclarative
 %patch1 -p1
 #%patch2 -p1
 #%patch3 -p1
+<<<<<<< HEAD
 #%patch4 -p1
 %patch5 -p1
 # Fixing the misplaced private headers with this clustersed
@@ -158,6 +171,9 @@ find . -type f -name '*.h' -exec sed -i -e 's/<QtQuick1\/qdeclarative/<qdeclarat
 find . -type f -name '*.h' -exec sed -i -e 's/"QtQuick1\/qdeclarative/"qdeclarative/g' {} \;
 find . -type f -name '*.cpp' -exec sed -i -e 's/<QtQuick1\/qdeclarative/<qdeclarative/g' {} \;
 find . -type f -name '*.cpp' -exec sed -i -e 's/"QtQuick1\/qdeclarative/"qdeclarative/g' {} \;
+=======
+
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 
 %build
 export QTDIR=/usr/share/qt5
@@ -234,11 +250,19 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/sceneformats/libqscenebezier.so
 
+<<<<<<< HEAD
 %files -n qt5-qtdeclarative-import-qt3d-shapes
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt3D/Shapes/
 
 %files -n qt5-qtdeclarative-import-qt3d
+=======
+%files -n qt5-qtqml-import-qt3d-shapes
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/Qt3D/Shapes/
+
+%files -n qt5-qtqml-import-qt3d
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/Qt3D/qmldir
 %{_libdir}/qt5/imports/Qt3D/plugins.qmltypes

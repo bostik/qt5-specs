@@ -41,6 +41,9 @@ BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xcursor)
 BuildRequires:  pkgconfig(xcb-keysyms)
+BuildRequires:  pkgconfig(xcb-image)
+BuildRequires:  pkgconfig(xcb-icccm)
+BuildRequires:  pkgconfig(xcb-renderutil)
 BuildRequires:  pkgconfig(xcomposite)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xft)
@@ -200,12 +203,12 @@ This package contains MALIIT platform inputcontext plugin
 #This package contains the wayland platform plugin
 
 
-#%package plugin-platform-eglfs
-#Summary:    Eglfs platform plugin
-#Group:      Qt/Qt
-#
-#%description plugin-platform-eglfs
-#This package contains the eglfs platform plugin
+%package plugin-platform-eglfs
+Summary:    Eglfs platform plugin
+Group:      Qt/Qt
+
+%description plugin-platform-eglfs
+This package contains the eglfs platform plugin
 
 
 %package plugin-platform-xcb
@@ -509,8 +512,8 @@ applications that use QtConcurrent
 
 %prep
 %setup -q -n %{name}-qtbase
-%patch0 -p2
-%patch1 -p1
+#%patch0 -p2
+#%patch1 -p1
 
 
 %build
@@ -638,7 +641,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_bindir}/syncqt
 %{_bindir}/qtmodule-configtests
 %{_bindir}/uic
-
+%{_bindir}/qdoc
 
 %files qtcore
 %defattr(-,root,root,-)
@@ -792,6 +795,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwaitcondition.h
 %{_includedir}/qt5/Qt/qwineventnotifier.h
 %{_includedir}/qt5/Qt/qxmlstream.h
+%{_includedir}/qt5/Qt/qisenum.h
+%{_includedir}/qt5/Qt/qregularexpression.h
+%{_includedir}/qt5/Qt/qtypetraits.h
 %{_includedir}/qt5/QtCore/
 %{_libdir}/libQtCore.prl
 %{_libdir}/libQtCore.so
@@ -1357,9 +1363,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 #%defattr(-,root,root,-)
 #%{_libdir}/qt5/plugins/platforms/libqwayland.so
 
-#%files plugin-platform-eglfs
-#%defattr(-,root,root,-)
-#%{_libdir}/qt5/plugins/platforms/libqeglfs.so
+%files plugin-platform-eglfs
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libqeglfs.so
 
 %files plugin-platform-xcb
 %defattr(-,root,root,-)

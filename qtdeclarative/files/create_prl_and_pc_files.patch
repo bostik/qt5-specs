@@ -1,9 +1,17 @@
-diff --git a/src/declarative/declarative.pro b/src/declarative/declarative.pro
-index 2d9248e..277a7c5 100644
---- a/src/declarative/declarative.pro
-+++ b/src/declarative/declarative.pro
-@@ -12,7 +12,10 @@ DEFINES   += QT_BUILD_DECLARATIVE_LIB QT_NO_URL_CAST_FROM_STRING
- win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
+commit 38f6994d362b4d18a811a1d080817c30262996a0
+Author: Mika Boström <mika.bostrom@nomovok.com>
+Date:   Thu Mar 22 15:29:01 2012 +0200
+
+    Create prl and pc files
+    
+    Pkg-config is our friend. Let everyone benefit from it.
+
+diff --git a/src/qml/qml.pro b/src/qml/qml.pro
+index 0bbfc9f..8b83b8e 100644
+--- a/src/qml/qml.pro
++++ b/src/qml/qml.pro
+@@ -14,7 +14,10 @@ win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
+ win32-msvc*:DEFINES *= _CRT_SECURE_NO_WARNINGS
  solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
  
 -unix|win32-g++*:QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
@@ -12,5 +20,5 @@ index 2d9248e..277a7c5 100644
 +    CONFIG += create_prl create_pc
 +}
  
- exists("qdeclarative_enable_gcov") {
+ exists("qqml_enable_gcov") {
      QMAKE_CXXFLAGS = -fprofile-arcs -ftest-coverage -fno-elide-constructors

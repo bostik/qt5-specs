@@ -1,13 +1,14 @@
 %define _qtmodule_snapshot_version %nil
+%define _qtmodule_name qt5-qtdeclarative
  
-Name:       qt5-qtdeclarative
+Name:       qt5-qtqml
 Summary:    Qt Declarative library
 Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    %{name}-%{version}.tar.gz
+Source0:    %{_qtmodule_name}-%{version}.tar.gz
 Patch0:     create_prl_and_pc_files.patch
 Patch1:     fix-destdir.patch
 Patch10:    particles-shader-fix.patch
@@ -61,7 +62,7 @@ Summary:    Qt Declarative QtQuickTest - development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-devel = %{version}-%{release}
-Requires:   qt5-qtdeclarative-qtquicktest = %{version}-%{release}
+Requires:   qt5-qtqml-qtquicktest = %{version}-%{release}
 
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
@@ -78,7 +79,7 @@ This package contains the QtQuick QML support library
 Summary:    Qt Declarative - QtQuick development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-qtdeclarative-qtquick = %{version}-%{release}
+Requires:   qt5-qtqml-qtquick = %{version}-%{release}
 
 %description qtquick-devel
 This package contains the development headers for legacy QtQuick 1
@@ -90,7 +91,7 @@ Summary:    Qt Declarative QtQmlDevTools - development files
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-devel = %{version}-%{release}
-Requires:   qt5-qtdeclarative-devel = %{version}-%{release}
+Requires:   qt5-qtqml-devel = %{version}-%{release}
 
 %description qtqmltools-devel
 This package contains the development headers for QtQmlDevTools
@@ -105,7 +106,7 @@ Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-folderlistmodel
-This package provides the QtDeclarative folderlistmodel plugin
+This package provides the QtQml folderlistmodel plugin
 
 %package import-localstorageplugin
 Summary:    Qt LocalStorage plugin
@@ -169,7 +170,7 @@ Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description import-qttest
-This package provides the QtDeclarative QtTest plugin
+This package provides the QtQml QtTest plugin
 
 %package qmlscene
 Summary:    QML scene viewer
@@ -195,9 +196,14 @@ This package contains QML debugging and development tools
 #### Build section
 
 %prep
+<<<<<<< HEAD
 %setup -q -n %{name}
 #%patch0 -p1
 %patch1 -p1
+=======
+%setup -q -n %{_qtmodule_name}
+%patch0 -p1
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %patch10 -p1
 %patch11 -p1
 #%patch50 -p1
@@ -253,8 +259,11 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files
 %defattr(-,root,root,-)
+<<<<<<< HEAD
 #%{_libdir}/libQtDeclarative.so.5
 #%{_libdir}/libQtDeclarative.so.5.*
+=======
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %{_libdir}/libQtQml.so.5
 %{_libdir}/libQtQml.so.5.*
 
@@ -265,8 +274,11 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_libdir}/libQtQml.so
 %{_libdir}/libQtQml.prl
 %{_libdir}/pkgconfig/QtQml.pc
+<<<<<<< HEAD
 %{_includedir}/qt5/Qt/qdecl*.h
 %{_includedir}/qt5/Qt/qtdecl*.h
+=======
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %{_includedir}/qt5/Qt/qqml*.h
 %{_includedir}/qt5/Qt/qtqml*.h
 %{_includedir}/qt5/Qt/qsg*.h
@@ -274,10 +286,19 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/QJS*
 %{_includedir}/qt5/Qt/QDeclarative*
 %{_includedir}/qt5/Qt/designersupport.h
-%{_includedir}/qt5/Qt/QtDeclarative
-%{_includedir}/qt5/QtDeclarative/
 %{_includedir}/qt5/Qt/QtQml
 %{_includedir}/qt5/QtQml/
+%{_includedir}/qt5/QtDeclarative/
+<<<<<<< HEAD
+%{_includedir}/qt5/Qt/QtQml
+%{_includedir}/qt5/QtQml/
+=======
+%{_includedir}/qt5/Qt/QtDeclarative
+%{_includedir}/qt5/Qt/QDeclarative*
+%{_includedir}/qt5/Qt/QJS*
+%{_includedir}/qt5/Qt/qdecl*.h
+%{_includedir}/qt5/Qt/qtdeclarativeversion.h
+>>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
 %{_datadir}/qt5/mkspecs/modules/qt_qml.pri
 %{_libdir}/cmake/

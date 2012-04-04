@@ -10,7 +10,7 @@ index 3852b01..6301281 100644
          "    gl_FragColor = color * smoothstep(alphaMin,                             \n"
 -        "                                      alphaMax,                             \n"
 -        "                                      texture2D(texture, sampleCoord).a);   \n"
-+        "                                      alphaMax, a                           \n"
++        "                                      alphaMax, a);                         \n"
          "}";
  }
  
