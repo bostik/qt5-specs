@@ -196,14 +196,8 @@ This package contains QML debugging and development tools
 #### Build section
 
 %prep
-<<<<<<< HEAD
-%setup -q -n %{name}
-#%patch0 -p1
-%patch1 -p1
-=======
 %setup -q -n %{_qtmodule_name}
 %patch0 -p1
->>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %patch10 -p1
 %patch11 -p1
 #%patch50 -p1
@@ -259,11 +253,6 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files
 %defattr(-,root,root,-)
-<<<<<<< HEAD
-#%{_libdir}/libQtDeclarative.so.5
-#%{_libdir}/libQtDeclarative.so.5.*
-=======
->>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %{_libdir}/libQtQml.so.5
 %{_libdir}/libQtQml.so.5.*
 
@@ -274,11 +263,6 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_libdir}/libQtQml.so
 %{_libdir}/libQtQml.prl
 %{_libdir}/pkgconfig/QtQml.pc
-<<<<<<< HEAD
-%{_includedir}/qt5/Qt/qdecl*.h
-%{_includedir}/qt5/Qt/qtdecl*.h
-=======
->>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %{_includedir}/qt5/Qt/qqml*.h
 %{_includedir}/qt5/Qt/qtqml*.h
 %{_includedir}/qt5/Qt/qsg*.h
@@ -289,16 +273,11 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/QtQml
 %{_includedir}/qt5/QtQml/
 %{_includedir}/qt5/QtDeclarative/
-<<<<<<< HEAD
-%{_includedir}/qt5/Qt/QtQml
-%{_includedir}/qt5/QtQml/
-=======
 %{_includedir}/qt5/Qt/QtDeclarative
 %{_includedir}/qt5/Qt/QDeclarative*
 %{_includedir}/qt5/Qt/QJS*
 %{_includedir}/qt5/Qt/qdecl*.h
 %{_includedir}/qt5/Qt/qtdeclarativeversion.h
->>>>>>> 47d053468c1e41d9691c29404a287368d133a319
 %{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
 %{_datadir}/qt5/mkspecs/modules/qt_qml.pri
 %{_libdir}/cmake/
