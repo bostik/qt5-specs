@@ -58,7 +58,7 @@ if [ x${OBSDIR} = x ]; then
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qtquick3d qt3d qtquick1"
+QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtphonon qtmultimedia qtwayland qt3d qtquick1"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources
@@ -168,12 +168,8 @@ for m in ${QT5_MODULES}; do
         mkdir ${OBSDIR}/${m}
         osc add ${OBSDIR}/${m}
     fi
-    # Git ref to archive. We need to use a different one for
-    # qtquick3d in order to satisfy qtlocation dependencies
+    # Git ref to archive.
     _gitref="origin/HEAD"
-    if [ ${m} = "qtquick3d" ]; then
-        _gitref="origin/qml2"
-    fi
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
