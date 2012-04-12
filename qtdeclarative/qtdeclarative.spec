@@ -198,6 +198,7 @@ This package contains QML debugging and development tools
 %prep
 %setup -q -n %{_qtmodule_name}
 %patch0 -p1
+%patch1 -p1
 %patch10 -p1
 %patch11 -p1
 #%patch50 -p1
