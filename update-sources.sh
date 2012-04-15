@@ -27,17 +27,21 @@ Modulas Qt Build Manager (update-sources.sh)
 Usage:	update-sources.sh [<options>]
 
      Update parameter:
-    [--pull           ] Force git source pull.
-	[--no-pull	      ]	Prevent git source pull. (default)
-	[--force-upload	      ]	Force source tar upload.
+        [--pull               ] Force git source pull.
+        [--no-pull	      ]	Prevent git source pull. (default)
+        [--force-upload	      ]	Force source tar upload.
 	
-	[--module MODULE      ] List of modules.
+        [--module MODULE      ] List of modules.
+        [--alpha              ] Pull latest alpha release.
+        [--tag TAG            ] Pull a certain tag release.
 
 XXX
-;;
+exit ;;
         --pull) NO_PULL="0";;
         --no-pull) NO_PULL="1";;
         --force-upload) FORCE_UPLOAD="1";;
+        --alpha) GIT_TAG="qt-v5.0.0-alpha1";;
+        --tag) GIT_TAG="$2"; shift;;
         --module) QT5_MODULES="$2"; shift;;
 
 	*) break;;
@@ -54,7 +58,7 @@ fi
 
 # OBSDIR is the directory holding your OBS qt5 project
 if [ x${OBSDIR} = x ]; then
-    OBSDIR=/work/qt/obs/qt5
+    OBSDIR=/work/qt/obs/home:marko.helenius:branches:qt5
 fi
 
 # Modules to build, in order
@@ -136,8 +140,13 @@ function get_version() {
         realcommitid=$(git describe --always ${_ref})
         commitid=$count.g$realcommitid
     else
-        commitid=$(expr match $(git describe ${_ref}) '.*-\([0-9]*-g[a-z0-9]*\)$' \
-                | tr - .)
+        # While using tags, git describe returns the tag name
+        if [ x${GIT_TAG} = x ]; then
+            commitid=$(expr match $(git describe ${_ref}) '.*-\([0-9]*-g[a-z0-9]*\)$' \
+                    | tr - .)
+        else
+            commitid=$(git describe --always ${_ref})
+        fi
     fi
     echo $commitid
 }
@@ -156,7 +165,13 @@ if [ x${NO_PULL} != "x1" ]; then
 
     # Instead, use mirror repos at gitorious.org
     for m in ${QT5_MODULES}; do
-        (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
+    
+        # Handling a case where Git Tag is present
+        if [ x${GIT_TAG} = x ]; then
+            (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
+        else
+            (cd ${QT5_DIR}/${m}/; echo "[### ${m} - Tag: ${GIT_TAG}]"; git checkout ${GIT_TAG})            
+        fi
     done
 fi
 
@@ -168,8 +183,12 @@ for m in ${QT5_MODULES}; do
         mkdir ${OBSDIR}/${m}
         osc add ${OBSDIR}/${m}
     fi
-    # Git ref to archive.
-    _gitref="origin/HEAD"
+    # Git ref to archive.    
+    if [ x${GIT_TAG} = x ]; then
+        _gitref="origin/HEAD"
+    else
+        _gitref="refs/tags/${GIT_TAG}"
+    fi
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
