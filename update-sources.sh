@@ -58,7 +58,7 @@ fi
 
 # OBSDIR is the directory holding your OBS qt5 project
 if [ x${OBSDIR} = x ]; then
-    OBSDIR=/work/qt/obs/home:marko.helenius:branches:qt5
+    OBSDIR=/work/qt/obs/qt5
 fi
 
 # Modules to build, in order
