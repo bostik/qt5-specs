@@ -143,9 +143,10 @@ function get_version() {
         # While using tags, git describe returns the tag name
         if [ x${GIT_TAG} = x ]; then
             commitid=$(expr match $(git describe ${_ref}) '.*-\([0-9]*-g[a-z0-9]*\)$' \
-                    | tr - .)
+                     | tr - .)
         else
-            commitid=$(git describe --always ${_ref})
+            commitid=$(git describe --always ${_ref} \
+	             | sed 's/^\(.*\)-v\(.*\)\(-.*\)$/\2\3/' | tr - '~' )
         fi
     fi
     echo $commitid
