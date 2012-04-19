@@ -198,7 +198,7 @@ for m in ${QT5_MODULES}; do
     if [ "${head}" != "${last}" ]; then
         # New revision. Remove old sources before recreating new.
         rm -fv ${OBSDIR}/${m}/${bn}*.tar.gz
-        git archive ${_gitref} --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~git${ver}.tar.gz
+        git archive ${_gitref} --prefix=${bn}/ | gzip > ${OBSDIR}/${m}/${bn}-5~${ver}.tar.gz
         # Store the revision used
         put_last ${m} ${head}
         # Add this version to changelog
@@ -213,7 +213,7 @@ for m in ${QT5_MODULES}; do
     fi
 
     # Uses retrieved source version from beginning of loop
-    sed -i "s/define _qtmodule_snapshot_version %nil/define _qtmodule_snapshot_version 5~git${ver}/g" ${OBSDIR}/${m}/*.spec
+    sed -i "s/define _qtmodule_snapshot_version %nil/define _qtmodule_snapshot_version 5~${ver}/g" ${OBSDIR}/${m}/*.spec
 
     # Deals with OBS package dir bookkeeping in one go
     (cd ${OBSDIR}/${m}/ && osc addremove)
