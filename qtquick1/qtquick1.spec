@@ -17,6 +17,7 @@ BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtqml-devel
 BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qtnetwork-devel
+BuildRequires:  qt5-qtscript-devel
 BuildRequires:  fdupes
 
 %description
