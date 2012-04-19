@@ -193,7 +193,7 @@ for m in ${QT5_MODULES}; do
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
     last=$(get_last ${m})
-    head=$(git show ${_gitref} | head -n 1 | sed s'/^commit //')
+    head=$(git show ${_gitref} | grep ^commit | sed s'/^commit //')
     ver=$(get_version ${_gitref})
     if [ "${head}" != "${last}" ]; then
         # New revision. Remove old sources before recreating new.
