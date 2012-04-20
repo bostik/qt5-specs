@@ -1,7 +1,7 @@
 From 8a9bfe37750af6bbdc7ab71d44ffcbb978b7f61f Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <mika.bostrom@nomovok.com>
 Date: Thu, 19 Apr 2012 19:34:24 +0300
-Subject: [PATCH 3/4] Install public headers
+Subject: [PATCH 3/6] Install public headers
 
 Add public headers as install target. This allows to build things that
 depend on Qt3D and Qt3DQuick components.

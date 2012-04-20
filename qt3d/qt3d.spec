@@ -11,6 +11,8 @@ Patch1:     0001-Default-to-package-build.patch
 Patch2:     0002-Fix-build-in-dedicated-build-root.patch
 Patch3:     0003-Install-public-headers.patch
 Patch4:     0004-Fix-install-targets.patch
+Patch5:     0005-Install-generated-Qt3D-headers.patch
+Patch6:     0006-Install-generated-Qt3DQuick-headers.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -117,6 +119,8 @@ This package contains the Qt3D import for QtQml
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 
 %build
@@ -164,7 +168,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQt3D.prl
 %{_includedir}/qt5/Qt3D/
 %{_libdir}/pkgconfig/Qt3D.pc
-#%{_datadir}/qt5/mkspecs/features/qt3dquick.prf
+#%{_datadir}/qt5/mkspecs/features/qt3d.prf
 %{_datadir}/qt5/mkspecs/modules/qt_qt3d.pri
 
 %files qt3dquick
@@ -179,7 +183,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQt3DQuick.prl
 %{_includedir}/qt5/Qt3DQuick/
 %{_libdir}/pkgconfig/Qt3DQuick.pc
-#%{_datadir}/qt5/mkspecs/features/qt3d.prf
+#%{_datadir}/qt5/mkspecs/features/qt3dquick.prf
 %{_datadir}/qt5/mkspecs/modules/qt_qt3dquick.pri
 
 %files plugin-sceneformat-ai

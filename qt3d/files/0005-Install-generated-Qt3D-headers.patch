@@ -1,0 +1,124 @@
+From aa62f6f480127ec316a673894205b39fa6ab377b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <mika.bostrom@nomovok.com>
+Date: Fri, 20 Apr 2012 11:36:10 +0300
+Subject: [PATCH 5/6] Install generated Qt3D headers
+
+The classname headers are generated during build but not installed.
+Fix the oversight.
+
+Add a new file to include the generated headers. This is to prevent
+qmake from automatically expanding path contents (and getting wrong
+results).
+---
+ src/threed/genheaders.pri |   82 +++++++++++++++++++++++++++++++++++++++++++++
+ src/threed/threed.pro     |    8 ++++
+ 2 files changed, 90 insertions(+), 0 deletions(-)
+ create mode 100644 src/threed/genheaders.pri
+
+diff --git a/src/threed/genheaders.pri b/src/threed/genheaders.pri
+new file mode 100644
+index 0000000..22dd94a
+--- /dev/null
++++ b/src/threed/genheaders.pri
+@@ -0,0 +1,82 @@
++GENERATED_HEADERS = \
++    ../../include/Qt3D/QGLAttributeSet \
++    ../../include/Qt3D/QGraphicsBillboardTransform \
++    ../../include/Qt3D/QPlane3D \
++    ../../include/Qt3D/QGraphicsRotation3D \
++    ../../include/Qt3D/QGLTextureCube \
++    ../../include/Qt3D/QGLColorMaterial \
++    ../../include/Qt3D/QRay3D \
++    ../../include/Qt3D/QGLPickNode \
++    ../../include/Qt3D/QGLSceneFormatHandler \
++    ../../include/Qt3D/QGLColladaFxEffectLoader \
++    ../../include/Qt3D/QSphere3D \
++    ../../include/Qt3D/QMatrix4x4Stack \
++    ../../include/Qt3D/QArrayAlignedPrealloc \
++    ../../include/Qt3D/QAreaAllocator \
++    ../../include/Qt3D/QGraphicsScale3D \
++    ../../include/Qt3D/QGLSceneAnimation \
++    ../../include/Qt3D/QGeneralAreaAllocator \
++    ../../include/Qt3D/QGraphicsTranslation3D \
++    ../../include/Qt3D/QGLView \
++    ../../include/Qt3D/QGLAbstractSurface \
++    ../../include/Qt3D/QGLFramebufferObjectSurface \
++    ../../include/Qt3D/QGLMaterialCollection \
++    ../../include/Qt3D/QGLColladaSampler2DParam \
++    ../../include/Qt3D/QArray \
++    ../../include/Qt3D/QGLColladaFxEffectFactory \
++    ../../include/Qt3D/QVector3DArray \
++    ../../include/Qt3D/QGLPainter \
++    ../../include/Qt3D/QGLCameraAnimation \
++    ../../include/Qt3D/QGLLightModel \
++    ../../include/Qt3D/QColor4ub \
++    ../../include/Qt3D/QCustomDataArray \
++    ../../include/Qt3D/QGLTexture2D \
++    ../../include/Qt3D/QVector4DArray \
++    ../../include/Qt3D/QGLSceneFormatFactoryInterface \
++    ../../include/Qt3D/QGLColladaSurfaceParam \
++    ../../include/Qt3D/QGLSphere \
++    ../../include/Qt3D/QArrayAlignedChar \
++    ../../include/Qt3D/QGLShaderProgramEffect \
++    ../../include/Qt3D/QQuickQGraphicsTransform3D \
++    ../../include/Qt3D/QGLTeapot \
++    ../../include/Qt3D/QGLIndexBuffer \
++    ../../include/Qt3D/QGLColladaImageParam \
++    ../../include/Qt3D/QGLRenderOrder \
++    ../../include/Qt3D/QGLMockView \
++    ../../include/Qt3D/QLogicalVertex \
++    ../../include/Qt3D/QSimpleAreaAllocator \
++    ../../include/Qt3D/QGLAttributeValue \
++    ../../include/Qt3D/QVector2DArray \
++    ../../include/Qt3D/QGLMaterial \
++    ../../include/Qt3D/Qt3D \
++    ../../include/Qt3D/QGLTwoSidedMaterial \
++    ../../include/Qt3D/QGLSubsurface \
++    ../../include/Qt3D/QGeometryData \
++    ../../include/Qt3D/QGLSceneNode \
++    ../../include/Qt3D/QUniformAreaAllocator \
++    ../../include/Qt3D/QGLColladaParam \
++    ../../include/Qt3D/QGLBezierPatches \
++    ../../include/Qt3D/QTriangle3D \
++    ../../include/Qt3D/QGLColladaTextureParam \
++    ../../include/Qt3D/QGLCylinder \
++    ../../include/Qt3D/QGLColladaFxEffect \
++    ../../include/Qt3D/QGLCube \
++    ../../include/Qt3D/QGLCamera \
++    ../../include/Qt3D/QGLAttributeDescription \
++    ../../include/Qt3D/QGLVertexBundle \
++    ../../include/Qt3D/QGLDome \
++    ../../include/Qt3D/QBox3D \
++    ../../include/Qt3D/QtArrayData \
++    ../../include/Qt3D/QGLAbstractEffect \
++    ../../include/Qt3D/QGLWindowSurface \
++    ../../include/Qt3D/QGLRenderState \
++    ../../include/Qt3D/QGLAbstractScene \
++    ../../include/Qt3D/QGLBuilder \
++    ../../include/Qt3D/QGLPixelBufferSurface \
++    ../../include/Qt3D/QGLLightParameters \
++    ../../include/Qt3D/QGLRenderSequencer \
++    ../../include/Qt3D/QGLRenderOrderComparator \
++    ../../include/Qt3D/QGLAbstractMaterial
++    
++# NOTE: also includes versioned path for Qt3D wrapper
++#   ../../include/Qt3D/5.0.0/Qt3D
+diff --git a/src/threed/threed.pro b/src/threed/threed.pro
+index b527dd9..68ebad1 100644
+--- a/src/threed/threed.pro
++++ b/src/threed/threed.pro
+@@ -30,3 +30,11 @@ devel.files = $$PUBLIC_HEADERS
+ devel.path = $$[QT_INSTALL_HEADERS]/$$TARGET
+ 
+ INSTALLS += devel
++
++# Automatically generated classname headers
++# are not installed by default rules;
++# genheaders.pri contains a list of generated headers and for them
++include(genheaders.pri)
++genheaders.files = $$GENERATED_HEADERS
++genheaders.path = $$[QT_INSTALL_HEADERS]/$$TARGET
++INSTALLS += genheaders
+-- 
+1.7.5.4
+
