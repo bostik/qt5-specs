@@ -16,8 +16,8 @@ BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qttest-devel
 BuildRequires:  qt5-qtopengl-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtdeclarative-qtquick-devel
+BuildRequires:  qt5-qtqml-devel
+BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -56,13 +56,13 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt SystemInfo development files
 
 
-%package -n qt5-qtdeclarative-systeminfo
-Summary:    Qt system info import for QtDeclarative
+%package -n qt5-qtqml-systeminfo
+Summary:    Qt system info import for QtQml
 Group:      System/Libraries
-Requires:   qt5-qtqtdeclarative
+Requires:   qt5-qtqml
 
-%description -n qt5-qtdeclarative-systeminfo
-This package contains the system info import for QtDeclarative
+%description -n qt5-qtqml-systeminfo
+This package contains the system info import for QtQml
 
 
 %package -n qt5-qtserviceframework
@@ -91,13 +91,13 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt Service Framework development files
 
 
-%package -n qt5-qtdeclarative-serviceframework
-Summary:    Qt Service Framework import for QtDeclarative
+%package -n qt5-qtqml-serviceframework
+Summary:    Qt Service Framework import for QtQml
 Group:      System/Libraries
-Requires:   qt5-qtdeclarative
+Requires:   qt5-qtqml
 
-%description -n qt5-qtdeclarative-serviceframework
-This package contains the Service Framework import for QtDeclarative
+%description -n qt5-qtqml-serviceframework
+This package contains the Service Framework import for QtQml
 
 
 
@@ -127,13 +127,13 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt PublishSubscribe development files
 
 
-%package -n qt5-qtdeclarative-publishsubscribe
-Summary:    Qt PublishSubscribe import for QtDeclarative
+%package -n qt5-qtqml-publishsubscribe
+Summary:    Qt PublishSubscribe import for QtQml
 Group:      System/Libraries
-Requires:   qt5-qtdeclarative
+Requires:   qt5-qtqml
 
-%description -n qt5-qtdeclarative-publishsubscribe
-This package contains the PublishSuvbscribe import for QtDeclarative
+%description -n qt5-qtqml-publishsubscribe
+This package contains the PublishSuvbscribe import for QtQml
 
 
 
@@ -202,7 +202,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_datadir}/qt5/mkspecs/modules/qt_systeminfo.pri
 %{_libdir}/cmake/Qt5SystemInfo/
 
-%files -n qt5-qtdeclarative-systeminfo
+%files -n qt5-qtqml-systeminfo
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtSystemInfo/
 
@@ -225,7 +225,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_datadir}/qt5/mkspecs/modules/qt_serviceframework.pri
 %{_libdir}/cmake/Qt5ServiceFramework/
 
-%files -n qt5-qtdeclarative-serviceframework
+%files -n qt5-qtqml-serviceframework
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtServiceFramework/
 
@@ -250,7 +250,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_datadir}/qt5/mkspecs/modules/qt_publishsubscribe.pri
 %{_libdir}/cmake/Qt5PublishSubscribe/
 
-%files -n qt5-qtdeclarative-publishsubscribe
+%files -n qt5-qtqml-publishsubscribe
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtPublishSubscribe/
 
