@@ -1,0 +1,83 @@
+From a83d7f61a48f27d9a104e328a3e031d137c593ff Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <mika.bostrom@nomovok.com>
+Date: Thu, 19 Apr 2012 23:30:41 +0300
+Subject: [PATCH 4/4] Fix install targets
+
+Aside from abusing DESTDIR, Qt3D tries to trip you over by using an
+extra compiler, "copyqmlinfra". This one attempts to (again) forcefully
+copy files from build tree to the system during build.
+
+Work around the nastiness.
+---
+ src/imports/threed/threed.pro |   15 +++------------
+ src/quick3d/quick3d.pro       |   19 ++++++-------------
+ 2 files changed, 9 insertions(+), 25 deletions(-)
+
+diff --git a/src/imports/threed/threed.pro b/src/imports/threed/threed.pro
+index 513a66f..07df751 100644
+--- a/src/imports/threed/threed.pro
++++ b/src/imports/threed/threed.pro
+@@ -35,18 +35,9 @@ QML_INFRA_FILES = \
+     library.xml \
+     plugins.qmltypes
+ 
+-package {
+-    copyqmlinfra_install.files = $$QML_INFRA_FILES
+-    copyqmlinfra_install.path = $$[QT_INSTALL_IMPORTS]/Qt3D
+-    INSTALLS += copyqmlinfra_install
+-} else {
+-    copyqmlinfra.input = QML_INFRA_FILES
+-    copyqmlinfra.output = $$[QT_INSTALL_IMPORTS]/Qt3D/${QMAKE_FILE_IN_BASE}${QMAKE_FILE_EXT}
+-    copyqmlinfra.commands = $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+-    copyqmlinfra.CONFIG += no_link_no_clean
+-    copyqmlinfra.variable_out = PRE_TARGETDEPS
+-    QMAKE_EXTRA_COMPILERS += copyqmlinfra
+-}
++infra.files = $$QML_INFRA_FILES
++infra.path = $$target.path
++INSTALLS += infra
+ 
+ OTHER_FILES += \
+     README.plugins_types \
+diff --git a/src/quick3d/quick3d.pro b/src/quick3d/quick3d.pro
+index d0ab505..d48b88b 100644
+--- a/src/quick3d/quick3d.pro
++++ b/src/quick3d/quick3d.pro
+@@ -9,6 +9,8 @@ MODULE_PRI = ../../modules/qt_qt3dquick.pri
+ 
+ load(qt_module_config)
+ 
++INSTALLS += target
++
+ gcov {
+     CONFIG += staticlib warn_on
+     QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+@@ -66,21 +68,12 @@ QML_INFRA_FILES += \
+     teapot.bez
+     # see the file README.library_xml for more on library.xml
+ 
+-package {
+-    copyqmlinfra_install.files = $$QML_INFRA_FILES
+-    copyqmlinfra_install.path = $$[QT_INSTALL_IMPORTS]/Qt3D/Shapes
+-    INSTALLS += copyqmlinfra_install
+-} else {
+-    copyqmlinfra.input = QML_INFRA_FILES
+-    copyqmlinfra.output = $$[QT_INSTALL_IMPORTS]/Qt3D/Shapes/${QMAKE_FILE_IN_BASE}${QMAKE_FILE_EXT}
+-    copyqmlinfra.commands = $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+-    copyqmlinfra.CONFIG += no_link_no_clean
+-    copyqmlinfra.variable_out = PRE_TARGETDEPS
+-    QMAKE_EXTRA_COMPILERS += copyqmlinfra
+-}
+-
+ OTHER_FILES += \
+     README.plugins_types \
+     README.library_xml
+ 
+ OTHER_FILES += $$QML_FILES
++
++shapes.files = $$QML_INFRA_FILES
++shapes.path = $$[QT_INSTALL_IMPORTS]/Qt3D/Shapes
++INSTALLS += shapes
+-- 
+1.7.5.4
+

@@ -7,9 +7,10 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     0001-Fix-build-in-dedicated-buildroot.patch
-Patch2:     0002-Install-development-headers.patch
-Patch3:     0003-Remove-demos-and-examples-from-install.patch
+Patch1:     0001-Default-to-package-build.patch
+Patch2:     0002-Fix-build-in-dedicated-build-root.patch
+Patch3:     0003-Install-public-headers.patch
+Patch4:     0004-Fix-install-targets.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -17,6 +18,7 @@ BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtqml-devel
 BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qtnetwork-devel
+BuildRequires:  qt5-qtxmlpatterns-devel
 BuildRequires:  fdupes
 
 %description
@@ -113,12 +115,13 @@ This package contains the Qt3D import for QtQml
 %setup -q -n %{name}
 %patch1 -p1
 %patch2 -p1
-#%patch3 -p1
+%patch3 -p1
+%patch4 -p1
 
 
 %build
 export QTDIR=/usr/share/qt5
-%qmake CONFIG+=package
+%qmake
 make %{?_smp_flags}
 
 %install
