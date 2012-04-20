@@ -15,10 +15,9 @@ BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtdeclarative-qtquick-devel
-#BuildRequires:  qt5-qtdeclarative-qtquick1-devel
-BuildRequires:  qt5-qt3d-qt3dquick-devel
+BuildRequires:  qt5-qtqml-devel
+BuildRequires:  qt5-qtqml-qtquick-devel
+BuildRequires:  qt5-qt3d-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -43,14 +42,14 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt location module development files
 
 
-%package -n qt5-qtdeclarative-import-location
-Summary:    QtDeclarative location import
+%package -n qt5-qtqml-import-location
+Summary:    QtQml location import
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-qtdeclarative
+Requires:   qt5-qtqml
 
-%description -n qt5-qtdeclarative-import-location
-This package contains the Location import for QtDeclarative
+%description -n qt5-qtqml-import-location
+This package contains the Location import for QtQml
 
 %package plugin-geoservices-nokia
 Summary:    Qt Geoservices plugin for Nokia devices
@@ -118,7 +117,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_datadir}/qt5/mkspecs/
 %{_libdir}/cmake/Qt5Location/
 
-%files -n qt5-qtdeclarative-import-location
+%files -n qt5-qtqml-import-location
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtLocation/
 
