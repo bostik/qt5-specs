@@ -57,7 +57,7 @@ This package contains the Qt Quick 3D core library
 %package qt3dquick-devel
 Summary:        Qt Quick 3D - core development headers
 Group:          Qt/Qt
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}-qt3dquick = %{version}-%{release}
 
 %description qt3dquick-devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
