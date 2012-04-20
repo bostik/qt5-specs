@@ -33,7 +33,6 @@ This package contains the Qt 3D library
 Summary:        Qt Quick 3D - development files
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
-Requires:       %{name}-qt3d-devel = %{version}-%{release}
 
 %description devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -57,6 +56,7 @@ This package contains the Qt Quick 3D core library
 %package qt3dquick-devel
 Summary:        Qt Quick 3D - core development headers
 Group:          Qt/Qt
+Requires:       %{name}-devel= %{version}-%{release}
 Requires:       %{name}-qt3dquick = %{version}-%{release}
 
 %description qt3dquick-devel
@@ -165,7 +165,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt3D/
 %{_libdir}/pkgconfig/Qt3D.pc
 #%{_datadir}/qt5/mkspecs/features/qt3dquick.prf
-%{_datadir}/qt5/mkspecs/modules/qt_qt3dquick.pri
+%{_datadir}/qt5/mkspecs/modules/qt_qt3d.pri
 
 %files qt3dquick
 %defattr(-,root,root,-)
@@ -180,11 +180,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/Qt3DQuick/
 %{_libdir}/pkgconfig/Qt3DQuick.pc
 #%{_datadir}/qt5/mkspecs/features/qt3d.prf
-%{_datadir}/qt5/mkspecs/modules/qt_qt3d.pri
-
-#%files plugin-imageformat-tga
-#%defattr(-,root,root,-)
-#%{_libdir}/qt5/plugins/imageformats/libqtga.so
+%{_datadir}/qt5/mkspecs/modules/qt_qt3dquick.pri
 
 %files plugin-sceneformat-ai
 %defattr(-,root,root,-)
