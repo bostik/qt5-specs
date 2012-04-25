@@ -1,0 +1,49 @@
+diff --git a/src/plugins/imageformats/mng/mng.pro b/src/plugins/imageformats/mng/mng.pro
+index df5cb18..c6c610b 100644
+--- a/src/plugins/imageformats/mng/mng.pro
++++ b/src/plugins/imageformats/mng/mng.pro
+@@ -16,6 +16,6 @@ contains(QT_CONFIG, system-mng) {
+ 
+ SOURCES += main.cpp
+ 
+-DESTDIR = $$QT.gui.plugins/imageformats
++# DESTDIR = $$QT.gui.plugins/imageformats
+ target.path += $$[QT_INSTALL_PLUGINS]/imageformats
+ INSTALLS += target
+diff --git a/src/plugins/imageformats/tga/tga.pro b/src/plugins/imageformats/tga/tga.pro
+index 63b6f9c..af9f452 100644
+--- a/src/plugins/imageformats/tga/tga.pro
++++ b/src/plugins/imageformats/tga/tga.pro
+@@ -9,7 +9,7 @@ OTHER_FILES += tga.json
+ 
+ SOURCES += main.cpp
+ 
+-DESTDIR = $$QT.gui.plugins/imageformats
++# DESTDIR = $$QT.gui.plugins/imageformats
+ target.path += $$[QT_INSTALL_PLUGINS]/imageformats
+ INSTALLS += target
+ 
+diff --git a/src/plugins/imageformats/tiff/tiff.pro b/src/plugins/imageformats/tiff/tiff.pro
+index 0c26019..7bd8532 100644
+--- a/src/plugins/imageformats/tiff/tiff.pro
++++ b/src/plugins/imageformats/tiff/tiff.pro
+@@ -7,6 +7,6 @@ include(qtiffhandler.pri)
+ SOURCES += main.cpp
+ OTHER_FILES += tiff.json
+ 
+-DESTDIR = $$QT.gui.plugins/imageformats
++# DESTDIR = $$QT.gui.plugins/imageformats
+ target.path += $$[QT_INSTALL_PLUGINS]/imageformats
+ INSTALLS += target
+diff --git a/src/plugins/imageformats/wbmp/wbmp.pro b/src/plugins/imageformats/wbmp/wbmp.pro
+index 6ec358f..e39af28 100644
+--- a/src/plugins/imageformats/wbmp/wbmp.pro
++++ b/src/plugins/imageformats/wbmp/wbmp.pro
+@@ -7,6 +7,6 @@ OTHER_FILES += wbmp.json
+ 
+ SOURCES += main.cpp
+ 
+-DESTDIR = $$QT.gui.plugins/imageformats
++# DESTDIR = $$QT.gui.plugins/imageformats
+ target.path += $$[QT_INSTALL_PLUGINS]/imageformats
+ INSTALLS += target
