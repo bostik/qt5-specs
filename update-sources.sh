@@ -62,7 +62,9 @@ if [ x${OBSDIR} = x ]; then
 fi
 
 # Modules to build, in order
-QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative qttools qtsystems qtsvg qtsensors qtlocation qtmultimedia qtwayland qt3d qtquick1"
+QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative \
+qttools qtsystems qtsvg qtsensors qtlocation qtmultimedia qtwayland  \
+qt3d qtquick1 qtimageformats qtgraphicaleffects"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources
