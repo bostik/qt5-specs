@@ -1,0 +1,28 @@
+From a014faeba40d9d965ebb3d7e1e9f7947e31991fa Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Fri, 11 May 2012 12:35:55 +0300
+Subject: [PATCH 4/5] Remove tests from build
+
+We don't want these, and for automated builds the entire test directory
+is removed.
+---
+ Source/QtWebKit.pro |    3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Source/QtWebKit.pro b/Source/QtWebKit.pro
+index 02fc9e1..9e08953 100644
+--- a/Source/QtWebKit.pro
++++ b/Source/QtWebKit.pro
+@@ -21,9 +21,6 @@ declarative.file = WebKit/qt/declarative/declarative.pro
+ declarative.makefile = Makefile.declarative
+ SUBDIRS += declarative
+ 
+-tests.file = tests.pri
+-SUBDIRS += tests
+-
+ examples.file = WebKit/qt/examples/examples.pro
+ examples.CONFIG += no_default_target
+ examples.makefile = Makefile
+-- 
+1.7.10
+

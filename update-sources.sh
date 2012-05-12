@@ -64,7 +64,7 @@ fi
 # Modules to build, in order
 QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative \
 qttools qtsystems qtsvg qtsensors qtlocation qtmultimedia qtwayland  \
-qt3d qtquick1 qtimageformats qtgraphicaleffects"
+qt3d qtquick1 qtimageformats qtgraphicaleffects qtwebkit"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources

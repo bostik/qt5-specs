@@ -1,0 +1,24 @@
+From 1a69216b1dc50f90c6a7d70d12b1b8a0ebf20b02 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Fri, 11 May 2012 15:36:56 +0300
+Subject: [PATCH 5/5] Do not build tools
+
+Tools depend on QtTest, which is not a mandatory module. To keep things
+simple, just drop the directory entirely from builds.
+---
+ WebKit.pro |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/WebKit.pro b/WebKit.pro
+index d055e7b..2e1f9fc 100644
+--- a/WebKit.pro
++++ b/WebKit.pro
+@@ -38,4 +38,4 @@ QtWebKit.file = Source/QtWebKit.pro
+ QtWebKit.makefile = Makefile.QtWebKit
+ SUBDIRS += QtWebKit
+ 
+-SUBDIRS += Tools
++#SUBDIRS += Tools
+-- 
+1.7.10
+
