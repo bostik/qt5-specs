@@ -18,6 +18,37 @@ mobile and embedded systems without rewriting the source code.
 .
 This package contains the Qt Image Formats plugin
 
+%package plugin-mng
+Summary:    Qt Imageformats - MNG plugin
+Group:      Qt/Qt
+
+%description plugin-mng
+This package provides the MNG imageformat plugin
+
+
+%package plugin-tga
+Summary:    Qt Imageformats - TGA plugin
+Group:      Qt/Qt
+
+%description plugin-tga
+This package provides the TGA imageformat plugin
+
+
+%package plugin-tiff
+Summary:    Qt Imageformats - TIFF plugin
+Group:      Qt/Qt
+
+%description plugin-tiff
+This package provides the TIFF imageformat plugin
+
+
+%package plugin-wbmp
+Summary:    Qt Imageformats - WBMP plugin
+Group:      Qt/Qt
+
+%description plugin-wbmp
+This package provides the WBMP imageformat plugin
+
 #### Build section
 
 %prep
@@ -33,8 +64,22 @@ make %{?_smp_flags}
 rm -rf %{buildroot}
 %qmake_install
 
-%files
+%files plugin-mng
 %defattr(-,root,root,-)
-%_libdir/qt5/plugins/imageformats/*.so
+%{_libdir}/qt5/plugins/imageformats/libqmng.so
+
+%files plugin-tga
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/libqtga.so
+
+%files plugin-tiff
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/libqtiff.so
+
+%files plugin-wbmp
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/imageformats/libqwbmp.so
+
 
 #### No changelog section, separate $pkg.changes contains the history
+
