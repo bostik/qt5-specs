@@ -8,7 +8,7 @@ Release:    1%{?dist}
 Group:      Qt/Qt
 License:    BSD and LGPLv2+
 URL:        http://trac.webkit.org/wiki/QtWebKit
-Source0:    %{name}-source.tar.bz2
+Source0:    %{name}-%{version}.tar.gz
 Patch1:     0001-Fix-graphics-context-build.patch
 Patch2:     0002-Fix-install-targets.patch
 Patch3:     0003-Turn-developer-build-checking-off.patch
@@ -110,7 +110,7 @@ This package contains the experimental WebKit QML plugin for QtQml.
 
 
 %prep
-%setup -q -n %{name}-source
+%setup -q -n %{name}
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
