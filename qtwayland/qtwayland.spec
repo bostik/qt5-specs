@@ -7,15 +7,15 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch10:    wayland-wrapper-includes.patch
-Patch11:    install-base-from-environ.patch
+Patch1:     0001-Fix-modular-build.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtplatformsupport-devel
 BuildRequires:  pkgconfig(wayland-client)
-BuildRequires:  pkgconfig(wayland-egl)
+#BuildRequires:  pkgconfig(wayland-egl)
+BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  libX11-devel
 BuildRequires:  libXcomposite-devel
 BuildRequires:  libffi-devel
@@ -46,8 +46,7 @@ This package contains the Qt wayland compositor development files
 
 %prep
 %setup -q -n %{name}
-%patch10 -p1
-#%patch11 -p1
+%patch1 -p1
 
 
 %build
