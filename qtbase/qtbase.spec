@@ -6,6 +6,12 @@
 %define arch_arg i386
 %endif
 
+# libQtPlatformSupport is not built as a shared library, only as a
+# static .a lib-archive. By default the OBS build removes all discovered
+# libFOO.a files and as such rpmlint never complains about
+# installed-but-unpackaged static libs.
+# This flag tells rpmbuild to behave.
+%define keepstatic 1
 
 # Version is the date of latest commit in qtbase, followed by 'g' + few
 # characters of the last git commit ID.
@@ -1172,6 +1178,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/QtPlatformSupport
 %{_includedir}/qt5/QtPlatformSupport/
 %{_includedir}/qt5/Qt/qtplatformsupportversion.h
+%{_libdir}/libQtPlatformSupport.a
 %{_libdir}/libQtPlatformSupport.prl
 %{_libdir}/pkgconfig/QtPlatformSupport.pc
 %{_datadir}/qt5/mkspecs/modules/qt_platformsupport.pri
