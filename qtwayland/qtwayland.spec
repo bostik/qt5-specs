@@ -14,7 +14,7 @@ BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtplatformsupport-devel
 BuildRequires:  pkgconfig(wayland-client)
-#BuildRequires:  pkgconfig(wayland-egl)
+BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  libX11-devel
 BuildRequires:  libXcomposite-devel
