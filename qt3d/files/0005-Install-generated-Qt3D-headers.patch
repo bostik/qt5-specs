@@ -1,7 +1,7 @@
 From aa62f6f480127ec316a673894205b39fa6ab377b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <mika.bostrom@nomovok.com>
 Date: Fri, 20 Apr 2012 11:36:10 +0300
-Subject: [PATCH 5/6] Install generated Qt3D headers
+Subject: [PATCH 5/7] Install generated Qt3D headers
 
 The classname headers are generated during build but not installed.
 Fix the oversight.
@@ -11,8 +11,8 @@ qmake from automatically expanding path contents (and getting wrong
 results).
 ---
  src/threed/genheaders.pri |   82 +++++++++++++++++++++++++++++++++++++++++++++
- src/threed/threed.pro     |    8 ++++
- 2 files changed, 90 insertions(+), 0 deletions(-)
+ src/threed/threed.pro     |    8 +++++
+ 2 files changed, 90 insertions(+)
  create mode 100644 src/threed/genheaders.pri
 
 diff --git a/src/threed/genheaders.pri b/src/threed/genheaders.pri
@@ -120,5 +120,5 @@ index b527dd9..68ebad1 100644
 +genheaders.path = $$[QT_INSTALL_HEADERS]/$$TARGET
 +INSTALLS += genheaders
 -- 
-1.7.5.4
+1.7.9.5
 

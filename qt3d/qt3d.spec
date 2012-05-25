@@ -13,6 +13,7 @@ Patch3:     0003-Install-public-headers.patch
 Patch4:     0004-Fix-install-targets.patch
 Patch5:     0005-Install-generated-Qt3D-headers.patch
 Patch6:     0006-Install-generated-Qt3DQuick-headers.patch
+Patch7:     0007-Fix-assimp-build-on-uncommon-architectures.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -121,6 +122,7 @@ This package contains the Qt3D import for QtQml
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 
 %build
