@@ -29,6 +29,7 @@ URL:        http://qt.nokia.com
 Source0:    %{name}-qtbase-%{version}.tar.gz
 Source1:    macros.qmake
 Source100:  qtbase-rpmlintrc
+Patch1:     0001-Always-use-QPA-for-systrayicon.patch
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(egl)
@@ -458,6 +459,7 @@ applications that use QtConcurrent
 
 %prep
 %setup -q -n %{name}-qtbase
+%patch1 -p1
 
 
 %build
