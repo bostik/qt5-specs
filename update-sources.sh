@@ -159,23 +159,18 @@ function get_version() {
 
 # Update Qt sources
 if [ x${NO_PULL} != "x1" ]; then
-
-    # Starting from week 29, qt5_tool will try to pull from
-    # codereview.qt.nokia.com; however, that host is not yet public and
-    # all pulls fail.
-    # XXX: comment use of qt5_tool for now
-    #(cd ${QT5_DIR}; git pull; ./qtrepotools/bin/qt5_tool -p)
-
-    # Instead, use mirror repos at gitorious.org
-    for m in ${QT5_MODULES}; do
-    
-        # Handling a case where Git Tag is present
-        if [ x${GIT_TAG} = x ]; then
-            (cd ${QT5_DIR}/${m}/; echo "[### ${m}]"; git checkout master; git pull)
-        else
-            (cd ${QT5_DIR}/${m}/; echo "[### ${m} - Tag: ${GIT_TAG}]"; git checkout ${GIT_TAG})            
-        fi
-    done
+    # qt5.git now works as a nice umbrella repository; a pull in
+    # top-level repo cascades into a nice set of "pull and checkout
+    # last known good revision for each module" operations.
+    #
+    # So, we pull everything and use submodules as they are
+    if [ x${GIT_TAG} = x ]; then
+        _tgtref="master"
+    else
+        _tgtref=${GIT_TAG}
+    fi
+    #
+    (cd ${QT5_DIR}; git checkout ${_tgtref}; git pull; git submodule update --recursive)
 fi
 
 
@@ -188,7 +183,8 @@ for m in ${QT5_MODULES}; do
     fi
     # Git ref to archive.    
     if [ x${GIT_TAG} = x ]; then
-        _gitref="origin/HEAD"
+        # Commit set by pull/submodule-update
+        _gitref="HEAD"
     else
         _gitref="refs/tags/${GIT_TAG}"
     fi
