@@ -802,8 +802,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/win32-msvc20*/
 #%{_datadir}/qt5/mkspecs/win32-msvc11*/
 %{_datadir}/qt5/mkspecs/wince*/
-#%{_datadir}/qt5/mkspecs/devices/
-# NOTE: the above is present in qtbase master, but not in alpha1
+%{_datadir}/qt5/mkspecs/devices/
 %{_datadir}/qt5/mkspecs/qdevice.pri
 %{_datadir}/qt5/mkspecs/default-host
 %{_sysconfdir}/rpm/macros.qmake
