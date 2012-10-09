@@ -1079,7 +1079,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/QtXml
 %{_includedir}/qt5/QtXml/
 %{_includedir}/qt5/Qt/qtxmlversion.h
-%{_includedir}/qt5/Qt/qxmlglobal.h
+%{_includedir}/qt5/Qt/qtxmlglobal.h
 %{_includedir}/qt5/Qt/qxmlstream.h
 %{_includedir}/qt5/Qt/qxml.h
 %{_includedir}/qt5/Qt/qdom.h
