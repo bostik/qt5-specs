@@ -12,7 +12,7 @@ NO_PULL=1
 # Original Source by Bostik, hooray!
 
 
-#   ______ _______ _______ _______ __ 
+#   ______ _______ _______ _______ __
 #  |   __ \_     _|    ___|   |   |  |
 #  |      < |   | |    ___|       |__|
 #  |___|__| |___| |___|   |__|_|__|__|
@@ -27,20 +27,20 @@ Modulas Qt Build Manager (update-sources.sh)
 Usage:	update-sources.sh [<options>]
 
      Update parameter:
-        [--pull               ] Force git source pull.
-        [--no-pull	      ]	Prevent git source pull. (default)
-        [--force-upload	      ]	Force source tar upload.
-	
-        [--module MODULE      ] List of modules.
-        [--alpha              ] Pull latest alpha release.
-        [--tag TAG            ] Pull a certain tag release.
+        [--pull             ] Force git source pull.
+        [--no-pull	        ] Prevent git source pull. (default)
+        [--force-upload	    ] Force source tar upload.
+
+        [--module MODULE    ] List of modules.
+        [--beta             ] Pull latest alpha release.
+        [--tag TAG          ] Pull a certain tag release.
 
 XXX
 exit ;;
         --pull) NO_PULL="0";;
         --no-pull) NO_PULL="1";;
         --force-upload) FORCE_UPLOAD="1";;
-        --alpha) GIT_TAG="qt-v5.0.0-alpha1";;
+        --beta) GIT_TAG="v5.0.0-beta1";;
         --tag) GIT_TAG="$2"; shift;;
         --module) QT5_MODULES="$2"; shift;;
 
@@ -170,7 +170,7 @@ if [ x${NO_PULL} != "x1" ]; then
         _tgtref=${GIT_TAG}
     fi
     #
-    (cd ${QT5_DIR}; git checkout ${_tgtref}; git pull; git submodule update --recursive)
+    (cd ${QT5_DIR}; git checkout master; git pull; git checkout ${_tgtref}; git submodule update --recursive)
 fi
 
 
@@ -181,12 +181,12 @@ for m in ${QT5_MODULES}; do
         mkdir ${OBSDIR}/${m}
         osc add ${OBSDIR}/${m}
     fi
-    # Git ref to archive.    
+    # Git ref to archive.
     if [ x${GIT_TAG} = x ]; then
         # Commit set by pull/submodule-update
         _gitref="HEAD"
     else
-        _gitref="refs/tags/${GIT_TAG}"
+        _gitref="${GIT_TAG}"
     fi
     bn="qt5-${m}"
     export GIT_DIR=${QT5_DIR}/${m}/.git
@@ -202,7 +202,7 @@ for m in ${QT5_MODULES}; do
         # Add this version to changelog
         update_changelog ${m} ${ver}
     fi
-    
+
     # Spec, changelog, rpmlintrc, patches, extra files,
     # all from this directory
     cp -v ${m}/*.spec ${m}/*.changes ${OBSDIR}/${m}/
