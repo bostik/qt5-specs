@@ -61,6 +61,7 @@ BuildRequires:  pkgconfig(xt)
 BuildRequires:  pkgconfig(xtst)
 BuildRequires:  pkgconfig(xv)
 BuildRequires:  pkgconfig(zlib)
+#BuildRequires:  pkgconfig(pcre)
 BuildRequires:  cups-devel
 BuildRequires:  fdupes
 BuildRequires:  flex
@@ -95,7 +96,7 @@ Requires(post):     /sbin/ldconfig
 Requires(postun):   /sbin/ldconfig
 
 %description qtcore
-This packagea contains the QtCore library
+This package contains the QtCore library
 
 %package qtcore-devel
 Summary:    Development files for QtCore
@@ -117,15 +118,6 @@ Group:      Qt/Qt
 
 %description qmake
 This package contains qmake
-
-
-%package plugin-accessible-libqtaccessiblewidgets
-Summary:    Accessible widgets
-Group:      Qt/Qt
-Requires:   %{name}-qtcore = %{version}-%{release}
-
-%description plugin-accessible-libqtaccessiblewidgets
-This package contains libqtaccessiblewidgets
 
 
 %package plugin-bearer-connman
@@ -208,6 +200,21 @@ Requires:   %{name}-qtcore = %{version}-%{release}
 %description plugin-platform-eglfs
 This package contains the eglfs platform plugin
 
+%package plugin-platform-minimalegl
+Summary:    Minimalegl platform plugin
+Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
+
+%description plugin-platform-minimalegl
+This package contains the minimalegl platform plugin
+
+%package plugin-platform-linuxfb
+Summary:    LinuxFB platform plugin
+Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
+
+%description plugin-platform-linuxfb
+This package contains the LinuxFB platform plugin
 
 %package plugin-platform-xcb
 Summary:    XCB platform plugin
@@ -221,9 +228,17 @@ This package contains the XCB platform plugin
 # %package plugin-platform-xlib
 # Summary:    Xlib platform plugin
 # Group:      Qt/Qt
-# 
+#
 # %description plugin-platform-xlib
 # This package contains the Xlib platform plugin
+
+%package plugin-printsupport-cups
+Summary:    CUPS print support plugin
+Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
+
+%description plugin-printsupport-cups
+This package contains the CUPS print support plugin
 
 
 
@@ -243,6 +258,14 @@ Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platforminputcontext-ibus
 This package contains the ibus platform input context plugin
+
+%package plugin-generic-evdev
+Summary:    evdev generic plugin
+Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
+
+%description plugin-generic-evdev
+This package contains the evdev plugins
 
 
 
@@ -488,7 +511,6 @@ applications that use QtConcurrent
     -no-sql-tds \
     -system-sqlite \
     -audio-backend \
-    -no-phonon-backend \
     -system-zlib \
     -system-libpng \
     -system-libjpeg \
@@ -507,6 +529,7 @@ applications that use QtConcurrent
     -nomake tests \
     -nomake examples \
     -nomake demos \
+    -no-xinput2 \
     -xcb
 #
 make %{?_smp_mflags}
@@ -579,7 +602,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_bindir}/moc
 %{_bindir}/rcc
 %{_bindir}/syncqt
-%{_bindir}/qtmodule-configtests
 %{_bindir}/uic
 %{_bindir}/qdoc
 
@@ -591,7 +613,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtCore
 %{_includedir}/qt5/Qt/qabstractanimation.h
+%{_includedir}/qt5/Qt/qarraydata*.h
 %{_includedir}/qt5/Qt/qabstracteventdispatcher.h
+%{_includedir}/qt5/Qt/qabstractnativeeventfilter.h
 %{_includedir}/qt5/Qt/qabstractitemmodel.h
 %{_includedir}/qt5/Qt/qabstractstate.h
 %{_includedir}/qt5/Qt/qabstracttransition.h
@@ -634,6 +658,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qfeatures.h
 %{_includedir}/qt5/Qt/qfile.h
 %{_includedir}/qt5/Qt/qfileinfo.h
+%{_includedir}/qt5/Qt/qfiledevice.h
+%{_includedir}/qt5/Qt/qflags.h
 %{_includedir}/qt5/Qt/qfilesystemwatcher.h
 %{_includedir}/qt5/Qt/qfinalstate.h
 %{_includedir}/qt5/Qt/qfunctions_*.h
@@ -670,6 +696,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qobject_impl.h
 %{_includedir}/qt5/Qt/qobjectcleanuphandler.h
 %{_includedir}/qt5/Qt/qobjectdefs.h
+%{_includedir}/qt5/Qt/qobjectdefs_impl.h
 %{_includedir}/qt5/Qt/qpair.h
 %{_includedir}/qt5/Qt/qparallelanimationgroup.h
 %{_includedir}/qt5/Qt/qpauseanimation.h
@@ -723,7 +750,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qtimer.h
 %{_includedir}/qt5/Qt/qtranslator.h
 %{_includedir}/qt5/Qt/qtypeinfo.h
-%{_includedir}/qt5/Qt/qurl.h
+%{_includedir}/qt5/Qt/qurl*.h
 %{_includedir}/qt5/Qt/quuid.h
 %{_includedir}/qt5/Qt/qvariant.h
 %{_includedir}/qt5/Qt/qvariantanimation.h
@@ -773,10 +800,12 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/win32-g++/
 %{_datadir}/qt5/mkspecs/win32-icc/
 %{_datadir}/qt5/mkspecs/win32-msvc20*/
+#%{_datadir}/qt5/mkspecs/win32-msvc11*/
 %{_datadir}/qt5/mkspecs/wince*/
 #%{_datadir}/qt5/mkspecs/devices/
 # NOTE: the above is present in qtbase master, but not in alpha1
 %{_datadir}/qt5/mkspecs/qdevice.pri
+%{_datadir}/qt5/mkspecs/default-host
 %{_sysconfdir}/rpm/macros.qmake
 
 %files qtdbus
@@ -786,6 +815,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files qtdbus-devel
 %defattr(-,root,root,-)
+%{_bindir}/qdbus*
 %{_includedir}/qt5/Qt/QtDBus
 %{_includedir}/qt5/QtDBus/
 %{_includedir}/qt5/Qt/qdbus*.h
@@ -805,6 +835,31 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtGui
 %{_includedir}/qt5/QtGui/
+%{_includedir}/qt5/Qt/QPlatformAccessibility
+%{_includedir}/qt5/Qt/QPlatformColorDialogHelper
+%{_includedir}/qt5/Qt/QPlatformDialogHelper
+%{_includedir}/qt5/Qt/QPlatformDropQtResponse
+%{_includedir}/qt5/Qt/QPlatformInputContext*
+%{_includedir}/qt5/Qt/QPlatformMenu*
+%{_includedir}/qt5/Qt/QPlatformNativeInterface
+%{_includedir}/qt5/Qt/QPlatformPixmap
+%{_includedir}/qt5/Qt/QPlatformBackingStore
+%{_includedir}/qt5/Qt/QPlatformServices
+%{_includedir}/qt5/Qt/QPlatformIntegration*
+%{_includedir}/qt5/Qt/QPlatformFileDialogHelper
+%{_includedir}/qt5/Qt/QPlatformScreen*
+%{_includedir}/qt5/Qt/QPlatformFontDatabase
+%{_includedir}/qt5/Qt/QPlatformTheme*
+%{_includedir}/qt5/Qt/QPlatformWindow
+%{_includedir}/qt5/Qt/QPlatformOpenGLContext
+%{_includedir}/qt5/Qt/QPlatformDragQtResponse
+%{_includedir}/qt5/Qt/QPlatformSurface
+%{_includedir}/qt5/Qt/QPlatformCursor*
+%{_includedir}/qt5/Qt/QPlatformDrag
+%{_includedir}/qt5/Qt/QPlatformClipboard
+%{_includedir}/qt5/Qt/QPlatformSharedGraphicsCache
+%{_includedir}/qt5/Qt/QGenericPlugin*
+%{_includedir}/qt5/Qt/QWindowSystemInterface
 %{_includedir}/qt5/Qt/qabstractpagesetupdialog.h
 %{_includedir}/qt5/Qt/qabstractprintdialog.h
 %{_includedir}/qt5/Qt/qabstractspinbox.h
@@ -829,7 +884,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qglyphrun.h
 %{_includedir}/qt5/Qt/qguiapplication.h
 %{_includedir}/qt5/Qt/qinputmethod.h
-%{_includedir}/qt5/Qt/qinputpanel.h
 %{_includedir}/qt5/Qt/qimage*.h
 %{_includedir}/qt5/Qt/qkeysequence.h
 %{_includedir}/qt5/Qt/qmac*_mac.h
@@ -920,6 +974,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qudpsocket.h
 %{_includedir}/qt5/Qt/qssl*.h
 %{_includedir}/qt5/Qt/qnetworkconfigmanager.h
+%{_includedir}/qt5/Qt/qnetworkfunctions_wince.h
 %{_includedir}/qt5/Qt/qnetworkconfiguration.h
 %{_includedir}/qt5/Qt/qnetworksession.h
 %{_includedir}/qt5/Qt/qauthenticator.h
@@ -927,7 +982,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qhostinfo.h
 %{_includedir}/qt5/Qt/qnetworkinterface.h
 %{_includedir}/qt5/Qt/qnetworkproxy.h
-%{_includedir}/qt5/Qt/qurlinfo.h
 %{_includedir}/qt5/Qt/qabstractnetworkcache.h
 %{_includedir}/qt5/Qt/qhttpmultipart.h
 %{_includedir}/qt5/Qt/qnetworkaccessmanager.h
@@ -959,6 +1013,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qglpixelbuffer.h
 %{_includedir}/qt5/Qt/qglshaderprogram.h
 %{_includedir}/qt5/Qt/qtopenglversion.h
+%{_includedir}/qt5/Qt/qtopenglglobal.h
 %{_includedir}/qt5/Qt/qopengl*.h
 %{_libdir}/libQtOpenGL.prl
 %{_libdir}/libQtOpenGL.so
@@ -1024,6 +1079,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/QtXml
 %{_includedir}/qt5/QtXml/
 %{_includedir}/qt5/Qt/qtxmlversion.h
+%{_includedir}/qt5/Qt/qxmlglobal.h
 %{_includedir}/qt5/Qt/qxmlstream.h
 %{_includedir}/qt5/Qt/qxml.h
 %{_includedir}/qt5/Qt/qdom.h
@@ -1121,7 +1177,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qplatformmenu_qpa.h
 %{_includedir}/qt5/Qt/qprogressbar.h
 %{_includedir}/qt5/Qt/qprogressdialog.h
-%{_includedir}/qt5/Qt/qproxymodel.h
 %{_includedir}/qt5/Qt/qproxystyle.h
 %{_includedir}/qt5/Qt/qpushbutton.h
 %{_includedir}/qt5/Qt/qradiobutton.h
@@ -1167,7 +1222,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwindowsvistastyle.h
 %{_includedir}/qt5/Qt/qwindowsxpstyle.h
 %{_includedir}/qt5/Qt/qwizard.h
-%{_includedir}/qt5/Qt/qworkspace.h
 %{_includedir}/qt5/Qt/qtwidgetsversion.h
 %{_includedir}/qt5/Qt/qwidgetsfunctions_wince.h
 %{_libdir}/libQtWidgets.prl
@@ -1192,8 +1246,10 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %files qtprintsupport-devel
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtPrintSupport
+%{_includedir}/qt5/Qt/QPlatformPrint*
 %{_includedir}/qt5/QtPrintSupport/
 %{_includedir}/qt5/Qt/qtprintsupportversion.h
+%{_includedir}/qt5/Qt/qtprintsupportglobal.h
 %{_libdir}/libQtPrintSupport.prl
 %{_libdir}/libQtPrintSupport.so
 %{_libdir}/pkgconfig/QtPrintSupport.pc
@@ -1216,10 +1272,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 
 # Plugin packages
-
-%files plugin-accessible-libqtaccessiblewidgets
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/accessible/libqtaccessiblewidgets.so
 
 %files plugin-bearer-connman
 %defattr(-,root,root,-)
@@ -1257,6 +1309,14 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libqeglfs.so
 
+%files plugin-platform-minimalegl
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libqminimalegl.so
+
+%files plugin-platform-linuxfb
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libqlinuxfb.so
+
 %files plugin-platform-xcb
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libxcb.so
@@ -1264,6 +1324,10 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 # %files plugin-platform-xlib
 # %defattr(-,root,root,-)
 # %{_libdir}/qt5/plugins/platforms/libqxlib.so
+
+%files plugin-printsupport-cups
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/printsupport/libcupsprintersupport.so
 
 %files plugin-sqldriver-sqlite
 %defattr(-,root,root,-)
@@ -1273,7 +1337,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforminputcontexts/libibusplatforminputcontextplugin.so
 
-
+%files plugin-generic-evdev
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/generic/libqevdev*plugin.so
 
 
 #### No changelog section, separate $pkg.changes contains the history
