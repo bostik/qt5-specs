@@ -95,9 +95,9 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtv8-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/QtV8
 %{_includedir}/qt5/QtV8/
-%{_libdir}/cmake/Qt5V8/
+%{_includedir}/qt5/Qt/QtV8
+%{_includedir}/qt5/Qt/qtv8version.h
 %{_libdir}/libQtV8.prl
 %{_libdir}/libQtV8.so
 %{_libdir}/pkgconfig/QtV8.pc
