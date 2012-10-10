@@ -7,8 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch0:     disable_demos_and_examples.patch
-Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -16,6 +14,7 @@ BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtqml-devel
 BuildRequires:  qt5-qtqml-qtquick-devel
+BuildRequires:  qt5-qtxmlpatterns-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  fdupes
@@ -71,8 +70,6 @@ This package contains the M3U playlist support
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
 
 
 %build
@@ -116,8 +113,8 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/libQtMultimedia.so.5.*
 %{_libdir}/libQtMultimediaWidgets.so.5
 %{_libdir}/libQtMultimediaWidgets.so.5.*
-%{_libdir}/libQtMultimediaQuick_p.so.1
-%{_libdir}/libQtMultimediaQuick_p.so.1.*
+%{_libdir}/libQtMultimediaQuick_p.so.5
+%{_libdir}/libQtMultimediaQuick_p.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
