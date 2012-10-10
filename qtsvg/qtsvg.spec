@@ -7,7 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtxml-devel
@@ -43,13 +42,19 @@ Requires:   %{name} = %{version}-%{release}
 %description plugin-imageformat-svg
 This package contains the SVG image format plugin
 
+%package plugin-iconengine-svg
+Summary:    Qt SVG icon engine plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-iconengine-svg
+This package contains the SVG iconengine plugin
 
 
 #### Build section
 
 %prep
 %setup -q -n %{name}
-%patch1 -p1
 
 
 %build
@@ -102,6 +107,9 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/imageformats/lib*svg.so
 
+%files plugin-iconengine-svg
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/iconengines/libqsvgicon.so
 
 
 #### No changelog section, separate $pkg.changes contains the history
