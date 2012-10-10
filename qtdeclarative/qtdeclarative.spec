@@ -1,6 +1,6 @@
 %define _qtmodule_snapshot_version %nil
 %define _qtmodule_name qt5-qtdeclarative
- 
+
 Name:       qt5-qtqml
 Summary:    Qt Declarative library
 Version:    %{_qtmodule_snapshot_version}
@@ -9,11 +9,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{_qtmodule_name}-%{version}.tar.gz
-Patch0:     create_prl_and_pc_files.patch
-Patch1:     fix-destdir.patch
-Patch10:    particles-shader-fix.patch
-Patch11:    glsl-highp-ambiguity.patch
-Patch50:    0001-Fix-modular-build.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -67,6 +62,25 @@ Requires:   qt5-qtqml-qtquicktest = %{version}-%{release}
 %description qtquicktest-devel
 This package contains the development headers for QtQuickTest library
 
+%package qtquickparticles
+Summary:    Qt Declarative - QtQuickParticles library
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description qtquickparticles
+This package contains the QtQuickParticles library for QtDeclarative
+module
+
+%package qtquickparticles-devel
+Summary:    Qt Declarative - QtQuickParticles development files
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+Requires:   qt5-qtqml-qtquickparticles = %{version}-%{release}
+
+%description qtquickparticles-devel
+This package contains the development headers for QtQuickParticles
+effect library
+
 %package qtquick
 Summary:    Qt Declarative - QtQuick library
 Group:      Qt/Qt
@@ -115,21 +129,21 @@ Requires:   %{name} = %{version}-%{release}
 %description import-localstorageplugin
 This package provided the Qt LocalStorage plugin
 
-#%package import-inputcontext
-#Summary:    Qt Declarative input context plugin
-#Group:      Qt/Qt
-#Requires:   %{name} = %{version}-%{release}
-#
-#%description import-inputcontext
-#This package provides the QtDeclarative input context plugin
+%package import-particles
+Summary:    Qt Declarative particles plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
 
-#%package import-particles
-#Summary:    Qt Declarative particles plugin
-#Group:      Qt/Qt
-#Requires:   %{name} = %{version}-%{release}
-#
-#%description import-particles
-#This package provides the QtDeclarative particles plugin
+%description import-particles
+This package provides the QtDeclarative particles plugin for QtQuick 2.0
+
+%package import-window
+Summary:    Qt Declarative window plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description import-window
+This package provides the QML window plugin for QtQuick 2.0
 
 %package plugin-qmlinspector
 Summary:    Qt Declarative QML inspector plugin
@@ -138,15 +152,6 @@ Requires:   %{name} = %{version}-%{release}
 
 %description plugin-qmlinspector
 This package provides the QML inspector plugin
-
-%package plugin-accessible
-Summary:    Qt Declarative accessible plugin
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description plugin-accessible
-This package provides the QML accessible plugin
-
 
 %package import-qt47plugin
 Summary:    Qt Declarative Qt 4.7 legacy support plugin
@@ -197,12 +202,6 @@ This package contains QML debugging and development tools
 
 %prep
 %setup -q -n %{_qtmodule_name}
-%patch0 -p1
-%patch1 -p1
-%patch10 -p1
-%patch11 -p1
-#%patch50 -p1
-
 
 %build
 export QTDIR=/usr/share/qt5
@@ -240,6 +239,11 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %postun qtquicktest
 /sbin/ldconfig
 
+%post qtquickparticles
+/sbin/ldconfig
+%postun qtquickparticles
+/sbin/ldconfig
+
 %post qtquick
 /sbin/ldconfig
 %postun qtquick
@@ -268,18 +272,9 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/qtqml*.h
 %{_includedir}/qt5/Qt/qsg*.h
 %{_includedir}/qt5/Qt/qjs*.h
-%{_includedir}/qt5/Qt/QJS*
-%{_includedir}/qt5/Qt/QDeclarative*
 %{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtQml
 %{_includedir}/qt5/QtQml/
-%{_includedir}/qt5/QtDeclarative/
-%{_includedir}/qt5/Qt/QtDeclarative
-%{_includedir}/qt5/Qt/QDeclarative*
-%{_includedir}/qt5/Qt/QJS*
-%{_includedir}/qt5/Qt/qdecl*.h
-%{_includedir}/qt5/Qt/qtdeclarativeversion.h
-%{_datadir}/qt5/mkspecs/modules/qt_declarative.pri
 %{_datadir}/qt5/mkspecs/modules/qt_qml.pri
 %{_libdir}/cmake/
 
@@ -316,6 +311,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_bindir}/qmlprofiler
 %{_bindir}/qmltestrunner
 %{_bindir}/qmlmin
+%{_bindir}/qmlbundle
 
 
 
@@ -327,22 +323,17 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtQuick/LocalStorage/
 
-#%files import-inputcontext
-#%defattr(-,root,root,-)
-#%{_libdir}/qt5/imports/Qt/labs/inputcontext/*
+%files import-particles
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtQuick/Particles.2/
 
-#%files import-particles
-#%defattr(-,root,root,-)
-#%{_libdir}/qt5/imports/Qt/labs/particles/*
+%files import-window
+%defattr(-,root,root,-)
+%{_libdir}/qt5/imports/QtQuick/Window.2/
 
 %files plugin-qmlinspector
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/qmltooling/*
-
-%files plugin-accessible
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/accessible/*
-
 
 %files import-qttest
 %defattr(-,root,root,-)
@@ -375,6 +366,22 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_libdir}/libQtQuickTest.prl
 %{_libdir}/pkgconfig/QtQuickTest.pc
 %{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
+
+%files qtquickparticles
+%defattr(-,root,root,-)
+%{_libdir}/libQtQuickParticles.so.5
+%{_libdir}/libQtQuickParticles.so.5.*
+
+%files qtquickparticles-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/Qt/QtQuickParticles
+%{_includedir}/qt5/QtQuickParticles/
+%{_includedir}/qt5/Qt/qtquickparticlesversion.h
+%{_libdir}/libQtQuickParticles.so
+%{_libdir}/libQtQuickParticles.prl
+%{_libdir}/pkgconfig/QtQuickParticles.pc
+%{_datadir}/qt5/mkspecs/modules/qt_quickparticles.pri
+
 
 %files qtqmltools-devel
 %defattr(-,root,root,-)
