@@ -1,0 +1,29 @@
+From 2cf6539bd67f13ee05d8186349e8990cb08f1100 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Wed, 10 Oct 2012 15:11:11 +0300
+Subject: [PATCH] Disable Qt3D tools from build
+
+The tools seem to reference an ancient QtGui-private header which no
+longer exists. We can just skip the tools entirely.
+---
+ qt3d.pro |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/qt3d.pro b/qt3d.pro
+index 541d46d..e002d5e 100644
+--- a/qt3d.pro
++++ b/qt3d.pro
+@@ -7,7 +7,9 @@ module_qt3d_tutorials.CONFIG = no_default_target no_default_install
+ 
+ !package: SUBDIRS += module_qt3d_tutorials
+ 
+-gcov: SUBDIRS -= sub_tools
++# qglinfo does not build against beta1
++# We can skip tools entirely
++SUBDIRS -= sub_tools
+ 
+ # We need opengl, minimum es2 or desktop
+ !contains(QT_CONFIG, opengl) {
+-- 
+1.7.10.4
+

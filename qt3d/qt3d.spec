@@ -14,6 +14,7 @@ Patch4:     0004-Fix-install-targets.patch
 Patch5:     0005-Install-generated-Qt3D-headers.patch
 Patch6:     0006-Install-generated-Qt3DQuick-headers.patch
 Patch7:     0007-Fix-assimp-build-on-uncommon-architectures.patch
+Patch50:    0001-Disable-Qt3D-tools-from-build.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -78,21 +79,21 @@ Requires:       %{name} = %{version}-%{release}
 %description plugin-imageformat-tga
 This package contains the TGA image format plugin
 
-%package plugin-sceneformat-ai
-Summary:        Qt Quick 3D - all-inclusive scene format plugin
-Group:          Qt/Qt
-Requires:       %{name} = %{version}-%{release}
+#%package plugin-sceneformat-ai
+#Summary:        Qt Quick 3D - all-inclusive scene format plugin
+#Group:          Qt/Qt
+#Requires:       %{name} = %{version}-%{release}
+#
+#%description plugin-sceneformat-ai
+#This package contains the all-inclusive scene format plugin
 
-%description plugin-sceneformat-ai
-This package contains the all-inclusive scene format plugin
-
-%package plugin-sceneformat-bezier
-Summary:        Qt Quick 3D - bezier scene format plugin
-Group:          Qt/Qt
-Requires:       %{name} = %{version}-%{release}
-
-%description plugin-sceneformat-bezier
-This package contains the bezier scene format plugin
+#%package plugin-sceneformat-bezier
+#Summary:        Qt Quick 3D - bezier scene format plugin
+#Group:          Qt/Qt
+#Requires:       %{name} = %{version}-%{release}
+#
+#%description plugin-sceneformat-bezier
+#This package contains the bezier scene format plugin
 
 
 %package -n qt5-qtqml-import-qt3d-shapes
@@ -116,13 +117,14 @@ This package contains the Qt3D import for QtQml
 
 %prep
 %setup -q -n %{name}
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
+#%patch5 -p1
+#%patch6 -p1
+#%patch7 -p1
+%patch50 -p1
 
 
 %build
@@ -169,9 +171,71 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQt3D.so
 %{_libdir}/libQt3D.prl
 %{_includedir}/qt5/Qt3D/
+%{_includedir}/qt5/Qt/Qt3D/
+%{_includedir}/qt5/Qt/ailoader*.h
+%{_includedir}/qt5/Qt/qai*.h
+%{_includedir}/qt5/Qt/qarea*.h
+%{_includedir}/qt5/Qt/qarray.h
+%{_includedir}/qt5/Qt/qbox3d.h
+%{_includedir}/qt5/Qt/qcolor4ub.h
+%{_includedir}/qt5/Qt/qcustomdataarray.h
+%{_includedir}/qt5/Qt/qdownloadmanager.h
+%{_includedir}/qt5/Qt/qgeometrydata.h
+%{_includedir}/qt5/Qt/qglabstract*.h
+%{_includedir}/qt5/Qt/qglattribute*.h
+%{_includedir}/qt5/Qt/qglbezier*.h
+%{_includedir}/qt5/Qt/qglbuilder.h
+%{_includedir}/qt5/Qt/qglcamera*.h
+%{_includedir}/qt5/Qt/qglcolladafxeffect.h
+%{_includedir}/qt5/Qt/qglcolladafxeffectfactory.h
+%{_includedir}/qt5/Qt/qglcolladafxeffectloader.h
+%{_includedir}/qt5/Qt/qglcolormaterial.h
+%{_includedir}/qt5/Qt/qglcube.h
+%{_includedir}/qt5/Qt/qglcylinder.h
+%{_includedir}/qt5/Qt/qgldome.h
+%{_includedir}/qt5/Qt/qglframebufferobjectsurface.h
+%{_includedir}/qt5/Qt/qglindexbuffer.h
+%{_includedir}/qt5/Qt/qgllight*.h
+%{_includedir}/qt5/Qt/qglmaterial.h
+%{_includedir}/qt5/Qt/qglmaterialcollection.h
+%{_includedir}/qt5/Qt/qglmockview.h
+%{_includedir}/qt5/Qt/qglnamespace.h
+%{_includedir}/qt5/Qt/qglpainter.h
+%{_includedir}/qt5/Qt/qglpicknode.h
+%{_includedir}/qt5/Qt/qglpixelbuffersurface.h
+%{_includedir}/qt5/Qt/qglrender*.h
+%{_includedir}/qt5/Qt/qglsceneanimation.h
+%{_includedir}/qt5/Qt/qglsceneformatplugin.h
+%{_includedir}/qt5/Qt/qglscenenode.h
+%{_includedir}/qt5/Qt/qglshaderprogrameffect.h
+%{_includedir}/qt5/Qt/qglsphere.h
+%{_includedir}/qt5/Qt/qglsubsurface.h
+%{_includedir}/qt5/Qt/qglteapot.h
+%{_includedir}/qt5/Qt/qgltexture2d.h
+%{_includedir}/qt5/Qt/qgltexturecube.h
+%{_includedir}/qt5/Qt/qgltwosidedmaterial.h
+%{_includedir}/qt5/Qt/qglvertexbundle.h
+%{_includedir}/qt5/Qt/qglview.h
+%{_includedir}/qt5/Qt/qglwindowsurface.h
+%{_includedir}/qt5/Qt/qgraphics*.h
+%{_includedir}/qt5/Qt/qlogicalvertex.h
+%{_includedir}/qt5/Qt/qmatrix4x4stack.h
+%{_includedir}/qt5/Qt/qplane3d.h
+%{_includedir}/qt5/Qt/qsphere3d.h
+%{_includedir}/qt5/Qt/qray3d.h
+%{_includedir}/qt5/Qt/qt3dglobal.h
+%{_includedir}/qt5/Qt/qt3dversion.h
+%{_includedir}/qt5/Qt/qtriangle3d.h
+%{_includedir}/qt5/Qt/qvector*.h
 %{_libdir}/pkgconfig/Qt3D.pc
-#%{_datadir}/qt5/mkspecs/features/qt3d.prf
-%{_datadir}/qt5/mkspecs/modules/qt_qt3d.pri
+%{_datadir}/qt5/mkspecs/modules/qt_3d.pri
+%{_libdir}/cmake/Qt53D/
+
+%files qt3dquick
+%defattr(-,root,root,-)
+%{_libdir}/libQt3DQuick.so.5
+%{_libdir}/pkgconfig/Qt3D.pc
+%{_datadir}/qt5/mkspecs/modules/qt_3d.pri
 
 %files qt3dquick
 %defattr(-,root,root,-)
@@ -184,17 +248,29 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQt3DQuick.so
 %{_libdir}/libQt3DQuick.prl
 %{_includedir}/qt5/Qt3DQuick/
+%{_includedir}/qt5/Qt/Qt3DQuick/
+%{_includedir}/qt5/Qt/capsulemesh.h
+%{_includedir}/qt5/Qt/cube.h
+%{_includedir}/qt5/Qt/cylindermesh.h
+%{_includedir}/qt5/Qt/line.h
+%{_includedir}/qt5/Qt/point.h
+%{_includedir}/qt5/Qt/qmlres.h
+%{_includedir}/qt5/Qt/qquick*.h
+%{_includedir}/qt5/Qt/qt3dquickglobal.h
+%{_includedir}/qt5/Qt/qt3dquickversion.h
+%{_includedir}/qt5/Qt/spheremesh.h
+%{_includedir}/qt5/Qt/teapot.h
 %{_libdir}/pkgconfig/Qt3DQuick.pc
-#%{_datadir}/qt5/mkspecs/features/qt3dquick.prf
-%{_datadir}/qt5/mkspecs/modules/qt_qt3dquick.pri
+%{_datadir}/qt5/mkspecs/modules/qt_3dquick.pri
+%{_libdir}/cmake/Qt53DQuick/
 
-%files plugin-sceneformat-ai
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/sceneformats/libqsceneai.so
+#%files plugin-sceneformat-ai
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/plugins/sceneformats/libqsceneai.so
 
-%files plugin-sceneformat-bezier
-%defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/sceneformats/libqscenebezier.so
+#%files plugin-sceneformat-bezier
+#%defattr(-,root,root,-)
+#%{_libdir}/qt5/plugins/sceneformats/libqscenebezier.so
 
 %files -n qt5-qtqml-import-qt3d-shapes
 %defattr(-,root,root,-)
