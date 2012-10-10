@@ -7,8 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch0:     disable-xmlpattern-examples-install.patch
-Patch1:     create_prl_and_pc_files.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtgui-devel
@@ -42,8 +40,6 @@ This package contains the XMLPatterns library development files
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
 
 
 # The original source assumes build happens within a monolithic tree.
