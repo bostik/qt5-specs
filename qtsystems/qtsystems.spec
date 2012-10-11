@@ -7,7 +7,6 @@ Group:      System/Libraries
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch0:     disable_test_examples_install.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -142,7 +141,6 @@ This package contains the PublishSuvbscribe import for QtQml
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
 
 
 %build
@@ -209,6 +207,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files -n qt5-qtserviceframework
 %defattr(-,root,root,-)
 %{_bindir}/servicefw
+%{_bindir}/sfwlisten
 %{_libdir}/libQtServiceFramework.so.5
 %{_libdir}/libQtServiceFramework.so.5.*
 
