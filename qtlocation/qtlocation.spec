@@ -7,9 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch0:     disable_demos_and_examples.patch
-Patch1:     create_prl_and_pc_files.patch
-Patch2:     mapsgl-define-gl-depth.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -18,6 +15,7 @@ BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtqml-devel
 BuildRequires:  qt5-qtqml-qtquick-devel
 BuildRequires:  qt5-qt3d-devel
+BuildRequires:  qt5-qtv8-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 
@@ -63,10 +61,6 @@ This package contains the geoservices plugin for Nokia devices
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
-#%patch2 -p1
-
 
 %build
 export QTDIR=/usr/share/qt5
