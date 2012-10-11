@@ -36,24 +36,6 @@ mobile and embedded systems without rewriting the source code.
 This package contains the Qt sensors module development files
 
 
-%package -n qt5-qtqml-import-sensors
-Summary:    QtQml sensors import
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-qtqml
-
-%description -n qt5-qtqml-import-sensors
-This package contains the Sensors import for Qtml
-
-%package -n qt5-qtqml-import-mobility-sensors
-Summary:    QtQml mobility sensors import
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-Requires:   qt5-qtqml
-
-%description -n qt5-qtqml-import-mobility-sensors
-This package contains the mobility sensors import for QtQml
-
 %package plugin-dummy
 Summary:    Dummy sensors plugin
 Group:      Qt/Qt
@@ -133,14 +115,6 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
 %{_libdir}/cmake/
-
-%files -n qt5-qtqml-import-sensors
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtSensors/
-
-%files -n qt5-qtqml-import-mobility-sensors
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtMobility/sensors/
 
 
 %files plugin-dummy
