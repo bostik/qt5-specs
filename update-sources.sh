@@ -203,6 +203,11 @@ for m in ${QT5_MODULES}; do
         update_changelog ${m} ${ver}
     fi
 
+    # Remove all (leftover) patch files from target dir.
+    # The current ones will be copied over; this way there will be no
+    # more crud patches in the build system.
+    rm -f ${OBSDIR}/${m}/*.patch
+
     # Spec, changelog, rpmlintrc, patches, extra files,
     # all from this directory
     cp -v ${m}/*.spec ${m}/*.changes ${OBSDIR}/${m}/
