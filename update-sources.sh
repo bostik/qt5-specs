@@ -114,6 +114,11 @@ function update_changelog() {
     tmpfile=$(mktemp --tmpdir ${m}.changes.XXXXXX)
     datestr=$(LC_TIME=C date '+%a %b %e %Y')
 
+    # QtWebkit has a trailing '5' in the filenames
+    if [ ${_mod} = "qtwebkit" ]; then
+        _trail="5"
+    fi
+
     # generate header line
     echo "* ${datestr} ${GIT_AUTHOR_NAME} <${GIT_AUTHOR_EMAIL}> - ${pkg_version}" > ${tmpfile}
 
@@ -123,10 +128,10 @@ function update_changelog() {
 
     # Add the rest of the changelog
     # XXX: we're in QT5_DIR, not in module
-    cat ${_mod}/${_mod}.changes >> ${tmpfile}
+    cat ${_mod}/${_mod}${_trail}.changes >> ${tmpfile}
 
     # And copy over
-    cp -v ${tmpfile} ${_mod}/${_mod}.changes
+    cp -v ${tmpfile} ${_mod}/${_mod}${_trail}.changes
 
     # Clean up...
     rm -f ${tmpfile}
