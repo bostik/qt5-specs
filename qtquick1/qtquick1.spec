@@ -7,9 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     0001-Fix-build-in-dedicated-buildroot.patch
-Patch2:     0002-Install-development-headers.patch
-Patch3:     0003-Remove-demos-and-examples-from-install.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -29,92 +26,71 @@ This package contains the Qt Quick 1 library
 
 
 %package devel
-Summary:        Qt Quick 3D - development files
+Summary:        Qt Quick 1 - development files
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
-Requires:       %{name}-qt3d-devel = %{version}-%{release}
 
 %description devel
 Qt is a cross-platform application and UI framework. Using Qt, you can
 write web-enabled applications once and deploy them across desktop,
 mobile and embedded systems without rewriting the source code.
 .
-This package contains the Qt Quick 3D development files
+This package contains the Qt Quick 1 development files
 
-%package qt3d
-Summary:        Qt Quick 3D - core library
+
+%package qmlviewer
+Summary:        Qt Quick 1 - standalone viewer
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description qt3d
-Qt is a cross-platform application and UI framework. Using Qt, you can
-write web-enabled applications once and deploy them across desktop,
-mobile and embedded systems without rewriting the source code.
-.
-This package contains the Qt Quick 3D core library
+%description qmlviewer
+Qmlviewer allows to view, or "play" Qt Quick 1 files.
 
-%package qt3d-devel
-Summary:        Qt Quick 3D - core development headers
+
+%package import-folderlistmodel
+Summary:        Qt Quick 1 - folderlistmodel import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description qt3d-devel
-Qt is a cross-platform application and UI framework. Using Qt, you can
-write web-enabled applications once and deploy them across desktop,
-mobile and embedded systems without rewriting the source code.
-.
-This package contains the Qt Quick 3D core development headers
+%description import-folderlistmodel
+This package provides Qt Quick 1 folderlistmodel import.
 
-
-%package plugin-imageformat-tga
-Summary:        Qt Quick 3D - TGA image format plugin
+%package import-gestures
+Summary:        Qt Quick 1 - gestures import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description plugin-imageformat-tga
-This package contains the TGA image format plugin
+%description import-gestures
+This package provides Qt Quick 1 gestures import.
 
-%package plugin-sceneformat-ai
-Summary:        Qt Quick 3D - all-inclusive scene format plugin
+%package import-particles
+Summary:        Qt Quick 1 - particles import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description plugin-sceneformat-ai
-This package contains the all-inclusive scene format plugin
+%description import-particles
+This package provides Qt Quick 1 particles import.
 
-%package plugin-sceneformat-bezier
-Summary:        Qt Quick 3D - bezier scene format plugin
+%package import-shaders
+Summary:        Qt Quick 1 - shaders import
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description plugin-sceneformat-bezier
-This package contains the bezier scene format plugin
+%description import-shaders
+This package provides Qt Quick 1 shaders import.
 
-
-%package -n qt5-qtqml-import-qt3d-shapes
-Summary:        Qt Quick 3D - declarative Qt3D shapes import
+%package plugin-qmltooling
+Summary:        Qt Quick 1 - qmltooling plugin
 Group:          Qt/Qt
 Requires:       %{name} = %{version}-%{release}
 
-%description -n qt5-qtqml-import-qt3d-shapes
-This package contains the Qt3D shapes import for QtQml
-
-%package -n qt5-qtqml-import-qt3d
-Summary:        Qt Quick 3D - declarative Qt3D import
-Group:          Qt/Qt
-Requires:       %{name} = %{version}-%{release}
-
-%description -n qt5-qtqml-import-qt3d
-This package contains the Qt3D import for QtQml
-
+%description plugin-qmltooling
+This package provides Qt Quick 1 tooling plugin.
 
 #### Build section
 
 %prep
 %setup -q -n %{name}
-%patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
 
 %build
 export QTDIR=/usr/share/qt5
@@ -142,65 +118,51 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %postun
 /sbin/ldconfig
 
-%post qt3d
-/sbin/ldconfig
-%postun qt3d
-/sbin/ldconfig
-
 
 #### File section
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQt3DQuick.so.5
-%{_libdir}/libQt3DQuick.so.5.*
+%{_libdir}/libQtQuick1.so.5
+%{_libdir}/libQtQuick1.so.5.*
 
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt3DQuick.so
-%{_libdir}/libQt3DQuick.prl
-%{_includedir}/qt5/Qt3DQuick/
-%{_libdir}/pkgconfig/Qt3DQuick.pc
-%{_datadir}/qt5/mkspecs/features/qt3d.prf
-%{_datadir}/qt5/mkspecs/modules/qt_qt3d.pri
+%{_libdir}/libQtQuick1.so
+%{_libdir}/libQtQuick1.prl
+%{_includedir}/qt5/QtQuick1/
+%{_includedir}/qt5/Qt/QtQuick1
+%{_includedir}/qt5/Qt/qdeclarative*
+%{_includedir}/qt5/Qt/qtquick1*
+%{_libdir}/pkgconfig/QtQuick1.pc
+%{_libdir}/cmake/Qt5Quick1/
+%{_datadir}/qt5/mkspecs/modules/qt_quick1.pri
 
-%files qt3d
+%files qmlviewer
 %defattr(-,root,root,-)
-%{_libdir}/libQt3D.so.5
-%{_libdir}/libQt3D.so.5.*
+%{_bindir}/qmlviewer
 
-%files qt3d-devel
+%files import-folderlistmodel
 %defattr(-,root,root,-)
-%{_libdir}/libQt3D.so
-%{_libdir}/libQt3D.prl
-%{_includedir}/qt5/Qt3D/
-%{_libdir}/pkgconfig/Qt3D.pc
-%{_datadir}/qt5/mkspecs/features/qt3dquick.prf
-%{_datadir}/qt5/mkspecs/modules/qt_qt3dquick.pri
+%{_libdir}/qt5/imports/QtQuick1/Qt/labs/folderlistmodel/
 
-%files plugin-imageformat-tga
+%files import-gestures
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/imageformats/libqtga.so
+%{_libdir}/qt5/imports/QtQuick1/Qt/labs/gestures/
 
-%files plugin-sceneformat-ai
+%files import-particles
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/sceneformats/libqsceneai.so
+%{_libdir}/qt5/imports/QtQuick1/Qt/labs/particles/
 
-%files plugin-sceneformat-bezier
+%files import-shaders
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/sceneformats/libqscenebezier.so
+%{_libdir}/qt5/imports/QtQuick1/Qt/labs/shaders/
 
-%files -n qt5-qtqml-import-qt3d-shapes
+%files plugin-qmltooling
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt3D/Shapes/
+%{_libdir}/qt5/plugins/qmltooling/
 
-%files -n qt5-qtqml-import-qt3d
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt3D/qmldir
-%{_libdir}/qt5/imports/Qt3D/plugins.qmltypes
-%{_libdir}/qt5/imports/Qt3D/library.xml
-%{_libdir}/qt5/imports/Qt3D/libqthreedqmlplugin.so
 
 #### No changelog section, separate $pkg.changes contains the history
 
