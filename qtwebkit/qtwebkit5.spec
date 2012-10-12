@@ -122,8 +122,8 @@ rm -rf Source/WebKit/qt/tests/
 
 %build
 # From Carsten Munk: create way smaller debuginfo
-export CXXFLAGS="`echo $CXXFLAGS | sed 's/ -g / -gstabs /g'`"
-export CFLAGS="`echo $CFLAGS | sed 's/ -g / -gstabs /g'`"
+export CXXFLAGS="`echo $CXXFLAGS | sed 's/ -g / -gdwarf-4 /g'`"
+export CFLAGS="`echo $CFLAGS | sed 's/ -g / -gdwarf-4 /g'`"
 export QMAKEPATH="`pwd`/Tools/qmake"
 export QTDIR=/usr/share/qt5
 qmake  \
