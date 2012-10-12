@@ -7,7 +7,8 @@ Version:    %{_qtmodule_snapshot_version}
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    BSD and LGPLv2+
-URL:        http://trac.webkit.org/wiki/QtWebKit
+#URL:        http://trac.webkit.org/wiki/QtWebKit
+URL:        https://gitorious.org/+qtwebkit-developers/webkit/qtwebkit/commits/qtwebkit-2.2
 Source0:    %{name}-%{version}.tar.gz
 Patch1:     0001-Fix-graphics-context-build.patch
 Patch2:     0002-Fix-install-targets.patch
