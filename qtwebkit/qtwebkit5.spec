@@ -15,6 +15,11 @@ Patch2:     0002-Fix-install-targets.patch
 Patch3:     0003-Turn-developer-build-checking-off.patch
 Patch4:     0004-Remove-tests-from-build.patch
 Patch5:     0005-Do-not-build-tools.patch
+Patch10:    0001-Compile-NEON-assembly-without-thumb.patch
+Patch11:    0002-Remove-tests-from-build.patch
+Patch12:    0003-Make-GL_BGRA-colorspace-vanish.patch
+Patch13:    0004-Fix-OpenGLShims.cpp-build-against-EGL-GLES2.patch
+Patch14:    0005-Use-symbol-filter-when-linking.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -37,9 +42,12 @@ BuildRequires:  pkgconfig(xrender)
 BuildRequires:  glib2-devel
 BuildRequires:  gst-plugins-base-devel
 BuildRequires:  gstreamer-devel
+BuildRequires:  libjpeg-turbo-devel
+BuildRequires:  libpng-devel
 BuildRequires:  gperf
 BuildRequires:  python
 BuildRequires:  bison
+BuildRequires:  flex
 BuildRequires:  fdupes
 
 
@@ -48,15 +56,15 @@ QtWebKit provides a Web browser engine that makes it easy to embed content from
 the World Wide Web into your Qt application.
 
 
-%package uiprocess-launcher
-Summary:    Web content engine library for Qt - WebKit2 process launcher
-Group:      Qt/Qt
-
-%description uiprocess-launcher
-QtWebKit provides a Web browser engine that makes it easy to embed content from
-the World Wide Web into your Qt application.
-
-This package contains the UI process launcher for WebKit2 engine
+#%package uiprocess-launcher
+#Summary:    Web content engine library for Qt - WebKit2 process launcher
+#Group:      Qt/Qt
+#
+#%description uiprocess-launcher
+#QtWebKit provides a Web browser engine that makes it easy to embed content from
+#the World Wide Web into your Qt application.
+#
+#This package contains the UI process launcher for WebKit2 engine
 
 
 %package -n lib%{_qtmodule_base_name}5
@@ -112,11 +120,16 @@ This package contains the experimental WebKit QML plugin for QtQml.
 
 %prep
 %setup -q -n %{name}
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
+#%patch5 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
 # remove .../qt/tests directory which introduces nothing but trouble
 rm -rf Source/WebKit/qt/tests/
 
@@ -131,6 +144,7 @@ qmake  \
     DEFINES+=ENABLE_VIDEO=1 \
     DEFINES+=DISABLE_GEOLOCATION \
     DEFINES+=ENABLE_NETSCAPE_PLUGIN_API=0 \
+    DEFINES+=ENABLE_PLUGIN_PROCESS=0 \
     DEFINES+=ENABLE_ORIENTATION_EVENTS=0 \
     DEFINES+=ENABLE_DEVICE_ORIENTATION=0 \
     DEFINES+=WTF_USE_MOBILITY_SYSTEMINFO=0 \
@@ -174,9 +188,9 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 
 
-%files uiprocess-launcher
-%defattr(-,root,root,-)
-%{_bindir}/QtWebProcess
+#%files uiprocess-launcher
+#%defattr(-,root,root,-)
+#%{_bindir}/QtWebProcess
 
 
 %files -n lib%{_qtmodule_base_name}5

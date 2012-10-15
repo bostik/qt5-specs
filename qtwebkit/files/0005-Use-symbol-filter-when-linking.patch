@@ -1,0 +1,42 @@
+From a1627460e128f97090eaa500cd094613ba7131d6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Sun, 14 Oct 2012 21:54:14 +0300
+Subject: [PATCH 5/5] Use symbol filter when linking
+
+The link step of qtwebkit is a massive memory hog. Even with
+-Wl,--no-keep-memory as a default setting, the memory addresses STILL
+run out on 32-bit systems.
+---
+ Tools/qmake/mkspecs/features/default_post.prf |    3 +++
+ Tools/qmake/mkspecs/features/symbols.filter   |    5 +++++
+ 2 files changed, 8 insertions(+)
+ create mode 100644 Tools/qmake/mkspecs/features/symbols.filter
+
+diff --git a/Tools/qmake/mkspecs/features/default_post.prf b/Tools/qmake/mkspecs/features/default_post.prf
+index 2b25ac3..4e3ef0c 100644
+--- a/Tools/qmake/mkspecs/features/default_post.prf
++++ b/Tools/qmake/mkspecs/features/default_post.prf
+@@ -48,6 +48,9 @@ CONFIG -= warn_on
+     -Winit-self \
+     $$QMAKE_CXXFLAGS
+ 
++# XXX: Mer-project special: use a symbol filter to reduce memory needs
++*-g++: QMAKE_LFLAGS += -Wl,--version-script,$$PWD/symbols.filter
++
+ v8: DEFINES += WTF_USE_V8=1
+ else {
+     contains(JAVASCRIPTCORE_JIT, yes): DEFINES+=ENABLE_JIT=1
+diff --git a/Tools/qmake/mkspecs/features/symbols.filter b/Tools/qmake/mkspecs/features/symbols.filter
+new file mode 100644
+index 0000000..f5af6ba
+--- /dev/null
++++ b/Tools/qmake/mkspecs/features/symbols.filter
+@@ -0,0 +1,5 @@
++{
++local:
++_ZSt*;
++_ZNSt*;
++};
+-- 
+1.7.10.4
+

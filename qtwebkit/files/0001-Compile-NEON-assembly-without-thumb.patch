@@ -1,0 +1,75 @@
+From d5c49bd7def725d43309ba222cb0f18d4e453931 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Thu, 6 Sep 2012 09:40:05 +0300
+Subject: [PATCH 1/5] Compile NEON assembly without thumb
+
+If generating THUMB instructions, the hand-written assembly in
+FELightingNEON.cpp does not compile. Compile that single source file
+with -marm instead of -mthumb.
+
+The object file has to be explicitly compiled with -fPIC. Otherwise
+linking will fail.
+---
+ Source/WebCore/Target.pri |   32 ++++++++++++++++++++++++++++----
+ 1 file changed, 28 insertions(+), 4 deletions(-)
+
+diff --git a/Source/WebCore/Target.pri b/Source/WebCore/Target.pri
+index 8b0db21..7a9aa6e 100644
+--- a/Source/WebCore/Target.pri
++++ b/Source/WebCore/Target.pri
+@@ -362,7 +362,7 @@ SOURCES += \
+     dom/DeviceMotionData.cpp \
+     dom/DeviceMotionEvent.cpp \
+     dom/DeviceOrientationController.cpp \
+-    dom/DeviceOrientationData.cpp \    
++    dom/DeviceOrientationData.cpp \
+     dom/DeviceOrientationEvent.cpp \
+     dom/Document.cpp \
+     dom/DocumentEventQueue.cpp \
+@@ -3273,8 +3273,32 @@ contains(DEFINES, ENABLE_FILTERS=1) {
+         platform/graphics/filters/PointLightSource.cpp \
+         platform/graphics/filters/SpotLightSource.cpp \
+         platform/graphics/filters/SourceAlpha.cpp \
+-        platform/graphics/filters/SourceGraphic.cpp \
+-        platform/graphics/filters/arm/FELightingNEON.cpp \
++        platform/graphics/filters/SourceGraphic.cpp
++
++    # If building for ARM with THUMB instructions, the hand-written
++    # assembly in the following file will not compile. Turn off -mthumb
++    # for this single file and build with -marm instead.
++    contains(QT_ARCH, arm) {
++        SOURCES_NOTHUMB = platform/graphics/filters/arm/FELightingNEON.cpp
++        # $$replace() means "return the modified value"; '$$' extracts
++        # contents of a variable. Remove thumb, use generic arm for
++        # compilation.
++        CXXFLAGS_NOTHUMB = $$replace(QMAKE_CXXFLAGS, -mthumb, -marm)
++
++        # Add unconditional -fPIC; without this, the inclusion of
++        # qglobal.h will trigger a build error
++        CXXFLAGS_NOTHUMB += -fPIC
++
++        # Adapted from example at qtcentre.org, "Undocumented_qmake"
++        nothumb.name = nothumb
++        nothumb.input = SOURCES_NOTHUMB
++        nothumb.dependency_type = TYPE_C
++        nothumb.variable_out = OBJECTS
++        nothumb.output = ${QMAKE_VAR_OBJECTS_DIR}${QMAKE_FILE_IN_BASE}$${first(QMAKE_EXT_OBJ)}
++        nothumb.commands = $${QMAKE_CXX} $${CXXFLAGS_NOTHUMB} $(DEFINES) $(INCPATH) -c ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
++
++        QMAKE_EXTRA_COMPILERS += nothumb
++    }
+ }
+ 
+ contains(DEFINES, ENABLE_MATHML=1) {
+@@ -3832,7 +3856,7 @@ contains(DEFINES, WTF_USE_3D_GRAPHICS=1) {
+         $$ANGLE_DIR/src/compiler/InfoSink.cpp \
+         $$ANGLE_DIR/src/compiler/Initialize.cpp \
+         $$ANGLE_DIR/src/compiler/InitializeDll.cpp \
+-        $$ANGLE_DIR/src/compiler/InitializeParseContext.cpp \ 
++        $$ANGLE_DIR/src/compiler/InitializeParseContext.cpp \
+         $$ANGLE_DIR/src/compiler/Intermediate.cpp \
+         $$ANGLE_DIR/src/compiler/intermOut.cpp \
+         $$ANGLE_DIR/src/compiler/IntermTraverse.cpp \
+-- 
+1.7.10.4
+

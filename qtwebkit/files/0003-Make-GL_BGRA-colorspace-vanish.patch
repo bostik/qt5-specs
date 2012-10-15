@@ -1,0 +1,54 @@
+From fb9308ff8ad83cc08493181856881977d6916fc8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Sun, 14 Oct 2012 09:54:37 +0300
+Subject: [PATCH 3/5] Make GL_BGRA colorspace vanish
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+GL_BGRA is not available in beta1. This simple fix is from Zóltan
+Balogh, as suggested in his response to build issues on Harmattan.
+
+Upstream has since supposedly caught up so this patch should not be too
+long-lived.
+---
+ Source/WebCore/platform/graphics/texmap/TextureMapperGL.cpp |    9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/Source/WebCore/platform/graphics/texmap/TextureMapperGL.cpp b/Source/WebCore/platform/graphics/texmap/TextureMapperGL.cpp
+index a22e720..668d914 100644
+--- a/Source/WebCore/platform/graphics/texmap/TextureMapperGL.cpp
++++ b/Source/WebCore/platform/graphics/texmap/TextureMapperGL.cpp
+@@ -430,7 +430,7 @@ void TextureMapperGL::drawTextureRectangleARB(uint32_t texture, Flags flags, con
+     bool needsBlending = (flags & SupportsBlending) || opacity < 0.99 || maskTexture;
+     drawQuad(targetRect, modelViewMatrix, program.get(), GL_TRIANGLE_FAN, needsBlending);
+ }
+-#endif // defined(GL_ARB_texture_rectangle) 
++#endif // defined(GL_ARB_texture_rectangle)
+ 
+ void TextureMapperGL::drawTexture(uint32_t texture, Flags flags, const IntSize& /* textureSize */, const FloatRect& targetRect, const TransformationMatrix& modelViewMatrix, float opacity, const BitmapTexture* maskTexture, unsigned exposedEdges)
+ {
+@@ -653,7 +653,7 @@ void BitmapTextureGL::didReset()
+     if (m_textureSize == contentSize())
+         return;
+ 
+-    GLuint format = driverSupportsBGRASwizzling() ? GL_BGRA : GL_RGBA;
++    GLuint format = GL_RGBA;
+ 
+     m_textureSize = contentSize();
+     GL_CMD(glBindTexture(GL_TEXTURE_2D, m_id));
+@@ -671,10 +671,7 @@ void BitmapTextureGL::updateContents(const void* data, const IntRect& targetRect
+     GL_CMD(glBindTexture(GL_TEXTURE_2D, m_id));
+ 
+     const unsigned bytesPerPixel = 4;
+-    if (driverSupportsBGRASwizzling())
+-        glFormat = GL_BGRA;
+-    else
+-        swizzleBGRAToRGBA(reinterpret_cast<uint32_t*>(const_cast<void*>(data)), IntRect(sourceOffset, targetRect.size()), bytesPerLine / bytesPerPixel);
++    swizzleBGRAToRGBA(reinterpret_cast<uint32_t*>(const_cast<void*>(data)), IntRect(sourceOffset, targetRect.size()), bytesPerLine / 4);
+ 
+     if (bytesPerLine == targetRect.width() / 4 && sourceOffset == IntPoint::zero()) {
+         GL_CMD(glTexSubImage2D(GL_TEXTURE_2D, 0, targetRect.x(), targetRect.y(), targetRect.width(), targetRect.height(), glFormat, DEFAULT_TEXTURE_PIXEL_TRANSFER_TYPE, (const char*)data));
+-- 
+1.7.10.4
+
