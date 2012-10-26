@@ -1,0 +1,31 @@
+From 4db5202d46c3859d5cbba6e027ae5390a4cb4818 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Fri, 19 Oct 2012 08:07:56 +0300
+Subject: [PATCH 07/10] Explicitly build for release only
+
+Drop 'debug', 'debug_and_release' build configurations. Add 'release'
+instead.
+---
+ WebKit.pro |    6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/WebKit.pro b/WebKit.pro
+index aad305b..4ace815 100644
+--- a/WebKit.pro
++++ b/WebKit.pro
+@@ -7,6 +7,12 @@
+ 
+ !webkit_configured {
+     CONFIG += production_build
++    # Mer-special: use only release build
++    message("Remove debugs, force release build only")
++    CONFIG += release
++    CONFIG -= debug
++    CONFIG -= debug_and_release
++    # And back to the normal flow
+     include(Tools/qmake/configure.pri)
+     the_config = $$CONFIG
+     the_config -= $$BASE_CONFIG $$find(CONFIG, "^(done_)?config_")
+-- 
+1.7.10.4
+

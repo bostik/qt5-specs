@@ -1,7 +1,7 @@
 From fb9308ff8ad83cc08493181856881977d6916fc8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Sun, 14 Oct 2012 09:54:37 +0300
-Subject: [PATCH 3/5] Make GL_BGRA colorspace vanish
+Subject: [PATCH 03/10] Make GL_BGRA colorspace vanish
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

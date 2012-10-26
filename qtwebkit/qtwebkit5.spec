@@ -10,16 +10,16 @@ License:    BSD and LGPLv2+
 #URL:        http://trac.webkit.org/wiki/QtWebKit
 URL:        https://gitorious.org/+qtwebkit-developers/webkit/qtwebkit/commits/qtwebkit-2.2
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     0001-Fix-graphics-context-build.patch
-Patch2:     0002-Fix-install-targets.patch
-Patch3:     0003-Turn-developer-build-checking-off.patch
-Patch4:     0004-Remove-tests-from-build.patch
-Patch5:     0005-Do-not-build-tools.patch
-Patch10:    0001-Compile-NEON-assembly-without-thumb.patch
-Patch11:    0002-Remove-tests-from-build.patch
-Patch12:    0003-Make-GL_BGRA-colorspace-vanish.patch
-Patch13:    0004-Fix-OpenGLShims.cpp-build-against-EGL-GLES2.patch
-Patch14:    0005-Use-symbol-filter-when-linking.patch
+Patch1:     0001-Compile-NEON-assembly-without-thumb.patch
+Patch2:     0002-Remove-tests-from-build.patch
+Patch3:     0003-Make-GL_BGRA-colorspace-vanish.patch
+Patch4:     0004-Fix-OpenGLShims.cpp-build-against-EGL-GLES2.patch
+Patch5:     0005-Use-symbol-filter-when-linking.patch
+Patch6:     0006-Try-to-force-shared-libs.patch
+Patch7:     0007-Explicitly-build-for-release-only.patch
+Patch8:     0008-Use-gold-linker-if-available.patch
+Patch9:     0009-Do-not-build-webkit2.patch
+Patch10:    0010-Disable-tools-entirely.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -106,39 +106,38 @@ the World Wide Web into your Qt application.
 This package contains the WebKit QML plugin for QtQml.
 
 
-%package -n qt5-qtqml-import-webkitplugin-experimental
-Summary:    Qt WebKit QML plugin (experimental)
-Group:      Qt/Qt
-
-%description -n qt5-qtqml-import-webkitplugin-experimental
-QtWebKit provides a Web browser engine that makes it easy to embed content from
-the World Wide Web into your Qt application.
-
-This package contains the experimental WebKit QML plugin for QtQml.
-
-
 
 %prep
 %setup -q -n %{name}
-#%patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
-#%patch4 -p1
-#%patch5 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
 %patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
 # remove .../qt/tests directory which introduces nothing but trouble
 rm -rf Source/WebKit/qt/tests/
 
 %build
-# From Carsten Munk: create way smaller debuginfo
-export CXXFLAGS="`echo $CXXFLAGS | sed 's/ -g / -gdwarf-4 /g'`"
-export CFLAGS="`echo $CFLAGS | sed 's/ -g / -gdwarf-4 /g'`"
+## From Carsten Munk: create way smaller debuginfo
+#export CXXFLAGS="`echo $CXXFLAGS | sed 's/ -g / -gdwarf-4 /g'`"
+#export CFLAGS="`echo $CFLAGS | sed 's/ -g / -gdwarf-4 /g'`"
+# XXX: Remove debug symbols entirely, we're running out of linker memory!
+export CXXFLAGS="`echo $CXXFLAGS | sed 's/ -g //g'`"
+export CFLAGS="`echo $CFLAGS | sed 's/ -g //g'`"
+#
 export QMAKEPATH="`pwd`/Tools/qmake"
 export QTDIR=/usr/share/qt5
+# XXX: Dirty trick to use gold linker
+# XXX: may work on x86 builds only(!)
+mkdir /tmp/gold
+cp /usr/bin/ld.gold /tmp/gold/ld
+export PATH=/tmp/gold:$PATH
+#
 qmake  \
     CONFIG+=disable_uitools \
     DEFINES+=ENABLE_VIDEO=1 \
@@ -212,10 +211,6 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/imports/QtWebKit/libqmlwebkitplugin.so
 %{_libdir}/qt5/imports/QtWebKit/qmldir
-
-%files -n qt5-qtqml-import-webkitplugin-experimental
-%defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtWebKit/experimental/
 
 
 

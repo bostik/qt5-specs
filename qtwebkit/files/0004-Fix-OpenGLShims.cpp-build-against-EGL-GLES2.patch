@@ -1,7 +1,7 @@
 From 1ef17f0efa2f143ffcc2fd71c142b474083d2a48 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Sun, 14 Oct 2012 11:16:28 +0300
-Subject: [PATCH 4/5] Fix OpenGLShims.cpp build against EGL/GLES2
+Subject: [PATCH 04/10] Fix OpenGLShims.cpp build against EGL/GLES2
 
 This is directly picked from WebKit upstream:
 commit 5f378259334c6dc4dcac599421f87c7ab8a9cad9
