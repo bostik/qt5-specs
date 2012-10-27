@@ -134,7 +134,7 @@ export QMAKEPATH="`pwd`/Tools/qmake"
 export QTDIR=/usr/share/qt5
 # XXX: Dirty trick to use gold linker
 # XXX: may work on x86 builds only(!)
-%ifarch x86
+%ifarch i586
 mkdir /tmp/gold
 cp /usr/bin/ld.gold /tmp/gold/ld
 export PATH=/tmp/gold:$PATH
