@@ -604,6 +604,9 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_bindir}/syncqt
 %{_bindir}/uic
 %{_bindir}/qdoc
+%{_datadir}/doc/global/qt-html-templates-offline.qdocconf
+%{_datadir}/doc/global/qt-module-defaults.qdocconf
+%{_datadir}/doc/global/style/offline.css
 
 %files qtcore
 %defattr(-,root,root,-)
@@ -652,6 +655,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qeasingcurve.h
 %{_includedir}/qt5/Qt/qelapsedtimer.h
 %{_includedir}/qt5/Qt/qendian.h
+%{_includedir}/qt5/Qt/qexception.h
 %{_includedir}/qt5/Qt/qeventloop.h
 %{_includedir}/qt5/Qt/qeventtransition.h
 %{_includedir}/qt5/Qt/qfactoryinterface.h
@@ -767,7 +771,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtCore.prl
 %{_libdir}/libQtCore.so
 %{_libdir}/pkgconfig/QtCore.pc
-%{_datadir}/qt5/mkspecs/modules/qt_core.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_core.pri
 %{_libdir}/cmake/
 %{_datadir}/qt5/mkspecs/cmake/
 
@@ -775,10 +779,10 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_bindir}/qmake
 %{_datadir}/qt5/mkspecs/aix-*/
+%{_datadir}/qt5/mkspecs/blackberry*/
 %{_datadir}/qt5/mkspecs/common/
 %{_datadir}/qt5/mkspecs/cygwin-*/
 %{_datadir}/qt5/mkspecs/darwin-*/
-%{_datadir}/qt5/mkspecs/default
 %{_datadir}/qt5/mkspecs/features/
 %{_datadir}/qt5/mkspecs/freebsd-*/
 %{_datadir}/qt5/mkspecs/hpux-*
@@ -792,6 +796,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/openbsd-*/
 %{_datadir}/qt5/mkspecs/qconfig.pri
 %{_datadir}/qt5/mkspecs/qmodule.pri
+%{_datadir}/qt5/mkspecs/qnx*/
 %{_datadir}/qt5/mkspecs/sco-*/
 %{_datadir}/qt5/mkspecs/solaris-*/
 %{_datadir}/qt5/mkspecs/tru64-*/
@@ -804,7 +809,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_datadir}/qt5/mkspecs/wince*/
 %{_datadir}/qt5/mkspecs/devices/
 %{_datadir}/qt5/mkspecs/qdevice.pri
-%{_datadir}/qt5/mkspecs/default-host
 %{_sysconfdir}/rpm/macros.qmake
 
 %files qtdbus
@@ -822,7 +826,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtDBus.so
 %{_libdir}/libQtDBus.prl
 %{_libdir}/pkgconfig/QtDBus.pc
-%{_datadir}/qt5/mkspecs/modules/qt_dbus.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_dbus.pri
 
 
 %files qtgui
@@ -834,36 +838,14 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_includedir}/qt5/Qt/QtGui
 %{_includedir}/qt5/QtGui/
-%{_includedir}/qt5/Qt/QPlatformAccessibility
-%{_includedir}/qt5/Qt/QPlatformColorDialogHelper
-%{_includedir}/qt5/Qt/QPlatformDialogHelper
-%{_includedir}/qt5/Qt/QPlatformDropQtResponse
 %{_includedir}/qt5/Qt/QPlatformInputContext*
 %{_includedir}/qt5/Qt/QPlatformMenu*
-%{_includedir}/qt5/Qt/QPlatformNativeInterface
-%{_includedir}/qt5/Qt/QPlatformPixmap
-%{_includedir}/qt5/Qt/QPlatformBackingStore
-%{_includedir}/qt5/Qt/QPlatformServices
-%{_includedir}/qt5/Qt/QPlatformIntegration*
-%{_includedir}/qt5/Qt/QPlatformFileDialogHelper
-%{_includedir}/qt5/Qt/QPlatformScreen*
-%{_includedir}/qt5/Qt/QPlatformFontDatabase
-%{_includedir}/qt5/Qt/QPlatformTheme*
-%{_includedir}/qt5/Qt/QPlatformWindow
-%{_includedir}/qt5/Qt/QPlatformOpenGLContext
-%{_includedir}/qt5/Qt/QPlatformDragQtResponse
-%{_includedir}/qt5/Qt/QPlatformSurface
-%{_includedir}/qt5/Qt/QPlatformCursor*
-%{_includedir}/qt5/Qt/QPlatformDrag
-%{_includedir}/qt5/Qt/QPlatformClipboard
-%{_includedir}/qt5/Qt/QPlatformSharedGraphicsCache
 %{_includedir}/qt5/Qt/QGenericPlugin*
-%{_includedir}/qt5/Qt/QWindowSystemInterface
-%{_includedir}/qt5/Qt/qabstractpagesetupdialog.h
 %{_includedir}/qt5/Qt/qabstractprintdialog.h
 %{_includedir}/qt5/Qt/qabstractspinbox.h
 %{_includedir}/qt5/Qt/qabstracttextdocumentlayout.h
 %{_includedir}/qt5/Qt/qbackingstore.h
+%{_includedir}/qt5/Qt/qresultstore.h
 %{_includedir}/qt5/Qt/qbitmap.h
 %{_includedir}/qt5/Qt/qbrush.h
 %{_includedir}/qt5/Qt/qclipboard.h
@@ -888,7 +870,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qmac*_mac.h
 %{_includedir}/qt5/Qt/qmatrix.h
 %{_includedir}/qt5/Qt/qmatrix4x4.h
-%{_includedir}/qt5/Qt/qmotifstyle.h
 %{_includedir}/qt5/Qt/qmouse*.h
 %{_includedir}/qt5/Qt/qmovie.h
 %{_includedir}/qt5/Qt/qpagesetupdialog.h
@@ -902,7 +883,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qpixmap.h
 %{_includedir}/qt5/Qt/qpixmapcache.h
 %{_includedir}/qt5/Qt/qplaintextedit.h
-%{_includedir}/qt5/Qt/qplastiquestyle.h
 %{_includedir}/qt5/Qt/qplatform*_qpa.h
 %{_includedir}/qt5/Qt/qpolygon.h
 %{_includedir}/qt5/Qt/qprint*.h
@@ -948,11 +928,10 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qwindow.h
 %{_includedir}/qt5/Qt/qwindowdefs.h
 %{_includedir}/qt5/Qt/qwindowdefs_win.h
-%{_includedir}/qt5/Qt/qwindowsysteminterface_qpa.h
 %{_libdir}/libQtGui.prl
 %{_libdir}/libQtGui.so
 %{_libdir}/pkgconfig/QtGui.pc
-%{_datadir}/qt5/mkspecs/modules/qt_gui.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_gui.pri
 
 
 %files qtnetwork
@@ -992,7 +971,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtNetwork.prl
 %{_libdir}/libQtNetwork.so
 %{_libdir}/pkgconfig/QtNetwork.pc
-%{_datadir}/qt5/mkspecs/modules/qt_network.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_network.pri
 
 
 %files qtopengl
@@ -1017,7 +996,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtOpenGL.prl
 %{_libdir}/libQtOpenGL.so
 %{_libdir}/pkgconfig/QtOpenGL.pc
-%{_datadir}/qt5/mkspecs/modules/qt_opengl.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_opengl.pri
 
 
 %files qtsql
@@ -1048,7 +1027,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtSql.prl
 %{_libdir}/libQtSql.so
 %{_libdir}/pkgconfig/QtSql.pc
-%{_datadir}/qt5/mkspecs/modules/qt_sql.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_sql.pri
 
 
 %files qttest
@@ -1067,7 +1046,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtTest.prl
 %{_libdir}/libQtTest.so
 %{_libdir}/pkgconfig/QtTest.pc
-%{_datadir}/qt5/mkspecs/modules/qt_testlib.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_testlib.pri
 
 %files qtxml
 %defattr(-,root,root,-)
@@ -1085,7 +1064,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtXml.prl
 %{_libdir}/libQtXml.so
 %{_libdir}/pkgconfig/QtXml.pc
-%{_datadir}/qt5/mkspecs/modules/qt_xml.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_xml.pri
 
 %files qtwidgets
 %defattr(-,root,root,-)
@@ -1109,15 +1088,14 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qboxlayout.h
 %{_includedir}/qt5/Qt/qbuttongroup.h
 %{_includedir}/qt5/Qt/qcalendarwidget.h
-%{_includedir}/qt5/Qt/qcdestyle.h
 %{_includedir}/qt5/Qt/qcheckbox.h
-%{_includedir}/qt5/Qt/qcleanlooksstyle.h
 %{_includedir}/qt5/Qt/qcolordialog.h
 %{_includedir}/qt5/Qt/qcolormap.h
 %{_includedir}/qt5/Qt/qcolumnview.h
 %{_includedir}/qt5/Qt/qcombobox.h
 %{_includedir}/qt5/Qt/qcommandlinkbutton.h
 %{_includedir}/qt5/Qt/qcommonstyle.h
+%{_includedir}/qt5/Qt/qfusionstyle.h
 %{_includedir}/qt5/Qt/qcompleter.h
 %{_includedir}/qt5/Qt/qdatawidgetmapper.h
 %{_includedir}/qt5/Qt/qdatetimeedit.h
@@ -1169,10 +1147,8 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_includedir}/qt5/Qt/qmenu.h
 %{_includedir}/qt5/Qt/qmenubar.h
 %{_includedir}/qt5/Qt/qmessagebox.h
-%{_includedir}/qt5/Qt/qmotifstyle.h
 %{_includedir}/qt5/Qt/qmouseeventtransition.h
 %{_includedir}/qt5/Qt/qplaintextedit.h
-%{_includedir}/qt5/Qt/qplastiquestyle.h
 %{_includedir}/qt5/Qt/qplatformmenu_qpa.h
 %{_includedir}/qt5/Qt/qprogressbar.h
 %{_includedir}/qt5/Qt/qprogressdialog.h
@@ -1226,7 +1202,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtWidgets.prl
 %{_libdir}/libQtWidgets.so
 %{_libdir}/pkgconfig/QtWidgets.pc
-%{_datadir}/qt5/mkspecs/modules/qt_widgets.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_widgets.pri
 
 %files qtplatformsupport-devel
 %defattr(-,root,root,-)
@@ -1236,7 +1212,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtPlatformSupport.a
 %{_libdir}/libQtPlatformSupport.prl
 %{_libdir}/pkgconfig/QtPlatformSupport.pc
-%{_datadir}/qt5/mkspecs/modules/qt_platformsupport.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_platformsupport.pri
 
 %files qtprintsupport
 %defattr(-,root,root,-)
@@ -1252,7 +1228,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtPrintSupport.prl
 %{_libdir}/libQtPrintSupport.so
 %{_libdir}/pkgconfig/QtPrintSupport.pc
-%{_datadir}/qt5/mkspecs/modules/qt_printsupport.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_printsupport.pri
 
 %files qtconcurrent
 %defattr(-,root,root,-)
@@ -1265,7 +1241,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQtConcurrent.prl
 %{_libdir}/libQtConcurrent.so
 %{_libdir}/pkgconfig/QtConcurrent.pc
-%{_datadir}/qt5/mkspecs/modules/qt_concurrent.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_concurrent.pri
 
 
 
