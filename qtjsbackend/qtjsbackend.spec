@@ -101,7 +101,7 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_libdir}/libQtV8.prl
 %{_libdir}/libQtV8.so
 %{_libdir}/pkgconfig/QtV8.pc
-%{_datadir}/qt5/mkspecs/modules/qt_v8.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_v8.pri
 
 
 #### No changelog section, separate $pkg.changes contains the history
