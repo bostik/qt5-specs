@@ -275,7 +275,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/designersupport.h
 %{_includedir}/qt5/Qt/QtQml
 %{_includedir}/qt5/QtQml/
-%{_datadir}/qt5/mkspecs/modules/qt_qml.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_qml.pri
 %{_libdir}/cmake/
 
 
@@ -294,7 +294,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_includedir}/qt5/Qt/qquick*.h
 %{_includedir}/qt5/Qt/QtQuick
 %{_includedir}/qt5/QtQuick/
-%{_datadir}/qt5/mkspecs/modules/qt_quick.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_quick.pri
 
 
 
@@ -365,7 +365,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_libdir}/libQtQuickTest.so
 %{_libdir}/libQtQuickTest.prl
 %{_libdir}/pkgconfig/QtQuickTest.pc
-%{_datadir}/qt5/mkspecs/modules/qt_qmltest.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_qmltest.pri
 
 %files qtquickparticles
 %defattr(-,root,root,-)
@@ -380,7 +380,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_libdir}/libQtQuickParticles.so
 %{_libdir}/libQtQuickParticles.prl
 %{_libdir}/pkgconfig/QtQuickParticles.pc
-%{_datadir}/qt5/mkspecs/modules/qt_quickparticles.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_quickparticles.pri
 
 
 %files qtqmltools-devel
@@ -390,7 +390,7 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 %{_libdir}/libQtQmlDevTools.a
 %{_libdir}/libQtQmlDevTools.prl
 %{_libdir}/pkgconfig/QtQmlDevTools.pc
-%{_datadir}/qt5/mkspecs/modules/qt_qmldevtools.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_qmldevtools.pri
 
 
 
