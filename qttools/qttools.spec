@@ -99,11 +99,11 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/*.prl
 %{_libdir}/cmake/
 %{_libdir}/pkgconfig/
-%{_datadir}/qt5/mkspecs/modules/qt_clucene.pri
-%{_datadir}/qt5/mkspecs/modules/qt_designer.pri
-%{_datadir}/qt5/mkspecs/modules/qt_designercomponents.pri
-%{_datadir}/qt5/mkspecs/modules/qt_help.pri
-%{_datadir}/qt5/mkspecs/modules/qt_uitools.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_clucene.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_designer.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_designercomponents.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_help.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_uitools.pri
 
 
 #### No changelog section, separate $pkg.changes contains the history
