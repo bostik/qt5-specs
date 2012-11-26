@@ -7,7 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     destdir.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 
@@ -53,7 +52,6 @@ This package provides the WBMP imageformat plugin
 
 %prep
 %setup -q -n %{name}
-%patch1 -p1
 
 %build
 export QTDIR=/usr/share/qt5
