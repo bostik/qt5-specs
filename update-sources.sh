@@ -33,6 +33,7 @@ Usage:	update-sources.sh [<options>]
 
         [--module MODULE    ] List of modules.
         [--beta             ] Pull latest beta release.
+        [--release          ] Pull latest release/candidate
         [--tag TAG          ] Pull a certain tag release.
 
 XXX
@@ -41,6 +42,7 @@ exit ;;
         --no-pull) NO_PULL="1";;
         --force-upload) FORCE_UPLOAD="1";;
         --beta) GIT_TAG="v5.0.0-beta2";;
+        --release) GIT_TAG="v5.0.0-rc1";;
         --tag) GIT_TAG="$2"; shift;;
         --module) QT5_MODULES="$2"; shift;;
 
@@ -66,11 +68,12 @@ fi
 #qttools qtsystems qtsvg qtsensors qtlocation qtmultimedia qtwayland  \
 #qt3d qtquick1 qtimageformats qtgraphicaleffects qtwebkit"
 ####
-# XXX: Qt 5.0 beta2 has left some of the modules out, and thus not all
+# XXX: Qt 5.0 RC1 has left some of the modules out, and thus not all
 # modules have the tag. Build only those modules where tag is available.
+# XXX XXX XXX - QtWebKit was not tagged for RC1. Whuh?
 QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative \
 qttools qtsvg qtmultimedia \
-qtquick1 qtimageformats qtgraphicaleffects qtwebkit"
+qtquick1 qtimageformats qtgraphicaleffects"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources
