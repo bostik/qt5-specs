@@ -562,6 +562,12 @@ make %{?_smp_mflags}
 rm -rf %{buildroot}
 %make_install
 #
+# RC1 introduces DATADIR/doc/global/template/
+# Some .png files under that path have executable bit on, and rpmlint
+# complains LOUDLY about this. Fix permissions.
+find %{buildroot}/%{_datadir}/doc/global/template \
+-type f -name '*.png' -exec chmod 644 {} \;
+#
 # Fix wrong path in pkgconfig files
 find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
 -exec perl -pi -e "s, -L%{_builddir}/?\S+,,g" {} \;
