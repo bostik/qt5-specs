@@ -75,17 +75,17 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtScript.so.5
-%{_libdir}/libQtScript.so.5.*
-%{_libdir}/libQtScriptTools.so.5
-%{_libdir}/libQtScriptTools.so.5.*
+%{_libdir}/libQt5Script.so.5
+%{_libdir}/libQt5Script.so.5.*
+%{_libdir}/libQt5ScriptTools.so.5
+%{_libdir}/libQt5ScriptTools.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtScript.so
-%{_libdir}/libQtScript.prl
-%{_libdir}/libQtScriptTools.so
-%{_libdir}/libQtScriptTools.prl
+%{_libdir}/libQt5Script.so
+%{_libdir}/libQt5Script.prl
+%{_libdir}/libQt5ScriptTools.so
+%{_libdir}/libQt5ScriptTools.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
