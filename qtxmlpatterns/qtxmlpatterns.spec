@@ -81,14 +81,14 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtXmlPatterns.so.5
-%{_libdir}/libQtXmlPatterns.so.5.*
+%{_libdir}/libQt5XmlPatterns.so.5
+%{_libdir}/libQt5XmlPatterns.so.5.*
 %{_bindir}/*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtXmlPatterns.so
-%{_libdir}/libQtXmlPatterns.prl
+%{_libdir}/libQt5XmlPatterns.so
+%{_libdir}/libQt5XmlPatterns.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/
 %{_datadir}/qt5/mkspecs/
