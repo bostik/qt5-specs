@@ -521,6 +521,7 @@ Qt5 documentation
     -hostdatadir "%{_datadir}/qt5" \
     -plugindir "%{_libdir}/qt5/plugins" \
     -importdir "%{_libdir}/qt5/imports" \
+    -qmldir "%{_libdir}/qt5/qml" \
     -translationdir "%{_datadir}/qt5/translations" \
     -sysconfdir "%{_sysconfdir}/xdg" \
     -examplesdir "%{_libdir}/qt5/examples" \
