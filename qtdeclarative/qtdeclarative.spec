@@ -153,14 +153,6 @@ Requires:   %{name} = %{version}-%{release}
 %description plugin-qmlinspector
 This package provides the QML inspector plugin
 
-%package import-qt47plugin
-Summary:    Qt Declarative Qt 4.7 legacy support plugin
-Group:      Qt/Qt
-Requires:   %{name} = %{version}-%{release}
-
-%description import-qt47plugin
-This package provides the legacy Qt 4.7 support plugin
-
 %package import-qtquick2plugin
 Summary:    Qt Declarative QtQuick 2 support plugin
 Group:      Qt/Qt
@@ -169,13 +161,22 @@ Requires:   %{name} = %{version}-%{release}
 %description import-qtquick2plugin
 This package provides the QtQuick 2 support plugin
 
-%package import-qttest
+%package plugin-qmltest
 Summary:    Qt Declarative QtTest plugin
 Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
-%description import-qttest
+%description plugin-qmltest
 This package provides the QtQml QtTest plugin
+
+%package plugin-accessible
+Summary:    Qt Declarative accessible plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-accessible
+This package provides the QtQml accessible plugin
+
 
 %package qmlscene
 Summary:    QML scene viewer
@@ -220,7 +221,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
 # Manually copy qmldevtools static library
-cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
+cp lib/libQt5QmlDevTools.a %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 
@@ -258,22 +259,14 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtQml.so.5
-%{_libdir}/libQtQml.so.5.*
+%{_libdir}/libQt5Qml.so.5
+%{_libdir}/libQt5Qml.so.5.*
 
-# FIXME: the provided .pc file is empty!
-# Find out what gives and find a clean resolution
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtQml.so
-%{_libdir}/libQtQml.prl
-%{_libdir}/pkgconfig/QtQml.pc
-%{_includedir}/qt5/Qt/qqml*.h
-%{_includedir}/qt5/Qt/qtqml*.h
-%{_includedir}/qt5/Qt/qsg*.h
-%{_includedir}/qt5/Qt/qjs*.h
-%{_includedir}/qt5/Qt/designersupport.h
-%{_includedir}/qt5/Qt/QtQml
+%{_libdir}/libQt5Qml.so
+%{_libdir}/libQt5Qml.prl
+%{_libdir}/pkgconfig/Qt5Qml.pc
 %{_includedir}/qt5/QtQml/
 %{_datadir}/qt5/mkspecs/modules/qt_lib_qml.pri
 %{_libdir}/cmake/
@@ -281,18 +274,14 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files qtquick
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick.so.5
-%{_libdir}/libQtQuick.so.5.*
+%{_libdir}/libQt5Quick.so.5
+%{_libdir}/libQt5Quick.so.5.*
 
 %files qtquick-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick.so
-%{_libdir}/libQtQuick.prl
-%{_libdir}/pkgconfig/QtQuick.pc
-%{_includedir}/qt5/Qt/qtquickversion.h
-%{_includedir}/qt5/Qt/qtquickglobal.h
-%{_includedir}/qt5/Qt/qquick*.h
-%{_includedir}/qt5/Qt/QtQuick
+%{_libdir}/libQt5Quick.so
+%{_libdir}/libQt5Quick.prl
+%{_libdir}/pkgconfig/Qt5Quick.pc
 %{_includedir}/qt5/QtQuick/
 %{_datadir}/qt5/mkspecs/modules/qt_lib_quick.pri
 
@@ -317,35 +306,35 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files import-folderlistmodel
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/labs/folderlistmodel/*
+%{_libdir}/qt5/qml/Qt/labs/folderlistmodel/*
 
 %files import-localstorageplugin
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick/LocalStorage/
+%{_libdir}/qt5/qml/QtQuick/LocalStorage/
 
 %files import-particles
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick/Particles.2/
+%{_libdir}/qt5/qml/QtQuick/Particles.2/
 
 %files import-window
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick/Window.2/
+%{_libdir}/qt5/qml/QtQuick/Window.2/
 
 %files plugin-qmlinspector
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/qmltooling/*
 
-%files import-qttest
+%files plugin-qmltest
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtTest/
+%{_libdir}/qt5/qml/QtTest/
 
-%files import-qt47plugin
+%files plugin-accessible
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt/
+%{_libdir}/qt5/plugins/accessible/
 
 %files import-qtquick2plugin
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick.2/
+%{_libdir}/qt5/qml/QtQuick.2/
 
 
 
@@ -353,49 +342,38 @@ cp lib/libQtQmlDevTools.a %{buildroot}/%{_libdir}
 
 %files qtquicktest
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuickTest.so.5
-%{_libdir}/libQtQuickTest.so.5.*
+%{_libdir}/libQt5QuickTest.so.5
+%{_libdir}/libQt5QuickTest.so.5.*
 
 %files qtquicktest-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/qtquicktest*.h
-%{_includedir}/qt5/Qt/quicktest*.h
-%{_includedir}/qt5/Qt/QtQuickTest
 %{_includedir}/qt5/QtQuickTest/
-%{_libdir}/libQtQuickTest.so
-%{_libdir}/libQtQuickTest.prl
-%{_libdir}/pkgconfig/QtQuickTest.pc
+%{_libdir}/libQt5QuickTest.so
+%{_libdir}/libQt5QuickTest.prl
+%{_libdir}/pkgconfig/Qt5QuickTest.pc
 %{_datadir}/qt5/mkspecs/modules/qt_lib_qmltest.pri
 
 %files qtquickparticles
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuickParticles.so.5
-%{_libdir}/libQtQuickParticles.so.5.*
+%{_libdir}/libQt5QuickParticles.so.5
+%{_libdir}/libQt5QuickParticles.so.5.*
 
 %files qtquickparticles-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/QtQuickParticles
 %{_includedir}/qt5/QtQuickParticles/
-%{_includedir}/qt5/Qt/qtquickparticlesversion.h
-%{_libdir}/libQtQuickParticles.so
-%{_libdir}/libQtQuickParticles.prl
-%{_libdir}/pkgconfig/QtQuickParticles.pc
+%{_libdir}/libQt5QuickParticles.so
+%{_libdir}/libQt5QuickParticles.prl
+%{_libdir}/pkgconfig/Qt5QuickParticles.pc
 %{_datadir}/qt5/mkspecs/modules/qt_lib_quickparticles.pri
 
 
 %files qtqmltools-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/QtQmlDevTools
 %{_includedir}/qt5/QtQmlDevTools/
-%{_libdir}/libQtQmlDevTools.a
-%{_libdir}/libQtQmlDevTools.prl
-%{_libdir}/pkgconfig/QtQmlDevTools.pc
+%{_libdir}/libQt5QmlDevTools.a
+%{_libdir}/libQt5QmlDevTools.prl
+%{_libdir}/pkgconfig/Qt5QmlDevTools.pc
 %{_datadir}/qt5/mkspecs/modules/qt_lib_qmldevtools.pri
-
-
-
-
-
 
 
 
