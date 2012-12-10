@@ -109,21 +109,21 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtMultimedia.so.5
-%{_libdir}/libQtMultimedia.so.5.*
-%{_libdir}/libQtMultimediaWidgets.so.5
-%{_libdir}/libQtMultimediaWidgets.so.5.*
-%{_libdir}/libQtMultimediaQuick_p.so.5
-%{_libdir}/libQtMultimediaQuick_p.so.5.*
+%{_libdir}/libQt5Multimedia.so.5
+%{_libdir}/libQt5Multimedia.so.5.*
+%{_libdir}/libQt5MultimediaWidgets.so.5
+%{_libdir}/libQt5MultimediaWidgets.so.5.*
+%{_libdir}/libQt5MultimediaQuick_p.so.5
+%{_libdir}/libQt5MultimediaQuick_p.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtMultimedia.so
-%{_libdir}/libQtMultimediaWidgets.so
-%{_libdir}/libQtMultimediaQuick_p.so
-%{_libdir}/libQtMultimedia.prl
-%{_libdir}/libQtMultimediaWidgets.prl
-%{_libdir}/libQtMultimediaQuick_p.prl
+%{_libdir}/libQt5Multimedia.so
+%{_libdir}/libQt5MultimediaWidgets.so
+%{_libdir}/libQt5MultimediaQuick_p.so
+%{_libdir}/libQt5Multimedia.prl
+%{_libdir}/libQt5MultimediaWidgets.prl
+%{_libdir}/libQt5MultimediaQuick_p.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
@@ -132,7 +132,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files -n qt5-qtqml-import-multimedia
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtMultimedia/
+%{_libdir}/qt5/qml/QtMultimedia/
 
 %files plugin-mediaservice-audioengine
 %defattr(-,root,root,-)
