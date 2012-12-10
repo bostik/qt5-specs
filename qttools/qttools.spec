@@ -15,6 +15,7 @@ BuildRequires:  qt5-qtxml-devel
 BuildRequires:  qt5-qtdbus-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtprintsupport-devel
+BuildRequires:  qt5-qtbootstrap-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  qt5-tools
 BuildRequires:  fdupes
