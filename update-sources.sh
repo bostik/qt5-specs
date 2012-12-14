@@ -42,7 +42,7 @@ exit ;;
         --no-pull) NO_PULL="1";;
         --force-upload) FORCE_UPLOAD="1";;
         --beta) GIT_TAG="v5.0.0-beta2";;
-        --release) GIT_TAG="v5.0.0-rc1";;
+        --release) GIT_TAG="v5.0.0-rc2";;
         --tag) GIT_TAG="$2"; shift;;
         --module) QT5_MODULES="$2"; shift;;
 
