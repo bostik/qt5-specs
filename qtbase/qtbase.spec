@@ -646,7 +646,6 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %{_libdir}/libQt5Core.so
 %{_libdir}/pkgconfig/Qt5Core.pc
 %{_datadir}/qt5/mkspecs/modules/qt_lib_core.pri
-%{_datadir}/qt5/mkspecs/cmake/
 %{_libdir}/cmake/
 
 %files qmake
@@ -891,7 +890,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 
 %files plugin-platform-xcb
 %defattr(-,root,root,-)
-%{_libdir}/qt5/plugins/platforms/libxcb.so
+%{_libdir}/qt5/plugins/platforms/libqxcb.so
 
 # %files plugin-platform-xlib
 # %defattr(-,root,root,-)
