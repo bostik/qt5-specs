@@ -7,6 +7,7 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source:     %{name}-%{version}.tar.gz
+Patch1:     0001-Link-lrelease-against-zlib.patch
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtcore-devel
@@ -43,6 +44,7 @@ development tools. Most likely useful only when extending QtDesigner.
 
 %prep
 %setup -q -n %{name}
+%patch1 -p1
 
 %build
 export QTDIR=/usr/share/qt5

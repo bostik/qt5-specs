@@ -1,0 +1,23 @@
+From e94bce9237f3c70ea75dad2735fab86b5eb2efd9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
+Date: Fri, 14 Dec 2012 22:08:24 +0200
+Subject: [PATCH] Link lrelease against zlib
+
+---
+ src/linguist/lrelease/lrelease.pro |    3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/linguist/lrelease/lrelease.pro b/src/linguist/lrelease/lrelease.pro
+index 792bc99..413e322 100644
+--- a/src/linguist/lrelease/lrelease.pro
++++ b/src/linguist/lrelease/lrelease.pro
+@@ -12,3 +12,6 @@ qmake.value = $$shell_path($$QMAKE_QMAKE)
+ QT_TOOL_ENV += qmake
+ 
+ load(qt_tool)
++
++# When linking with libQt5Boostrap.a we need zlib too
++LIBS += -lz
+-- 
+1.7.10.4
+
