@@ -22,16 +22,17 @@ Patch9:     0009-Do-not-build-webkit2.patch
 Patch10:    0010-Disable-tools-entirely.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
+BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qtprintsupport-devel
-BuildRequires:  qt5-qtlocation-devel
+#BuildRequires:  qt5-qtlocation-devel
 BuildRequires:  qt5-qtmultimedia-devel
 BuildRequires:  qt5-qtscript-devel
 BuildRequires:  qt5-qtv8-devel
 BuildRequires:  qt5-qtqml-devel
 BuildRequires:  qt5-qtqml-qtquick-devel
-BuildRequires:  qt5-qt3d-devel
-BuildRequires:  qt5-qtsensors-devel
+#BuildRequires:  qt5-qt3d-devel
+#BuildRequires:  qt5-qtsensors-devel
 BuildRequires:  qt5-qtxmlpatterns-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  qt5-qtsql-devel
@@ -49,6 +50,7 @@ BuildRequires:  python
 BuildRequires:  bison
 BuildRequires:  flex
 BuildRequires:  fdupes
+BuildRequires:  ruby
 
 
 %description
