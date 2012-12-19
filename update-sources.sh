@@ -70,10 +70,9 @@ fi
 ####
 # XXX: Qt 5.0 RC1 has left some of the modules out, and thus not all
 # modules have the tag. Build only those modules where tag is available.
-# XXX XXX XXX - QtWebKit was not tagged for RC1. Whuh?
 QT5_MODULES="qtbase qtjsbackend qtxmlpatterns qtscript qtdeclarative \
 qttools qtsvg qtmultimedia \
-qtquick1 qtimageformats qtgraphicaleffects"
+qtimageformats qtgraphicaleffects qtwebkit"
 
 # WARNING! WARNING! WARNING!
 # Force upload of all sources
