@@ -1,7 +1,7 @@
-From d5c49bd7def725d43309ba222cb0f18d4e453931 Mon Sep 17 00:00:00 2001
+From 291f9ee5fccd810e43c94349bd9cded2ee1cf5d4 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 6 Sep 2012 09:40:05 +0300
-Subject: [PATCH 01/10] Compile NEON assembly without thumb
+Subject: [PATCH 1/8] Compile NEON assembly without thumb
 
 If generating THUMB instructions, the hand-written assembly in
 FELightingNEON.cpp does not compile. Compile that single source file
@@ -10,14 +10,14 @@ with -marm instead of -mthumb.
 The object file has to be explicitly compiled with -fPIC. Otherwise
 linking will fail.
 ---
- Source/WebCore/Target.pri |   32 ++++++++++++++++++++++++++++----
- 1 file changed, 28 insertions(+), 4 deletions(-)
+ Source/WebCore/Target.pri |   29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
 diff --git a/Source/WebCore/Target.pri b/Source/WebCore/Target.pri
-index 8b0db21..7a9aa6e 100644
+index cf1370f..b2f1fc2 100644
 --- a/Source/WebCore/Target.pri
 +++ b/Source/WebCore/Target.pri
-@@ -362,7 +362,7 @@ SOURCES += \
+@@ -357,7 +357,7 @@ SOURCES += \
      dom/DeviceMotionData.cpp \
      dom/DeviceMotionEvent.cpp \
      dom/DeviceOrientationController.cpp \
@@ -26,12 +26,11 @@ index 8b0db21..7a9aa6e 100644
      dom/DeviceOrientationEvent.cpp \
      dom/Document.cpp \
      dom/DocumentEventQueue.cpp \
-@@ -3273,8 +3273,32 @@ contains(DEFINES, ENABLE_FILTERS=1) {
+@@ -3547,7 +3547,32 @@ enable?(FILTERS) {
          platform/graphics/filters/PointLightSource.cpp \
          platform/graphics/filters/SpotLightSource.cpp \
          platform/graphics/filters/SourceAlpha.cpp \
 -        platform/graphics/filters/SourceGraphic.cpp \
--        platform/graphics/filters/arm/FELightingNEON.cpp \
 +        platform/graphics/filters/SourceGraphic.cpp
 +
 +    # If building for ARM with THUMB instructions, the hand-written
@@ -60,16 +59,7 @@ index 8b0db21..7a9aa6e 100644
 +    }
  }
  
- contains(DEFINES, ENABLE_MATHML=1) {
-@@ -3832,7 +3856,7 @@ contains(DEFINES, WTF_USE_3D_GRAPHICS=1) {
-         $$ANGLE_DIR/src/compiler/InfoSink.cpp \
-         $$ANGLE_DIR/src/compiler/Initialize.cpp \
-         $$ANGLE_DIR/src/compiler/InitializeDll.cpp \
--        $$ANGLE_DIR/src/compiler/InitializeParseContext.cpp \ 
-+        $$ANGLE_DIR/src/compiler/InitializeParseContext.cpp \
-         $$ANGLE_DIR/src/compiler/Intermediate.cpp \
-         $$ANGLE_DIR/src/compiler/intermOut.cpp \
-         $$ANGLE_DIR/src/compiler/IntermTraverse.cpp \
+ enable?(MATHML) {
 -- 
 1.7.10.4
 

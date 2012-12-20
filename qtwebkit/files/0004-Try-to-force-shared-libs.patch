@@ -1,7 +1,7 @@
-From d0e952092f942303adbe95f6f0629c5c6bba59ac Mon Sep 17 00:00:00 2001
+From 2d14df538a603feed776f3581ebd6614a9dc9abd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Tue, 16 Oct 2012 10:28:43 +0300
-Subject: [PATCH 06/10] Try to force shared libs
+Subject: [PATCH 4/8] Try to force shared libs
 
 This *may* reduce link time memory requirements. Worth a shot.
 ---
@@ -9,12 +9,12 @@ This *may* reduce link time memory requirements. Worth a shot.
  1 file changed, 3 insertions(+)
 
 diff --git a/WebKit.pro b/WebKit.pro
-index f43dcac9..aad305b 100644
+index 876d554..74fa37c 100644
 --- a/WebKit.pro
 +++ b/WebKit.pro
-@@ -38,6 +38,9 @@
-     }
- }
+@@ -5,6 +5,9 @@
+ # See 'Tools/qmake/README' for an overview of the build system
+ # -------------------------------------------------------------------
  
 +# Try to reduce linking memory requirements even further
 +CONFIG += force_static_libs_as_shared
