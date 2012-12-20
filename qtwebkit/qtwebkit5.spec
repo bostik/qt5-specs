@@ -12,14 +12,12 @@ URL:        https://gitorious.org/+qtwebkit-developers/webkit/qtwebkit/commits/q
 Source0:    %{name}-%{version}.tar.gz
 Patch1:     0001-Compile-NEON-assembly-without-thumb.patch
 Patch2:     0002-Remove-tests-from-build.patch
-Patch3:     0003-Make-GL_BGRA-colorspace-vanish.patch
-Patch4:     0004-Fix-OpenGLShims.cpp-build-against-EGL-GLES2.patch
-Patch5:     0005-Use-symbol-filter-when-linking.patch
-Patch6:     0006-Try-to-force-shared-libs.patch
-Patch7:     0007-Explicitly-build-for-release-only.patch
-Patch8:     0008-Use-gold-linker-if-available.patch
-Patch9:     0009-Do-not-build-webkit2.patch
-Patch10:    0010-Disable-tools-entirely.patch
+Patch3:     0003-Use-symbol-filter-when-linking.patch
+Patch4:     0004-Try-to-force-shared-libs.patch
+Patch5:     0005-Use-gold-linker-if-available.patch
+Patch6:     0006-Disable-tools-entirely.patch
+Patch7:     0007-Fix-case-insensitive-library-names.patch
+Patch8:     0008-Drop-large-webkit-components-from-build.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -119,8 +117,6 @@ This package contains the WebKit QML plugin for QtQml.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
-%patch10 -p1
 # remove .../qt/tests directory which introduces nothing but trouble
 rm -rf Source/WebKit/qt/tests/
 
