@@ -293,7 +293,7 @@ class GitCommandHelper(CommandHelper):
 
         # XXX: --module-gitref overrides normal behaviour
         _arc_ref = 'HEAD'
-        if self.options['module_gitref']:
+        if self.options.has_key('module_gitref'):
             _arc_ref = self.options['module_gitref']
             print 'Using "%s" as gitref for %s' % (_arc_ref, modname)
         #
