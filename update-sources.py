@@ -277,6 +277,13 @@ class GitCommandHelper(CommandHelper):
         f.write(ref + '\n')
         f.close()
 
+    def __remove_old_tarballs(self, modname=None):
+        if modname is None:
+            raise Qt5HelperError('module name not specified')
+        p = os.path.join(self.OBS_DIR, modname)
+        files = glob.glob('%s/*.tar.*' % p)
+        for f in files:
+            os.remove(f)
 
     def __generate_tarball(self, modname=None):
         if self.git_ref is None:
@@ -443,6 +450,7 @@ class GitCommandHelper(CommandHelper):
             raise Qt5HelperError('Unknown module "%s"' % modname)
         modpath = os.path.join(self.QT5_DIR, modname)
         os.chdir(modpath)
+        self.__remove_old_tarballs(modname)
         self.__generate_tarball(modname)
         self.__store_git_ref(modname)
 
