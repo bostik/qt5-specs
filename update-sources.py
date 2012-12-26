@@ -291,12 +291,18 @@ class GitCommandHelper(CommandHelper):
         if modname is None:
             raise Qt5HelperError('module name not specified')
 
+        # XXX: --module-gitref overrides normal behaviour
+        _arc_ref = 'HEAD'
+        if self.options['module_gitref']:
+            _arc_ref = self.options['module_gitref']
+            print 'Using "%s" as gitref for %s' % (_arc_ref, modname)
+        #
         print 'Balling up Qt5/%s ...' % modname
         # Pipe: "git-archive .. | gzip > tarball"
         git_cmd = ['git', 'archive',
                 '--format=tar',
                 '--prefix=qt5-%s/' % modname,
-                'HEAD']
+                _arc_ref]
         gz_cmd  = ['gzip', '-']
 
         out_file_name = 'qt5-%s-%s.tar.gz' % (modname, self.revision)
@@ -523,6 +529,14 @@ Uses the following environment variables if they are set:
                 help='Update specified module only. May be given \
                 multiple times for additional modules.',
                 action='append', dest='modules', default=None, type=str)
+        # *IF* we for some reason need to use a specific in-module
+        # gitref (when qt5.git is out of date), this option allows to
+        # set the 'ref' for git-archive.
+        # XXX: if this option is set, there must be exactly one module
+        self.parser.add_argument('--module-gitref',
+                help='Use ref for given module. Overrides umbrella repo gitref.',
+                action='store', dest='module_gitref', default=None,
+                type=str)
         # Creation of changelog can be toggled off
         self.parser.add_argument('--skip-changelog', help='Do not update changelog',
                 action='store_false', dest='bump_changelog', default=True)
@@ -550,6 +564,13 @@ Uses the following environment variables if they are set:
     def __sanitized(self, opts):
         cleaned = dict()
         #
+        # Start with --module-gitref, it's fragile
+        if opts.module_gitref:
+            print 'NOTICE: module-specific gitref specified'
+            if len(opts.modules) != 1:
+                raise Qt5HelperError('Using --module-gitref' +
+                    ' requires EXACTLY one module')
+            cleaned['module_gitref'] = opts.module_gitref
         # Manually set modules override defaults
         if opts.modules:
             self.__check_module_names(opts.modules)
