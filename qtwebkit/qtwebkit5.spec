@@ -70,7 +70,7 @@ the World Wide Web into your Qt application.
 
 
 %package -n lib%{_qtmodule_base_name}5
-Summary:    Web content engine library for Qt - runtime files
+Summary:    Web content engine library for Qt - core runtime files
 Group:      Qt/Qt
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -79,22 +79,48 @@ Requires(postun): /sbin/ldconfig
 QtWebKit provides a Web browser engine that makes it easy to embed content from
 the World Wide Web into your Qt application.
 
-This package contains the runtime files needed to launch Qt 5 applications
+This package contains the core runtime files needed to launch Qt 5 applications
 using QtWebKit library.
 
 
 %package -n lib%{_qtmodule_base_name}-devel
-Summary:    Web content engine library for Qt - development files
+Summary:    Web content engine library for Qt - core development files
 Group:      Qt/Qt
 Requires:   lib%{_qtmodule_base_name}5 = %{version}
-Requires:   qt5-qtgui-devel >= 5~5.0.0
 
 %description -n lib%{_qtmodule_base_name}-devel
 QtWebKit provides a Web browser engine that makes it easy to embed content from
 the World Wide Web into your Qt application.
 
-This package contains the development files needed to build Qt 5 applications
+This package contains the core development files needed to build Qt 5 applications
 using QtWebKit library.
+
+
+%package -n lib%{_qtmodule_base_name}5-widgets
+Summary:    Web content engine library for Qt - GUI runtime files
+Group:      Qt/Qt
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+
+%description -n lib%{_qtmodule_base_name}5-widgets
+QtWebKit provides a Web browser engine that makes it easy to embed content from
+the World Wide Web into your Qt application.
+
+This package contains the GUI runtime files needed to launch Qt 5 applications
+using QtWebKitWidgets library.
+
+
+%package -n lib%{_qtmodule_base_name}-widgets-devel
+Summary:    Web content engine library for Qt - GUI development files
+Group:      Qt/Qt
+Requires:   lib%{_qtmodule_base_name}5-widgets = %{version}
+
+%description -n lib%{_qtmodule_base_name}-widgets-devel
+QtWebKit provides a Web browser engine that makes it easy to embed content from
+the World Wide Web into your Qt application.
+
+This package contains the GUI development files needed to build Qt 5 applications
+using QtWebKitWidgets library.
 
 
 %package -n qt5-qtqml-import-webkitplugin
@@ -148,8 +174,9 @@ make %{?jobs:-j%jobs}
 %install
 rm -rf %{buildroot}
 %qmake_install
-# Remove .la file
-rm -f %{buildroot}/usr/lib/libQtWebKit.la
+# Remove .la files
+rm -f %{buildroot}/usr/lib/libQt5WebKit.la
+rm -f %{buildroot}/usr/lib/libQt5WebKitWidgets.la
 # Fix wrong path in pkgconfig files
 find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
 -exec perl -pi -e "s, -L%{_builddir}/?\S+,,g" {} \;
@@ -170,6 +197,9 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %postun -n lib%{_qtmodule_base_name}5 -p /sbin/ldconfig
 
+%post -n lib%{_qtmodule_base_name}5-widgets -p /sbin/ldconfig
+
+%postun -n lib%{_qtmodule_base_name}5-widgets -p /sbin/ldconfig
 
 
 
@@ -184,23 +214,34 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files -n lib%{_qtmodule_base_name}5
 %defattr(-,root,root,-)
-%{_libdir}/libQtWebKit.so.*
+%{_libdir}/libQt5WebKit.so.*
 
 %files -n lib%{_qtmodule_base_name}-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/Qt/*.h
-%{_includedir}/qt5/Qt/QtWebKit
 %{_includedir}/qt5/QtWebKit/
 %{_libdir}/cmake/Qt5WebKit/
-%{_libdir}/libQtWebKit.prl
-%{_libdir}/libQtWebKit.so
-%{_libdir}/pkgconfig/QtWebKit.pc
-%{_datadir}/qt5/mkspecs/modules/qt_webkit.pri
+%{_libdir}/libQt5WebKit.prl
+%{_libdir}/libQt5WebKit.so
+%{_libdir}/pkgconfig/Qt5WebKit.pc
+%{_datadir}/qt5/mkspecs/modules/qt_lib_webkit.pri
+
+%files -n lib%{_qtmodule_base_name}5-widgets
+%defattr(-,root,root,-)
+%{_libdir}/libQt5WebKitWidgets.so.*
+
+%files -n lib%{_qtmodule_base_name}-widgets-devel
+%defattr(-,root,root,-)
+%{_includedir}/qt5/QtWebKitWidgets/
+%{_libdir}/cmake/Qt5WebKitWidgets/
+%{_libdir}/libQt5WebKitWidgets.prl
+%{_libdir}/libQt5WebKitWidgets.so
+%{_libdir}/pkgconfig/Qt5WebKitWidgets.pc
+%{_datadir}/qt5/mkspecs/modules/qt_lib_webkitwidgets.pri
 
 %files -n qt5-qtqml-import-webkitplugin
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtWebKit/libqmlwebkitplugin.so
-%{_libdir}/qt5/imports/QtWebKit/qmldir
+%{_libdir}/qt5/qml/QtWebKit/libqmlwebkitplugin.so
+%{_libdir}/qt5/qml/QtWebKit/qmldir
 
 
 
