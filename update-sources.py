@@ -72,6 +72,15 @@ class CommandHelper(object):
         #
         self.options = script_opts
 
+    def __remove_old_extra_files(self, modname=None):
+        if modname is None:
+            raise Qt5HelperError('No module specified!')
+        p = os.path.join(self.OBS_DIR, modname)
+        # This won't touch the highly specific qtbase extra files
+        files = glob.glob('%s/*.patch' % p)
+        for f in files:
+            os.remove(f)
+
     def __osc_opt(self):
         if self.OSC_OPT:
             return self.OSC_OPT
@@ -166,6 +175,7 @@ class CommandHelper(object):
         _dir = os.path.join(self.scriptdir, module, 'files')
         if not os.path.exists(_dir):
             return
+        self.__remove_old_extra_files(module)
         print '\t+ additional packaging files for Qt5/%s' % module
         extra_files = glob.glob(_dir + '/*')
         for f in extra_files:
