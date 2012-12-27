@@ -1,7 +1,7 @@
-From 291f9ee5fccd810e43c94349bd9cded2ee1cf5d4 Mon Sep 17 00:00:00 2001
+From 4cb80e00a39b6434936ddc37290513935833ec95 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 6 Sep 2012 09:40:05 +0300
-Subject: [PATCH 1/8] Compile NEON assembly without thumb
+Subject: [PATCH 1/9] Compile NEON assembly without thumb
 
 If generating THUMB instructions, the hand-written assembly in
 FELightingNEON.cpp does not compile. Compile that single source file

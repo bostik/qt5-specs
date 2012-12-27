@@ -1,7 +1,7 @@
-From e74d17a1cec6fa01f9ec7f7d8f30ceb1d538f5ea Mon Sep 17 00:00:00 2001
+From 38e1f4e2bf97951bc0a11d2682d7b7cd0075bfbb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Fri, 30 Nov 2012 13:11:56 +0200
-Subject: [PATCH 7/8] Fix case insensitive library names
+Subject: [PATCH 7/9] Fix case insensitive library names
 
 The built static library is "libWTF.a", not "libwtf.a"
 
@@ -18,11 +18,11 @@ built, and placed in "Source/WTF/release/" directory.
 Same applies for "libJavaScriptCore.a", "libWebCore.a" and both
 "libWebKit*.a" archives so they all get the same treatment
 ---
- Source/api.pri |   14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ Source/api.pri |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/Source/api.pri b/Source/api.pri
-index 5e09f3d..aa02ce5 100644
+index 5e09f3d..fc5900e 100644
 --- a/Source/api.pri
 +++ b/Source/api.pri
 @@ -12,10 +12,10 @@ TARGET = QtWebKit
@@ -39,21 +39,6 @@ index 5e09f3d..aa02ce5 100644
  
  # Ensure that changes to the WebKit1 and WebKit2 API will trigger a qmake of this
  # file, which in turn runs syncqt to update the forwarding headers.
-@@ -97,6 +97,14 @@ force_independent:macx {
-     }
- }
- 
-+WEBKIT += WTF
-+
-+WEBKIT += JavaScriptCore
-+
-+WEBKIT += WebCore
-+
-+!no_webkit1: WEBKIT += WebKit1
-+
- qnx {
-     # see: https://bugs.webkit.org/show_bug.cgi?id=93460
-     # the gcc 4.4.2 used in the qnx bbndk cannot cope with
 -- 
 1.7.10.4
 

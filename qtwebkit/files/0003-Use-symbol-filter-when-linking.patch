@@ -1,7 +1,7 @@
-From d18c3cffb64423d2eff1f155254c20406f0b4c78 Mon Sep 17 00:00:00 2001
+From 632d1ce846ebfa41bf346bba10aa1492db562566 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Sun, 14 Oct 2012 21:54:14 +0300
-Subject: [PATCH 3/8] Use symbol filter when linking
+Subject: [PATCH 3/9] Use symbol filter when linking
 
 The link step of qtwebkit is a massive memory hog. Even with
 -Wl,--no-keep-memory as a default setting, the memory addresses STILL
@@ -13,10 +13,10 @@ run out on 32-bit systems.
  create mode 100644 Tools/qmake/mkspecs/features/symbols.filter
 
 diff --git a/Tools/qmake/mkspecs/features/default_post.prf b/Tools/qmake/mkspecs/features/default_post.prf
-index 5896718..d95e336 100644
+index dbaa64f..9c5184d 100644
 --- a/Tools/qmake/mkspecs/features/default_post.prf
 +++ b/Tools/qmake/mkspecs/features/default_post.prf
-@@ -63,6 +63,15 @@ CONFIG -= warn_on
+@@ -62,6 +62,15 @@ CONFIG -= warn_on
      -Winit-self \
      $$QMAKE_CXXFLAGS
  

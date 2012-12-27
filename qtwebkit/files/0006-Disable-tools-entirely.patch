@@ -1,7 +1,7 @@
-From c12bddcc6274dbccfb49241f9604ed1dd0149ae2 Mon Sep 17 00:00:00 2001
+From e485eefaa1aaef0d4e997540e797f64cda4a0fe2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Fri, 26 Oct 2012 20:18:53 +0300
-Subject: [PATCH 6/8] Disable tools entirely
+Subject: [PATCH 6/9] Disable tools entirely
 
 ---
  WebKit.pro |    2 +-
