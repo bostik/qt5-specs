@@ -1,7 +1,7 @@
 From f8463cb79300ace2bcd187454b47e3868be58195 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 25 Oct 2012 15:55:29 +0300
-Subject: [PATCH 5/9] Use gold linker if available
+Subject: [PATCH 05/10] Use gold linker if available
 
 Note that the GCC 4.7 syntax is left commented out for future
 convenience.
