@@ -1,7 +1,7 @@
-From cba14dfbea60aecbfe6a114df7a6b8fd625a6345 Mon Sep 17 00:00:00 2001
+From 26c9a04daff5c9709dd47b2ed24f95d349003f65 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Fri, 12 Oct 2012 08:25:15 +0300
-Subject: [PATCH 02/10] Remove tests from build
+Subject: [PATCH 1/9] Remove tests from build
 
 Disable tests from build. We assume upstream has run them, and for us
 they do nothing except prolong an already lengthy build.

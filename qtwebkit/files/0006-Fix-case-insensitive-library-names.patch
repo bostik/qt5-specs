@@ -1,7 +1,7 @@
-From 68aa7fed71aca671aaff62084ecb8a2e25f516ca Mon Sep 17 00:00:00 2001
+From 1595b379148dff6cbf715a21624c129ff99246a3 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Fri, 30 Nov 2012 13:11:56 +0200
-Subject: [PATCH 07/10] Fix case insensitive library names
+Subject: [PATCH 6/9] Fix case insensitive library names
 
 The built static library is "libWTF.a", not "libwtf.a"
 

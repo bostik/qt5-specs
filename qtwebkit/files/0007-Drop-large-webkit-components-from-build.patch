@@ -1,7 +1,7 @@
-From 265a7ff10fb4380c64ed03a6ee08f828d62a16e1 Mon Sep 17 00:00:00 2001
+From 8b360f7a3a6482a10f63583b540ae898919ec1e9 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Wed, 19 Dec 2012 15:01:00 +0200
-Subject: [PATCH 08/10] Drop large webkit components from build
+Subject: [PATCH 7/9] Drop large webkit components from build
 
 Take out ANGLE, 3D, WebGL; none of those are required for now.
 ---

@@ -1,7 +1,7 @@
-From dfc4948a4622a872b5aea24732c1833f155132fe Mon Sep 17 00:00:00 2001
+From 183599e77ef426b94976d0aaceea70fb20ae39ec Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Sun, 14 Oct 2012 21:54:14 +0300
-Subject: [PATCH 03/10] Use symbol filter when linking
+Subject: [PATCH 2/9] Use symbol filter when linking
 
 The link step of qtwebkit is a massive memory hog. Even with
 -Wl,--no-keep-memory as a default setting, the memory addresses STILL
