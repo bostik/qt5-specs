@@ -1,4 +1,4 @@
-From 38e1f4e2bf97951bc0a11d2682d7b7cd0075bfbb Mon Sep 17 00:00:00 2001
+From 68aa7fed71aca671aaff62084ecb8a2e25f516ca Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Fri, 30 Nov 2012 13:11:56 +0200
 Subject: [PATCH 07/10] Fix case insensitive library names

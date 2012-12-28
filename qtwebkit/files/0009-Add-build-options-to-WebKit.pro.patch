@@ -1,4 +1,4 @@
-From 012d388510e873c028ed5f27ec852a89a847d758 Mon Sep 17 00:00:00 2001
+From f28a38cb70133a21cbf46fbd7cc5ea90380e3c4c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 27 Dec 2012 09:34:37 +0200
 Subject: [PATCH 09/10] Add build options to WebKit.pro

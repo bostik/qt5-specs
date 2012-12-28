@@ -1,4 +1,4 @@
-From 632d1ce846ebfa41bf346bba10aa1492db562566 Mon Sep 17 00:00:00 2001
+From dfc4948a4622a872b5aea24732c1833f155132fe Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Sun, 14 Oct 2012 21:54:14 +0300
 Subject: [PATCH 03/10] Use symbol filter when linking

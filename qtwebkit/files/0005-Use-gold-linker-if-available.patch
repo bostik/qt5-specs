@@ -1,4 +1,4 @@
-From f8463cb79300ace2bcd187454b47e3868be58195 Mon Sep 17 00:00:00 2001
+From 6fd69a25def815a3dc69f1794b1d2fdc16cd1b54 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 25 Oct 2012 15:55:29 +0300
 Subject: [PATCH 05/10] Use gold linker if available
