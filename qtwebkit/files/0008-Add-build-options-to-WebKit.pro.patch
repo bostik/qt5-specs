@@ -1,4 +1,4 @@
-From 83a2b68d949ba1ee1c9e79385ed6053a803cdad3 Mon Sep 17 00:00:00 2001
+From 770a434613caa7073316e249a4c76bfb974df249 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 27 Dec 2012 09:34:37 +0200
 Subject: [PATCH 8/9] Add build options to WebKit.pro
@@ -6,14 +6,14 @@ Subject: [PATCH 8/9] Add build options to WebKit.pro
 Some of the larger features are controlled by WEBKIT_CONFIG. We set them
 explicitly to (hopefully) reasonable values.
 ---
- WebKit.pro |   20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ WebKit.pro |   19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/WebKit.pro b/WebKit.pro
-index e81dcfe..4c658f0 100644
+index e81dcfe..5f95d46 100644
 --- a/WebKit.pro
 +++ b/WebKit.pro
-@@ -5,9 +5,29 @@
+@@ -5,9 +5,28 @@
  # See 'Tools/qmake/README' for an overview of the build system
  # -------------------------------------------------------------------
  
@@ -26,10 +26,9 @@ index e81dcfe..4c658f0 100644
 +# NOTE: there is no prefix in for enabled features
 +#
 +WEBKIT_CONFIG += fullscreen_api
-+WEBKIT_CONFIG += build_webkit1
-+WEBKIT_CONFIG -= build_webkit2
++WEBKIT_CONFIG += build_webkit2
 +WEBKIT_CONFIG -= netscape_plugin_api
-+WEBKIT_CONFIG -= use_3d_graphics
++WEBKIT_CONFIG += use_3d_graphics
 +
 +
  # Try to reduce linking memory requirements even further

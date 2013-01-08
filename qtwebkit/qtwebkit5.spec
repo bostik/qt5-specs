@@ -57,15 +57,15 @@ QtWebKit provides a Web browser engine that makes it easy to embed content from
 the World Wide Web into your Qt application.
 
 
-#%package uiprocess-launcher
-#Summary:    Web content engine library for Qt - WebKit2 process launcher
-#Group:      Qt/Qt
-#
-#%description uiprocess-launcher
-#QtWebKit provides a Web browser engine that makes it easy to embed content from
-#the World Wide Web into your Qt application.
-#
-#This package contains the UI process launcher for WebKit2 engine
+%package uiprocess-launcher
+Summary:    Web content engine library for Qt - WebKit2 process launcher
+Group:      Qt/Qt
+
+%description uiprocess-launcher
+QtWebKit provides a Web browser engine that makes it easy to embed content from
+the World Wide Web into your Qt application.
+
+This package contains the UI process launcher for WebKit2 engine
 
 
 %package -n lib%{_qtmodule_base_name}5
@@ -132,6 +132,15 @@ the World Wide Web into your Qt application.
 
 This package contains the WebKit QML plugin for QtQml.
 
+%package -n qt5-qtqml-import-webkitplugin-experimental
+Summary:    Qt WebKit Experimental QML plugin
+Group:      Qt/Qt
+
+%description -n qt5-qtqml-import-webkitplugin-experimental
+QtWebKit provides a Web browser engine that makes it easy to embed content from
+the World Wide Web into your Qt application.
+
+This package contains the WebKit QML Experimental plugin for QtQml.
 
 
 %prep
@@ -205,9 +214,9 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 
 
-#%files uiprocess-launcher
-#%defattr(-,root,root,-)
-#%{_bindir}/QtWebProcess
+%files uiprocess-launcher
+%defattr(-,root,root,-)
+%{_libdir}/qt5/libexec/QtWebProcess
 
 
 %files -n lib%{_qtmodule_base_name}5
@@ -241,6 +250,10 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 %{_libdir}/qt5/qml/QtWebKit/libqmlwebkitplugin.so
 %{_libdir}/qt5/qml/QtWebKit/qmldir
 
+%files -n qt5-qtqml-import-webkitplugin-experimental
+%defattr(-,root,root,-)
+%{_libdir}/qt5/qml/QtWebKit/experimental/libqmlwebkitexperimentalplugin.so
+%{_libdir}/qt5/qml/QtWebKit/experimental/qmldir
 
 
 #### No changelog section, separate $pkg.changes contains the history

@@ -1,4 +1,4 @@
-From 5dec60b05490f6ae1827e1e7c7c92e2a24af29bb Mon Sep 17 00:00:00 2001
+From c03b13894f98ecd8be5e77afd5a99a8e66d92e78 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <bostik@odin.bostik.iki.fi>
 Date: Thu, 27 Dec 2012 12:26:36 +0200
 Subject: [PATCH 9/9] Work around JSObject linker bug
