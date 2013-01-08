@@ -516,6 +516,7 @@ Qt5 documentation
     -bindir "%{_bindir}" \
     -libdir "%{_libdir}" \
     -docdir "%{_docdir}" \
+    -libexecdir "%{_libdir}/qt5/libexec" \
     -headerdir "%{_includedir}/qt5" \
     -datadir "%{_datadir}/qt5" \
     -hostdatadir "%{_datadir}/qt5" \
