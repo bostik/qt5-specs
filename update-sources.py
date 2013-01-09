@@ -41,11 +41,15 @@ import argparse
 import datetime
 import tempfile
 import glob
+import tarfile
+
+# From python-lzma package (3.x would have xz support in tarfile)
+import lzma
 
 class Qt5HelperError(Exception):
     def __init__(self, msg=None):
         if msg:
-            print '\n%s\n' % msg
+            print '\nERROR: %s\n' % msg
 
 # Idea of this class is that all external commands may be generated via
 # a single helper. The resulting code should be more readable - and a
@@ -164,7 +168,23 @@ class CommandHelper(object):
             if line.find('_qtmodule_snapshot_version') > 0:
                 tmpf.write(line.replace('%nil', version))
             else:
-                tmpf.write(line)
+                # Prebuilt tarballs require special handling
+                if not self.options['tarball_dir']:
+                    tmpf.write(line)
+                else:
+                    if line.startswith('Source0:'):
+                        (tb_prefix, tb_suffix) = self.tarballs[module]
+                        nl =  'Source0:\t%s-opensource-src-%%{version}.tar.%s' \
+                            % (module, tb_suffix)
+                        tmpf.write(nl + '\n')
+                    elif line.startswith('%setup'):
+                        (tb_prefix, tb_suffix) = self.tarballs[module]
+                        nl = '%%setup -q -n %s-opensource-src-%%{version}' \
+                            % module
+                        tmpf.write(nl + '\n')
+                    else:
+                        tmpf.write(line)
+
         f.close()
         tmpf.flush()
         shutil.copy(tmpf.name, tgtpath) # Copy to _target_ path
@@ -225,6 +245,7 @@ class GitCommandHelper(CommandHelper):
         self.git_ref = None
         self.revision = None
         self.module_revisions = dict()
+        self.tarballs = dict()
         self.revdir = os.path.join(os.path.expanduser('~'),
             '.modular-qt5-revs')
         self.__last_archived()
@@ -241,7 +262,6 @@ class GitCommandHelper(CommandHelper):
         # And if provided, use override version string
         if self.options['forced_version']:
             self.git_override_version(self.options['forced_version'])
-
 
     def __get_current_git_revs(self):
         for m in self.options['modules']:
@@ -429,9 +449,70 @@ class GitCommandHelper(CommandHelper):
         self.revision = self.__revision_from_git_describe(rev)
         os.chdir(self.scriptdir)
 
+    # Prebuilt tarballs follow a known naming convention:
+    # MODNAME-opensource-src-VERSION.tar.{gz,xz}
+    def __generate_tarball_path(self, modname):
+        p = '%s/%s-opensource-src-%s' % (self.options['tarball_dir'],
+            modname, self.revision)
+        ff = glob.glob(p + '.tar.*')
+        if not ff:
+            raise Qt5HelperError('No tarballs found in %s' % p)
+
+        # It is possible that there are tarballs with the same basename
+        # but different extensions. This can happen if the same
+        # directory contains both tar.gz and tar.xz archives.
+        # We prefer .xz over everything else, and keep a level of
+        # "preference"
+        lvl = 0
+        preferred = None
+        for f in ff:
+            if f.endswith('.xz'):
+                preferred = f
+                lvl = 3
+                break # No need to test any further!
+            if f.endswith('.bz2') and lvl < 2:
+                preferred = f
+                lvl = 2
+                continue
+            if f.endswith('.gz') and lvl < 1:
+                preferred = f
+                lvl = 1
+                continue
+        if not preferred:
+            raise Qt5HelperError('No known compression formats found')
+        return preferred
+
+    # Prebuilt tarballs have different extraction paths, so we need
+    # store the "special" prefix for specfile use
+    def __extract_tarball_path_prefix(self, fpath):
+        # Le sigh. Of _course_ LZMA support is missing from 2.7 (it
+        # would be present in 3.x tarfile)
+        suffix = fpath.split('.').pop()
+        d = None
+        if suffix == 'xz':
+            xz_file = lzma.LZMAFile(fpath, 'r')
+            with tarfile.open(mode='r', fileobj=xz_file) as t:
+                # We only want the first item, which _should_ be the
+                # path prefix (expansion directory)
+                p = t.next()
+                d = p.name
+        else:
+            _mode = 'r:%s' % suffix
+            with tarfile.open(name=fpath, mode=_mode) as t:
+                # We only want the first item, which _should_ be the
+                # path prefix (expansion directory)
+                p = t.next()
+                d = p.name
+        return d
+
+
     # Write the just archived git SHA1 to stored revisions
     # NOTE: ref has been updated at __store_git_ref()
     def update_archived(self, module):
+        # For prebuilt tarballs we make this a no-op
+        if self.options['tarball_dir']:
+            return
+
         _ref = QT5_MODULES[module]
         if _ref is None:
             raise Qt5HelperError('invalid ref (%s) for %s' % (_ref, module))
@@ -470,6 +551,23 @@ class GitCommandHelper(CommandHelper):
         self.__generate_tarball(modname)
         self.__store_git_ref(modname)
 
+    # Use a prebuilt tarball for given module
+    def prebuilt_tarball(self, modname=None):
+        if modname not in QT5_MODULES:
+            raise Qt5HelperError('Unknown module "%s"' % modname)
+        if not os.path.exists(self.options['tarball_dir']):
+            raise Qt5HelperError('Tarball path missing')
+        tb_path = self.__generate_tarball_path(modname)
+        pfx = self.__extract_tarball_path_prefix(tb_path)
+        sfx = tb_path.split('.').pop()
+        # Store for use in specfile mangling
+        self.tarballs[modname] = (pfx, sfx)
+        # Copy prebuilt tarball to module OBS dir
+        tgt_path = os.path.join(self.OBS_DIR, modname)
+        shutil.copy(tb_path, tgt_path)
+        # NOTE: we skip __store_git_ref() with prebuilts
+
+
     # Very high-level logic for generating files for OBS upload
     def run(self):
         if self.revision:
@@ -489,7 +587,11 @@ class GitCommandHelper(CommandHelper):
                 print 'Skipping module: %s' % m
                 continue
             if self.module_revisions[m] != QT5_MODULES[m]:
-                self.git_tarball_module(m)
+                # We default to using git
+                if not self.options['tarball_dir']:
+                    self.git_tarball_module(m)
+                else:
+                    self.prebuilt_tarball(m)
                 self.update_archived(m)
             # These are unconditional attempts, so we can upload
             # spec-only changes
@@ -499,7 +601,8 @@ class GitCommandHelper(CommandHelper):
             self.update_package_state(m)
 
         # Commit all packages in a single batch upload
-        self.commit_obs_packages(self.options['modules'])
+        if not self.options['skip_obs_commit']:
+            self.commit_obs_packages(self.options['modules'])
 
 
 
@@ -556,8 +659,13 @@ Uses the following environment variables if they are set:
             action='store_false', dest='update_osc_pkgs', default=True)
         # Use tarballs instead of git
         self.parser.add_argument('--tarball',
-                help='Use existing tarball(s). Requires --module (not implemented)',
+                help='Use existing tarball(s) from specified directory. ' \
+                'Requires --module, --override-version',
                 action='store', dest='tarball_path', default=None)
+        # Skip the final OBS commit
+        self.parser.add_argument('--skip-obs-commit',
+                help='Do not commit changes to OBS',
+                action='store_true', dest='skip_obs', default=False)
 
 
     def __check_module_names(self, modules):
@@ -604,8 +712,20 @@ Uses the following environment variables if they are set:
         # OBS package sync at start
         cleaned['update_obs'] = opts.update_osc_pkgs
         #
-        # FIXME: tarball handling not implemented
+        # Path to prebuilt tarballs, requires both manually set version
+        # and a list of modules
+        cleaned['tarball_dir'] = opts.tarball_path
+        if opts.tarball_path:
+            if not opts.forced_version:
+                raise Qt5HelperError('--tarball-path requires ' \
+                    '--override-version')
+            if len(opts.modules) < 1:
+                raise Qt5HelperError('--tarball-path requires ' \
+                    '--module (may be used more than once)')
         #
+        # Whether to actually upload the files to OBS
+        cleaned['skip_obs_commit'] = opts.skip_obs
+
         return cleaned
 
 
