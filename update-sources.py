@@ -412,12 +412,12 @@ class GitCommandHelper(CommandHelper):
             _count = parts.pop()
             _extra = parts.pop()
             _version = parts.pop()
-            rev = '%s~%s+%s.g%s' % (_version, _extra, _count, _githash)
+            rev = '%s~%s+%s.%s' % (_version, _extra, _count, _githash)
         elif len(parts) == 3:
             _githash = parts.pop()
             _count = parts.pop()
             _version = parts.pop()
-            rev = '%s+%s.g%s' % (_version, _count, _githash)
+            rev = '%s+%s.%s' % (_version, _count, _githash)
         elif len(parts) < 3:
             raise Qt5HelperError('Unknown qt5.git revision: "%s"', gd)
         return rev
