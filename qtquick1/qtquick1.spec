@@ -94,7 +94,7 @@ This package provides Qt Quick 1 tooling plugin.
 
 %build
 export QTDIR=/usr/share/qt5
-%qmake CONFIG+=package
+qmake CONFIG+=package
 make %{?_smp_flags}
 
 %install
@@ -123,21 +123,20 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick1.so.5
-%{_libdir}/libQtQuick1.so.5.*
+%{_libdir}/libQt5Declarative.so.5
+%{_libdir}/libQt5Declarative.so.5.*
+%{_libdir}/qt5/imports/builtins.qmltypes
 
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtQuick1.so
-%{_libdir}/libQtQuick1.prl
-%{_includedir}/qt5/QtQuick1/
-%{_includedir}/qt5/Qt/QtQuick1
-%{_includedir}/qt5/Qt/qdeclarative*
-%{_includedir}/qt5/Qt/qtquick1*
-%{_libdir}/pkgconfig/QtQuick1.pc
-%{_libdir}/cmake/Qt5Quick1/
-%{_datadir}/qt5/mkspecs/modules/qt_quick1.pri
+%{_bindir}/qml1plugindump
+%{_libdir}/libQt5Declarative.so
+%{_libdir}/libQt5Declarative.prl
+%{_includedir}/qt5/QtDeclarative/
+%{_libdir}/pkgconfig/Qt5Declarative.pc
+%{_libdir}/cmake/Qt5Declarative/
+%{_datadir}/qt5/mkspecs/modules/qt_lib_declarative.pri
 
 %files qmlviewer
 %defattr(-,root,root,-)
@@ -145,19 +144,19 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files import-folderlistmodel
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick1/Qt/labs/folderlistmodel/
+%{_libdir}/qt5/imports/Qt/labs/folderlistmodel/
 
 %files import-gestures
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick1/Qt/labs/gestures/
+%{_libdir}/qt5/imports/Qt/labs/gestures/
 
 %files import-particles
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick1/Qt/labs/particles/
+%{_libdir}/qt5/imports/Qt/labs/particles/
 
 %files import-shaders
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtQuick1/Qt/labs/shaders/
+%{_libdir}/qt5/imports/Qt/labs/shaders/
 
 %files plugin-qmltooling
 %defattr(-,root,root,-)
