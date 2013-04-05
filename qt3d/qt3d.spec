@@ -7,7 +7,6 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     0001-Disable-Qt3D-tools-from-build.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -110,7 +109,6 @@ This package contains the Qt3D import for QtQml
 
 %prep
 %setup -q -n %{name}
-%patch1 -p1
 
 
 %build
@@ -149,37 +147,37 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQt3D.so.5
-%{_libdir}/libQt3D.so.5.*
+%{_libdir}/libQt53D.so.5
+%{_libdir}/libQt53D.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt3D.so
-%{_libdir}/libQt3D.prl
+%{_libdir}/libQt53D.so
+%{_libdir}/libQt53D.prl
 %{_includedir}/qt5/Qt3D/
-%{_libdir}/pkgconfig/Qt3D.pc
-%{_datadir}/qt5/mkspecs/modules/qt_3d.pri
+%{_libdir}/pkgconfig/Qt53D.pc
+%{_datadir}/qt5/mkspecs/modules/qt_lib_3d.pri
 %{_libdir}/cmake/Qt53D/
+%{_bindir}/qglinfo
 
 %files qt3dquick
 %defattr(-,root,root,-)
-%{_libdir}/libQt3DQuick.so.5
-%{_libdir}/pkgconfig/Qt3D.pc
-%{_datadir}/qt5/mkspecs/modules/qt_3d.pri
+%{_libdir}/libQt53DQuick.so.5
+%{_libdir}/pkgconfig/Qt53DQuick.pc
 
 %files qt3dquick
 %defattr(-,root,root,-)
-%{_libdir}/libQt3DQuick.so.5
-%{_libdir}/libQt3DQuick.so.5.*
+%{_libdir}/libQt53DQuick.so.5
+%{_libdir}/libQt53DQuick.so.5.*
 
 
 %files qt3dquick-devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt3DQuick.so
-%{_libdir}/libQt3DQuick.prl
+%{_libdir}/libQt53DQuick.so
+%{_libdir}/libQt53DQuick.prl
 %{_includedir}/qt5/Qt3DQuick/
-%{_libdir}/pkgconfig/Qt3DQuick.pc
-%{_datadir}/qt5/mkspecs/modules/qt_3dquick.pri
+%{_libdir}/pkgconfig/Qt53DQuick.pc
+%{_datadir}/qt5/mkspecs/modules/qt_lib_3dquick.pri
 %{_libdir}/cmake/Qt53DQuick/
 
 #%files plugin-sceneformat-ai
@@ -192,14 +190,13 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files -n qt5-qtqml-import-qt3d-shapes
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt3D/Shapes/
+%{_libdir}/qt5/qml/Qt3D/Shapes/
 
 %files -n qt5-qtqml-import-qt3d
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/Qt3D/qmldir
-%{_libdir}/qt5/imports/Qt3D/plugins.qmltypes
-%{_libdir}/qt5/imports/Qt3D/library.xml
-%{_libdir}/qt5/imports/Qt3D/libqthreedqmlplugin.so
+%{_libdir}/qt5/qml/Qt3D/qmldir
+%{_libdir}/qt5/qml/Qt3D/plugins.qmltypes
+%{_libdir}/qt5/qml/Qt3D/libqthreedqmlplugin.so
 
 #### No changelog section, separate $pkg.changes contains the history
 
