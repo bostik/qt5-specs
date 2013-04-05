@@ -584,8 +584,6 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 %make_install
-# Remove .build-id files (the path is a directory)
-rm -rf %{buildroot}/%{_libdir}/debug/.build-id/
 #
 # RC1 introduces DATADIR/doc/global/template/
 # Some .png files under that path have executable bit on, and rpmlint
