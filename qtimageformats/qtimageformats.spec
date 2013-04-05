@@ -55,7 +55,7 @@ This package provides the WBMP imageformat plugin
 
 %build
 export QTDIR=/usr/share/qt5
-%qmake
+qmake
 make %{?_smp_flags}
 
 %install
