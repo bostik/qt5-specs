@@ -75,7 +75,7 @@ BuildRequires:  libjpeg-devel
 BuildRequires:  pam-devel
 BuildRequires:  readline-devel
 BuildRequires:  sharutils
-#BuildRequires:  gdb
+BuildRequires:  gdb
 BuildRequires:  python
 
 
@@ -193,6 +193,15 @@ Requires:   %{name}-qtcore = %{version}-%{release}
 This package contains the minimal platform plugin
 
 
+%package plugin-platform-offscreen
+Summary:    Offscreen platform plugin
+Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
+
+%description plugin-platform-offscreen
+This package contains the offscreen platform plugin
+
+
 %package plugin-platform-inputcontext-maliit
 Summary:    MALIIT input context platform plugin
 Group:      Qt/Qt
@@ -200,6 +209,15 @@ Requires:   %{name}-qtcore = %{version}-%{release}
 
 %description plugin-platform-inputcontext-maliit
 This package contains MALIIT platform inputcontext plugin
+
+
+%package plugin-platform-inputcontext-compose
+Summary:    Compose input context platform plugin
+Group:      Qt/Qt
+Requires:   %{name}-qtcore = %{version}-%{release}
+
+%description plugin-platform-inputcontext-compose
+This package contains compose platform inputcontext plugin
 
 
 %package plugin-platform-eglfs
@@ -566,6 +584,8 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 %make_install
+# Remove .build-id files (the path is a directory)
+rm -rf %{buildroot}/%{_libdir}/debug/.build-id/
 #
 # RC1 introduces DATADIR/doc/global/template/
 # Some .png files under that path have executable bit on, and rpmlint
@@ -656,6 +676,7 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_bindir}/qmake
 %{_datadir}/qt5/mkspecs/aix-*/
+%{_datadir}/qt5/mkspecs/android-*/
 %{_datadir}/qt5/mkspecs/blackberry*/
 %{_datadir}/qt5/mkspecs/common/
 %{_datadir}/qt5/mkspecs/cygwin-*/
@@ -739,10 +760,15 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %files qtopengl-devel
 %defattr(-,root,root,-)
 %{_includedir}/qt5/QtOpenGL/
+%{_includedir}/qt5/QtOpenGLExtensions/
 %{_libdir}/libQt5OpenGL.prl
 %{_libdir}/libQt5OpenGL.so
+%{_libdir}/libQt5OpenGLExtensions.prl
+%{_libdir}/libQt5OpenGLExtensions.a
 %{_libdir}/pkgconfig/Qt5OpenGL.pc
+%{_libdir}/pkgconfig/Qt5OpenGLExtensions.pc
 %{_datadir}/qt5/mkspecs/modules/qt_lib_opengl.pri
+%{_datadir}/qt5/mkspecs/modules/qt_lib_openglextensions.pri
 
 
 %files qtsql
@@ -876,9 +902,17 @@ install -D -p -m 0644 %{_sourcedir}/macros.qmake \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforms/libqminimal.so
 
+%files plugin-platform-offscreen
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforms/libqoffscreen.so
+
 %files plugin-platform-inputcontext-maliit
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/platforminputcontexts/libmaliitplatforminputcontextplugin.so
+
+%files plugin-platform-inputcontext-compose
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so
 
 %files plugin-platform-eglfs
 %defattr(-,root,root,-)
