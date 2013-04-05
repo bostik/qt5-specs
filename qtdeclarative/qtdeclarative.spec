@@ -1,6 +1,11 @@
 %define _qtmodule_snapshot_version %nil
 %define _qtmodule_name qt5-qtdeclarative
 
+# Tell rpmbuild not to remove static libraries after running install but
+# before generating the packages. We want to keep the built
+# libQt5QmlDevTools.a around.
+%define keepstatic 1
+
 Name:       qt5-qtqml
 Summary:    Qt Declarative library
 Version:    %{_qtmodule_snapshot_version}
@@ -20,6 +25,7 @@ BuildRequires:  qt5-qtwidgets-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
 BuildRequires:  python
+BuildRequires:  gdb
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -137,6 +143,30 @@ Requires:   %{name} = %{version}-%{release}
 %description import-particles
 This package provides the QtDeclarative particles plugin for QtQuick 2.0
 
+%package import-models
+Summary:    Qt Declarative models plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description import-models
+This package provides the QtDeclarative models plugin for QtQuick 2.0
+
+%package import-dialogs
+Summary:    Qt Declarative dialogs plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description import-dialogs
+This package provides the QtDeclarative dialogs plugin for QtQuick 2.0
+
+%package import-privatewidgets
+Summary:    Qt Declarative private widgets plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description import-privatewidgets
+This package provides the QtDeclarative private widgets plugin for QtQuick 2.0
+
 %package import-window
 Summary:    Qt Declarative window plugin
 Group:      Qt/Qt
@@ -220,8 +250,6 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
-# Manually copy qmldevtools static library
-cp lib/libQt5QmlDevTools.a %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_libdir}
 %fdupes %{buildroot}/%{_includedir}
 
@@ -316,6 +344,18 @@ cp lib/libQt5QmlDevTools.a %{buildroot}/%{_libdir}
 %defattr(-,root,root,-)
 %{_libdir}/qt5/qml/QtQuick/Particles.2/
 
+%files import-models
+%defattr(-,root,root,-)
+%{_libdir}/qt5/qml/QtQml/Models.2/
+
+%files import-dialogs
+%defattr(-,root,root,-)
+%{_libdir}/qt5/qml/QtQuick/Dialogs/
+
+%files import-privatewidgets
+%defattr(-,root,root,-)
+%{_libdir}/qt5/qml/QtQuick/PrivateWidgets/
+
 %files import-window
 %defattr(-,root,root,-)
 %{_libdir}/qt5/qml/QtQuick/Window.2/
@@ -369,7 +409,7 @@ cp lib/libQt5QmlDevTools.a %{buildroot}/%{_libdir}
 
 %files qtqmltools-devel
 %defattr(-,root,root,-)
-%{_includedir}/qt5/QtQmlDevTools/
+#%{_includedir}/qt5/QtQmlDevTools/
 %{_libdir}/libQt5QmlDevTools.a
 %{_libdir}/libQt5QmlDevTools.prl
 %{_libdir}/pkgconfig/Qt5QmlDevTools.pc
