@@ -99,13 +99,13 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtLocation.so.5
-%{_libdir}/libQtLocation.so.5.*
+%{_libdir}/libQt0Location.so.0
+%{_libdir}/libQt0Location.so.0.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtLocation.so
-%{_libdir}/libQtLocation.prl
+%{_libdir}/libQt0Location.so
+%{_libdir}/libQt0Location.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
@@ -113,7 +113,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 
 %files -n qt5-qtqml-import-location
 %defattr(-,root,root,-)
-%{_libdir}/qt5/imports/QtLocation/
+%{_libdir}/qt5/qml/QtLocation/
 
 %files plugin-geoservices-nokia
 %defattr(-,root,root,-)
