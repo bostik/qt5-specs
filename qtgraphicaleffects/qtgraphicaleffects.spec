@@ -24,7 +24,7 @@ This package contains the Qt Graphical Effects
 
 %build
 export QTDIR=/usr/share/qt5
-%qmake
+qmake
 make %{?_smp_flags}
 
 %install
