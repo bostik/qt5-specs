@@ -394,7 +394,7 @@ class GitCommandHelper(CommandHelper):
         try:
             self.__do_checkout_umbrella_ref()
         except subprocess.CalledProcessError:
-            print 'qt5.git does not have ref "%s"'
+            print 'qt5.git does not have ref "%s"' % self.git_ref
             print 'Reverting to origin/master ...'
             self.git_ref = 'origin/master'
             self.__do_checkout_umbrella_ref()
