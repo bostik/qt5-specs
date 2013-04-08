@@ -1,0 +1,32 @@
+From 2c92df8597fbb1527d770e55b4592633b9bfff04 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <mika.bostrom@nomovok.com>
+Date: Mon, 8 Apr 2013 14:43:20 +0300
+Subject: [PATCH] QtWayland: link qwayland-egl against glib2
+
+Linking against libQt5PlatformSupport.a causes errors, apparently
+missing libglib2.
+
+See what happens.
+---
+ src/plugins/platforms/qwayland-egl/qwayland-egl.pro |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/plugins/platforms/qwayland-egl/qwayland-egl.pro b/src/plugins/platforms/qwayland-egl/qwayland-egl.pro
+index 339f946..6d87988 100644
+--- a/src/plugins/platforms/qwayland-egl/qwayland-egl.pro
++++ b/src/plugins/platforms/qwayland-egl/qwayland-egl.pro
+@@ -8,9 +8,9 @@ OTHER_FILES += \
+ 
+ !contains(QT_CONFIG, no-pkg-config) {
+     CONFIG += link_pkgconfig
+-    PKGCONFIG += wayland-egl egl
++    PKGCONFIG += wayland-egl egl glib-2.0
+ } else {
+-    LIBS += -lwayland-egl -lEGL
++    LIBS += -lwayland-egl -lEGL -lglib-2.0
+ }
+ 
+ SOURCES += qwaylandeglintegration.cpp \
+-- 
+1.7.10.4
+
