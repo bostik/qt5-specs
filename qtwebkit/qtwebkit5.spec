@@ -18,7 +18,6 @@ Patch5:		0005-Disable-tools-entirely.patch
 Patch6:		0006-Fix-case-insensitive-library-names.patch
 Patch7:		0007-Drop-large-webkit-components-from-build.patch
 Patch8:		0008-Add-build-options-to-WebKit.pro.patch
-Patch9:		0009-Work-around-JSObject-linker-bug.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtnetwork-devel
@@ -153,7 +152,6 @@ This package contains the WebKit QML Experimental plugin for QtQml.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
 # remove .../qt/tests directory which introduces nothing but trouble
 rm -rf Source/WebKit/qt/tests/
 
