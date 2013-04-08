@@ -7,6 +7,7 @@ Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
 Source0:    %{name}-%{version}.tar.gz
+Patch1:     0001-Assume-sane-headers.patch
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -38,6 +39,7 @@ This package contains the scripting module development files
 
 %prep
 %setup -q -n %{name}
+%patch1 -p1
 
 
 %build

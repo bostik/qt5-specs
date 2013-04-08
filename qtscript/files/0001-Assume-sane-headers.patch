@@ -1,0 +1,38 @@
+From 2818213f034f8a16b0e2fea646e68ff86e67d6ae Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mika=20Bostr=C3=B6m?= <mika.bostrom@nomovok.com>
+Date: Mon, 8 Apr 2013 15:42:51 +0300
+Subject: [PATCH] Assume sane headers
+
+The struct is already defined in elf.h, and asm/hwcap.h is supposed to
+be present.
+---
+ .../JavaScriptCore/assembler/MacroAssemblerARM.cpp        |   13 +------------
+ 1 file changed, 1 insertion(+), 12 deletions(-)
+
+diff --git a/src/3rdparty/javascriptcore/JavaScriptCore/assembler/MacroAssemblerARM.cpp b/src/3rdparty/javascriptcore/JavaScriptCore/assembler/MacroAssemblerARM.cpp
+index efdd777..0b3acc0 100644
+--- a/src/3rdparty/javascriptcore/JavaScriptCore/assembler/MacroAssemblerARM.cpp
++++ b/src/3rdparty/javascriptcore/JavaScriptCore/assembler/MacroAssemblerARM.cpp
+@@ -36,18 +36,7 @@
+ #include <fcntl.h>
+ #include <unistd.h>
+ #include <elf.h>
+-#if !OS(ANDROID) && !PLATFORM(QT)
+-# include <asm/hwcap.h>
+-# else
+-typedef struct
+-{
+-    uint32_t a_type;
+-    union
+-    {
+-        uint32_t a_val;
+-    } a_un;
+-} Elf32_auxv_t;
+-# endif
++#include <asm/hwcap.h>
+ #endif
+ 
+ namespace JSC {
+-- 
+1.7.10.4
+
