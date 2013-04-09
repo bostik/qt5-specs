@@ -14,6 +14,7 @@ BuildRequires:  qt5-qtnetwork-devel
 BuildRequires:  qt5-qtqml-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  fdupes
+BuildRequires:  gdb
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -51,6 +52,14 @@ Requires:   %{name} = %{version}-%{release}
 
 %description plugin-generic
 This package contains the generic plugin for sensors
+
+%package plugin-linuxsys
+Summary:    Linux system sensors plugin
+Group:      Qt/Qt
+Requires:   %{name} = %{version}-%{release}
+
+%description plugin-linuxsys
+This package contains the linux system plugin for sensors
 
 %package plugin-gestures-shake
 Summary:    Shake gesture plugin
@@ -104,13 +113,13 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtSensors.so.5
-%{_libdir}/libQtSensors.so.5.*
+%{_libdir}/libQt5Sensors.so.5
+%{_libdir}/libQt5Sensors.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtSensors.so
-%{_libdir}/libQtSensors.prl
+%{_libdir}/libQt5Sensors.so
+%{_libdir}/libQt5Sensors.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
@@ -124,6 +133,10 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %files plugin-generic
 %defattr(-,root,root,-)
 %{_libdir}/qt5/plugins/sensors/libqtsensors_generic.so
+
+%files plugin-linuxsys
+%defattr(-,root,root,-)
+%{_libdir}/qt5/plugins/sensors/libqtsensors_linuxsys.so
 
 %files plugin-gestures-shake
 %defattr(-,root,root,-)
